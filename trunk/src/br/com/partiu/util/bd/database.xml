@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databasesettings>
+   <connection>
+   		<user>root</user>
+   		<password>aluno</password>
+   		<database>trabalhog1</database>
+   		<server>mysql://localhost</server>
+   		<port>3306</port>
+   		<pagination>0</pagination>
+   </connection>
+</databasesettings>
