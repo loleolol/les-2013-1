@@ -1,8 +1,8 @@
-package br.com.partiu.model.dao;
+package br.com.les20131.model.dao;
 
 import java.sql.Connection;
 
-import br.com.partiu.util.bd.FabricaConexao;
+import br.com.les20131.util.bd.FabricaConexao;
 
 /**
  *

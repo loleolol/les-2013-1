@@ -1,4 +1,4 @@
-package br.com.partiu.model.dao;
+package br.com.les20131.model.dao;
 
 /**
  *
@@ -6,7 +6,7 @@ package br.com.partiu.model.dao;
  */
 public class DAOException extends Exception {
 
-    /**
+	/**
      * Construtor da classe
      * @access public
      */

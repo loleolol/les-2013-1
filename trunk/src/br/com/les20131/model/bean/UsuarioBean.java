@@ -1,8 +1,8 @@
-package br.com.partiu.model.bean;
+package br.com.les20131.model.bean;
 
-import br.com.partiu.model.Usuario;
-import br.com.partiu.model.dao.UsuarioDAO;
-import br.com.partiu.util.UserAuthenticationException;
+import br.com.les20131.model.Usuario;
+import br.com.les20131.model.dao.UsuarioDAO;
+import br.com.les20131.util.UserAuthenticationException;
 
 /**
  *

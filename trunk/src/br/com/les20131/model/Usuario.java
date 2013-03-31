@@ -1,4 +1,4 @@
-package br.com.partiu.model;
+package br.com.les20131.model;
 
 /**
  * Classe de usuário

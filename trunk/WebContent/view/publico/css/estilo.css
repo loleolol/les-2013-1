@@ -1,0 +1,178 @@
+/*
+    Document   : style
+    Created on : 05/05/2011, 20:20:26
+    Author     : 200720511
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/*
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+body, a{
+    font: 12px/20px arial;
+    color: #333;
+    outline: none;
+}
+h1{
+    color: #C00;
+    margin: 30px 0;
+}
+
+/*  #TABLE
+    -------------------------------------------*/
+table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+th, td{
+    border: solid 1px #DDD;
+    padding: 5px;
+}
+th{
+    text-align: left;
+    background: #E4E4E4;
+}
+.actions{
+    width: 50px;
+}
+.actions a{
+    display: block;
+    width: 18px;
+    line-height: 18px;
+    margin-right: 5px;
+    text-indent: -9999em;
+    float: left;
+    border:solid 1px #CCC;
+    
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.edit{
+    background: url(../images/edit.png) no-repeat center center;
+}
+.delete{
+    background: url(../images/delete.png) no-repeat center center;
+}
+
+/*  #FORM
+    -------------------------------------------*/
+input[type=text],
+input[type=password],
+button{
+    padding: 4px;
+    border:solid 1px #CCC;
+}
+input[type=submit],
+input[type=button],
+input[type=reset],
+button{
+    background: #CCC; /* para browsers sem suporte a CSS 3 */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FAFAFA', endColorstr='#CCCCCC'); /* IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#FAFAFA), to(#CCC)); /* webkit browsers */
+    background: -moz-linear-gradient(top,  #FAFAFA,  #CCC); /* Firefox 3.6+ */
+    border: 1px solid #CCC;
+    padding: 4px;
+
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+
+}
+input[type=submit]:pressed,
+input[type=button]:pressed,
+input[type=reset]:pressed,
+button:pressed{
+    position: relative;
+    top: 1px;
+    left: 1px;
+}
+input:hover,
+input[type=text]:hover,
+input[type=password]:hover,
+input[type=submit]:hover,
+input[type=button]:hover,
+input[type=reset]:hover,
+button:hover{
+    border: solid 1px #999;
+}
+input:focus,
+button:focus{
+   border: solid 1px #666;
+}
+fieldset{
+    padding: 20px;
+    border:solid 1px #CCC;
+}
+legend{
+    background-color: #C00;
+    color: #FFF;
+    padding: 5px;
+    text-transform: uppercase;
+}
+.block{
+    border-top: 1px dotted #CCC;
+    padding: 15px 0;
+}
+legend + .block{
+    border-top:none;
+}
+label{
+    display: inline-block;
+    width: 150px;
+}
+.buttons{
+    background-color: #F8F8F8;
+    border-color: #CCC;
+    border-style: dotted;
+    border-width: 1px 0;
+    padding: 5px;
+    position: relative;
+    text-align: right;
+}
+.buttons #btn-back-list{
+    left: 5px;
+    position: absolute;
+    top:5px;
+}
+/*  #NAVIGATION
+    -------------------------------------------*/
+.nav{
+    display: block;
+    overflow: hidden;
+    background: #E4E4E4;
+    padding: 0;
+    margin:0 0 20px 0;
+}
+.nav li{
+    float: left;
+    list-style-type: none;
+}
+.nav a{
+    display: block;
+    padding: 0 10px;
+    line-height: 40px;
+    text-decoration: none;
+    color: #333;
+    border-right: 1px solid #FFFFFF;
+    border-left: 1px solid #CCCCCC;
+}
+.nav a:hover{
+    color: #C00;
+}
+.nav .first a{
+    border-left: none;
+}
+.nav .last a{
+    border-right: none;
+}
+.nav .logoff{
+    float: right;
+    background: #C00;
+}
+.nav .logoff a{
+   color: #FFF;
+   padding: 0 20px;
+}

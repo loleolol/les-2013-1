@@ -18,7 +18,7 @@
         <div>
             <fieldset>
                 <legend>Erro</legend>
-                <jsp:useBean id="mensagemBean" class="br.com.partiu.model.bean.MensagemBean" scope="request"/>
+                <jsp:useBean id="mensagemBean" class="br.com.les20131.model.bean.MensagemBean" scope="request"/>
                 <div class="block">
                     <label>Erro ocorrido: </label>
                     <div>${mensagemBean.mensagem}</div>

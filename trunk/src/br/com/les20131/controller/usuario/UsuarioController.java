@@ -1,7 +1,8 @@
-package br.com.partiu.controller.usuario;
+package br.com.les20131.controller.usuario;
 
-import br.com.partiu.model.bean.UsuarioBean;
-import br.com.partiu.util.InvalidPageException;
+import br.com.les20131.model.bean.UsuarioBean;
+import br.com.les20131.util.InvalidPageException;
+
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,7 +17,7 @@ import javax.servlet.http.HttpSession;
  */
 public class UsuarioController extends HttpServlet {
 
-    /**
+	/**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
      * @param response servlet response

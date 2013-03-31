@@ -1,4 +1,4 @@
-package br.com.partiu.model.bean;
+package br.com.les20131.model.bean;
 
 /**
  *

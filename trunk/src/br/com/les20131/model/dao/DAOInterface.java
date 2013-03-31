@@ -1,4 +1,4 @@
-package br.com.partiu.model.dao;
+package br.com.les20131.model.dao;
 
 import java.util.List;
 
