@@ -3,10 +3,11 @@
  * and open the template in the editor.
  */
 
-package br.com.partiu.controller.erro;
+package br.com.les20131.controller.erro;
 
-import br.com.partiu.model.bean.MensagemBean;
-import br.com.partiu.util.UserAuthenticationException;
+import br.com.les20131.model.bean.MensagemBean;
+import br.com.les20131.util.UserAuthenticationException;
+
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

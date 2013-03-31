@@ -1,9 +1,10 @@
-package br.com.partiu.model.dao;
+package br.com.les20131.model.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
-import br.com.partiu.model.Usuario;
+
+import br.com.les20131.model.Usuario;
 
 /**
  * 

@@ -1,4 +1,4 @@
-package br.com.partiu.util;
+package br.com.les20131.util;
 
 /**
 *

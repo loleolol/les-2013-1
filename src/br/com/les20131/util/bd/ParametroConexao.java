@@ -1,4 +1,4 @@
-package br.com.partiu.util.bd;
+package br.com.les20131.util.bd;
 
 import java.io.IOException;
 
