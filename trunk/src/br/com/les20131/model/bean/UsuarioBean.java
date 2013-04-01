@@ -11,14 +11,14 @@ import br.com.les20131.util.UserAuthenticationException;
 public class UsuarioBean {
 
     /**
-     * Armazena o objeto de persist√™ncia de usu√°rio
+     * Armazena o objeto de persistÍncia de usu·rio
      * @access private
      * @var UsuarioDAO
      */
     private UsuarioDAO usuarioDAO;
 
     /**
-     * Armazena um usu√°rio
+     * Armazena um usu·rio
      * @access private
      * @var Usuario
      */
@@ -33,7 +33,7 @@ public class UsuarioBean {
     }
 
     /**
-     * Retorna o usu√°rio
+     * Retorna o usu·rio
      * @access public
      * @return Usuario
      */
@@ -47,10 +47,10 @@ public class UsuarioBean {
      * @return void
      * @throws Exception
      */
-    public void autenticaUsuario(String usuario, String senha) throws UserAuthenticationException {
+    public void autenticaUsuario(String email, String senha) throws UserAuthenticationException {
         try {
             this.usuarioDAO = new UsuarioDAO();
-            this.usuario = usuarioDAO.consultarPorUsuarioSenha(usuario, senha);
+            this.usuario = usuarioDAO.consultarPorUsuarioSenha(email, senha);
             if (this.usuario == null) {
                 throw new UserAuthenticationException();
             }

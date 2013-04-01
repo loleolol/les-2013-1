@@ -42,36 +42,37 @@ public class UsuarioDAO extends DAOBase<Usuario> {
     }
 
     /**
-     * Consulta um usuário e senha
+     * Consulta um email e senha
      * @access public
-     * @param String usuario
+     * @param String email
      * @param String senha
      * @return Usuario
      * @throws Exception
      */
-    public Usuario consultarPorUsuarioSenha(String usuario, String senha) throws DAOException {
-        if (usuario.isEmpty() || senha.isEmpty()) {
-            throw new DAOException("Usuário ou senha inválidos!");
+    public Usuario consultarPorUsuarioSenha(String email, String senha) throws DAOException {
+        if (email.isEmpty() || senha.isEmpty()) {
+            throw new DAOException("Email ou senha inv�lidos!");
         }
 
         PreparedStatement stmt = null;
         ResultSet resultSet = null;
 
-        String sql = "SELECT u.cod_usuario, u.usuario, u.senha"
+        String sql = "SELECT u.id_usuario, u.email, u.nome, u.senha"
                     + "\n FROM usuario u"
                     + "\n WHERE u.usuario = ?"
-                    + "\n AND u.senha = MD5(?)";
+                    + "\n AND u.senha = SHA1(?)";
 
         try {
             stmt = this.conexao.prepareStatement(sql);
-            stmt.setString(1, usuario);
+            stmt.setString(1, email);
             stmt.setString(2, senha);
             resultSet = stmt.executeQuery();
 
             Usuario user = null;
             if (resultSet.next()) {
-                user = new Usuario(resultSet.getInt("cod_usuario")
-                                , resultSet.getString("usuario")
+                user = new Usuario(resultSet.getInt("id_usuario")
+                                , resultSet.getString("email")
+                                , resultSet.getString("nome")
                                 , resultSet.getString("senha"));
             }
             return user;
@@ -89,13 +90,13 @@ public class UsuarioDAO extends DAOBase<Usuario> {
      */
     public String retornaHashSenha(String senha) throws DAOException {
         if (senha.isEmpty()) {
-            throw new DAOException("Senha inválida!");
+            throw new DAOException("Senha inv�lida!");
         }
 
         PreparedStatement stmt = null;
         ResultSet resultSet = null;
 
-        String sql = "SELECT MD5(?) senha"
+        String sql = "SELECT SHA1(?) senha"
                     + "\n FROM dual";
 
         try {

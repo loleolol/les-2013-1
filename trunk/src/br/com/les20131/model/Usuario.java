@@ -11,15 +11,22 @@ public class Usuario {
      * @access private
      * @var int
      */
-    private int codUsuario;
+    private int idUsuario;
 
     /**
-     * Armazena o usuário
+     * Armazena o email
      * @access private
      * @var String
      */
-    private String usuario;
+    private String email;
 
+    /**
+     * Armazena o nome
+     * @access private
+     * @var String
+     */
+    private String nome;
+    
     /**
      * Armazena a senha
      * @access private
@@ -30,24 +37,28 @@ public class Usuario {
     /**
      * Construtor da classe
      * @access public
-     * @param String usuario
+     * @param String email
+     * @param String nome
      * @param String senha
      */
-    public Usuario(String usuario, String senha) {
-        this.usuario = usuario;
+    public Usuario(String email, String nome, String senha) {
+        this.email = email;
+        this.nome = nome;
         this.senha = senha;
     }
 
     /**
      * Construtor da classe
      * @access public
-     * @param int codUsuario
+     * @param int idUsuario
      * @param String usuario
+     * @param String nome
      * @param String senha
      */
-    public Usuario(int codUsuario, String usuario, String senha) {
-        this.codUsuario = codUsuario;
-        this.usuario = usuario;
+    public Usuario(int idUsuario, String email, String nome, String senha) {
+        this.idUsuario = idUsuario;
+        this.email = email;
+        this.nome = nome;
         this.senha = senha;
     }
 
@@ -56,29 +67,48 @@ public class Usuario {
      * @access public
      * @return integer
      */
-    public int getCodUsuario() {
-        return this.codUsuario;
+    public int getIdUsuario() {
+        return this.idUsuario;
     }
 
     /**
-     * Retorna o usuário
+     * Retorna o email
      * @access public
      * @return String
      */
-    public String getUsuario() {
-        return this.usuario;
+    public String getEmail() {
+        return this.email;
     }
 
     /**
-     * Define o usuário
+     * Define o email
      * @access public
-     * @param String usuario
+     * @param String email
      * @return void
      */
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    /**
+     * Retorna o nome
+     * @access public
+     * @return String
+     */
+    public String getNome() {
+        return this.nome;
     }
 
+    /**
+     * Define o nome
+     * @access public
+     * @param String nome
+     * @return void
+     */
+    public void setNome(String nome) {
+        this.email = nome;
+    }
+    
     /**
      * Retorna a senha
      * @access public

@@ -1,5 +1,5 @@
 /**
- * Confirma a exclus√£o de um registro
+ * Confirma a exclus‡o de um registro
  */
 function confirmaExclusao(url) {
     if (confirm("Deseja realmente excluir este registro?")) {
@@ -18,16 +18,16 @@ function mostraMensagem(mensagem) {
 
 /**
  * Remove caracteres em branco
- * utilizando uma express√£o regular
- * que identifica caracteres √† esquerda
- * e √† direita da string
+ * utilizando uma express‡o regular
+ * que identifica caracteres ‡† esquerda
+ * e ‡† direita da string
  */
 function trim(strValor) {
     return strValor.replace(/^\s+|\s+$/g,"");
 }
 
 /**
- * Valida√ß√£o de campo deixado em branco
+ * ValidaÁ‡o de campo deixado em branco
  */
 function validaCampoBranco(strValor)
 {
@@ -38,9 +38,9 @@ function validaCampoBranco(strValor)
 }//function validaCampoBranco(strValor)
 
 /**
- * Valida√ß√£o de tipo inteiro
- * Verifica se o par√¢metro √© um n√∫mero e ent√£o compara se o resultado da convers√£o para
- * inteiro √© identico ao original. Caso seja diferente, o valor n√£o era um inteiro
+ * ValidaÁ‡o de tipo inteiro
+ * Verifica se o par‚metro È um n˙mero e ent‡o compara se o resultado da convers‡o para
+ * inteiro È identico ao original. Caso seja diferente, o valor n‡o era um inteiro
  */
 function validaInteiro(strValor)
 {
@@ -51,9 +51,9 @@ function validaInteiro(strValor)
 }//function validaInteiro(objElemento)
 
 /**
- * Valida√ß√£o de tipo float
- * Verifica se o par√¢metro √© um n√∫mero e ent√£o compara se o resultado da convers√£o para
- * float √© identico ao original. Caso seja diferente, o valor n√£o era um float
+ * ValidaÁ‡o de tipo float
+ * Verifica se o par‚metro È um n˙mero e ent‡o compara se o resultado da convers‡o para
+ * float È identico ao original. Caso seja diferente, o valor n‡o era um float
  */
 function validaFloat(strValor)
 {
@@ -66,12 +66,12 @@ function validaFloat(strValor)
 }//function validaFloat(objElemento)
 
 /**
- * Valida√ß√£o de tipo data
- * Verifica se a divis√£o da string pela barra resulta em tr√™s fragmentos
- * para ent√£o instanciar um objeto de data com o padr√£o americano MM/DD/YYYY
- * Como o javascript √© muito flex√≠vel na hora de aceitar data inv√°lidas, convertendo
- * para datas v√°lidas, √© realizada uma verifica√ß√£o se os dados resultantes s√£o os mesmos
- * do par√¢metro recebido. Caso seja diferente, o valor n√£o era uma data
+ * ValidaÁ‡o de tipo data
+ * Verifica se a divis‡o da string pela barra resulta em trÍs fragmentos
+ * para ent‡o instanciar um objeto de data com o padr‡o americano MM/DD/YYYY
+ * Como o javascript È muito flexÌvel na hora de aceitar data inv·lidas, convertendo
+ * para datas v·lidas, È realizada uma verificaÁ‡o se os dados resultantes s‡o os mesmos
+ * do par‚metro recebido. Caso seja diferente, o valor n‡o era uma data
  */
 function validaData(strValor)
 {
@@ -88,8 +88,8 @@ function validaData(strValor)
 
 /**
  * Valida a hora, verificando se o primeiro e o segundo
- * segmentos s√£o compostos somente de n√∫meros
- * e se seu alcance est√° correto
+ * segmentos s‡o compostos somente de n˙meros
+ * e se seu alcance est· correto
  */
 function validaHora(strValor)
 {
@@ -106,8 +106,8 @@ function validaHora(strValor)
 
 /**
  * Valida uma placa de transito
- * Os tr√™s primeiros caracteres devem ser n√£o num√©ricos
- * Os quatro √∫ltimos caracteres devem ser num√©ricos
+ * Os trÍs primeiros caracteres devem ser n‡o numÈricos
+ * Os quatro ˙ltimos caracteres devem ser numÈricos
  */
 function validaPlaca(strValor)
 {
@@ -116,7 +116,7 @@ function validaPlaca(strValor)
     {
         if ((intIndice < 3 && !(isNaN(strValor.charAt(intIndice))))
         || (intIndice > 4 && isNaN(strValor.charAt(intIndice)))) {
-            return "Placa inv√°lida";
+            return "Placa inv·lida";
         }//if (intIndice < 3 && !(isNaN(strValor.charAt(intIndice))))
     }//for (intIndice = 0; intIndice < strValor.length; intIndice++)
     return "";
@@ -124,8 +124,8 @@ function validaPlaca(strValor)
 
 /**
  * Valida um CPF
- * Realiza o c√°lculo do m√≥dulo para verifica
- * os dois d√≠gitos verificadores
+ * Realiza o c·lculo do mÛdulo para verifica
+ * os dois dÌgitos verificadores
  */
 function validaCpf(strValor)
 {
@@ -136,7 +136,7 @@ function validaCpf(strValor)
      || strValor == "44444444444" || strValor == "55555555555"
      || strValor == "66666666666" || strValor == "77777777777"
      || strValor == "88888888888" || strValor == "99999999999"){
-        return "CPF inv√°lido!";
+        return "CPF inv·lido!";
     }//if (strValor == "00000000000" || strValor == "11111111111"...
 
     for (intIndice = 0; intIndice < 9; intIndice++) {
@@ -145,7 +145,7 @@ function validaCpf(strValor)
     intTotal = intTotal % 11;
     intTotal = (intTotal < 2 ? 0 : 11 - intTotal);
     if (intTotal != strValor.charAt(9)) {
-        return "CPF inv√°lido!";
+        return "CPF inv·lido!";
     }//if (intTotal != strValor.charAt(9))
 
     intTotal = 0;
@@ -155,16 +155,16 @@ function validaCpf(strValor)
     intTotal = intTotal % 11;
     intTotal = (intTotal < 2 ? 0 : 11 - intTotal);
     if (intTotal != strValor.charAt(10)) {
-        return "CPF inv√°lido!";
+        return "CPF inv·lido!";
     }//if (intTotal != strValor.charAt(10))
 
     return "";
 }//function validaCpf(strValor)
 
 /**
- * Valida um formul√°rio com o vetor de campos recebido
- * por par√¢metro, contendo os dados do campo
- * separados em nome;tipo;n√£onulo;funcaoAdicional
+ * Valida um formul·rio com o vetor de campos recebido
+ * por par‚metro, contendo os dados do campo
+ * separados em nome;tipo;n‡onulo;funcaoAdicional
  */
 function validaFormulario(arrFormulario)
 {
@@ -183,31 +183,31 @@ function validaFormulario(arrFormulario)
         if (validaCampoBranco(strValor)) {
             if (arrCampo[intChaveTipo] == "integer" || arrCampo[intChaveTipo] == "boolean") {
                 if (!validaInteiro(strValor)) {
-                    escreveCampoErro(arrCampo[intChaveNome], "Valor inv√°lido!");
+                    escreveCampoErro(arrCampo[intChaveNome], "Valor inv·lido!");
                     boolRetorno = false;
                 }//if (validaInteiro(strValor) == false)
             } else if (arrCampo[intChaveTipo] == "float") {
                 if (!validaFloat(strValor)) {
-                    escreveCampoErro(arrCampo[intChaveNome], "Valor inv√°lido!");
+                    escreveCampoErro(arrCampo[intChaveNome], "Valor inv·lido!");
                     boolRetorno = false;
                 }//if (validaFloat(strValor) == false)
             } else if (arrCampo[intChaveTipo] == "Time") {
                 if (!validaHora(strValor)) {
-                    escreveCampoErro(arrCampo[intChaveNome], "Hora inv√°lida!");
+                    escreveCampoErro(arrCampo[intChaveNome], "Hora inv·lida!");
                     boolRetorno = false;
                 }//if (!validaHora(strValor))
             } else if (arrCampo[intChaveTipo] == "Date") {
                 if (!validaData(strValor)) {
-                    escreveCampoErro(arrCampo[intChaveNome], "Data inv√°lida!");
+                    escreveCampoErro(arrCampo[intChaveNome], "Data inv·lida!");
                     boolRetorno = false;
                 }//if (!validaHora(strValor))
             } else if (arrCampo[intChaveTipo] == "DateTime") {
                 var arrValor = strValor.split(" ");
                 if (!validaData(arrValor[0])) {
-                    escreveCampoErro(arrCampo[intChaveNome], "Data inv√°lida!");
+                    escreveCampoErro(arrCampo[intChaveNome], "Data inv·lida!");
                     boolRetorno = false;
                 } else if (!validaHora(arrValor[1])) {
-                    escreveCampoErro(arrCampo[intChaveNome], "Hora inv√°lida!");
+                    escreveCampoErro(arrCampo[intChaveNome], "Hora inv·lida!");
                     boolRetorno = false;
                 }//if (!validaHora(strValor))
             }//if (arrCampo[intChaveTipo] == "integer")
@@ -220,7 +220,7 @@ function validaFormulario(arrFormulario)
             }//if (arrCampo[intChaveValidacaoAdicional] != undefined)
         } else {
             if (arrCampo[intChaveNaoNulo] == 1) {
-                escreveCampoErro(arrCampo[intChaveNome], "Campo obrigat√≥rio!");
+                escreveCampoErro(arrCampo[intChaveNome], "Campo obrigatÛrio!");
                 boolRetorno = false;
             }//if (!(arrCampo[intChaveNaoNulo] == 1))
         }//if (validaCampoBranco(strValor))
@@ -241,7 +241,7 @@ function retornaValorCampo(strName)
             if (arrElemento[intIndice].tagName.toLowerCase() == "input") {
                 if (arrElemento[intIndice].type.toLowerCase() == "radio") {
                     /**
-                     * Caso seja um radio button devendo ser navegado at√© encontrar
+                     * Caso seja um radio button devendo ser navegado atÈ encontrar
                      * o elemento selecionado para obter o valor
                      */
                     if (arrElemento[intIndice].checked) {
@@ -253,7 +253,7 @@ function retornaValorCampo(strName)
                 }//if (arrElemento[intIndice].type == "radio")
             /**
              * Caso o elemento seja um select, deve-se encontrar o valor
-             * da op√ß√£o selecionada atrav√©s do √≠ndice da mesmas
+             * da opÁ‡o selecionada atravÈs do Ìndice da mesmas
              */
             } else if (arrElemento[intIndice].tagName.toLowerCase() == "select") {
                 return arrElemento[intIndice].options[arrElemento[intIndice].selectedIndex].value;

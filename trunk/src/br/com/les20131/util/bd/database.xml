@@ -3,7 +3,7 @@
    <connection>
    		<user>root</user>
    		<password>aluno</password>
-   		<database>trabalhog1</database>
+   		<database>les20131</database>
    		<server>mysql://localhost</server>
    		<port>3306</port>
    		<pagination>0</pagination>

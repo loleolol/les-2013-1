@@ -6,6 +6,7 @@
 package br.com.les20131.controller.erro;
 
 import br.com.les20131.model.bean.MensagemBean;
+import br.com.les20131.util.InvalidPageException;
 import br.com.les20131.util.UserAuthenticationException;
 
 import java.io.IOException;
@@ -22,34 +23,6 @@ import javax.servlet.http.HttpServletResponse;
 public class ErroController extends HttpServlet {
    
     /** 
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        RequestDispatcher dispatcher;
-        MensagemBean mensagemBean;
-        if (request.getAttribute("excecao") == null) {
-            mensagemBean = new MensagemBean((new UserAuthenticationException()).getMessage());
-            dispatcher = this.getServletContext().getRequestDispatcher("/view/login/login.jsp");
-        } else {
-            Exception excecao = (Exception)request.getAttribute("excecao");
-            mensagemBean = new MensagemBean(excecao.getMessage());
-            if (excecao instanceof UserAuthenticationException) {
-                dispatcher = this.getServletContext().getRequestDispatcher("/view/login/login.jsp");
-            } else {
-                dispatcher = this.getServletContext().getRequestDispatcher("/view/erro/erro.jsp");
-            }
-        }
-        request.setAttribute("mensagemBean", mensagemBean);
-        dispatcher.forward(request, response);
-    } 
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
      * Handles the HTTP <code>GET</code> method.
      * @param request servlet request
      * @param response servlet response
@@ -59,7 +32,9 @@ public class ErroController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        request.setAttribute("excecao", new InvalidPageException());
+        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/ErroController");
+        dispatcher.forward(request, response);
     } 
 
     /** 
@@ -72,7 +47,22 @@ public class ErroController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        RequestDispatcher dispatcher;
+        MensagemBean mensagemBean;
+        if (request.getAttribute("excecao") == null) {
+            mensagemBean = new MensagemBean((new UserAuthenticationException()).getMessage());
+            dispatcher = this.getServletContext().getRequestDispatcher("/view/index.jsp");
+        } else {
+            Exception excecao = (Exception)request.getAttribute("excecao");
+            mensagemBean = new MensagemBean(excecao.getMessage());
+            if (excecao instanceof UserAuthenticationException) {
+                dispatcher = this.getServletContext().getRequestDispatcher("/view/index.jsp");
+            } else {
+                dispatcher = this.getServletContext().getRequestDispatcher("/view/erro/erro.jsp");
+            }
+        }
+        request.setAttribute("mensagemBean", mensagemBean);
+        dispatcher.forward(request, response);
     }
 
     /** 
@@ -81,6 +71,7 @@ public class ErroController extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
+    	//TODO	
         return "Short description";
     }// </editor-fold>
 
