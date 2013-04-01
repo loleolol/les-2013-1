@@ -1,4 +1,4 @@
-package br.com.les20131.controller.usuario;
+package br.com.les20131.controller.viajante;
 
 import br.com.les20131.model.bean.UsuarioBean;
 import br.com.les20131.util.InvalidPageException;
@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author 200920183
  */
-public class UsuarioController extends HttpServlet {
+public class ViajanteController extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -49,16 +49,7 @@ public class UsuarioController extends HttpServlet {
             if (acao.isEmpty()) {
                RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/view/login/login.jsp");
                dispatcher.forward(request, response);
-            } else if (acao.equalsIgnoreCase("login")) {
-               usuarioBean.autenticaUsuario(request.getParameter("loginEmail"), request.getParameter("loginSenha"));
-               HttpSession sessao = request.getSession(true);
-               sessao.setAttribute("email", usuarioBean.getUsuario().getEmail());
-               sessao.setAttribute("senha", usuarioBean.getUsuario().getSenha());
-               response.sendRedirect("/les20131/view/menu/menu.jsp");
-           } else if (acao.equalsIgnoreCase("logoff")) {
-               request.getSession().invalidate();
-               response.sendRedirect("/les20131/view/login/login.jsp");
-           } else if (acao.equalsIgnoreCase("cadastre-se")) {
+           } else if (acao.equalsIgnoreCase("cadastrar")) {
         	   response.sendRedirect("/les20131/view/viajante/cadastro.jsp");
            } else {
                throw new InvalidPageException();

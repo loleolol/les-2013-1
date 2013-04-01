@@ -9,4 +9,31 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+	<display-name>Usuario</display-name>
+	<servlet>
+	    <servlet-name>UsuarioController</servlet-name>
+    	<servlet-class>br.com.les20131.controller.usuario.UsuarioController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>UsuarioController</servlet-name>
+	    <url-pattern>/UsuarioController</url-pattern>
+	</servlet-mapping>  
+	<display-name>Erro</display-name>
+	<servlet>
+	    <servlet-name>ErroController</servlet-name>
+    	<servlet-class>br.com.les20131.controller.erro.ErroController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>ErroController</servlet-name>
+	    <url-pattern>/ErroController</url-pattern>
+	</servlet-mapping>  
+	<display-name>Viajante</display-name>
+	<servlet>
+	    <servlet-name>ViajanteController</servlet-name>
+    	<servlet-class>br.com.les20131.controller.viajante.ViajanteController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>ViajanteController</servlet-name>
+	    <url-pattern>/ViajanteController</url-pattern>
+	</servlet-mapping>  
 </web-app>
