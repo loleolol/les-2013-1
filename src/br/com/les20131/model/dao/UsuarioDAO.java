@@ -25,7 +25,7 @@ public class UsuarioDAO extends DAOBase<Usuario> {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public void inserir(Usuario obj) throws DAOException {
+    public void incluir(Usuario obj) throws DAOException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface DAOInterface<classe> {
 
-    public void inserir(classe obj)throws DAOException;
+    public void incluir(classe obj)throws DAOException;
 
     public void alterar(classe obj)throws DAOException;
 

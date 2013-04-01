@@ -1,4 +1,4 @@
-package br.com.les20131.controller.usuario;
+package br.com.les20131.controller;
 
 import br.com.les20131.model.bean.UsuarioBean;
 import br.com.les20131.util.InvalidPageException;

@@ -22,14 +22,24 @@
 					</div>
 			        <div class="block">
 				        <label for="email">E-mail<span class="atencao">*</span>:</label>
-				        <input id="email" type="text" name="email" value="" maxlength="50"/>
+				        <input id="email" type="text" name="email" value="" maxlength="100"/>
 				        <span id="emailErro"></span>
+					</div>
+			        <div class="block">
+				        <label for="confirmaEmail">Confirme E-mail<span class="atencao">*</span>:</label>
+				        <input id="confirmaEmail" type="text" name="confirmaEmail" value="" maxlength="100"/>
+				        <span id="confirmaEmailErro"></span>
 					</div>
 			        <div class="block">
 				        <label for="senha">Senha<span class="atencao">*</span>:</label>
 				        <input id="senha" type="password" name="senha" value="" maxlength="50"/>
 				        <span id="senhaErro"></span>
 					</div>
+			        <div class="block">
+				        <label for="confirmaSenha">Senha<span class="atencao">*</span>:</label>
+				        <input id="confirmaSenha" type="password" name="confirmaSenha" value="" maxlength="50"/>
+				        <span id="confirmaSenhaErro"></span>
+					</div>			
 			        <div class="block">
 	                    <label for="dataNascimento">Data de nascimento<span class="atencao">*</span>:</label>
 	                    <input id="dataNascimento" type="text" name="dataNascimento" size="10" value="" maxlength="10"/>

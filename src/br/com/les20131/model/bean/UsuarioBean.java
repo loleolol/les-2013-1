@@ -12,17 +12,17 @@ public class UsuarioBean {
 
     /**
      * Armazena o objeto de persistência de usuário
-     * @access private
+     * @access protected
      * @var UsuarioDAO
      */
-    private UsuarioDAO usuarioDAO;
+    protected UsuarioDAO usuarioDAO;
 
     /**
      * Armazena um usuário
-     * @access private
+     * @access protected
      * @var Usuario
      */
-    private Usuario usuario;
+    protected Usuario usuario;
 
     /**
      * Construtor da classe
