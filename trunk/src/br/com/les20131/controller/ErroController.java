@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package br.com.les20131.controller.erro;
+package br.com.les20131.controller;
 
 import br.com.les20131.model.bean.MensagemBean;
 import br.com.les20131.util.InvalidPageException;

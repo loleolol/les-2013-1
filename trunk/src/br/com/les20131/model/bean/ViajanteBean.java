@@ -1,0 +1,107 @@
+package br.com.les20131.model.bean;
+
+import java.util.Date;
+
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
+import br.com.les20131.model.Viajante;
+import br.com.les20131.model.Usuario;
+import br.com.les20131.model.bean.UsuarioBean;
+import br.com.les20131.model.dao.UsuarioDAO;
+import br.com.les20131.model.dao.ViajanteDAO;
+import br.com.les20131.util.UserAuthenticationException;
+
+/**
+ *
+ * @author 200920183
+ */
+public class ViajanteBean extends UsuarioBean {
+
+    /**
+     * Armazena o objeto de persistência de viajante
+     * @access private
+     * @var viajanteDAO
+     */
+    private ViajanteDAO viajanteDAO;
+    
+    /**
+     * Armazena um viajante
+     * @access private
+     * @var Viajante
+     */
+    private Viajante viajante;
+
+    /**
+     * Construtor da classe
+     * @access public
+     */
+    public ViajanteBean() {
+
+    }
+
+    /**
+     * Retorna o viajante
+     * @access public
+     * @return Viajante
+     */
+    public Viajante getViajante() {
+        return this.viajante;
+    }
+
+    /**
+     * Consulta as viajantes cadastrados
+     * @access public
+     * @return void
+     * @throws Exception
+     */
+    public void consultarMarcas() throws Exception {
+        throw new NotImplementedException();
+    }
+
+    /**
+     * Consulta um viajante com o código passado por parâmetro
+     * @access public
+     * @param int idViajante
+     * @return void
+     * @throws Exception
+     */
+    public void consultar(int idViajante) throws Exception {
+        throw new NotImplementedException();
+    }
+
+    /**
+     * Insere um viajante
+     * @access public
+     * @param String descrMarca
+     * @return void
+     * @throws Exception
+     */
+    public void incluir(String email, String senha, String nome, String sexo, String dataNascimento) throws Exception {
+        this.usuarioDAO = new UsuarioDAO();
+        this.viajante = new Viajante(email, senha, nome, sexo, new Date(dataNascimento));
+        this.usuarioDAO.incluir((Usuario)this.usuario);
+    	this.viajanteDAO = new ViajanteDAO();
+        this.viajanteDAO.incluir(this.viajante);
+    }
+
+    /**
+     * Altera um viajante
+     * @access public
+     * @return void
+     * @throws Exception
+     */
+    public void alterar() throws Exception {
+        throw new NotImplementedException();
+    }
+
+    /**
+     * Exclui um viajante
+     * @access public
+     * @return void
+     * @throws Exception
+     */
+    public void excluir() throws Exception {
+        throw new NotImplementedException();
+    }
+       
+}

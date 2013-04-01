@@ -2,7 +2,7 @@
 <databasesettings>
    <connection>
    		<user>root</user>
-   		<password>aluno</password>
+   		<password></password>
    		<database>les20131</database>
    		<server>mysql://localhost</server>
    		<port>3306</port>
