@@ -1,5 +1,3 @@
-#sidebar Requisitos
+#sidebar Dashboard
 
 Descrição dos requisitos
-
-* [RequisitosFuncionais Requisitos Funcionais]
