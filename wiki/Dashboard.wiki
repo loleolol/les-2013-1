@@ -8,6 +8,6 @@
     * [ArticlesStyle CSS and style]
     * [ArticlesTips Tips and tricks]
   * [DOMReference DOM reference]
-    * [DOMReferenceChild DOM reference Child]
+   * [DOMReferenceChild DOM reference Child]
   * [HTMLElements HTML reference]
   * [CSSReference CSS reference]
