@@ -50,7 +50,7 @@ public class UsuarioBean {
     public void autenticaUsuario(String email, String senha) throws UserAuthenticationException {
         try {
             this.usuarioDAO = new UsuarioDAO();
-            this.usuario = usuarioDAO.consultarPorUsuarioSenha(email, senha);
+            this.usuario = usuarioDAO.consultar(email, senha);
             if (this.usuario == null) {
                 throw new UserAuthenticationException();
             }
