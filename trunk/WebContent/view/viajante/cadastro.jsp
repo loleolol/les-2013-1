@@ -14,7 +14,7 @@
 		<%@include file="../usuario/login.jsp"%>
 		<fieldset>
 		<legend>Cadastre-se</legend>
-			<form id="cadastro_usuario" class="formulario_padrao" action="<c:url value="/ViajanteController"></c:url>" method="post" onsubmit="return validaFormulario(new Array('nome;String;1', 'email;String;1', 'senha;String;1', 'dataNascimento;Date;1', 'sexo;String;1'))">
+			<form id="cadastro_usuario" class="formulario_padrao" action="<c:url value="/ViajanteController"></c:url>" method="post" onsubmit="return validaFormulario(new Array('nome;String;1', 'email;String;1', 'confirmaEmail;String;1', 'senha;String;1', 'confirmaSenha;String;1', 'dataNascimento;Date;1', 'sexo;String;1'))">
 			        <div class="block">
 				        <label for="nome">Nome<span class="atencao">*</span>:</label>
 				        <input id="nome" type="text" name="nome" value="" maxlength="100"/>
@@ -36,7 +36,7 @@
 				        <span id="senhaErro"></span>
 					</div>
 			        <div class="block">
-				        <label for="confirmaSenha">Senha<span class="atencao">*</span>:</label>
+				        <label for="confirmaSenha">Confirme Senha<span class="atencao">*</span>:</label>
 				        <input id="confirmaSenha" type="password" name="confirmaSenha" value="" maxlength="50"/>
 				        <span id="confirmaSenhaErro"></span>
 					</div>			

@@ -70,8 +70,18 @@ public class Usuario {
     public int getIdUsuario() {
         return this.idUsuario;
     }
-
+    
     /**
+     * Define o código do usuário
+     * @access public
+     * @param int idUsuario
+     * @return void
+     */
+    public void setIdUsuario(int idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
+	/**
      * Retorna o email
      * @access public
      * @return String

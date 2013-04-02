@@ -76,12 +76,13 @@ public class ViajanteBean extends UsuarioBean {
      * @return void
      * @throws Exception
      */
-    public void incluir(String email, String senha, String nome, String sexo, String dataNascimento) throws Exception {
-        this.usuarioDAO = new UsuarioDAO();
-        this.viajante = new Viajante(email, senha, nome, sexo, new Date(dataNascimento));
-        this.usuarioDAO.incluir((Usuario)this.usuario);
-    	this.viajanteDAO = new ViajanteDAO();
-        this.viajanteDAO.incluir(this.viajante);
+    public void incluir(String email, String nome, String senha, String sexo, String dataNascimento) throws Exception {
+    	this.usuarioDAO = new UsuarioDAO();
+    	this.viajante = new Viajante(email, nome, senha, sexo, new Date());
+    	this.usuarioDAO.incluir((Usuario)this.viajante);
+    	this.viajante.setIdUsuario(((Usuario)this.usuarioDAO.consultar(email, senha)).getIdUsuario());
+      	this.viajanteDAO = new ViajanteDAO();
+      	this.viajanteDAO.incluir(this.viajante);
     }
 
     /**
