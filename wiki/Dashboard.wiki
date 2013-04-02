@@ -1,4 +1,3 @@
 #sidebar Dashboard
 
 * [Requisitos Requisitos]
- * [RequisitosFuncionais Requisitos Funcionais]
