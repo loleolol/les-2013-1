@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.util.List;
 
 import br.com.les20131.model.Usuario;
+import br.com.les20131.model.Viajante;
 
 /**
  * 
@@ -21,23 +22,7 @@ public class UsuarioDAO extends DAOBase<Usuario> {
         super();
     }
 
-    public Usuario consultar(int codUsuario) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void incluir(Usuario obj) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void alterar(Usuario obj) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void excluir(Usuario obj) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public List<Usuario> consultarTodos() throws DAOException {
+    public Usuario consultar(int idUsuario) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -49,7 +34,7 @@ public class UsuarioDAO extends DAOBase<Usuario> {
      * @return Usuario
      * @throws Exception
      */
-    public Usuario consultarPorUsuarioSenha(String email, String senha) throws DAOException {
+    public Usuario consultar(String email, String senha) throws DAOException {
         if (email.isEmpty() || senha.isEmpty()) {
             throw new DAOException("Email ou senha inválidos!");
         }
@@ -59,7 +44,7 @@ public class UsuarioDAO extends DAOBase<Usuario> {
 
         String sql = "SELECT u.id_usuario, u.email, u.nome, u.senha"
                     + "\n FROM usuario u"
-                    + "\n WHERE u.usuario = ?"
+                    + "\n WHERE u.email = ?"
                     + "\n AND u.senha = SHA1(?)";
 
         try {
@@ -79,6 +64,47 @@ public class UsuarioDAO extends DAOBase<Usuario> {
         } catch (Exception excecao) {
             throw new DAOException(excecao);
         }
+    }    
+    
+    /**
+     * Incluir um usuário no banco de dados
+     * @access public
+     * @param Usuario obj
+     * @return void
+     * @throws Exception
+     */    
+    public void incluir(Usuario obj) throws DAOException {
+        if (obj == null) {
+            throw new DAOException("Usuário inválido para incluir!");
+        }
+
+        PreparedStatement stmt = null;
+
+        String sql = "INSERT INTO usuario"
+                    + "\n(email, senha, nome)"
+                    + "\n VALUES (?, SHA1(?), ?)";
+
+        try {
+            stmt = this.conexao.prepareStatement(sql);
+            stmt.setString(1, obj.getEmail());
+            stmt.setString(2, obj.getSenha());
+            stmt.setString(3, obj.getNome());
+            stmt.executeUpdate();
+        } catch (Exception excecao) {
+            throw new DAOException(excecao);
+        }
+    }
+    
+    public void alterar(Usuario obj) throws DAOException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void excluir(Usuario obj) throws DAOException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public List<Usuario> consultarTodos() throws DAOException {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**
@@ -88,7 +114,7 @@ public class UsuarioDAO extends DAOBase<Usuario> {
      * @return String
      * @throws DAOException
      */
-    public String retornaHashSenha(String senha) throws DAOException {
+    public String retornarHashSenha(String senha) throws DAOException {
         if (senha.isEmpty()) {
             throw new DAOException("Senha inválida!");
         }

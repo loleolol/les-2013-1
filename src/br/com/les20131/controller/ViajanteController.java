@@ -45,7 +45,7 @@ public class ViajanteController extends HttpServlet {
     throws ServletException, IOException {
         String acao = (request.getParameter("acao") == null ? "" : request.getParameter("acao"));
         try {
-            if (acao.isEmpty()) {
+        	if (acao.isEmpty()) {
                RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/view/login/login.jsp");
                dispatcher.forward(request, response);
            } else if (acao.equalsIgnoreCase("cadastrar")) {
@@ -74,8 +74,8 @@ public class ViajanteController extends HttpServlet {
         this.validarViajante(request.getParameter("email"), request.getParameter("senha")
         		, request.getParameter("confirmaEmail"), request.getParameter("confirmaSenha")
         		, request.getParameter("nome"), request.getParameter("sexo"), request.getParameter("dataNascimento"));
-        viajanteBean.incluir(request.getParameter("email"), request.getParameter("senha")
-        		, request.getParameter("nome"), request.getParameter("sexo"), request.getParameter("dataNascimento"));
+        viajanteBean.incluir(request.getParameter("email"), request.getParameter("nome")
+        		, request.getParameter("senha"), request.getParameter("sexo"), request.getParameter("dataNascimento"));
         //request.setAttribute("mensagemBean", new MensagemBean("Marca inserida com sucesso!"));
     }    
     

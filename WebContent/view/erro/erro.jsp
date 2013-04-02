@@ -12,7 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <title>Erro</title>
-        <link type="text/css" rel="stylesheet" href="/TrabalhoG1/view/publico/css/estilo.css"/>
+        <link type="text/css" rel="stylesheet" href="/les20131/view/publico/css/estilo.css"/>
     </head>
     <body>
         <div>
