@@ -6,7 +6,6 @@ import br.com.les20131.util.InvalidPageException;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -15,23 +14,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author 200920183
  */
-public class UsuarioController extends HttpServlet {
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        request.setAttribute("excecao", new InvalidPageException());
-        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/ErroController");
-        dispatcher.forward(request, response);
-    }
+public class UsuarioController extends BaseController {
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -59,7 +42,7 @@ public class UsuarioController extends HttpServlet {
                request.getSession().invalidate();
                response.sendRedirect("/les20131/view/login/login.jsp");
            } else if (acao.equalsIgnoreCase("cadastre-se")) {
-        	   response.sendRedirect("/les20131/view/viajante/cadastro.jsp");
+        	   response.sendRedirect("/les20131/view/viagem/cadastro.jsp");
            } else {
                throw new InvalidPageException();
            }
