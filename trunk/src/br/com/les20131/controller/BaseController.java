@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import javax.servlet.http.HttpSession;
 
+import br.com.les20131.model.Usuario;
+import br.com.les20131.model.bean.UsuarioBean;
 import br.com.les20131.util.UserAuthenticationException;
 
 
@@ -68,6 +70,10 @@ public class BaseController extends HttpServlet {
              * Valida usuario, jogando exceção caso inválido
              */
             throw new UserAuthenticationException();
+        } else {
+        	UsuarioBean usuarioBean = new UsuarioBean();
+        	usuarioBean.setUsuario((Usuario)sessao.getAttribute("usuario"));
+        	request.setAttribute("usuarioBean", usuarioBean);
         }
     }	
 

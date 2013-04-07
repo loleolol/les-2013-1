@@ -47,27 +47,7 @@ public class ViajanteBean extends UsuarioBean {
     public Viajante getViajante() {
         return this.viajante;
     }
-
-    /**
-     * Define o viajante
-     * @param viajante
-     * @access public
-     * @return void
-     */
-    public void setViajante(Viajante viajante) {
-    	this.viajante = viajante;
-    }
-
-    /**
-     * Define o viajante com base em um usuário
-     * @param usuário
-     * @access public
-     * @return void
-     */
-    public void setViajante(Usuario viajante) {
-    	this.viajante = (Viajante)viajante;
-    }
-    
+   
     
     /**
      * Consulta as viajantes cadastrados
@@ -112,8 +92,12 @@ public class ViajanteBean extends UsuarioBean {
      * @return void
      * @throws Exception
      */
-    public void alterar() throws Exception {
-        throw new NotImplementedException();
+    public void alterar(int idUsuario, String nome, String sexo, String dataNascimento) throws Exception {
+    	this.usuarioDAO = new UsuarioDAO();
+    	this.viajanteDAO = new ViajanteDAO();
+      	this.viajante = this.viajanteDAO.consultar(idUsuario);
+    	//this.usuarioDAO.alterar((Usuario)this.viajante);
+    	//this.viajanteDAO.alterar(this.viajante);
     }
 
     /**

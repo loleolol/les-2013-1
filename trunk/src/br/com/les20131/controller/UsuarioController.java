@@ -27,28 +27,31 @@ public class UsuarioController extends BaseController {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         String acao = (request.getParameter("acao") == null ? "" : request.getParameter("acao"));
-        UsuarioBean usuarioBean = new UsuarioBean();
+        RequestDispatcher dispatcher;
         try {
             if (acao.isEmpty()) {
-               RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/view/login/login.jsp");
-               dispatcher.forward(request, response);
+			    dispatcher = this.getServletContext().getRequestDispatcher("/view/index.jsp");
+			    dispatcher.forward(request, response);
             } else if (acao.equalsIgnoreCase("login")) {
-               usuarioBean.autenticaUsuario(request.getParameter("loginEmail"), request.getParameter("loginSenha"));
-               HttpSession sessao = request.getSession(true);
-               sessao.setAttribute("usuario", usuarioBean.getUsuario());
-               response.sendRedirect("/les20131/view/viajante/inicio.jsp");
-           } else if (acao.equalsIgnoreCase("logoff")) {
-        	   this.verificarSessao(request);
-               request.getSession().invalidate();
-               response.sendRedirect("/les20131/view/login/login.jsp");
+                UsuarioBean usuarioBean = new UsuarioBean();
+                usuarioBean.autenticaUsuario(request.getParameter("loginEmail"), request.getParameter("loginSenha"));
+                HttpSession sessao = request.getSession(true);
+                sessao.setAttribute("usuario", usuarioBean.getUsuario());
+                this.verificarSessao(request);
+                dispatcher = this.getServletContext().getRequestDispatcher("/view/viajante/inicio.jsp");
+                dispatcher.forward(request, response);
+            } else if (acao.equalsIgnoreCase("logoff")) {
+        	   	this.verificarSessao(request);
+               	request.getSession().invalidate();
+               	response.sendRedirect("/view/index.jsp");
            } else if (acao.equalsIgnoreCase("cadastre-se")) {
-        	   response.sendRedirect("/les20131/view/viajante/incluir.jsp");
+        	   	response.sendRedirect("/view/viajante/incluir.jsp");
            } else {
-               throw new InvalidPageException();
+               	throw new InvalidPageException();
            }
         } catch (Exception excecao) {
-            request.setAttribute("excecao", excecao);
-            RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/ErroController");
+        	request.setAttribute("excecao", excecao);
+            dispatcher = this.getServletContext().getRequestDispatcher("/ErroController");
             dispatcher.forward(request, response);
         }
     }

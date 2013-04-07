@@ -22,8 +22,34 @@ public class UsuarioDAO extends DAOBase<Usuario> {
         super();
     }
 
-    public Usuario consultar(int idUsuario) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Usuario consultar(int idUsuario) throws DAOException {
+        if (idUsuario <= 0) {
+            throw new DAOException("Usuarío inválido!");
+        }
+
+        PreparedStatement stmt = null;
+        ResultSet resultSet = null;
+
+        String sql = "SELECT u.id_usuario, u.email, u.nome, u.senha"
+                    + "\n FROM usuario u"
+                    + "\n WHERE u.id_usuario = ?";
+
+        try {
+            stmt = this.conexao.prepareStatement(sql);
+            stmt.setInt(1, idUsuario);
+            resultSet = stmt.executeQuery();
+
+            Usuario usuario = null;
+            if (resultSet.next()) {
+            	usuario = new Usuario(resultSet.getInt("id_usuario")
+                                , resultSet.getString("email")
+                                , resultSet.getString("nome")
+                                , resultSet.getString("senha"));
+            }
+            return usuario;
+        } catch (Exception excecao) {
+            throw new DAOException(excecao);
+        }
     }
 
     /**
@@ -96,7 +122,24 @@ public class UsuarioDAO extends DAOBase<Usuario> {
     }
     
     public void alterar(Usuario obj) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        PreparedStatement stmt = null;
+
+        try {
+            String sql = "UPDATE usuario SET"
+                        + "\n email = ?"
+                        + "\n, senha = ?"
+                        + "\n, nome = ?"
+                        + "\n WHERE id_usuario = ?";
+
+            stmt = this.conexao.prepareStatement(sql);
+            stmt.setString(1, obj.getEmail());
+            stmt.setString(2, obj.getSenha());
+            stmt.setString(3, obj.getNome());
+            stmt.setInt(4, obj.getIdUsuario());
+            stmt.executeUpdate();
+        } catch (Exception excecao) {
+            throw new DAOException(excecao);
+        }    	
     }
 
     public void excluir(Usuario obj) throws DAOException {

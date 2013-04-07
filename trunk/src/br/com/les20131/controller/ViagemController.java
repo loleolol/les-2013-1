@@ -35,11 +35,11 @@ public class ViagemController extends BaseController {
         try {
             this.verificarSessao(request);
         	if (acao.isEmpty()) {
-               RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/view/viagem/cadastro.jsp");
+               RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/view/viagem/incluir.jsp");
                dispatcher.forward(request, response);
            } else if (acao.equalsIgnoreCase("cadastrar")) {
         	   this.incluirViagem(request, response);
-        	   response.sendRedirect("/les20131/view/viagem/incluir.jsp");
+        	   response.sendRedirect("/view/viagem/incluir.jsp");
            } else {
                throw new InvalidPageException();
            }
