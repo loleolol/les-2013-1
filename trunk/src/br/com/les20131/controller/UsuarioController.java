@@ -35,14 +35,14 @@ public class UsuarioController extends BaseController {
             } else if (acao.equalsIgnoreCase("login")) {
                usuarioBean.autenticaUsuario(request.getParameter("loginEmail"), request.getParameter("loginSenha"));
                HttpSession sessao = request.getSession(true);
-               sessao.setAttribute("email", usuarioBean.getUsuario().getEmail());
-               sessao.setAttribute("senha", usuarioBean.getUsuario().getSenha());
-               response.sendRedirect("/les20131/view/menu/menu.jsp");
+               sessao.setAttribute("usuario", usuarioBean.getUsuario());
+               response.sendRedirect("/les20131/view/viajante/inicio.jsp");
            } else if (acao.equalsIgnoreCase("logoff")) {
+        	   this.verificarSessao(request);
                request.getSession().invalidate();
                response.sendRedirect("/les20131/view/login/login.jsp");
            } else if (acao.equalsIgnoreCase("cadastre-se")) {
-        	   response.sendRedirect("/les20131/view/viagem/cadastro.jsp");
+        	   response.sendRedirect("/les20131/view/viajante/incluir.jsp");
            } else {
                throw new InvalidPageException();
            }

@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import javax.servlet.http.HttpSession;
 
+import br.com.les20131.util.UserAuthenticationException;
+
 
 /**
  * Servlet implementation class BaseController
@@ -46,5 +48,27 @@ public class BaseController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
+	
+    /**
+     * Verifica a sessão do usuário
+     * @access protected
+     * @param HttpServletRequest request
+     * @return void
+     * @throws Exception
+     */
+    protected void verificarSessao(HttpServletRequest request) throws Exception {
+        HttpSession sessao = request.getSession();
+        if (sessao == null) {
+            /**
+             * Se não há sessão, retorna ao login
+             */
+            throw new UserAuthenticationException();
+        } else if (sessao.getAttribute("usuario") == null) {
+            /**
+             * Valida usuario, jogando exceção caso inválido
+             */
+            throw new UserAuthenticationException();
+        }
+    }	
 
 }
