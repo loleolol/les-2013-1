@@ -8,6 +8,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -34,7 +35,13 @@ public class ViajanteController extends BaseController {
                dispatcher.forward(request, response);
            } else if (acao.equalsIgnoreCase("cadastrar")) {
         	   this.incluirViajante(request, response);
-        	   response.sendRedirect("/les20131/view/viajante/cadastro.jsp");
+        	   response.sendRedirect("/les20131/view/viajante/incluir.jsp");
+           } else if (acao.equalsIgnoreCase("alterar perfil")) {
+        	   this.verificarSessao(request);
+        	   response.sendRedirect("/les20131/view/viajante/alterar.jsp");
+           } else if (acao.equalsIgnoreCase("alterar")) {
+        	   this.verificarSessao(request);
+        	   this.alterarViajante(request, response);
            } else {
                throw new InvalidPageException();
            }
@@ -63,6 +70,15 @@ public class ViajanteController extends BaseController {
         //request.setAttribute("mensagemBean", new MensagemBean("Marca inserida com sucesso!"));
     }    
     
+    private void alterarViajante(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    	HttpSession sessao = request.getSession();
+        ViajanteBean viajanteBean = new ViajanteBean();
+//         this.validarViajante((Usuario)sessao.getAttribute("usuario").getIdUsuario(), request.getParameter("nome"), request.getParameter("sexo"), request.getParameter("dataNascimento"));
+//        viajanteBean.alterar(request.getParameter("email"), request.getParameter("nome")
+ //       		, request.getParameter("senha"), request.getParameter("sexo"), request.getParameter("dataNascimento"));
+    	
+    }
+    
     /**
      * Valida o viajante
      * @access private
@@ -84,18 +100,14 @@ public class ViajanteController extends BaseController {
      * Valida o viajante
      * @access private
      * @param String idUsuario
-     * @param String email
-     * @param String senha
-     * @param String confirmaEmail
-     * @param String confirmaSenha
      * @param String nome
      * @param String sexo
      * @param String dataNascimento
      * @return void
      * @throws Exception
      */
-    private void validarViajante(String idUsuario, String email, String senha, String confirmaEmail, String confirmaSenha, String nome, String sexo, String dataNascimento) throws Exception {
-    	 this.validarEmail(email);
+    private void validarViajante(String idUsuario, String nome, String sexo, String dataNascimento) throws Exception {
+
     }
     
     /**

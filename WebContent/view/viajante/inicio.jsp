@@ -10,8 +10,9 @@
         <link type="text/css" rel="stylesheet" href="/les20131/view/publico/css/estilo.css"/>
         <script type="text/javascript" src="/les20131/view/publico/js/trabalho.js" charset="ISO-8859-1"></script>
     </head>
-	<body> 
-		<%@include file="usuario/login.jsp"%>
-		
+	<body class="perfil"> 
+		<%@include file="../usuario/login.jsp"%>
+		<%@include file="menu.jsp" %>
+		<div id="corpo">teste</div>
 	</body>
 </html>

@@ -149,6 +149,17 @@ label{
     position: absolute;
     top:5px;
 }
+/*  Perfil */
+.perfil { }
+.perfil #barra_esquerda {
+	float: left;
+	border-right: 1px dotted #CCC;
+	padding-right: 250px;
+}
+.perfil #corpo {
+	float: right;
+}
+
 /*  #NAVIGATION
     -------------------------------------------*/
 .nav{

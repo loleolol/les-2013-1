@@ -33,12 +33,13 @@ public class ViagemController extends BaseController {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String acao = (request.getParameter("acao") == null ? "" : request.getParameter("acao"));
         try {
+            this.verificarSessao(request);
         	if (acao.isEmpty()) {
                RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/view/viagem/cadastro.jsp");
                dispatcher.forward(request, response);
            } else if (acao.equalsIgnoreCase("cadastrar")) {
         	   this.incluirViagem(request, response);
-        	   response.sendRedirect("/les20131/view/viagem/cadastro.jsp");
+        	   response.sendRedirect("/les20131/view/viagem/incluir.jsp");
            } else {
                throw new InvalidPageException();
            }

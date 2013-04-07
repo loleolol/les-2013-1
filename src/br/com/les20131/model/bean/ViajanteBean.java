@@ -49,6 +49,27 @@ public class ViajanteBean extends UsuarioBean {
     }
 
     /**
+     * Define o viajante
+     * @param viajante
+     * @access public
+     * @return void
+     */
+    public void setViajante(Viajante viajante) {
+    	this.viajante = viajante;
+    }
+
+    /**
+     * Define o viajante com base em um usuário
+     * @param usuário
+     * @access public
+     * @return void
+     */
+    public void setViajante(Usuario viajante) {
+    	this.viajante = (Viajante)viajante;
+    }
+    
+    
+    /**
      * Consulta as viajantes cadastrados
      * @access public
      * @return void
