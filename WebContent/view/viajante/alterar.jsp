@@ -15,27 +15,23 @@
 		<%@include file="menu.jsp" %>
 		<div id="corpo">
 			<fieldset>
-			<legend>Cadastre-se</legend>
+			<legend>Perfil</legend>
 				<form id="cadastro_usuario" class="formulario_padrao" action="<c:url value="/ViajanteController"></c:url>" method="post" onsubmit="return validaFormulario(new Array('nome;String;1', 'dataNascimento;Date;1', 'sexo;String;1'))">
 			        <div class="block">
 				        <label for="nome">Nome<span class="atencao">*</span>:</label>
-				        <input id="nome" type="text" name="nome" value="{viajanteBean.viajante.nome}" maxlength="100"/>
+				        <input id="nome" type="text" name="nome" value="${viajanteBean.viajante.nome}" maxlength="100"/>
 				        <span id="nomeErro"></span>
 					</div>
 			        <div class="block">
 	                    <label for="dataNascimento">Data de nascimento<span class="atencao">*</span>:</label>
-	                    <input id="dataNascimento" type="text" name="dataNascimento" size="10" value="{viajanteBean.viajante.dataNascimento}" maxlength="10"/>
+	                    <input id="dataNascimento" type="text" name="dataNascimento" size="10" value="${viajanteBean.viajante.dataNascimento}" maxlength="10"/>
 	                    <span>(YYYY-MM-DD)</span>
 	                    <span id="dataNascimentoErro"></span>
 					</div>
 			        <div class="block">
 	                    <label>Sexo<span class="atencao">*</span>:</label>
-	                    <c:if test="${locacaoBean.locacao != null}">
-	                    	<input id="sexoM" type="radio" name="sexo" value="M" ${viajanteBean.viajante.sexo == 'M' ? 'checked' : ''}/><label for="sexoM">Masculino</label>
-	                    </c:if>
-	                    <c:if test="${locacaoBean.locacao != null}">
-	                    	<input id="sexoF" type="radio" name="sexo" value="F" ${viajanteBean.viajante.sexo == 'F' ? 'checked' : ''}/><label for="sexoF">Feminino</label>
-	                    </c:if>
+                    	<input id="sexoM" type="radio" name="sexo" value="M" ${viajanteBean.viajante.sexo == 'M' ? 'checked' : ''}/><label for="sexoM">Masculino</label>
+                    	<input id="sexoF" type="radio" name="sexo" value="F" ${viajanteBean.viajante.sexo == 'F' ? 'checked' : ''}/><label for="sexoF">Feminino</label>
 	                    <span id="sexoErro"></span>
 					</div>
 			        <div class="block">

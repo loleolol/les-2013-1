@@ -1,5 +1,7 @@
 package br.com.les20131.controller;
 
+import br.com.les20131.model.Usuario;
+import br.com.les20131.model.bean.UsuarioBean;
 import br.com.les20131.model.bean.ViajanteBean;
 import br.com.les20131.util.InvalidPageException;
 
@@ -29,16 +31,19 @@ public class ViajanteController extends BaseController {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         String acao = (request.getParameter("acao") == null ? "" : request.getParameter("acao"));
+        RequestDispatcher dispatcher;
         try {
         	if (acao.isEmpty()) {
-               RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/view/login/login.jsp");
+               dispatcher = this.getServletContext().getRequestDispatcher("/view/viajante/inicio.jsp");
                dispatcher.forward(request, response);
            } else if (acao.equalsIgnoreCase("cadastrar")) {
         	   this.incluirViajante(request, response);
-        	   response.sendRedirect("/les20131/view/viajante/incluir.jsp");
+        	   dispatcher = this.getServletContext().getRequestDispatcher("/view/viajante/incluir.jsp");
+        	   dispatcher.forward(request, response);
            } else if (acao.equalsIgnoreCase("alterar perfil")) {
         	   this.verificarSessao(request);
-        	   response.sendRedirect("/les20131/view/viajante/alterar.jsp");
+        	   dispatcher = this.getServletContext().getRequestDispatcher("/view/viajante/alterar.jsp");
+        	   dispatcher.forward(request, response);
            } else if (acao.equalsIgnoreCase("alterar")) {
         	   this.verificarSessao(request);
         	   this.alterarViajante(request, response);
@@ -47,7 +52,7 @@ public class ViajanteController extends BaseController {
            }
         } catch (Exception excecao) {
             request.setAttribute("excecao", excecao);
-            RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/ErroController");
+            dispatcher = this.getServletContext().getRequestDispatcher("/ErroController");
             dispatcher.forward(request, response);
         }
     }
@@ -73,9 +78,8 @@ public class ViajanteController extends BaseController {
     private void alterarViajante(HttpServletRequest request, HttpServletResponse response) throws Exception {
     	HttpSession sessao = request.getSession();
         ViajanteBean viajanteBean = new ViajanteBean();
-//         this.validarViajante((Usuario)sessao.getAttribute("usuario").getIdUsuario(), request.getParameter("nome"), request.getParameter("sexo"), request.getParameter("dataNascimento"));
-//        viajanteBean.alterar(request.getParameter("email"), request.getParameter("nome")
- //       		, request.getParameter("senha"), request.getParameter("sexo"), request.getParameter("dataNascimento"));
+        this.validarViajante(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), request.getParameter("nome"), request.getParameter("sexo"), request.getParameter("dataNascimento"));
+        viajanteBean.alterar(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), request.getParameter("nome"), request.getParameter("sexo"), request.getParameter("dataNascimento"));
     	
     }
     
@@ -99,15 +103,15 @@ public class ViajanteController extends BaseController {
     /**
      * Valida o viajante
      * @access private
-     * @param String idUsuario
+     * @param int idUsuario
      * @param String nome
      * @param String sexo
      * @param String dataNascimento
      * @return void
      * @throws Exception
      */
-    private void validarViajante(String idUsuario, String nome, String sexo, String dataNascimento) throws Exception {
-
+    private void validarViajante(int idUsuario, String nome, String sexo, String dataNascimento) throws Exception {
+    	this.validarNome(nome);
     }
     
     /**
@@ -123,7 +127,22 @@ public class ViajanteController extends BaseController {
         } else if (email.length() > 100) {
             throw new Exception("E-mail acima do limite de 100 caracteres!");
         }
-    }    
+    }
+    
+    /**
+     * Valida o nome
+     * @access private
+     * @param String nome
+     * @return void
+     * @throws Exception
+     */
+    private void validarNome(String nome) throws Exception {
+        if (nome.isEmpty()) {
+            throw new Exception("Nome em branco!");
+        } else if (nome.length() > 100) {
+            throw new Exception("Nome acima do limite de 100 caracteres!");
+        }
+    }
     
     /**
      * Returns a short description of the servlet.

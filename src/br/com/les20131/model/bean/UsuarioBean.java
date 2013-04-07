@@ -40,6 +40,16 @@ public class UsuarioBean {
     public Usuario getUsuario() {
         return this.usuario;
     }
+    
+    /**
+     * Define o usuário
+     * @param usuario
+     * @access public
+     * @return void
+     */
+    public void setUsuario(Usuario usuario) {
+    	this.usuario = usuario;
+    }
 
     /**
      * Autentica um usuario e senha
