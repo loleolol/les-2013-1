@@ -1,3 +1,0 @@
-#sidebar Dashboard
-
-Desc. Req. Funcionais
