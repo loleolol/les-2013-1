@@ -1,3 +1,0 @@
-#sidebar Dashboard
-
-Descrição dos requisitos
