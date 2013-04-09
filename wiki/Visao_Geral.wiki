@@ -15,3 +15,6 @@ o sistema deve funcionar como uma rede social com foco em viagens. Seus usuário
  * Criação de um perfil de empresa
  * Criação de grupos de viagem
  * Criação e exposição de anúncios
+
+
+*IMAGEM VISÃO GERAL DO SISTEMA*
