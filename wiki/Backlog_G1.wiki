@@ -1,7 +1,5 @@
 #sidebar Dashboard
 
-= Backlog de G1 =
-
 <p>Para G1 foram selecionadas funcionalidades básicas para o funcionamento do sistema, de forma que um usuário possa se cadastrar e utilizar os serviços referentes à troca de informações sobre viagens com outros usuários.</p>
 
 *Itens:*
