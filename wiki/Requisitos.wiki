@@ -1,1 +1,1 @@
-#side Dashboard
+#sidebar Dashboard
