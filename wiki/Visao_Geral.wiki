@@ -1,1 +1,17 @@
 #sidebar Dashboard
+
+= Visão Geral do Sistema =
+
+o sistema deve funcionar como uma rede social com foco em viagens. Seus usuários se dividirão entre viajantes e empresas de turismo. Assim sendo, são oferecidas diferentes funcionalidades de acordo com o perfil do usuário.
+
+*Para viajantes:*
+ * Compartilhamento de experiências de viagens, incluindo descrições e fotos
+ * Criação de um perfil de viajante, com sua descrição, estilo e motivação para suas viagens
+ * Estabelecimento de contato direto com outros viajantes da rede social
+ * Criação ou participação em grupos de viagens criados por outros viajantes ou empresas de turismo, cujo objetivo é reunir viajantes com interesse em um destino em comum e efetuar a viagem
+ * Consulta e avaliação de empresas de turismo
+
+*Para empresas de turismo:*
+ * Criação de um perfil de empresa
+ * Criação de grupos de viagem
+ * Criação e exposição de anúncios
