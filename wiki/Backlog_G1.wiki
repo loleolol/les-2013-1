@@ -1,3 +1,9 @@
 #sidebar Dashboard
 
-https://code.google.com/p/les-2013-1/source/browse/wiki/img/ProductBacklogG1.PNG
+= Backlog de G1 =
+
+<p>Para G1 foram selecionadas funcionalidades básicas para o funcionamento do sistema, de forma que um usuário possa se cadastrar e utilizar os serviços referentes à troca de informações sobre viagens com outros usuários.</p>
+
+*Itens:*
+  *Cadastro de Usuário Viajante
+  *Efetuar Login/Logout
