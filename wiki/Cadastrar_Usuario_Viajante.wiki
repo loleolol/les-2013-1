@@ -4,6 +4,12 @@
 
 Visitante deve poder se cadastrar como usuário do tipo viajante no sistema.
 
+
+
+*IMAGEM DO CASO DE USO "CADASTRAR USUÁRIO VIAJANTE"*
+
+
+
 *Pré-condições:* Não há sessão ativa de usuário.
 
 *Fluxo Principal*
@@ -18,5 +24,3 @@ Visitante deve poder se cadastrar como usuário do tipo viajante no sistema.
  * c. Se os campos de senha e confirmação de senha não coincidirem em valor, o sistema apresenta aviso de erro informando que as senhas não são iguais e o caso de uso segue a partir do item 3.
 
 *Pós-condições:* O visitante efetuou o cadastro como usuário viajante.
-
-*IMAGEM DO CASO DE USO "CADASTRAR USUÁRIO VIAJANTE"*
