@@ -1,0 +1,9 @@
+#sidebar Dashboard
+
+= Requisitos Gerais =
+
+  * O sistema deve ser acessível através da Web.
+  * O sistema deve possuir uma interface limpa, evitando a poluição visual causada pela disposição de diversas funcionalidades ao mesmo tempo.
+  * O sistema deve permitir ao usuário cadastrado realizar a exclusão de seu próprio usuário do sistema.
+  * O sistema deve impedir o acesso de usuários bloqueados ao sistema.
+  * O sistema deve dispor sempre visível a opção de realizar logout do sistema.
