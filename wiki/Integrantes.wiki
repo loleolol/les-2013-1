@@ -1,1 +1,9 @@
 #sidebar Dashboard
+
+= Integrantes da equipe =
+
+*Product Owner:* Gustavo Refosco, Leonardo Perdomo
+*Scrum Master:* Gustavo Refosco
+*Software Architect:* Leonardo Perdomo
+*Developers:* Gustavo Refosco, Leonardo Perdomo
+*Test Engineer:* Gustavo Refosco
