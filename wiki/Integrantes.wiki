@@ -2,8 +2,8 @@
 
 = Integrantes da equipe =
 
-*Product Owner:* Gustavo Refosco, Leonardo Perdomo
-*Scrum Master:* Gustavo Refosco
-*Software Architect:* Leonardo Perdomo
-*Developers:* Gustavo Refosco, Leonardo Perdomo
-*Test Engineer:* Gustavo Refosco
+<br>*Product Owner:* Gustavo Refosco, Leonardo Perdomo</br>
+<br>*Scrum Master:* Gustavo Refosco</br>
+<br>*Software Architect:* Leonardo Perdomo</br>
+<br>*Developers:* Gustavo Refosco, Leonardo Perdomo</br>
+<br>*Test Engineer:* Gustavo Refosco</br>
