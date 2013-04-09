@@ -5,5 +5,10 @@
 <p>Para G1 foram selecionadas funcionalidades básicas para o funcionamento do sistema, de forma que um usuário possa se cadastrar e utilizar os serviços referentes à troca de informações sobre viagens com outros usuários.</p>
 
 *Itens:*
-  *Cadastro de Usuário Viajante
-  *Efetuar Login/Logout
+  * Cadastro de Usuário Viajante
+  * Efetuar Login/Logout
+  * Manter Perfil de Viajante
+  * Manter Viagem
+  * Manter Contato
+  * Administrar Usuário Cadastrado
+  * Administrar Viagem
