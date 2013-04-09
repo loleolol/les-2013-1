@@ -1,5 +1,7 @@
 #sidebar Dashboard
 
+= Requisitos Viajante =
+
   * O sistema deve apresentar em sua página inicial um botão e campos para login de usuário viajante.
   * O sistema deve apresentar em sua página inicial um botão que apresente um formulário para cadastro como usuário viajante, com o mesmo destaque que o botão de login.
   * O sistema deve solicitar durante o cadastro de viajante dados de Nome, Data de Nascimento, Sexo, País, Estado, Cidade, E-mail, Confirmação de E-mail, Senha, Confirmação de Senha.
