@@ -13,6 +13,7 @@
 	<body onload="mostraMensagem('${mensagemBean.mensagem}')"> 
 		<%@include file="../usuario/login.jsp"%>
 		<%@include file="menu.jsp" %>
+        <jsp:useBean id="viajanteBean" class="br.com.les20131.model.bean.ViajanteBean" scope="request"/>
 		<div id="corpo">
 			<fieldset>
 			<legend>Perfil</legend>

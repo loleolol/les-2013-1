@@ -41,14 +41,15 @@ public class UsuarioController extends BaseController {
                 dispatcher = this.getServletContext().getRequestDispatcher("/view/viajante/inicio.jsp");
                 dispatcher.forward(request, response);
             } else if (acao.equalsIgnoreCase("logoff")) {
-        	   	this.verificarSessao(request);
                	request.getSession().invalidate();
-               	response.sendRedirect("/view/index.jsp");
-           } else if (acao.equalsIgnoreCase("cadastre-se")) {
-        	   	response.sendRedirect("/view/viajante/incluir.jsp");
-           } else {
+                dispatcher = this.getServletContext().getRequestDispatcher("/view/index.jsp");
+                dispatcher.forward(request, response);
+            } else if (acao.equalsIgnoreCase("cadastre-se")) {
+                dispatcher = this.getServletContext().getRequestDispatcher("/view/viajante/incluir.jsp");
+                dispatcher.forward(request, response);
+            } else {
                	throw new InvalidPageException();
-           }
+            }
         } catch (Exception excecao) {
         	request.setAttribute("excecao", excecao);
             dispatcher = this.getServletContext().getRequestDispatcher("/ErroController");
