@@ -2,7 +2,7 @@
 
 == Login ==
 
-Visitante deve efetuar login como usuário do sistema para ter acesso às suas funcionalidades.
+Visitante efetua login como usuário do sistema para ter acesso às suas funcionalidades.
 
 *IMAGEM DO CASO DE USO "EFETUAR LOGIN"*
 
