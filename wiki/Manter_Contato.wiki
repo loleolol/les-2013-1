@@ -6,7 +6,7 @@ Usuário viajante realiza o gerenciamento de seus contatos, mantidos em uma list
 
 *IMAGEM DO CASO DE USO MANTER CONTATO (CRUD)*
 
-*Pré-condições:* Usuário está logado
+*Pré-condições:* Há sessão ativa de usuário.
 
 *Fluxos*
  * 1. Incluir Contato: usuário incluir contato na sua lista de contatos
