@@ -30,7 +30,7 @@ Usuário realiza logout para sair do sistema.
 *Pré-condições:* Há sessão ativa de usuário.
 
 *Fluxo Principal*
-1. O usuário clica no botão "Logout", sempre visível no canto superior do sistema
-4. O sistema realiza o logout do usuário, o redireciona para a página de login e o caso de uso termina.
+ * 1. O usuário clica no botão "Logout", sempre visível no canto superior do sistema
+ * 2. O sistema realiza o logout do usuário, o redireciona para a página de login e o caso de uso termina.
 
 *Pós-condições:* O usuário realizou logout do sistema.
