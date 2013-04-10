@@ -1,7 +1,7 @@
 #sidebar Dashboard
 
     * [Cadastrar_Usuario_Viajante Cadastrar Usuário Viajante]
-    * [Login Login
+    * [Login Login]
     * [Manter_Contato Manter Contato]
-    * [Cadastrar_Usuario_Viajante Cadastrar Usuário Viajante]
-    * [Cadastrar_Usuario_Viajante Cadastrar Usuário Viajante]
+    * [Manter_Perfil_de_Viajante Manter Perfil de Viajante]
+    * [Manter_Viagem Manter Viagem]
