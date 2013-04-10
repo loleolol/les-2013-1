@@ -1,1 +1,22 @@
 #sidebar Dashboard
+
+== Manter Perfil de Viajante == 
+
+Usuário viajante realiza gerenciamento do seu perfil.
+
+*IMAGEM CASO DE USO "MANTER PERFIL DE VIAJANTE"*
+
+*Pré-condições:* Há sessão ativa de usuário.
+
+*Fluxos*
+ * 1. Alterar Perfil de Viajante
+  * Consultar Perfil de Viajante
+ * 2. Consultar Perfil de Viajante
+  * Consultar Registro Viagem
+  * Consultar Contato
+  * Consultar Avaliação de Empresa
+
+*Pós-condições:* Manutenção do perfil de viajante realizada de acordo com o fluxo escolhido.
+
+
+ 
