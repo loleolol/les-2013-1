@@ -55,19 +55,19 @@ public class ViajanteBean extends UsuarioBean {
      * @return void
      * @throws Exception
      */
-    public void consultarMarcas() throws Exception {
+    public void consultarViajantes() throws Exception {
         throw new NotImplementedException();
     }
 
     /**
      * Consulta um viajante com o código passado por parâmetro
      * @access public
-     * @param int idViajante
+     * @param int idUsuario
      * @return void
      * @throws Exception
      */
-    public void consultar(int idViajante) throws Exception {
-        throw new NotImplementedException();
+    public void consultar(int idUsuario) throws Exception {
+        this.viajante = this.viajanteDAO.consultar(idUsuario);
     }
 
     /**

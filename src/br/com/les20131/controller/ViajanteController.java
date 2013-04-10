@@ -34,14 +34,16 @@ public class ViajanteController extends BaseController {
         RequestDispatcher dispatcher;
         try {
         	if (acao.isEmpty()) {
-               dispatcher = this.getServletContext().getRequestDispatcher("/view/viajante/inicio.jsp");
-               dispatcher.forward(request, response);
+        		this.verificarSessao(request);
+                dispatcher = this.getServletContext().getRequestDispatcher("/view/viajante/inicio.jsp");
+                dispatcher.forward(request, response);
            } else if (acao.equalsIgnoreCase("cadastrar")) {
         	   this.incluirViajante(request, response);
         	   dispatcher = this.getServletContext().getRequestDispatcher("/view/viajante/incluir.jsp");
         	   dispatcher.forward(request, response);
            } else if (acao.equalsIgnoreCase("alterar perfil")) {
         	   this.verificarSessao(request);
+        	   this.carregarViajante(request);
         	   dispatcher = this.getServletContext().getRequestDispatcher("/view/viajante/alterar.jsp");
         	   dispatcher.forward(request, response);
            } else if (acao.equalsIgnoreCase("alterar")) {
@@ -51,7 +53,7 @@ public class ViajanteController extends BaseController {
                throw new InvalidPageException();
            }
         } catch (Exception excecao) {
-            request.setAttribute("excecao", excecao);
+            request.setAttribute("excecao", excecao.getMessage());
             dispatcher = this.getServletContext().getRequestDispatcher("/ErroController");
             dispatcher.forward(request, response);
         }
@@ -75,6 +77,23 @@ public class ViajanteController extends BaseController {
         //request.setAttribute("mensagemBean", new MensagemBean("Marca inserida com sucesso!"));
     }    
     
+    /**
+     * @throws Exception 
+     * 
+     */
+    private void carregarViajante(HttpServletRequest request) throws Exception {
+    	HttpSession sessao = request.getSession();
+    	ViajanteBean viajanteBean = new ViajanteBean();
+    	viajanteBean.consultar(((Usuario)sessao.getAttribute("usuario")).getIdUsuario());
+    	request.setAttribute("viajanteBean", viajanteBean);
+    }
+    
+    /**
+     * 
+     * @param request
+     * @param response
+     * @throws Exception
+     */
     private void alterarViajante(HttpServletRequest request, HttpServletResponse response) throws Exception {
     	HttpSession sessao = request.getSession();
         ViajanteBean viajanteBean = new ViajanteBean();
@@ -82,6 +101,7 @@ public class ViajanteController extends BaseController {
         viajanteBean.alterar(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), request.getParameter("nome"), request.getParameter("sexo"), request.getParameter("dataNascimento"));
     	
     }
+    
     
     /**
      * Valida o viajante

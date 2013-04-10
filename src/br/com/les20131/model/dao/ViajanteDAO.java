@@ -23,7 +23,7 @@ public class ViajanteDAO extends DAOBase<Viajante> {
     }
 
     public Viajante consultar(int idUsuario) throws DAOException {
-        if (idUsuario <= 0) {
+    	if (idUsuario <= 0) {
             throw new DAOException("Usuário inválido!");
         }
 

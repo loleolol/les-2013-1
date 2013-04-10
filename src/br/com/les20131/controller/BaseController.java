@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import br.com.les20131.model.Usuario;
 import br.com.les20131.model.bean.UsuarioBean;
+import br.com.les20131.util.InvalidPageException;
 import br.com.les20131.util.UserAuthenticationException;
 
 
@@ -20,7 +21,7 @@ import br.com.les20131.util.UserAuthenticationException;
  * Servlet implementation class BaseController
  */
 @WebServlet("/BaseController")
-public class BaseController extends HttpServlet {
+public abstract class BaseController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -36,19 +37,16 @@ public class BaseController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-        	throw new Exception(request.getParameter("nome"));
+        	if (request.getQueryString() == null) {
+        		this.doPost(request, response);
+        	} else {
+        		throw new InvalidPageException();
+        	}
         } catch (Exception excecao) {
 			request.setAttribute("excecao", excecao);
 			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/ErroController");
 			dispatcher.forward(request, response);
         }
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 	
     /**
@@ -59,7 +57,7 @@ public class BaseController extends HttpServlet {
      * @throws Exception
      */
     protected void verificarSessao(HttpServletRequest request) throws Exception {
-        HttpSession sessao = request.getSession();
+        HttpSession sessao = request.getSession(false);
         if (sessao == null) {
             /**
              * Se não há sessão, retorna ao login
