@@ -2,7 +2,7 @@
 
 == Cadastrar Usuário Viajante ==
 
-Visitante deve poder se cadastrar como usuário do tipo viajante no sistema.
+Visitante se cadastra como usuário do tipo viajante no sistema.
 
 
 
