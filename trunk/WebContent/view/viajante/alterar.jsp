@@ -10,14 +10,22 @@
         <link type="text/css" rel="stylesheet" href="/les20131/view/publico/css/estilo.css"/>
         <script type="text/javascript" src="/les20131/view/publico/js/trabalho.js" charset="ISO-8859-1"></script>
     </head>
-	<body onload="mostraMensagem('${mensagemBean.mensagem}')"> 
+	<body class="perfil" onload="mostraMensagem('${mensagemBean.mensagem}')"> 
 		<%@include file="../usuario/login.jsp"%>
 		<%@include file="menu.jsp" %>
+		<%@include file="adicional.jsp"%>
         <jsp:useBean id="viajanteBean" class="br.com.les20131.model.bean.ViajanteBean" scope="request"/>
 		<div id="corpo">
 			<fieldset>
 			<legend>Perfil</legend>
-				<form id="cadastro_usuario" class="formulario_padrao" action="<c:url value="/ViajanteController"></c:url>" method="post" onsubmit="return validaFormulario(new Array('nome;String;1', 'dataNascimento;Date;1', 'sexo;String;1'))">
+				<form id="cadastro_viajante" class="formulario_padrao" action="<c:url value="/ViajanteController"></c:url>" method="post" onsubmit="return validaFormulario(new Array('nome;String;1', 'dataNascimento;Date;1', 'sexo;String;1'))">
+			        <div class="block">
+				        <label for="imagemPrevia">Imagem:</label>
+				        <img id="imagemPrevia" src="/les20131/view/publico/images/semfoto.jpg" onclick="document.getElementById('imagem').click()"/>
+				        <br/>
+				        <input id="imagem" type="file" name="imagem"/>
+				        <span id="imagemErro"></span>
+					</div>
 			        <div class="block">
 				        <label for="nome">Nome<span class="atencao">*</span>:</label>
 				        <input id="nome" type="text" name="nome" value="${viajanteBean.viajante.nome}" maxlength="100"/>

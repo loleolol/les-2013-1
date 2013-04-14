@@ -13,6 +13,7 @@
 	<body class="perfil"> 
 		<%@include file="../usuario/login.jsp"%>
 		<%@include file="menu.jsp" %>
-		<div id="corpo">teste</div>
+		<div id="corpo"></div>
+		<%@include file="adicional.jsp" %>
 	</body>
 </html>

@@ -22,22 +22,23 @@ public class ViajanteDAO extends DAOBase<Viajante> {
         super();
     }
 
-    public Viajante consultar(int idUsuario) throws DAOException {
-    	if (idUsuario <= 0) {
+    public Viajante consultar(int intId) throws DAOException {
+    	if (intId <= 0) {
             throw new DAOException("Usuário inválido!");
         }
 
         PreparedStatement stmt = null;
         ResultSet resultSet = null;
 
-        String sql = "SELECT u.id_usuario, u.email, u.nome, u.senha, v.sexo, v.data_nascimento"
+        String sql = "SELECT u.id_usuario, u.email, u.nome, u.senha, u.excluido, u.bloqueado"
+        			+ "\n, v.sexo, v.data_nascimento"
                     + "\n FROM usuario u, viajante v"
                     + "\n WHERE u.id_usuario = ?"
                     + "\n AND u.id_usuario = v.id_usuario";
 
         try {
             stmt = this.conexao.prepareStatement(sql);
-            stmt.setInt(1, idUsuario);
+            stmt.setInt(1, intId);
             resultSet = stmt.executeQuery();
 
             Viajante viajante = null;
@@ -46,6 +47,8 @@ public class ViajanteDAO extends DAOBase<Viajante> {
                                 , resultSet.getString("email")
                                 , resultSet.getString("nome")
                                 , resultSet.getString("senha")
+                                , resultSet.getInt("excluido")
+                                , resultSet.getInt("bloqueado")
                                 , resultSet.getString("sexo")
                                 , resultSet.getDate("data_nascimento"));
             }
@@ -92,7 +95,11 @@ public class ViajanteDAO extends DAOBase<Viajante> {
      * @throws Exception
      */ 
     public void alterar(Viajante obj) throws DAOException {
-        PreparedStatement stmt = null;
+        if (obj == null) {
+            throw new DAOException("Viajante inválido para alterar!");
+        }
+    	
+    	PreparedStatement stmt = null;
 
         try {
             String sql = "UPDATE viajante SET"

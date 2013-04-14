@@ -30,7 +30,7 @@ public class UsuarioDAO extends DAOBase<Usuario> {
         PreparedStatement stmt = null;
         ResultSet resultSet = null;
 
-        String sql = "SELECT u.id_usuario, u.email, u.nome, u.senha"
+        String sql = "SELECT u.id_usuario, u.email, u.nome, u.senha, u.excluido, u.bloqueado"
                     + "\n FROM usuario u"
                     + "\n WHERE u.id_usuario = ?";
 
@@ -44,7 +44,9 @@ public class UsuarioDAO extends DAOBase<Usuario> {
             	usuario = new Usuario(resultSet.getInt("id_usuario")
                                 , resultSet.getString("email")
                                 , resultSet.getString("nome")
-                                , resultSet.getString("senha"));
+                                , resultSet.getString("senha")
+                                , resultSet.getInt("excluido")
+                                , resultSet.getInt("bloqueado"));
             }
             return usuario;
         } catch (Exception excecao) {
@@ -68,7 +70,7 @@ public class UsuarioDAO extends DAOBase<Usuario> {
         PreparedStatement stmt = null;
         ResultSet resultSet = null;
 
-        String sql = "SELECT u.id_usuario, u.email, u.nome, u.senha"
+        String sql = "SELECT u.id_usuario, u.email, u.nome, u.senha, u.excluido, u.bloqueado"
                     + "\n FROM usuario u"
                     + "\n WHERE u.email = ?"
                     + "\n AND u.senha = SHA1(?)";
@@ -84,7 +86,9 @@ public class UsuarioDAO extends DAOBase<Usuario> {
                 user = new Usuario(resultSet.getInt("id_usuario")
                                 , resultSet.getString("email")
                                 , resultSet.getString("nome")
-                                , resultSet.getString("senha"));
+                                , resultSet.getString("senha")
+                                , resultSet.getInt("excluido")
+                                , resultSet.getInt("bloqueado"));
             }
             return user;
         } catch (Exception excecao) {
@@ -107,14 +111,16 @@ public class UsuarioDAO extends DAOBase<Usuario> {
         PreparedStatement stmt = null;
 
         String sql = "INSERT INTO usuario"
-                    + "\n(email, senha, nome)"
-                    + "\n VALUES (?, SHA1(?), ?)";
+                    + "\n(email, senha, nome, excluido, bloqueado)"
+                    + "\n VALUES (?, SHA1(?), ?, ?, ?)";
 
         try {
             stmt = this.conexao.prepareStatement(sql);
             stmt.setString(1, obj.getEmail());
             stmt.setString(2, obj.getSenha());
             stmt.setString(3, obj.getNome());
+            stmt.setInt(4, obj.getExcluido());
+            stmt.setInt(5, obj.getBloqueado());
             stmt.executeUpdate();
         } catch (Exception excecao) {
             throw new DAOException(excecao);
@@ -122,20 +128,28 @@ public class UsuarioDAO extends DAOBase<Usuario> {
     }
     
     public void alterar(Usuario obj) throws DAOException {
-        PreparedStatement stmt = null;
+        if (obj == null) {
+            throw new DAOException("Usuário inválido para alterar!");
+        }
+    	
+    	PreparedStatement stmt = null;
 
         try {
             String sql = "UPDATE usuario SET"
                         + "\n email = ?"
                         + "\n, senha = ?"
                         + "\n, nome = ?"
+                        + "\n, excluido = ?"
+                        + "\n, bloqueado = ?"
                         + "\n WHERE id_usuario = ?";
 
             stmt = this.conexao.prepareStatement(sql);
             stmt.setString(1, obj.getEmail());
             stmt.setString(2, obj.getSenha());
             stmt.setString(3, obj.getNome());
-            stmt.setInt(4, obj.getIdUsuario());
+            stmt.setInt(4, obj.getExcluido());
+            stmt.setInt(5, obj.getBloqueado());
+            stmt.setInt(6, obj.getIdUsuario());
             stmt.executeUpdate();
         } catch (Exception excecao) {
             throw new DAOException(excecao);

@@ -46,9 +46,16 @@ public class ViajanteController extends BaseController {
         	   this.carregarViajante(request);
         	   dispatcher = this.getServletContext().getRequestDispatcher("/view/viajante/alterar.jsp");
         	   dispatcher.forward(request, response);
+           } else if (acao.equalsIgnoreCase("alterar conta")) {
+        	   this.verificarSessao(request);
+        	   //request.setAttribute("origem", "viajante");
+        	   dispatcher = this.getServletContext().getRequestDispatcher("/UsuarioController");
+        	   dispatcher.forward(request, response);
            } else if (acao.equalsIgnoreCase("alterar")) {
         	   this.verificarSessao(request);
         	   this.alterarViajante(request, response);
+        	   dispatcher = this.getServletContext().getRequestDispatcher("/view/viajante/alterar.jsp");
+        	   dispatcher.forward(request, response);
            } else {
                throw new InvalidPageException();
            }
@@ -89,7 +96,7 @@ public class ViajanteController extends BaseController {
     }
     
     /**
-     * 
+     * Altera um viajante
      * @param request
      * @param response
      * @throws Exception
@@ -97,9 +104,9 @@ public class ViajanteController extends BaseController {
     private void alterarViajante(HttpServletRequest request, HttpServletResponse response) throws Exception {
     	HttpSession sessao = request.getSession();
         ViajanteBean viajanteBean = new ViajanteBean();
-        this.validarViajante(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), request.getParameter("nome"), request.getParameter("sexo"), request.getParameter("dataNascimento"));
-        viajanteBean.alterar(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), request.getParameter("nome"), request.getParameter("sexo"), request.getParameter("dataNascimento"));
-    	
+        this.validarViajante(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), request.getParameter("email"), request.getParameter("sexo"), request.getParameter("dataNascimento"));
+        viajanteBean.alterar(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), request.getParameter("email"), request.getParameter("sexo"), request.getParameter("dataNascimento"));
+        request.setAttribute("viajanteBean", viajanteBean);
     }
     
     
