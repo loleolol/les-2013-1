@@ -2,6 +2,7 @@ package br.com.les20131.model.bean;
 
 import br.com.les20131.model.Usuario;
 import br.com.les20131.model.dao.UsuarioDAO;
+import br.com.les20131.model.dao.ViajanteDAO;
 import br.com.les20131.util.UserAuthenticationException;
 
 /**
@@ -68,4 +69,21 @@ public class UsuarioBean {
             throw new UserAuthenticationException();
         }
     }
+
+    /**
+     * Altera um usuário
+     * @access public
+     * @return void
+     * @throws Exception
+     */
+    public void alterar(int idUsuario, String email, String senha) throws Exception {
+    	this.usuarioDAO = new UsuarioDAO();
+      	this.usuario = this.usuarioDAO.consultar(idUsuario);
+      	this.usuario.setEmail(email);
+      	if (!senha.isEmpty()) {
+      		this.usuario.setSenha(this.usuarioDAO.retornarHashSenha(senha));
+      	}
+      	this.usuarioDAO.alterar(this.usuario);
+    }    
+    
 }

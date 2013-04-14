@@ -67,6 +67,7 @@ public class ViajanteBean extends UsuarioBean {
      * @throws Exception
      */
     public void consultar(int idUsuario) throws Exception {
+    	this.viajanteDAO = new ViajanteDAO();
         this.viajante = this.viajanteDAO.consultar(idUsuario);
     }
 
@@ -96,8 +97,11 @@ public class ViajanteBean extends UsuarioBean {
     	this.usuarioDAO = new UsuarioDAO();
     	this.viajanteDAO = new ViajanteDAO();
       	this.viajante = this.viajanteDAO.consultar(idUsuario);
-    	//this.usuarioDAO.alterar((Usuario)this.viajante);
-    	//this.viajanteDAO.alterar(this.viajante);
+      	this.viajante.setNome(nome);
+      	this.viajante.setSexo(sexo);
+      	//this.viajante.setDataNascimento(new Date(dataNascimento));
+    	this.usuarioDAO.alterar((Usuario)this.viajante);
+    	this.viajanteDAO.alterar(this.viajante);
     }
 
     /**

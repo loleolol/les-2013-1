@@ -33,6 +33,20 @@ public class Usuario {
      * @var String
      */
     private String senha;
+    
+    /**
+     * Armazena se o registro foi excluido
+     * @access private
+     * @var int
+     */
+    private int excluido;
+
+    /**
+     * Armazena se o registro foi bloqueado
+     * @access private
+     * @var int
+     */
+    private int bloqueado;
 
     /**
      * Construtor da classe
@@ -45,6 +59,8 @@ public class Usuario {
         this.email = email;
         this.nome = nome;
         this.senha = senha;
+        this.excluido = 0;
+        this.bloqueado = 0;
     }
 
     /**
@@ -55,11 +71,13 @@ public class Usuario {
      * @param String nome
      * @param String senha
      */
-    public Usuario(int idUsuario, String email, String nome, String senha) {
+    public Usuario(int idUsuario, String email, String nome, String senha, int excluido, int bloqueado) {
         this.idUsuario = idUsuario;
         this.email = email;
         this.nome = nome;
         this.senha = senha;
+        this.excluido = excluido;
+        this.bloqueado = bloqueado;
     }
 
     /**
@@ -116,7 +134,7 @@ public class Usuario {
      * @return void
      */
     public void setNome(String nome) {
-        this.email = nome;
+        this.nome = nome;
     }
     
     /**
@@ -137,6 +155,44 @@ public class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+	/**
+	 * Retorna se o registro foi excluido
+	 * @access public
+	 * @return int
+	 */
+	public int getExcluido() {
+		return excluido;
+	}
+
+	/**
+	 * Define se o registro foi excluido
+	 * @access public
+	 * @param int excluido
+	 * @return void
+	 */
+	public void setExcluido(int excluido) {
+		this.excluido = excluido;
+	}
+
+	/**
+	 * Retorna se o registro foi bloqueado
+	 * @access public
+	 * @return int bloqueado
+	 */
+	public int getBloqueado() {
+		return bloqueado;
+	}
+
+	/**
+	 * Define se o registro foi bloqueado
+	 * @access public
+	 * @param int bloqueado
+	 * @return void
+	 */
+	public void setBloqueado(int bloqueado) {
+		this.bloqueado = bloqueado;
+	}
 
 
 }
