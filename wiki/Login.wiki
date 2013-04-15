@@ -4,7 +4,7 @@
 
 Visitante efetua login como usuário do sistema para ter acesso às suas funcionalidades.
 
-*IMAGEM DO CASO DE USO "EFETUAR LOGIN"*
+https://les-2013-1.googlecode.com/svn/wiki/img/efetuar_login.png
 
 *Pré-condições:* Não há sessão ativa de usuário.
 
@@ -25,7 +25,7 @@ Visitante efetua login como usuário do sistema para ter acesso às suas funcion
 
 Usuário realiza logout para sair do sistema.
 
-*IMAGEM DO CASO DE USO "EFETUAR LOGOUT"*
+https://les-2013-1.googlecode.com/svn/wiki/img/efetuar_logout.png
 
 *Pré-condições:* Há sessão ativa de usuário.
 
