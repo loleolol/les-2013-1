@@ -5,7 +5,9 @@ import java.util.Date;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import br.com.les20131.model.Viagem;
+import br.com.les20131.model.Viajante;
 import br.com.les20131.model.dao.ViagemDAO;
+import br.com.les20131.model.dao.ViajanteDAO;
 
 /**
  *
@@ -72,9 +74,11 @@ public class ViagemBean {
      * @return void
      * @throws Exception
      */
-    public void incluir(String descricao) throws Exception {
+    public void incluir(int idUsuario, String descricao, String dataInicial, String dataFinal) throws Exception {
     	this.viagemDAO = new ViagemDAO();
-    	this.viagem = new Viagem(descricao);
+    	ViajanteDAO viajanteDAO = new ViajanteDAO();
+    	Viajante viajante = viajanteDAO.consultar(idUsuario);
+    	this.viagem = new Viagem(viajante, descricao, new Date(), new Date());
     	this.viagemDAO.incluir(this.viagem);
     }
 

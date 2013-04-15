@@ -1,11 +1,11 @@
 package br.com.les20131.controller;
 
 import br.com.les20131.model.Usuario;
-import br.com.les20131.model.bean.UsuarioBean;
 import br.com.les20131.model.bean.ViajanteBean;
 import br.com.les20131.util.InvalidPageException;
 
 import java.io.IOException;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,8 +18,6 @@ import javax.servlet.http.HttpSession;
  */
 public class ViajanteController extends BaseController {
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-	
     /**
      * Handles the HTTP <code>POST</code> method.
      * @param request servlet request
@@ -30,8 +28,8 @@ public class ViajanteController extends BaseController {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String acao = (request.getParameter("acao") == null ? "" : request.getParameter("acao"));
-        RequestDispatcher dispatcher;
+    	String acao = (request.getParameter("acao") == null ? "alterar perfil" : request.getParameter("acao"));
+    	RequestDispatcher dispatcher;
         try {
         	if (acao.isEmpty()) {
         		this.verificarSessao(request);
@@ -81,7 +79,7 @@ public class ViajanteController extends BaseController {
         		, request.getParameter("nome"), request.getParameter("sexo"), request.getParameter("dataNascimento"));
         viajanteBean.incluir(request.getParameter("email"), request.getParameter("nome")
         		, request.getParameter("senha"), request.getParameter("sexo"), request.getParameter("dataNascimento"));
-        //request.setAttribute("mensagemBean", new MensagemBean("Marca inserida com sucesso!"));
+        //request.setAttribute("mensagemBean", new MensagemBean("Viajante inserido com sucesso!"));
     }    
     
     /**
@@ -104,8 +102,8 @@ public class ViajanteController extends BaseController {
     private void alterarViajante(HttpServletRequest request, HttpServletResponse response) throws Exception {
     	HttpSession sessao = request.getSession();
         ViajanteBean viajanteBean = new ViajanteBean();
-        this.validarViajante(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), request.getParameter("email"), request.getParameter("sexo"), request.getParameter("dataNascimento"));
-        viajanteBean.alterar(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), request.getParameter("email"), request.getParameter("sexo"), request.getParameter("dataNascimento"));
+        this.validarViajante(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), request.getParameter("nome"), request.getParameter("sexo"), request.getParameter("dataNascimento"));
+        viajanteBean.alterar(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), request.getParameter("nome"), request.getParameter("sexo"), request.getParameter("dataNascimento"));
         request.setAttribute("viajanteBean", viajanteBean);
     }
     

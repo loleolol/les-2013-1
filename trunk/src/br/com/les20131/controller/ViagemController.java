@@ -8,7 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import br.com.les20131.model.Usuario;
 import br.com.les20131.model.bean.ViagemBean;
 import br.com.les20131.util.InvalidPageException;
 
@@ -33,16 +35,18 @@ public class ViagemController extends BaseController {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String acao = (request.getParameter("acao") == null ? "" : request.getParameter("acao"));
         try {
-            this.verificarSessao(request);
-        	if (acao.isEmpty()) {
-               RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("les20131/view/viagem/incluir.jsp");
-               dispatcher.forward(request, response);
-           } else if (acao.equalsIgnoreCase("cadastrar")) {
-        	   this.incluirViagem(request, response);
-        	   response.sendRedirect("/view/viagem/incluir.jsp");
-           } else {
-               throw new InvalidPageException();
-           }
+			this.verificarSessao(request);
+			RequestDispatcher dispatcher;
+			if (acao.isEmpty()) {
+			   dispatcher = this.getServletContext().getRequestDispatcher("/view/viajante/inicio.jsp");
+			   dispatcher.forward(request, response);
+			} else if (acao.equalsIgnoreCase("registrar")) {
+				this.incluirViagem(request, response);
+				dispatcher = this.getServletContext().getRequestDispatcher("/view/viajante/inicio.jsp");
+				dispatcher.forward(request, response);
+			} else {
+				throw new InvalidPageException();
+			}
         } catch (Exception excecao) {
             request.setAttribute("excecao", excecao);
             RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/ErroController");
@@ -60,10 +64,11 @@ public class ViagemController extends BaseController {
      * @throws Exception
      */
     private void incluirViagem(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    	HttpSession sessao = request.getSession();
         ViagemBean viagemBean = new ViagemBean();
-        this.validarViagem(request.getParameter("descricao"));
-        viagemBean.incluir(request.getParameter("descricao"));
-        //request.setAttribute("mensagemBean", new MensagemBean("Marca inserida com sucesso!"));
+        this.validarViagem(request.getParameter("descricao"), request.getParameter("dataInicial"), request.getParameter("dataFinal"));
+        viagemBean.incluir(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), request.getParameter("descricao"), request.getParameter("dataInicial"), request.getParameter("dataFinal"));
+        //request.setAttribute("mensagemBean", new MensagemBean("Viagem inserida com sucesso!"));
     }    
     
     /**
@@ -73,7 +78,7 @@ public class ViagemController extends BaseController {
      * @return void
      * @throws Exception
      */
-    private void validarViagem(String descricao) throws Exception {
+    private void validarViagem(String descricao, String dataInicial, String dataFinal) throws Exception {
         this.validarDescricao(descricao);
     }
    

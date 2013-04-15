@@ -1,4 +1,17 @@
 /**
+ * "Troca" a imagem
+ * @param imagem
+ * @param sobrepoe
+ * @param campo
+ */
+function trocaImagem(imagem, sobrepoe, campo) {
+	$(imagem).css('opacity', '0.2'); 
+	$(imagem).css('filter', 'alpha(opacity=20)');
+	$(sobrepoe).html($(campo).val().split("\\").pop());
+	
+}
+
+/**
  * Confirma a exclusào de um registro
  */
 function confirmaExclusao(url) {

@@ -39,12 +39,17 @@ public class ViagemDAO extends DAOBase<Viagem> {
         PreparedStatement stmt = null;
 
         String sql = "INSERT INTO viagem"
-                    + "\n(descricao)"
-                    + "\n VALUES (?)";
+                    + "\n(id_usuario, descricao, data_inicial, data_final, excluido, bloqueado)"
+                    + "\n VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
             stmt = this.conexao.prepareStatement(sql);
-            stmt.setString(1, obj.getDescricao());
+            stmt.setInt(1, obj.getViajante().getIdUsuario());
+            stmt.setString(2, obj.getDescricao());
+            stmt.setDate(3, new java.sql.Date(obj.getDataInicial().getTime()));
+            stmt.setDate(4, new java.sql.Date(obj.getDataFinal().getTime()));
+            stmt.setInt(5, obj.getExcluido());
+            stmt.setInt(6, obj.getBloqueado());
             stmt.executeUpdate();
         } catch (Exception excecao) {
             throw new DAOException(excecao);

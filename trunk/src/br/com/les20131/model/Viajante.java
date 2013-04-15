@@ -1,8 +1,9 @@
 package br.com.les20131.model;
 
+import java.io.InputStream;
 import java.util.Date;
 
-import com.mysql.jdbc.Blob;
+import java.sql.Blob;
 
 /**
  * Classe de viajante
@@ -55,7 +56,7 @@ public class Viajante extends Usuario {
 	 * @param String senha
 	 * @param String sexo
 	 * @param Date dataNascimento
-	 * @param Blob imagem
+	 * @param InputStream imagem
 	 */
 	public Viajante(int idUsuario, String email, String nome, String senha, int excluido, int bloqueado, String sexo, Date dataNascimento) {
 		super(idUsuario, email, nome, senha, excluido, bloqueado);
