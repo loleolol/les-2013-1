@@ -4,7 +4,7 @@
 
 Usuário viajante realiza gerenciamento do seu perfil.
 
-*IMAGEM CASO DE USO "MANTER PERFIL DE VIAJANTE"*
+https://les-2013-1.googlecode.com/svn/wiki/img/manter_perfil_viajante.png
 
 *Pré-condições:* Há sessão ativa de usuário.
 
