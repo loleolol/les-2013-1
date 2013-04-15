@@ -54,6 +54,14 @@ public class ViajanteController extends BaseController {
         	   this.alterarViajante(request, response);
         	   dispatcher = this.getServletContext().getRequestDispatcher("/view/viajante/alterar.jsp");
         	   dispatcher.forward(request, response);
+           } else if (acao.equalsIgnoreCase("início")) {
+        	   this.verificarSessao(request);
+        	   dispatcher = this.getServletContext().getRequestDispatcher("/view/viajante/inicio.jsp");
+        	   dispatcher.forward(request, response);
+           } else if (acao.equalsIgnoreCase("minhas viagens")) {
+        	   this.verificarSessao(request);
+        	   dispatcher = this.getServletContext().getRequestDispatcher("/ViagemController");
+        	   dispatcher.forward(request, response);
            } else {
                throw new InvalidPageException();
            }

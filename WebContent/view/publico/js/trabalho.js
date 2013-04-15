@@ -16,8 +16,9 @@ function trocaImagem(imagem, sobrepoe, campo) {
  */
 function confirmaExclusao(url) {
     if (confirm("Deseja realmente excluir este registro?")) {
-        window.location = url;
+        return true;
     }
+    return false;
 }
 
 /**
