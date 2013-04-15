@@ -1,6 +1,10 @@
 package br.com.les20131.model.bean;
 
+import java.io.InputStream;
+import java.sql.Blob;
 import java.util.Date;
+
+import javax.servlet.http.Part;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 

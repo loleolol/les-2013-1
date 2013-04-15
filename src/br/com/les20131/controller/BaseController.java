@@ -73,6 +73,6 @@ public abstract class BaseController extends HttpServlet {
         	usuarioBean.setUsuario((Usuario)sessao.getAttribute("usuario"));
         	request.setAttribute("usuarioBean", usuarioBean);
         }
-    }	
+    }
 
 }

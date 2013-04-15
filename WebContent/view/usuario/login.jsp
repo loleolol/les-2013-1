@@ -16,7 +16,7 @@
 						<input id="loginSenha" type="password" name="loginSenha" value="" maxlength="50"/>
 						<span id="loginSenhaErro"></span>
 						<input type="submit" name="acao" value="Login"/>
-						<input type="button" name="cadastro" value="Cadastre-se" onclick="document.getElementById('login_cadastro').submit()"/>
+						<input type="button" name="cadastro" value="Cadastre-se" onclick="$('#login_cadastro').submit()"/>
 				    </c:when>
 				    <c:otherwise>
 				    	<label>Logado como: ${usuarioBean.usuario.email}</label>

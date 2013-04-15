@@ -9,6 +9,7 @@
         <title>Login</title>
         <link type="text/css" rel="stylesheet" href="/les20131/view/publico/css/estilo.css"/>
         <script type="text/javascript" src="/les20131/view/publico/js/trabalho.js" charset="ISO-8859-1"></script>
+        <script type="text/javascript" src="/les20131/view/publico/js/jquery-1.9.1.min.js" charset="ISO-8859-1"></script>
     </head>
 	<body class="perfil" onload="mostraMensagem('${mensagemBean.mensagem}')"> 
 		<%@include file="../usuario/login.jsp"%>
@@ -19,11 +20,12 @@
 			<fieldset>
 			<legend>Perfil</legend>
 				<form id="cadastro_viajante" class="formulario_padrao" action="<c:url value="/ViajanteController"></c:url>" method="post" onsubmit="return validaFormulario(new Array('nome;String;1', 'dataNascimento;Date;1', 'sexo;String;1'))">
-			        <div class="block">
+			        <div class="blocoImagem">
 				        <label for="imagemPrevia">Imagem:</label>
-				        <img id="imagemPrevia" src="/les20131/view/publico/images/semfoto.jpg" onclick="document.getElementById('imagem').click()"/>
+				        <span id="novaImagem" class="sobrepoe"></span>
+				        <img id="imagemPrevia" src="/les20131/view/publico/images/semfoto.jpg" onclick="$('#imagem').click()"/>
 				        <br/>
-				        <input id="imagem" type="file" name="imagem"/>
+				        <input id="imagem" type="file" name="imagem" onchange="trocaImagem($('#imagemPrevia'), $('#novaImagem'), $('#imagem'))"/>
 				        <span id="imagemErro"></span>
 					</div>
 			        <div class="block">

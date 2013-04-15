@@ -118,6 +118,15 @@ img {
     border-top: 1px dotted #CCC;
     padding: 15px 0;
 }
+.blocoImagem {
+	position: relative;
+    border-top: 1px dotted #CCC;
+    padding: 15px 0;
+}
+.sobrepoe {
+	position: absolute;
+	z-index: 2;	
+}
 .barra{
 	color: #FFF; 
     background-color: #0C0;
