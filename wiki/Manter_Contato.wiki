@@ -4,7 +4,7 @@
 
 Usuário viajante realiza o gerenciamento de seus contatos, mantidos em uma lista.
 
-*IMAGEM DO CASO DE USO MANTER CONTATO (CRUD)*
+https://les-2013-1.googlecode.com/svn/wiki/img/manter_contato.png
 
 *Pré-condições:* Há sessão ativa de usuário.
 
