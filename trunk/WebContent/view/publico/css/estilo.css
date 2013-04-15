@@ -12,7 +12,7 @@ body, a{
     outline: none;
 }
 h1{
-    background-color: #0C0;
+    background-color: #060;
     color: #FFF;
     padding: 5px;
     margin: 15px 0;
@@ -50,9 +50,11 @@ th{
 }
 .edit{
     background: url(../images/edit.png) no-repeat center center;
+    height: 20px;
 }
 .delete{
     background: url(../images/delete.png) no-repeat center center;
+    height: 20px;
 }
 
 /*  #FORM
@@ -106,7 +108,7 @@ fieldset{
     border:solid 1px #CCC;
 }
 legend{
-    background-color: #0C0;
+    background-color: #060;
     color: #FFF;
     padding: 5px;
     text-transform: uppercase;
@@ -127,9 +129,12 @@ img {
 	position: absolute;
 	z-index: 2;	
 }
+.formulario_invisivel {
+	inherit: none;
+}
 .barra{
 	color: #FFF; 
-    background-color: #0C0;
+    background-color: #060;
 	padding-top: 0px;
 	padding-bottom: 5px;
 	border-bottom: 1px dotted #CCC;
@@ -206,7 +211,7 @@ label{
     border-left: 1px solid #CCCCCC;
 }
 .nav a:hover{
-    color: #0C0;
+    color: #060;
 }
 .nav .first a{
     border-left: none;
@@ -216,7 +221,7 @@ label{
 }
 .nav .logoff{
     float: right;
-    background: #0C0;
+    background: #060;
 }
 .nav .logoff a{
    color: #FFF;

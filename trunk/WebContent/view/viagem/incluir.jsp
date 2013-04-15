@@ -7,13 +7,13 @@
 	        <span id="descricaoErro"></span>
 		</div>
         <div class="block">
-	        <label for="dataInicial">Período da viagem: de:</label>
+        	<label for="dataInicial">Período da viagem:</label>
+        	<br/>
+	        <label for="dataInicial">De</label>
 	        <input id="dataInicial" type="text" name="dataInicial" size="10" value="" maxlength="10"/>
 	        <span>(YYYY-MM-DD)</span>
 	        <span id="dataInicialErro"></span>
-		</div>
-        <div class="block">
-	        <label for="dataFinal">Data de nascimento<span class="atencao">*</span>:</label>
+	        <label for="dataFinal">à</label>
 	        <input id="dataFinal" type="text" name="dataFinal" size="10" value="" maxlength="10"/>
 	        <span>(YYYY-MM-DD)</span>
 	        <span id="dataFinalErro"></span>

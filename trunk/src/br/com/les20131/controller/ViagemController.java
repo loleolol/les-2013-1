@@ -42,7 +42,18 @@ public class ViagemController extends BaseController {
 			   dispatcher.forward(request, response);
 			} else if (acao.equalsIgnoreCase("registrar")) {
 				this.incluirViagem(request, response);
-				dispatcher = this.getServletContext().getRequestDispatcher("/view/viajante/inicio.jsp");
+				dispatcher = this.getServletContext().getRequestDispatcher("/view/viagem/listar.jsp");
+				dispatcher.forward(request, response);
+			} else if (acao.equalsIgnoreCase("minhas viagens")) {
+				this.listarMinhaViagem(request, response);
+				dispatcher = this.getServletContext().getRequestDispatcher("/view/viagem/listar.jsp");
+				dispatcher.forward(request, response);
+			} else if (acao.equalsIgnoreCase("selecionar")) {
+				
+
+			} else if (acao.equalsIgnoreCase("excluir")) {
+				this.excluirViagem(request, response);
+				dispatcher = this.getServletContext().getRequestDispatcher("/view/viagem/listar.jsp");
 				dispatcher.forward(request, response);
 			} else {
 				throw new InvalidPageException();
@@ -55,6 +66,21 @@ public class ViagemController extends BaseController {
 
 	}
 
+    /**
+     * Lista as viagens cadastradas
+     * @access private
+     * @param HttpServletRequest request
+     * @param HttpServletResponse response
+     * @return void
+     * @throws Exception
+     */
+    private void listarMinhaViagem(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    	HttpSession sessao = request.getSession();
+        ViagemBean viagemBean = new ViagemBean();
+        viagemBean.consultarPorViajante(((Usuario)sessao.getAttribute("usuario")).getIdUsuario());
+        request.setAttribute("viagemBean", viagemBean);
+    }	
+	
     /**
      * Efetua a inclusão de novo registro
      * @access private
@@ -69,7 +95,21 @@ public class ViagemController extends BaseController {
         this.validarViagem(request.getParameter("descricao"), request.getParameter("dataInicial"), request.getParameter("dataFinal"));
         viagemBean.incluir(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), request.getParameter("descricao"), request.getParameter("dataInicial"), request.getParameter("dataFinal"));
         //request.setAttribute("mensagemBean", new MensagemBean("Viagem inserida com sucesso!"));
-    }    
+    }
+    
+    /**
+     * Efetua a exclusão de novo registro
+     * @access private
+     * @param HttpServletRequest request
+     * @param HttpServletResponse response
+     * @return void
+     * @throws Exception
+     */
+    private void excluirViagem(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    	HttpSession sessao = request.getSession();
+        ViagemBean viagemBean = new ViagemBean();
+        viagemBean.excluir(Integer.parseInt(request.getParameter("idViagem")));
+    }
     
     /**
      * Valida o viagem

@@ -1,11 +1,14 @@
 package br.com.les20131.model.bean;
 
 import java.util.Date;
+import java.util.List;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import br.com.les20131.model.Usuario;
 import br.com.les20131.model.Viagem;
 import br.com.les20131.model.Viajante;
+import br.com.les20131.model.dao.UsuarioDAO;
 import br.com.les20131.model.dao.ViagemDAO;
 import br.com.les20131.model.dao.ViajanteDAO;
 
@@ -23,6 +26,13 @@ public class ViagemBean {
     private ViagemDAO viagemDAO;
     
     /**
+     * Armazena uma lista de viagens
+     * @access private
+     * @var List<Viagem>
+     */
+    private List<Viagem> listaViagem;    
+    
+    /**
      * Armazena uma viagem
      * @access private
      * @var Viagem
@@ -37,6 +47,15 @@ public class ViagemBean {
 
     }
 
+    /**
+     * Retorna a lista de viagens
+     * @access public
+     * @return List<Viagem>
+     */
+    public List<Viagem> getListaViagem() {
+        return this.listaViagem;
+    }    
+    
     /**
      * Retorna o viagem
      * @access public
@@ -56,6 +75,17 @@ public class ViagemBean {
         throw new NotImplementedException();
     }
 
+    /**
+     * Consulta as viagens cadastradas por viajante
+     * @access public
+     * @return void
+     * @throws Exception
+     */
+    public void consultarPorViajante(int idUsuario) throws Exception {
+        this.viagemDAO = new ViagemDAO();
+        this.listaViagem = this.viagemDAO.consultarPorViajante(idUsuario);
+    }    
+    
     /**
      * Consulta um viagem com o código passado por parâmetro
      * @access public
@@ -98,8 +128,9 @@ public class ViagemBean {
      * @return void
      * @throws Exception
      */
-    public void excluir() throws Exception {
-        throw new NotImplementedException();
+    public void excluir(int idViagem) throws Exception {
+      	this.viagem = this.viagemDAO.consultar(idViagem);
+    	this.viagemDAO.excluir(this.viagem);
     }
        
 }
