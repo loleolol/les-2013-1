@@ -1,6 +1,6 @@
 #sidebar Dashboard
 
-= The Tripper = 
+= Partiu = 
 
   * [HowTo HowTo]
     * [Configurar_Ambiente Configurar Ambiente]
