@@ -23,12 +23,12 @@ Sistema desenvolvido em ambiente J2EE utilizando MVC2 Model 2.
 
 *O ambiente utilizado é 32 bits (sendo o Eclipse 32 bits, o JDK também deve ser 32 bits*
 
- * No caso do uso de um sistema de 64 bits, pode ser necessário fazer uma configuração adicional no Eclipse
- # Caso apareça uma mensagem de erro sobre o JDK na inicialização do Eclipse, após a instalação do JDK ter sido concluída, navegue até *"../ambiente/eclipse"*
- # Abra o arquivo *eclipse.ini*
- # Adicione as seguintes linhas *ANTES* da linha que contém *-vmargs*
+ * No caso do uso de um sistema de 64 bits, pode ser necessário fazer uma configuração adicional no Eclipse:
+ # Caso apareça uma mensagem de erro sobre o JDK na inicialização do Eclipse, após a instalação do JDK ter sido concluída, navegue até *"../ambiente/eclipse"*.
+ # Abra o arquivo *eclipse.ini*.
+ # Adicione as seguintes linhas *ANTES* da linha que contém *-vmargs*:
 
-*-vm 
+*-vm </br>
 {caminho do jdk}/bin/javaw.exe*
 
 
