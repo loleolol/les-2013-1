@@ -60,6 +60,7 @@ public class ViagemController extends BaseController {
         	   dispatcher.forward(request, response);
 			} else if (acao.equalsIgnoreCase("excluir")) {
 				this.excluirViagem(request, response);
+           	    this.listarMinhaViagem(request, response);
 				dispatcher = this.getServletContext().getRequestDispatcher("/view/viagem/listar.jsp");
 				dispatcher.forward(request, response);
 			} else {

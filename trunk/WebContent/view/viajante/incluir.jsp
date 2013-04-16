@@ -22,45 +22,45 @@
 			        <div class="block">
 				        <label for="nome">Nome<span class="atencao">*</span>:</label>
 				        <input id="nome" type="text" name="nome" value="" maxlength="100"/>
-				        <span id="nomeErro"></span>
+				        <span id="nomeErro" class="atencao"></span>
 					</div>
 			        <div class="block">
 				        <label for="email">E-mail<span class="atencao">*</span>:</label>
 				        <input id="email" type="text" name="email" value="" maxlength="100"/>
-				        <span id="emailErro"></span>
+				        <span id="emailErro" class="atencao"></span>
 					</div>
 			        <div class="block">
 				        <label for="emailConfirma">Confirme E-mail<span class="atencao">*</span>:</label>
 				        <input id="emailConfirma" type="text" name="emailConfirma" value="" maxlength="100"/>
-				        <span id="emailConfirmaErro"></span>
+				        <span id="emailConfirmaErro" class="atencao"></span>
 					</div>
 			        <div class="block">
 				        <label for="senha">Senha<span class="atencao">*</span>:</label>
 				        <input id="senha" type="password" name="senha" value="" maxlength="50"/>
-				        <span id="senhaErro"></span>
+				        <span id="senhaErro" class="atencao"></span>
 					</div>
 			        <div class="block">
 				        <label for="senhaConfirma">Confirme Senha<span class="atencao">*</span>:</label>
 				        <input id="senhaConfirma" type="password" name="senhaConfirma" value="" maxlength="50"/>
-				        <span id="senhaConfirmaErro"></span>
+				        <span id="senhaConfirmaErro" class="atencao"></span>
 					</div>			
 			        <div class="block">
 	                    <label for="dataNascimentoDia">Data de nascimento<span class="atencao">*</span>:</label>
 	                    <select id="dataNascimentoDia" name="dataNascimentoDia">
 	                    </select>
-	                    <span id="dataNascimentoDiaErro"></span>
+	                    <span id="dataNascimentoDiaErro" class="atencao"></span>
 	                    <select id="dataNascimentoMes" name="dataNascimentoMes" onchange="populaDropDownDia($('#dataNascimentoDia'), $(this).val());">
 	                    </select>
-	                    <span id="dataNascimentoMesErro"></span>
+	                    <span id="dataNascimentoMesErro" class="atencao"></span>
 	                    <select id="dataNascimentoAno" name="dataNascimentoAno">
 	                    </select>
-	                    <span id="dataNascimentoAnoErro"></span>
+	                    <span id="dataNascimentoAnoErro" class="atencao"></span>
 					</div>
 			        <div class="block">
 	                    <label>Sexo<span class="atencao">*</span>:</label>
 	                    <input id="sexoM" type="radio" name="sexo" value="M"/><label for="sexoM">Masculino</label>
 	                    <input id="sexoF" type="radio" name="sexo" value="F"/><label for="sexoF">Feminino</label>
-	                    <span id="sexoErro"></span>
+	                    <span id="sexoErro" class="atencao"></span>
 					</div>
 			        <div class="block">
 						<input type="submit" name="acao" value="Cadastrar"/>

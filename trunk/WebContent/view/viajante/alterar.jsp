@@ -29,24 +29,24 @@
 				        <img id="imagemPrevia" src="/les20131/view/publico/images/semfoto.jpg" onclick="$('#imagem').click()"/>
 				        <br/>
 				        <input id="imagem" type="file" name="imagem" onchange="trocaImagem($('#imagemPrevia'), $('#novaImagem'), $('#imagem'))"/>
-				        <span id="imagemErro"></span>
+				        <span id="imagemErro" class="atencao"></span>
 					</div>
 			        <div class="block">
 				        <label for="nome">Nome<span class="atencao">*</span>:</label>
 				        <input id="nome" type="text" name="nome" value="${viajanteBean.viajante.nome}" maxlength="100"/>
-				        <span id="nomeErro"></span>
+				        <span id="nomeErro" class="atencao"></span>
 					</div>
 			        <div class="block">
 	                    <label for="dataNascimentoDia">Data de nascimento<span class="atencao">*</span>:</label>
 	                    <select id="dataNascimentoDia" name="dataNascimentoDia">
 	                    </select>
-	                    <span id="dataNascimentoDiaErro"></span>
+	                    <span id="dataNascimentoDiaErro" class="atencao"></span>
 	                    <select id="dataNascimentoMes" name="dataNascimentoMes" onchange="populaDropDownDia($('#dataNascimentoDia'), $(this).val());">
 	                    </select>
-	                    <span id="dataNascimentoMesErro"></span>
+	                    <span id="dataNascimentoMesErro" class="atencao"></span>
 	                    <select id="dataNascimentoAno" name="dataNascimentoAno">
 	                    </select>
-	                    <span id="dataNascimentoAnoErro"></span>
+	                    <span id="dataNascimentoAnoErro" class="atencao"></span>
 						<fmt:formatDate type="date" pattern="yyyy-MM-dd" value="${viajanteBean.viajante.dataNascimento}" var="dataNascimento"/>	                    
 	                    <input id="dataNascimento" type="hidden" name="dataNascimento" value="${dataNascimento}"/>
 					</div>
@@ -54,7 +54,7 @@
 	                    <label>Sexo<span class="atencao">*</span>:</label>
                     	<input id="sexoM" type="radio" name="sexo" value="M" ${viajanteBean.viajante.sexo == 'M' ? 'checked' : ''}/><label for="sexoM">Masculino</label>
                     	<input id="sexoF" type="radio" name="sexo" value="F" ${viajanteBean.viajante.sexo == 'F' ? 'checked' : ''}/><label for="sexoF">Feminino</label>
-	                    <span id="sexoErro"></span>
+	                    <span id="sexoErro" class="atencao"></span>
 					</div>
 			        <div class="block">
 						<input type="submit" name="acao" value="Alterar"/>
