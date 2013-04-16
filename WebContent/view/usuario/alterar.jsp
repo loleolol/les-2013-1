@@ -24,22 +24,22 @@
 			        <div class="block">
 				        <label for="email">E-mail<span class="atencao">*</span>:</label>
 				        <input id="email" type="text" name="email" value="${usuarioBean.usuario.email}" maxlength="100"/>
-				        <span id="emailErro"></span>
+				        <span id="emailErro" class="atencao"></span>
 					</div>
 			        <div class="block">
 				        <label for="emailConfirma">Confirme E-mail<span class="atencao">*</span>:</label>
 				        <input id="emailConfirma" type="text" name="emailConfirma" value="${usuarioBean.usuario.email}" maxlength="100"/>
-				        <span id="emailConfirmaErro"></span>
+				        <span id="emailConfirmaErro" class="atencao"></span>
 					</div>
 			        <div class="block">
 				        <label for="senha">Senha:</label>
 				        <input id="senha" type="password" name="senha" value="" maxlength="50"/>
-				        <span id="senhaErro"></span>
+				        <span id="senhaErro" class="atencao"></span>
 					</div>
 			        <div class="block">
 				        <label for="senhaConfirma">Confirme Senha:</label>
 				        <input id="senhaConfirma" type="password" name="senhaConfirma" value="" maxlength="50"/>
-				        <span id="senhaConfirmaErro"></span>
+				        <span id="senhaConfirmaErro" class="atencao"></span>
 					</div>			
 			        <div class="block">
 						<input type="submit" name="acao" value="Alterar"/>

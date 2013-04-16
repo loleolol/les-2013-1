@@ -143,6 +143,9 @@ img {
 .barra #barra_login{
 	padding-left: 200px;
 }
+.atencao {
+	color: #F00;
+}
 .logo{
 	float: up;
 	padding-top: 0px;

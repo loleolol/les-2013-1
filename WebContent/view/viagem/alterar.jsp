@@ -25,12 +25,12 @@
 			        <div class="block">
 				        <label for="titulo">Título<span class="atencao">*</span>:</label>
 				        <input id="titulo" type="text" name="titulo" value="${viagemBean.viagem.titulo}" maxlength="100"/>
-				        <span id="tituloErro"></span>
+				        <span id="tituloErro" class="atencao"></span>
 					</div>
 			        <div class="block">
 				        <label for="descricao">Descricao<span class="atencao">*</span>:</label>
 				        <textarea id="descricao" name="descricao" rows="8" cols="60"><c:out value="${viagemBean.viagem.descricao}"></c:out></textarea>
-				        <span id="descricaoErro"></span>
+				        <span id="descricaoErro" class="atencao"></span>
 					</div>
 			        <div class="block">
 			        	<label for="dataInicialDia">Período da viagem:</label>
@@ -38,26 +38,26 @@
 						<label for="dataInicialDia">De<span class="atencao">*</span>:</label>
 						<select id="dataInicialDia" name="dataInicialDia">
 						</select>
-						<span id="dataInicialDiaErro"></span>
+						<span id="dataInicialDiaErro" class="atencao"></span>
 						<select id="dataInicialMes" name="dataInicialMes" onchange="populaDropDownDia($('#dataInicialDia'), $(this).val());">
 						</select>
-						<span id="dataInicialMesErro"></span>
+						<span id="dataInicialMesErro" class="atencao"></span>
 						<select id="dataInicialAno" name="dataInicialAno">
 						</select>
-						<span id="dataInicialAnoErro"></span>
+						<span id="dataInicialAnoErro" class="atencao"></span>
 						<fmt:formatDate type="date" pattern="yyyy-MM-dd" value="${viagemBean.viagem.dataInicial}" var="dataInicial"/>	                    
 	                    <input id="dataInicial" type="hidden" name="dataInicial" value="${dataInicial}"/>
 						
 				        <label for="dataFinalDia">à</label>
 						<select id="dataFinalDia" name="dataFinalDia">
 						</select>
-						<span id="dataFinalDiaErro"></span>
+						<span id="dataFinalDiaErro" class="atencao"></span>
 						<select id="dataFinalMes" name="dataFinalMes" onchange="populaDropDownDia($('#dataFinalDia'), $(this).val());">
 						</select>
-						<span id="dataFinalMesErro"></span>
+						<span id="dataFinalMesErro" class="atencao"></span>
 						<select id="dataFinalAno" name="dataFinalAno">
 						</select>
-						<span id="dataFinalAnoErro"></span>
+						<span id="dataFinalAnoErro" class="atencao"></span>
 						<fmt:formatDate type="date" pattern="yyyy-MM-dd" value="${viagemBean.viagem.dataFinal}" var="dataFinal"/>	                    
 	                    <input id="dataFinal" type="hidden" name="dataFinal" value="${dataFinal}"/>
 						
