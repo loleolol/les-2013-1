@@ -1,6 +1,6 @@
 #sidebar Dashboard
 
-O Ambiente é composto por
+*O Ambiente é composto por*
  * Visual Paradigm CE NoInstall 10.1.20130306
  * Eclipse Juno Service Release 2
   *  Subclipse 1.8.1 (Plugin eclipse SVN) 
@@ -12,3 +12,7 @@ O Ambiente é composto por
  * mysql-connector-java 5.1.24
 
 Sistema desenvolvido em ambiente J2EE utilizando MVC2 Model 2.
+
+=== Configuração do Eclipse ===
+
+ # Para ter o ambiente configurado, é necessário fazer o download das partes e extraí-las para uma pasta qualquer. Você pode baixar as pastas *"ambiente.zip.001-007"* na seção de downloads acessando a [https://code.google.com/p/les-2013-1/downloads/list página de downloads]
