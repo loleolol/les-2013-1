@@ -31,11 +31,11 @@ Sistema desenvolvido em ambiente J2EE utilizando MVC2 Model 2.
 === Para fazer checkout do código ===
 
  # No Eclipse, clique com o botão direito sobre o projeto.
- # Clique em *Team > Update do HEAD*
+ # Clique em *Team > Update do HEAD*.
 
 === Para fazer commit do código ===
 
  # No Eclipse, clique com o botão direito sobre o projeto.
- # Clique em *Team > Commit...*
- # Insira comentários sobre o commit e clique em *OK*
- # Insira seu nome de usuário Google e a senha gerada através [https://code.google.com/hosting/settings deste link] e clique em *OK* para commitar
+ # Clique em *Team > Commit...*.
+ # Insira comentários sobre o commit e clique em *OK*.
+ # Insira seu nome de usuário Google e a senha gerada através [https://code.google.com/hosting/settings deste link] e clique em *OK* para commitar.
