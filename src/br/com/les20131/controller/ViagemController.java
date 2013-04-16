@@ -42,6 +42,7 @@ public class ViagemController extends BaseController {
 			   dispatcher.forward(request, response);
 			} else if (acao.equalsIgnoreCase("registrar")) {
 				this.incluirViagem(request, response);
+				this.listarMinhaViagem(request, response);
 				dispatcher = this.getServletContext().getRequestDispatcher("/view/viagem/listar.jsp");
 				dispatcher.forward(request, response);
 			} else if (acao.equalsIgnoreCase("minhas viagens")) {
@@ -92,8 +93,14 @@ public class ViagemController extends BaseController {
     private void incluirViagem(HttpServletRequest request, HttpServletResponse response) throws Exception {
     	HttpSession sessao = request.getSession();
         ViagemBean viagemBean = new ViagemBean();
-        this.validarViagem(request.getParameter("descricao"), request.getParameter("dataInicial"), request.getParameter("dataFinal"));
-        viagemBean.incluir(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), request.getParameter("descricao"), request.getParameter("dataInicial"), request.getParameter("dataFinal"));
+        String dataInicial = request.getParameter("dataInicialAno") 
+        		+ '-' + request.getParameter("dataInicialMes")
+        		+ '-' + request.getParameter("dataInicialDia");
+        String dataFinal = request.getParameter("dataFinalAno") 
+        		+ '-' + request.getParameter("dataFinalMes")
+        		+ '-' + request.getParameter("dataFinalDia");
+        this.validarViagem(request.getParameter("descricao"), dataInicial, dataFinal);
+        viagemBean.incluir(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), request.getParameter("descricao"), dataInicial, dataFinal);
         //request.setAttribute("mensagemBean", new MensagemBean("Viagem inserida com sucesso!"));
     }
     

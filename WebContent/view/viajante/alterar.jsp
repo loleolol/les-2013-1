@@ -1,5 +1,8 @@
 <%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -19,7 +22,7 @@
 		<div id="corpo">
 			<fieldset>
 			<legend>Perfil</legend>
-				<form id="cadastro_viajante" class="formulario_padrao" action="<c:url value="/ViajanteController"></c:url>" method="post" onsubmit="return validaFormulario(new Array('nome;String;1', 'dataNascimento;Date;1', 'sexo;String;1'))">
+				<form id="cadastro_viajante" class="formulario_padrao" action="<c:url value="/ViajanteController"></c:url>" method="post" onsubmit="return validaFormulario(new Array('nome;String;1', 'dataNascimentoDia;int;1', 'dataNascimentoMes;int;1', 'dataNascimentoAno;int;1', 'sexo;String;1'))">
 			        <div class="blocoImagem">
 				        <label for="imagemPrevia">Imagem:</label>
 				        <span id="novaImagem" class="sobrepoe"></span>
@@ -34,10 +37,18 @@
 				        <span id="nomeErro"></span>
 					</div>
 			        <div class="block">
-	                    <label for="dataNascimento">Data de nascimento<span class="atencao">*</span>:</label>
-	                    <input id="dataNascimento" type="text" name="dataNascimento" size="10" value="${viajanteBean.viajante.dataNascimento}" maxlength="10"/>
-	                    <span>(YYYY-MM-DD)</span>
-	                    <span id="dataNascimentoErro"></span>
+	                    <label for="dataNascimentoDia">Data de nascimento<span class="atencao">*</span>:</label>
+	                    <select id="dataNascimentoDia" name="dataNascimentoDia">
+	                    </select>
+	                    <span id="dataNascimentoDiaErro"></span>
+	                    <select id="dataNascimentoMes" name="dataNascimentoMes" onchange="populaDropDownDia($('#dataNascimentoDia'), $(this).val());">
+	                    </select>
+	                    <span id="dataNascimentoMesErro"></span>
+	                    <select id="dataNascimentoAno" name="dataNascimentoAno">
+	                    </select>
+	                    <span id="dataNascimentoAnoErro"></span>
+						<fmt:formatDate type="date" pattern="yyyy-MM-dd" value="${viajanteBean.viajante.dataNascimento}" var="dataNascimento"/>	                    
+	                    <input id="dataNascimento" type="hidden" name="dataNascimento" value="${dataNascimento}"/>
 					</div>
 			        <div class="block">
 	                    <label>Sexo<span class="atencao">*</span>:</label>
@@ -50,6 +61,16 @@
 			        </div>
 				</form>
 			</fieldset>
+			<script type="text/javascript">
+				$(document).ready(function() { 
+					populaDropDownAno($('#dataNascimentoAno'));
+					populaDropDownMes($('#dataNascimentoMes')); 
+					populaDropDownDia($('#dataNascimentoDia'), $('#dataNascimentoMes').val());
+					$('#dataNascimentoAno').val($('#dataNascimento').val().split("-")[0]);
+					$('#dataNascimentoMes').val($('#dataNascimento').val().split("-")[1]);
+					$('#dataNascimentoDia').val($('#dataNascimento').val().split("-")[2]);
+				});
+			</script>			
 		</div>
 	</body>
 </html>

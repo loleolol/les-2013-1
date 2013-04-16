@@ -1,25 +1,49 @@
 <fieldset>
 <legend>Registro de viagem</legend>
-	<form id="cadastro_viagem" class="formulario_padrao" action="<c:url value="/ViagemController"></c:url>" method="post" onsubmit="return validaFormulario(new Array('descricao;String;1', 'dataInicial;Date;0', 'dataFinal;Date;0'))">
+	<form id="cadastro_viagem" class="formulario_padrao" action="<c:url value="/ViagemController"></c:url>" method="post" onsubmit="return validaFormulario(new Array('descricao;String;1', 'dataInicialDia;int;0', 'dataInicialMes;int;0', 'dataInicialAno;int;0', 'dataFinalDia;int;0', 'dataFinalMes;int;0', 'dataFinalAno;int;0'))">
         <div class="block">
 	        <label for="descricao">Descricao<span class="atencao">*</span>:</label>
 	        <textarea id="descricao" name="descricao" rows="10" cols="80"></textarea>
 	        <span id="descricaoErro"></span>
 		</div>
         <div class="block">
-        	<label for="dataInicial">Período da viagem:</label>
+        	<label for="dataInicialDia">Período da viagem:</label>
         	<br/>
-	        <label for="dataInicial">De</label>
-	        <input id="dataInicial" type="text" name="dataInicial" size="10" value="" maxlength="10"/>
-	        <span>(YYYY-MM-DD)</span>
-	        <span id="dataInicialErro"></span>
-	        <label for="dataFinal">à</label>
-	        <input id="dataFinal" type="text" name="dataFinal" size="10" value="" maxlength="10"/>
-	        <span>(YYYY-MM-DD)</span>
-	        <span id="dataFinalErro"></span>
+			<label for="dataInicialDia">De<span class="atencao">*</span>:</label>
+			<select id="dataInicialDia" name="dataInicialDia">
+			</select>
+			<span id="dataInicialDiaErro"></span>
+			<select id="dataInicialMes" name="dataInicialMes" onchange="populaDropDownDia($('#dataInicialDia'), $(this).val());">
+			</select>
+			<span id="dataInicialMesErro"></span>
+			<select id="dataInicialAno" name="dataInicialAno">
+			</select>
+			<span id="dataInicialAnoErro"></span>
+			
+	        <label for="dataFinalDia">à</label>
+			<select id="dataFinalDia" name="dataFinalDia">
+			</select>
+			<span id="dataFinalDiaErro"></span>
+			<select id="dataFinalMes" name="dataFinalMes" onchange="populaDropDownDia($('#dataFinalDia'), $(this).val());">
+			</select>
+			<span id="dataFinalMesErro"></span>
+			<select id="dataFinalAno" name="dataFinalAno">
+			</select>
+			<span id="dataFinalAnoErro"></span>
 		</div>
         <div class="block">
 			<input type="submit" name="acao" value="Registrar"/>
         </div>
 	</form>
 </fieldset>
+<script type="text/javascript">
+	$(document).ready(function() { 
+		populaDropDownAno($('#dataInicialAno'));
+		populaDropDownMes($('#dataInicialMes')); 
+		populaDropDownDia($('#dataInicialDia'), $('#dataInicialMes').val());
+		populaDropDownAno($('#dataFinalAno'));
+		populaDropDownMes($('#dataFinalMes'));
+		populaDropDownDia($('#dataFinalDia'), $('#dataFinalMes').val());
+	});
+</script>			
+
