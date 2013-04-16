@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.les20131.model.Viagem;
+import br.com.les20131.model.Viajante;
 
 /**
  * 
@@ -21,8 +22,40 @@ public class ViagemDAO extends DAOBase<Viagem> {
     public ViagemDAO() throws Exception {
     }
 
-    public Viagem consultar(int idViagem) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    /**
+     * Consulta uma viagem pelo id
+     * @access public
+     * @param int idViagem
+     * @return Viagem
+     */
+    public Viagem consultar(int idViagem) throws DAOException {
+        PreparedStatement stmt = null;
+        ResultSet resultSet = null;
+
+        String sql = "SELECT v.id_viagem, v.id_usuario, v.titulo, v.descricao, v.data_inicial, v.data_final"
+                    + "\n FROM viagem v"
+                    + "\n WHERE v.id_viagem = ?";
+
+        try {
+            stmt = this.conexao.prepareStatement(sql);
+            stmt.setInt(1, idViagem);
+            resultSet = stmt.executeQuery();
+            
+            ViajanteDAO viajanteDAO = new ViajanteDAO();
+            Viagem viagem = null;
+            if (resultSet.next()) {
+            	viagem = new Viagem(resultSet.getInt("id_viagem")
+                , viajanteDAO.consultar(resultSet.getInt("id_usuario"))
+                , resultSet.getString("titulo")
+                , resultSet.getString("descricao")
+                , resultSet.getDate("data_inicial")
+                , resultSet.getDate("data_final"));
+            }
+
+            return viagem;
+        } catch (Exception excecao) {
+            throw new DAOException(excecao);
+        }
     }
    
     /**
@@ -40,27 +73,63 @@ public class ViagemDAO extends DAOBase<Viagem> {
         PreparedStatement stmt = null;
 
         String sql = "INSERT INTO viagem"
-                    + "\n(id_usuario, descricao, data_inicial, data_final, excluido, bloqueado)"
-                    + "\n VALUES (?, ?, ?, ?, ?, ?)";
+                    + "\n(id_usuario, titulo, descricao, data_inicial, data_final, excluido, bloqueado)"
+                    + "\n VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try {
             stmt = this.conexao.prepareStatement(sql);
             stmt.setInt(1, obj.getViajante().getIdUsuario());
-            stmt.setString(2, obj.getDescricao());
-            stmt.setDate(3, new java.sql.Date(obj.getDataInicial().getTime()));
-            stmt.setDate(4, new java.sql.Date(obj.getDataFinal().getTime()));
-            stmt.setInt(5, obj.getExcluido());
-            stmt.setInt(6, obj.getBloqueado());
+            stmt.setString(2, obj.getTitulo());
+            stmt.setString(3, obj.getDescricao());
+            stmt.setDate(4, new java.sql.Date(obj.getDataInicial().getTime()));
+            stmt.setDate(5, new java.sql.Date(obj.getDataFinal().getTime()));
+            stmt.setInt(6, obj.getExcluido());
+            stmt.setInt(7, obj.getBloqueado());
             stmt.executeUpdate();
         } catch (Exception excecao) {
             throw new DAOException(excecao);
         }
     }
 
+    /**
+     * Altera uma viagem
+     * @access public
+     * @param Viagem obj
+     * @return void
+     * @throws DAOException
+     */
 	@Override
 	public void alterar(Viagem obj) throws DAOException {
-		// TODO Auto-generated method stub
-		
+        if (obj == null) {
+            throw new DAOException("viagem inválido para alterar!");
+        }
+    	
+    	PreparedStatement stmt = null;
+
+        String sql = "UPDATE viagem SET"
+                + "\n id_usuario = ?"
+        		+ "\n, titulo = ?"
+                + "\n, descricao = ?"
+        		+ "\n, data_inicial = ?"
+                + "\n, data_final = ?"
+        		+ "\n, excluido = ?"
+                + "\n, bloqueado = ?"
+                + "\n WHERE id_viagem = ?";
+
+        try {
+	        stmt = this.conexao.prepareStatement(sql);
+	        stmt.setInt(1, obj.getViajante().getIdUsuario());
+	        stmt.setString(2, obj.getTitulo());
+	        stmt.setString(3, obj.getDescricao());
+	        stmt.setDate(4, new java.sql.Date(obj.getDataInicial().getTime()));
+	        stmt.setDate(5, new java.sql.Date(obj.getDataFinal().getTime()));
+	        stmt.setInt(6, obj.getExcluido());
+	        stmt.setInt(7, obj.getBloqueado());
+	        stmt.setInt(8, obj.getIdViagem());
+            stmt.executeUpdate();
+        } catch (Exception excecao) {
+            throw new DAOException(excecao);
+        }
 	}
 
     /**
@@ -108,7 +177,7 @@ public class ViagemDAO extends DAOBase<Viagem> {
         PreparedStatement stmt = null;
         ResultSet resultSet = null;
 
-        String sql = "SELECT v.id_viagem, v.id_usuario, v.descricao, v.data_inicial, v.data_final"
+        String sql = "SELECT v.id_viagem, v.id_usuario, v.titulo, v.descricao, v.data_inicial, v.data_final"
                     + "\n FROM viagem v"
                     + "\n WHERE v.id_usuario = ?";
 
@@ -123,6 +192,7 @@ public class ViagemDAO extends DAOBase<Viagem> {
             while (resultSet.next()) {
                 listaViagem.add( new Viagem(resultSet.getInt("id_viagem")
                 , viajanteDAO.consultar(resultSet.getInt("id_usuario"))
+                , resultSet.getString("titulo")
                 , resultSet.getString("descricao")
                 , resultSet.getDate("data_inicial")
                 , resultSet.getDate("data_final")));

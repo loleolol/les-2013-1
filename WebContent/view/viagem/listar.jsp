@@ -24,45 +24,36 @@
 		<%@include file="../viajante/adicional.jsp"%>
         <jsp:useBean id="ViagemBean" class="br.com.les20131.model.bean.ViagemBean" scope="request"/>
         <div class="corpo">
-	        <form id="lista_viagem" class="formulario_padrao" action="<c:url value="/ViagemController"></c:url>" method="post">
-	            <fieldset>
-	                <legend>Minhas viagens</legend>
+            <fieldset>
+                <legend>Minhas viagens</legend>
+                <form id="lista_viagem" class="formulario_padrao" action="<c:url value="/ViagemController"></c:url>" method="post">
 	                <button type="submit" name="acao" value="">Registrar viagem</button>
-			        <table>
-			            <tr>
-			                <th>Descrição</th>
-			                <th>Início</th>
-			                <th>Fim</th>
-			                <th>Ação</th>
-			            </tr>
-			            <c:forEach items="${viagemBean.listaViagem}" var="viagem">
-			                <tr>
-			                    <td><c:out value="${viagem.descricao}"/></td>
-			                    <td><c:out value="${fn:substring(viagem.dataInicial, 0, 10)}"/></td>
-			                    <td><c:out value="${fn:substring(viagem.dataFinal, 0, 10)}"/></td>
-			                    <td class="actions">
-									<a class="edit" href="javascript:void(0)" onclick="$('#editar_viagem_${viagem.idViagem}').submit()">
-									</a>
-									<a class="delete" href="javascript:void(0)" onclick="$('#excluir_viagem_${viagem.idViagem}').submit()">
-									</a>
-			                    </td>
-			                </tr>
-			            </c:forEach>
-			        </table>
-	            </fieldset>
-	        </form>
-			<c:forEach items="${viagemBean.listaViagem}" var="viagem">
-				<form id="editar_viagem_${viagem.idViagem}" class="formulario_invisivel" 
-				action="<c:url value="/ViagemController"></c:url>" method="post">
-					<input type="hidden" name="acao" value="Selecionar"/>
-					<input type="hidden" name="idViagem" value="${viagem.idViagem}"/>
-			    </form>
-				<form id="excluir_viagem_${viagem.idViagem}" class="formulario_invisivel" 
-				action="<c:url value="/ViagemController"></c:url>" method="post" onsubmit="return confirmaExclusao();">
-					<input type="hidden" name="acao" value="Excluir"/>
-					<input type="hidden" name="idViagem" value="${viagem.idViagem}"/>
-			    </form>
-			</c:forEach>
+	            </form>
+	            <c:forEach items="${viagemBean.listaViagem}" var="viagem">
+		            <fieldset>
+	                <legend>${viagem.titulo}</legend>
+						<form id="viagem_${viagem.idViagem}" class="formulario_invisivel" 
+							action="<c:url value="/ViagemController"></c:url>" method="post">
+							<textarea readonly rows=8 cols=60>${viagem.descricao}</textarea>
+							<br/>
+							<span>
+								Realizada no período de ${fn:substring(viagem.dataInicial, 0, 10)} 
+								à ${fn:substring(viagem.dataFinal, 0, 10)}
+							</span>
+							<span class="actions">
+								<a class="edit" href="javascript:void(0)" 
+									onclick="$('#acao_${viagem.idViagem}').val('Selecionar'); $('#viagem_${viagem.idViagem}').submit()">
+								</a>
+								<a class="delete" href="javascript:void(0)" 
+									onclick="$('#acao_${viagem.idViagem}').val('Excluir'); confirmaExclusao($('#viagem_${viagem.idViagem}'))">
+								</a>
+							</span>
+							<input id="acao_${viagem.idViagem}" type="hidden" name="acao" value=""/>
+							<input type="hidden" name="idViagem" value="${viagem.idViagem}"/>
+					    </form>
+				    </fieldset>
+	            </c:forEach>
+            </fieldset>
 		</div>			
     </body>
 </html>

@@ -1,9 +1,14 @@
 <fieldset>
 <legend>Registro de viagem</legend>
-	<form id="cadastro_viagem" class="formulario_padrao" action="<c:url value="/ViagemController"></c:url>" method="post" onsubmit="return validaFormulario(new Array('descricao;String;1', 'dataInicialDia;int;0', 'dataInicialMes;int;0', 'dataInicialAno;int;0', 'dataFinalDia;int;0', 'dataFinalMes;int;0', 'dataFinalAno;int;0'))">
+	<form id="cadastro_viagem" class="formulario_padrao" action="<c:url value="/ViagemController"></c:url>" method="post" onsubmit="return validaFormulario(new Array('titulo;String;1', 'descricao;String;1', 'dataInicialDia;int;0', 'dataInicialMes;int;0', 'dataInicialAno;int;0', 'dataFinalDia;int;0', 'dataFinalMes;int;0', 'dataFinalAno;int;0'))">
+        <div class="block">
+	        <label for="titulo">Título<span class="atencao">*</span>:</label>
+	        <input id="titulo" type="text" name="titulo" value="" maxlength="100"/>
+	        <span id="tituloErro"></span>
+		</div>
         <div class="block">
 	        <label for="descricao">Descricao<span class="atencao">*</span>:</label>
-	        <textarea id="descricao" name="descricao" rows="10" cols="80"></textarea>
+	        <textarea id="descricao" name="descricao" rows="8" cols="60"></textarea>
 	        <span id="descricaoErro"></span>
 		</div>
         <div class="block">

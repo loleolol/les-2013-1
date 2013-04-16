@@ -3,7 +3,7 @@
 		<h1>Rede social</h1>
 	</div>
 	<div id="barra_login">
-		<form id="login" class="formulario_login" action="<c:url value="/UsuarioController"></c:url>" method="post" onsubmit="return validaFormulario(new Array('loginEmail;String;1', 'loginSenha;String;1'))">
+		<form id="login" class="formulario_login" action="<c:url value="/UsuarioController"></c:url>" method="post">
 			<jsp:useBean id="mensagemBean" class="br.com.les20131.model.bean.MensagemBean" scope="request"/>
 			<jsp:useBean id="usuarioBean" class="br.com.les20131.model.bean.UsuarioBean" scope="request"/>
 			<div>
@@ -17,10 +17,16 @@
 						<span id="loginSenhaErro"></span>
 						<input type="submit" name="acao" value="Login"/>
 						<input type="button" name="cadastro" value="Cadastre-se" onclick="$('#login_cadastro').submit()"/>
+						<script type="text/javascript">
+							$('#login').submit(function () { return validaFormulario(new Array('loginEmail;String;1', 'loginSenha;String;1'))});
+						</script>
 				    </c:when>
 				    <c:otherwise>
 				    	<label>Logado como: ${usuarioBean.usuario.email}</label>
 						<input type="submit" name="acao" value="Logoff"/>
+						<script type="text/javascript">
+							$('#login').submit(function () { });
+						</script>
 				    </c:otherwise>
 				</c:choose>
 			</div>
