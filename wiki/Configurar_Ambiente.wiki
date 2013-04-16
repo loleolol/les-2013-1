@@ -1,1 +1,12 @@
 #sidebar Dashboard
+
+O Ambiente é composto por
+ * Visual Paradigm CE NoInstall 10.1.20130306
+ * XAMPP 1.8.1
+ * Eclipse Juno Service Release 2
+ * MySQL 5.5.27 (Community Server)
+ * Tomcat 7.0.30
+ * jQuery 1.9.1
+ * Subclipse 1.8.1 (Plugin eclipse SVN) 
+ * jstl 1.2
+ * mysql-connector-java 5.1.24
