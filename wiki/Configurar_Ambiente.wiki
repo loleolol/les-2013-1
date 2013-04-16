@@ -12,7 +12,7 @@
  * mysql-connector-java 5.1.24
 
 Sistema desenvolvido em ambiente J2EE utilizando MVC2 Model 2.
-
+<br></br>
 === Pré-requisitos ===
 
  # É necessário ter instalado a última versão do Java JDK.
@@ -30,7 +30,7 @@ Sistema desenvolvido em ambiente J2EE utilizando MVC2 Model 2.
 
 *-vm <br></br> {caminho do jdk}/bin/javaw.exe*
 
-
+<br></br>
 === Configuração do Eclipse ===
 
  # Para ter o ambiente configurado, é necessário fazer o download das partes e extraí-las para uma pasta qualquer. Você pode baixar as pastas *"ambiente.zip.001-007"* na seção de downloads acessando a [https://code.google.com/p/les-2013-1/downloads/list página de downloads].
@@ -38,19 +38,19 @@ Sistema desenvolvido em ambiente J2EE utilizando MVC2 Model 2.
  # Acesse o caminho *"../ambiente/eclipse"* e abra o programa através do executável *eclipse*.
  # Na abertura do programa, aponte para o Workspace previamente definido em *"../ambiente/eclipse/workspace"*.
 
-
+<br></br>
 === Configuração do Xampp ===
 
  # Acesse o diretório *"../ambiente/xampp"*.
  # Execute o arquivo *setup_xampp* e aguarde a conclusão da execução do mesmo.
  # O controle da execução do servidor e do bando de dados pode ser feito através da execução do *xampp_control*.
 
-
+<br></br>
 === Para fazer checkout do código ===
 
  # No Eclipse, clique com o botão direito sobre o projeto.
  # Clique em *Team > Update do HEAD*.
-
+<br></br>
 === Para fazer commit do código ===
 
  # No Eclipse, clique com o botão direito sobre o projeto.
