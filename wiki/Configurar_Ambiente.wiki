@@ -13,6 +13,25 @@
 
 Sistema desenvolvido em ambiente J2EE utilizando MVC2 Model 2.
 
+=== Pré-requisitos ===
+
+ # É necessário ter instalado a última versão do Java JDK.
+ # Para isso, acesse este [http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html link].
+ # Navegue até a seção *"Java SE Development Kit 7u17"*.
+ # Clique em *"Accept License Agreement"*.
+ # Faça o download da versão *"Windows x86"* e instale.
+
+*O ambiente utilizado é 32 bits (sendo o Eclipse 32 bits, o JDK também deve ser 32 bits*
+
+ * No caso do uso de um sistema de 64 bits, pode ser necessário fazer uma configuração adicional no Eclipse
+ # Caso apareça uma mensagem de erro sobre o JDK na inicialização do Eclipse, após a instalação do JDK ter sido concluída, navegue até *"../ambiente/eclipse"*
+ # Abra o arquivo *eclipse.ini*
+ # Adicione as seguintes linhas *ANTES* da linha que contém *-vmargs*
+
+*-vm 
+{caminho do jdk}/bin/javaw.exe*
+
+
 === Configuração do Eclipse ===
 
  # Para ter o ambiente configurado, é necessário fazer o download das partes e extraí-las para uma pasta qualquer. Você pode baixar as pastas *"ambiente.zip.001-007"* na seção de downloads acessando a [https://code.google.com/p/les-2013-1/downloads/list página de downloads].
