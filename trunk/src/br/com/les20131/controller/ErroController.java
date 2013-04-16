@@ -5,7 +5,9 @@
 
 package br.com.les20131.controller;
 
+import br.com.les20131.model.Usuario;
 import br.com.les20131.model.bean.MensagemBean;
+import br.com.les20131.model.bean.UsuarioBean;
 import br.com.les20131.util.InvalidPageException;
 import br.com.les20131.util.UserAuthenticationException;
 
@@ -13,6 +15,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -59,6 +62,10 @@ public class ErroController extends HttpServlet {
 	            if (excecao instanceof UserAuthenticationException) {
 	                dispatcher = this.getServletContext().getRequestDispatcher("/view/index.jsp");
 	            } else {
+	            	HttpSession sessao = request.getSession();
+	                UsuarioBean usuarioBean = new UsuarioBean();
+	                usuarioBean.setUsuario((Usuario)sessao.getAttribute("usuario"));
+	                request.setAttribute("usuarioBean", usuarioBean);              
 	                dispatcher = this.getServletContext().getRequestDispatcher("/view/erro/erro.jsp");
 	            }
 	        }
