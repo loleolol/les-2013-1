@@ -23,6 +23,13 @@ public class Viagem {
 	private Viajante viajante;
 	
 	/**
+	 * Armazena o título da viagem
+	 * @access private
+	 * @var String
+	 */
+	private String titulo;
+	
+	/**
 	 * Armazena a descrição da viagem
 	 * @access private
 	 * @var String
@@ -61,12 +68,14 @@ public class Viagem {
 	 * Construtor da classe
 	 * @access public
 	 * @param Viajante viajante
+	 * @param String titulo
 	 * @param String descricao
 	 * @param String dataInicial
 	 * @param String dataFinal
 	 */
-	public Viagem(Viajante viajante, String descricao, Date dataInicial, Date dataFinal) {
+	public Viagem(Viajante viajante, String titulo, String descricao, Date dataInicial, Date dataFinal) {
 		this.setViajante(viajante);
+		this.setTitulo(titulo);
 		this.descricao = descricao;
 		this.setDataInicial(dataInicial);
 		this.setDataFinal(dataFinal);
@@ -77,13 +86,15 @@ public class Viagem {
 	 * @access public
 	 * @param integer idViagem
 	 * @param Viajante viajante
+	 * @param String titulo
 	 * @param String descricao
 	 * @param String dataInicial
 	 * @param String dataFinal
 	 */
-	public Viagem(int idViagem, Viajante viajante, String descricao, Date dataInicial, Date dataFinal) {
+	public Viagem(int idViagem, Viajante viajante, String titulo, String descricao, Date dataInicial, Date dataFinal) {
 		this.idViagem = idViagem;
 		this.setViajante(viajante);
+		this.setTitulo(titulo);
 		this.descricao = descricao;
 		this.setDataInicial(dataInicial);
 		this.setDataFinal(dataFinal);
@@ -213,9 +224,30 @@ public class Viagem {
 
 	/**
 	 * Define a data final
-	 * @param dataFinal
+	 * @access public
+	 * @param Date dataFinal
+	 * @return void
 	 */
 	public void setDataFinal(Date dataFinal) {
 		this.dataFinal = dataFinal;
+	}
+
+	/**
+	 * Retorna o título
+	 * @access public
+	 * @return String
+	 */
+	public String getTitulo() {
+		return titulo;
+	}
+
+	/**
+	 * Define o títuli
+	 * @access public
+	 * @param String titulo
+	 * @return void
+	 */
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 }

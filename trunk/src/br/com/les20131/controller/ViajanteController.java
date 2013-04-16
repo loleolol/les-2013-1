@@ -88,7 +88,7 @@ public class ViajanteController extends BaseController {
         		+ '-' + request.getParameter("dataNascimentoMes")
         		+ '-' + request.getParameter("dataNascimentoDia");
         this.validarViajante(request.getParameter("email"), request.getParameter("senha")
-        		, request.getParameter("confirmaEmail"), request.getParameter("confirmaSenha")
+        		, request.getParameter("emailConfirma"), request.getParameter("senhaConfirma")
         		, request.getParameter("nome"), request.getParameter("sexo"), dataNascimento);
         viajanteBean.incluir(request.getParameter("email"), request.getParameter("nome")
         		, request.getParameter("senha"), request.getParameter("sexo"), dataNascimento);
@@ -97,8 +97,10 @@ public class ViajanteController extends BaseController {
     }    
     
     /**
+     * Carrega informações do viajante
+     * @access private
      * @throws Exception 
-     * 
+     * @return void
      */
     private void carregarViajante(HttpServletRequest request) throws Exception {
     	HttpSession sessao = request.getSession();
@@ -130,16 +132,18 @@ public class ViajanteController extends BaseController {
      * @access private
      * @param String email
      * @param String senha
-     * @param String confirmaEmail
-     * @param String confirmaSenha
+     * @param String emailConfirma
+     * @param String senhaConfirma
      * @param String nome
      * @param String sexo
      * @param String dataNascimento
      * @return void
      * @throws Exception
      */
-    private void validarViajante(String email, String senha, String confirmaEmail, String confirmaSenha, String nome, String sexo, String dataNascimento) throws Exception {
+    private void validarViajante(String email, String senha, String emailConfirma, String senhaConfirma, String nome, String sexo, String dataNascimento) throws Exception {
         this.validarEmail(email);
+        this.validarEmail(emailConfirma);
+        this.validarNome(nome);
     }
 
     /**

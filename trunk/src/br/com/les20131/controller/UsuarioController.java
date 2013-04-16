@@ -78,7 +78,7 @@ public class UsuarioController extends BaseController {
     private void alterarUsuario(HttpServletRequest request, HttpServletResponse response) throws Exception {
     	HttpSession sessao = request.getSession();
         UsuarioBean usuarioBean = new UsuarioBean();
-        this.validarUsuario(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), request.getParameter("email"), request.getParameter("confirmaEmail"), request.getParameter("senha"), request.getParameter("confirmaSenha"));
+        this.validarUsuario(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), request.getParameter("email"), request.getParameter("emailConfirma"), request.getParameter("senha"), request.getParameter("senhaConfirma"));
         usuarioBean.alterar(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), request.getParameter("email"), request.getParameter("senha"));
         sessao.setAttribute("usuario", usuarioBean.getUsuario());
         request.setAttribute("usuarioBean", usuarioBean);
@@ -94,7 +94,7 @@ public class UsuarioController extends BaseController {
      * @return void
      * @throws Exception
      */
-    private void validarUsuario(int idUsuario, String email, String confirmaEmail, String senha, String confirmaSenha) throws Exception {
+    private void validarUsuario(int idUsuario, String email, String emailConfirma, String senha, String senhaConfirma) throws Exception {
     	this.validarEmail(email);
     }
     

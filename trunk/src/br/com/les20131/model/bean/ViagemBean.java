@@ -95,7 +95,8 @@ public class ViagemBean {
      * @throws Exception
      */
     public void consultar(int idViagem) throws Exception {
-        throw new NotImplementedException();
+    	this.viagemDAO = new ViagemDAO();
+        this.viagem = this.viagemDAO.consultar(idViagem);
     }
 
     /**
@@ -105,12 +106,12 @@ public class ViagemBean {
      * @return void
      * @throws Exception
      */
-    public void incluir(int idUsuario, String descricao, String dataInicial, String dataFinal) throws Exception {
+    public void incluir(int idUsuario, String titulo, String descricao, String dataInicial, String dataFinal) throws Exception {
     	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     	this.viagemDAO = new ViagemDAO();
     	ViajanteDAO viajanteDAO = new ViajanteDAO();
     	Viajante viajante = viajanteDAO.consultar(idUsuario);
-    	this.viagem = new Viagem(viajante, descricao, dateFormat.parse(dataInicial), dateFormat.parse(dataFinal));
+    	this.viagem = new Viagem(viajante, titulo, descricao, dateFormat.parse(dataInicial), dateFormat.parse(dataFinal));
     	this.viagemDAO.incluir(this.viagem);
     }
 
@@ -120,8 +121,15 @@ public class ViagemBean {
      * @return void
      * @throws Exception
      */
-    public void alterar() throws Exception {
-        throw new NotImplementedException();
+    public void alterar(int idViagem, String titulo, String descricao, String dataInicial, String dataFinal) throws Exception {
+    	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    	this.viagemDAO = new ViagemDAO();
+      	this.viagem = this.viagemDAO.consultar(idViagem);
+      	this.viagem.setTitulo(titulo);
+      	this.viagem.setDescricao(descricao);
+      	this.viagem.setDataInicial(dateFormat.parse(dataInicial));
+      	this.viagem.setDataFinal(dateFormat.parse(dataFinal));
+      	this.viagemDAO.alterar(this.viagem);
     }
 
     /**
@@ -131,6 +139,7 @@ public class ViagemBean {
      * @throws Exception
      */
     public void excluir(int idViagem) throws Exception {
+    	this.viagemDAO = new ViagemDAO();
       	this.viagem = this.viagemDAO.consultar(idViagem);
     	this.viagemDAO.excluir(this.viagem);
     }

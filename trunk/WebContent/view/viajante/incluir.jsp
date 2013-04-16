@@ -17,7 +17,8 @@
 		<%@include file="adicional.jsp"%>
 		<fieldset>
 		<legend>Cadastre-se</legend>
-			<form id="cadastro_viajante" class="formulario_padrao" action="<c:url value="/ViajanteController"></c:url>" method="post" onsubmit="return validaFormulario(new Array('nome;String;1', 'email;String;1', 'confirmaEmail;String;1', 'senha;String;1', 'confirmaSenha;String;1', 'dataNascimentoDia;int;1', 'dataNascimentoMes;int;1', 'dataNascimentoAno;int;1', 'sexo;String;1'))">
+			<form id="cadastro_viajante" class="formulario_padrao" action="<c:url value="/ViajanteController"></c:url>"
+			 method="post" onsubmit="return (verificarValorIgualCampos('email') && verificarValorIgualCampos('senha') && validaFormulario(new Array('nome;String;1', 'email;String;1;validaEmail', 'emailConfirma;String;1;validaEmail', 'senha;String;1', 'senhaConfirma;String;1', 'dataNascimentoDia;int;1', 'dataNascimentoMes;int;1', 'dataNascimentoAno;int;1', 'sexo;String;1')))">
 			        <div class="block">
 				        <label for="nome">Nome<span class="atencao">*</span>:</label>
 				        <input id="nome" type="text" name="nome" value="" maxlength="100"/>
@@ -29,9 +30,9 @@
 				        <span id="emailErro"></span>
 					</div>
 			        <div class="block">
-				        <label for="confirmaEmail">Confirme E-mail<span class="atencao">*</span>:</label>
-				        <input id="confirmaEmail" type="text" name="confirmaEmail" value="" maxlength="100"/>
-				        <span id="confirmaEmailErro"></span>
+				        <label for="emailConfirma">Confirme E-mail<span class="atencao">*</span>:</label>
+				        <input id="emailConfirma" type="text" name="emailConfirma" value="" maxlength="100"/>
+				        <span id="emailConfirmaErro"></span>
 					</div>
 			        <div class="block">
 				        <label for="senha">Senha<span class="atencao">*</span>:</label>
@@ -39,9 +40,9 @@
 				        <span id="senhaErro"></span>
 					</div>
 			        <div class="block">
-				        <label for="confirmaSenha">Confirme Senha<span class="atencao">*</span>:</label>
-				        <input id="confirmaSenha" type="password" name="confirmaSenha" value="" maxlength="50"/>
-				        <span id="confirmaSenhaErro"></span>
+				        <label for="senhaConfirma">Confirme Senha<span class="atencao">*</span>:</label>
+				        <input id="senhaConfirma" type="password" name="senhaConfirma" value="" maxlength="50"/>
+				        <span id="senhaConfirmaErro"></span>
 					</div>			
 			        <div class="block">
 	                    <label for="dataNascimentoDia">Data de nascimento<span class="atencao">*</span>:</label>

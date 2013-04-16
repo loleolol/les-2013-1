@@ -178,6 +178,18 @@ label{
 	padding-left: 200px;
 	padding-right: 50px;
 }
+
+#barra_esquerda input[type=submit] {
+	border: 0px;
+	background: #FFF;
+	background-color: #FFF;
+}
+
+#barra_esquerda input[type=submit]:hover {
+	background-color: #060;
+	color: #FFF;
+}
+
 .perfil #corpo {
 	float: center;
 }

@@ -55,7 +55,7 @@ public class ErroController extends HttpServlet {
 	            dispatcher = this.getServletContext().getRequestDispatcher("/view/index.jsp");
 	        } else {
 	            Exception excecao = ((Exception)request.getAttribute("excecao"));
-	            mensagemBean = new MensagemBean(excecao.getMessage());
+	            mensagemBean = new MensagemBean(excecao.toString());
 	            if (excecao instanceof UserAuthenticationException) {
 	                dispatcher = this.getServletContext().getRequestDispatcher("/view/index.jsp");
 	            } else {
