@@ -15,4 +15,7 @@ Sistema desenvolvido em ambiente J2EE utilizando MVC2 Model 2.
 
 === Configuração do Eclipse ===
 
- # Para ter o ambiente configurado, é necessário fazer o download das partes e extraí-las para uma pasta qualquer. Você pode baixar as pastas *"ambiente.zip.001-007"* na seção de downloads acessando a [https://code.google.com/p/les-2013-1/downloads/list página de downloads]
+ # Para ter o ambiente configurado, é necessário fazer o download das partes e extraí-las para uma pasta qualquer. Você pode baixar as pastas *"ambiente.zip.001-007"* na seção de downloads acessando a [https://code.google.com/p/les-2013-1/downloads/list página de downloads].
+ # Após fazer o download, faça a extração da pasta *"ambiente"* para um diretório qualquer.
+ # Acesse o caminho *"../ambiente/eclipse"* e abra o programa através do executável *eclipse*.
+ # Na abertura do programa, aponte para o Workspace previamente definido em *"../ambiente/eclipse/workspace"*.
