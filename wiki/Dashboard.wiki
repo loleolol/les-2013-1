@@ -1,5 +1,7 @@
 #sidebar Dashboard
 
+= The Tripper = 
+
   * [HowTo HowTo]
     * [Configurar_Ambiente Configurar Ambiente]
   * [Visao_Geral Visão Geral]
