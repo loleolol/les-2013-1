@@ -11,10 +11,99 @@ function trocaImagem(imagem, sobrepoe, campo) {
 	
 }
 
+function pad(str, max) {
+	  return str.length < max ? pad("0" + str, max) : str;
+}
+
+/**
+ * Popula o ano de uma dropdown de ano
+ * @param dropDown
+ */
+function populaDropDownAno(dropDown) { 
+	var data = new Date();
+	var i = 0;
+	var opcao;
+	for (i = (data.getFullYear()-100); i <= (data.getFullYear()+20); i++) {
+		opcao = new Option(i, i);
+		$(opcao).html(i);
+		$(dropDown).append(opcao);	
+	}
+	$(dropDown).val(data.getFullYear());
+}
+
+/**
+ * Popula o dia atual
+ * @param dropDown
+ * @param mes
+ */
+function populaDropDownDia(dropDown, mes) {
+	var data = new Date();
+	var diaAtual = data.getDay();
+	data = new Date(data.getFullYear(), mes, 0);
+	var opcao;
+	$(dropDown).html("");
+	var i = 0;
+	var s;
+	for (i = 1; i <= data.getDate(); i++) {
+		s = i.toString();
+		opcao = new Option(pad(s,2), pad(s,2));
+		$(opcao).html(pad(s,2));
+		$(dropDown).append(opcao);
+	}
+	$(dropDown).val(pad(diaAtual,2));
+}
+
+/**
+ * Popula o mes de uma dropdown de mes
+ * @param dropDown
+ */
+function populaDropDownMes(dropDown) { 
+	var data = new Date();
+	var opcao;
+	opcao = new Option("Janeiro", "01");
+	$(opcao).html("Janeiro");
+	$(dropDown).append(opcao);	
+	opcao = new Option("Fevereiro", "02");
+	$(opcao).html("Fevereiro");
+	$(dropDown).append(opcao);	
+	opcao = new Option("Março", "03");
+	$(opcao).html("Março");
+	$(dropDown).append(opcao);	
+	opcao = new Option("Abril", "04");
+	$(opcao).html("Abril");
+	$(dropDown).append(opcao);	
+	opcao = new Option("Maio", "05");
+	$(opcao).html("Maio");
+	$(dropDown).append(opcao);	
+	opcao = new Option("Junho", "06");
+	$(opcao).html("Junho");
+	$(dropDown).append(opcao);	
+	opcao = new Option("Julho", "07");
+	$(opcao).html("Julho");
+	$(dropDown).append(opcao);	
+	opcao = new Option("Agosto", "08");
+	$(opcao).html("Agosto");
+	$(dropDown).append(opcao);	
+	opcao = new Option("Setembro", "09");
+	$(opcao).html("Setembro");
+	$(dropDown).append(opcao);	
+	opcao = new Option("Outubro", "10");
+	$(opcao).html("Outubro");
+	$(dropDown).append(opcao);	
+	opcao = new Option("Novembro", "11");
+	$(opcao).html("Novembro");
+	$(dropDown).append(opcao);	
+	opcao = new Option("Dezembro", "12");
+	$(opcao).html("Dezembro");
+	$(dropDown).append(opcao);	
+	$(dropDown).val(pad(data.getMonth(),2));
+}
+
+
 /**
  * Confirma a exclusào de um registro
  */
-function confirmaExclusao(url) {
+function confirmaExclusao() {
     if (confirm("Deseja realmente excluir este registro?")) {
         return true;
     }

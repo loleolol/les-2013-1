@@ -37,7 +37,8 @@ public class ViajanteController extends BaseController {
                 dispatcher.forward(request, response);
            } else if (acao.equalsIgnoreCase("cadastrar")) {
         	   this.incluirViajante(request, response);
-        	   dispatcher = this.getServletContext().getRequestDispatcher("/view/viajante/incluir.jsp");
+        	   this.verificarSessao(request);
+        	   dispatcher = this.getServletContext().getRequestDispatcher("/view/viajante/inicio.jsp");
         	   dispatcher.forward(request, response);
            } else if (acao.equalsIgnoreCase("alterar perfil")) {
         	   this.verificarSessao(request);
@@ -66,7 +67,7 @@ public class ViajanteController extends BaseController {
                throw new InvalidPageException();
            }
         } catch (Exception excecao) {
-            request.setAttribute("excecao", excecao.getMessage());
+            request.setAttribute("excecao", excecao);
             dispatcher = this.getServletContext().getRequestDispatcher("/ErroController");
             dispatcher.forward(request, response);
         }
@@ -81,12 +82,17 @@ public class ViajanteController extends BaseController {
      * @throws Exception
      */
     private void incluirViajante(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    	HttpSession sessao = request.getSession(true);
         ViajanteBean viajanteBean = new ViajanteBean();
+        String dataNascimento = request.getParameter("dataNascimentoAno") 
+        		+ '-' + request.getParameter("dataNascimentoMes")
+        		+ '-' + request.getParameter("dataNascimentoDia");
         this.validarViajante(request.getParameter("email"), request.getParameter("senha")
         		, request.getParameter("confirmaEmail"), request.getParameter("confirmaSenha")
-        		, request.getParameter("nome"), request.getParameter("sexo"), request.getParameter("dataNascimento"));
+        		, request.getParameter("nome"), request.getParameter("sexo"), dataNascimento);
         viajanteBean.incluir(request.getParameter("email"), request.getParameter("nome")
-        		, request.getParameter("senha"), request.getParameter("sexo"), request.getParameter("dataNascimento"));
+        		, request.getParameter("senha"), request.getParameter("sexo"), dataNascimento);
+        sessao.setAttribute("usuario", (Usuario)viajanteBean.getViajante());
         //request.setAttribute("mensagemBean", new MensagemBean("Viajante inserido com sucesso!"));
     }    
     
@@ -110,8 +116,11 @@ public class ViajanteController extends BaseController {
     private void alterarViajante(HttpServletRequest request, HttpServletResponse response) throws Exception {
     	HttpSession sessao = request.getSession();
         ViajanteBean viajanteBean = new ViajanteBean();
-        this.validarViajante(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), request.getParameter("nome"), request.getParameter("sexo"), request.getParameter("dataNascimento"));
-        viajanteBean.alterar(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), request.getParameter("nome"), request.getParameter("sexo"), request.getParameter("dataNascimento"));
+        String dataNascimento = request.getParameter("dataNascimentoAno") 
+        		+ '-' + request.getParameter("dataNascimentoMes")
+        		+ '-' + request.getParameter("dataNascimentoDia");
+        this.validarViajante(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), request.getParameter("nome"), request.getParameter("sexo"), dataNascimento);
+        viajanteBean.alterar(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), request.getParameter("nome"), request.getParameter("sexo"), dataNascimento);
         request.setAttribute("viajanteBean", viajanteBean);
     }
     

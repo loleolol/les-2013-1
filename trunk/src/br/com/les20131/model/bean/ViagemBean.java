@@ -1,5 +1,6 @@
 package br.com.les20131.model.bean;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -105,10 +106,11 @@ public class ViagemBean {
      * @throws Exception
      */
     public void incluir(int idUsuario, String descricao, String dataInicial, String dataFinal) throws Exception {
+    	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     	this.viagemDAO = new ViagemDAO();
     	ViajanteDAO viajanteDAO = new ViajanteDAO();
     	Viajante viajante = viajanteDAO.consultar(idUsuario);
-    	this.viagem = new Viagem(viajante, descricao, new Date(), new Date());
+    	this.viagem = new Viagem(viajante, descricao, dateFormat.parse(dataInicial), dateFormat.parse(dataFinal));
     	this.viagemDAO.incluir(this.viagem);
     }
 

@@ -13,9 +13,11 @@
     </head>
 	<body class="perfil" onload="mostraMensagem('${mensagemBean.mensagem}')"> 
 		<%@include file="../usuario/login.jsp"%>
+		<%@include file="menu.jsp" %>
+		<%@include file="adicional.jsp"%>
 		<fieldset>
 		<legend>Cadastre-se</legend>
-			<form id="cadastro_viajante" class="formulario_padrao" action="<c:url value="/ViajanteController"></c:url>" method="post" onsubmit="return validaFormulario(new Array('nome;String;1', 'email;String;1', 'confirmaEmail;String;1', 'senha;String;1', 'confirmaSenha;String;1', 'dataNascimento;Date;1', 'sexo;String;1'))">
+			<form id="cadastro_viajante" class="formulario_padrao" action="<c:url value="/ViajanteController"></c:url>" method="post" onsubmit="return validaFormulario(new Array('nome;String;1', 'email;String;1', 'confirmaEmail;String;1', 'senha;String;1', 'confirmaSenha;String;1', 'dataNascimentoDia;int;1', 'dataNascimentoMes;int;1', 'dataNascimentoAno;int;1', 'sexo;String;1'))">
 			        <div class="block">
 				        <label for="nome">Nome<span class="atencao">*</span>:</label>
 				        <input id="nome" type="text" name="nome" value="" maxlength="100"/>
@@ -42,10 +44,16 @@
 				        <span id="confirmaSenhaErro"></span>
 					</div>			
 			        <div class="block">
-	                    <label for="dataNascimento">Data de nascimento<span class="atencao">*</span>:</label>
-	                    <input id="dataNascimento" type="text" name="dataNascimento" size="10" value="" maxlength="10"/>
-	                    <span>(YYYY-MM-DD)</span>
-	                    <span id="dataNascimentoErro"></span>
+	                    <label for="dataNascimentoDia">Data de nascimento<span class="atencao">*</span>:</label>
+	                    <select id="dataNascimentoDia" name="dataNascimentoDia">
+	                    </select>
+	                    <span id="dataNascimentoDiaErro"></span>
+	                    <select id="dataNascimentoMes" name="dataNascimentoMes" onchange="populaDropDownDia($('#dataNascimentoDia'), $(this).val());">
+	                    </select>
+	                    <span id="dataNascimentoMesErro"></span>
+	                    <select id="dataNascimentoAno" name="dataNascimentoAno">
+	                    </select>
+	                    <span id="dataNascimentoAnoErro"></span>
 					</div>
 			        <div class="block">
 	                    <label>Sexo<span class="atencao">*</span>:</label>
@@ -58,5 +66,12 @@
 			        </div>
 			</form>
 		</fieldset>
+		<script type="text/javascript">
+			$(document).ready(function() { 
+				populaDropDownAno($('#dataNascimentoAno'));
+				populaDropDownMes($('#dataNascimentoMes')); 
+				populaDropDownDia($('#dataNascimentoDia'), $('#dataNascimentoMes').val()); 
+			});
+		</script>
 	</body>
 </html>

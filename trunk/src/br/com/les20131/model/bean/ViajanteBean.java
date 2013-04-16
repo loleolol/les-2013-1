@@ -2,6 +2,7 @@ package br.com.les20131.model.bean;
 
 import java.io.InputStream;
 import java.sql.Blob;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.http.Part;
@@ -83,8 +84,9 @@ public class ViajanteBean extends UsuarioBean {
      * @throws Exception
      */
     public void incluir(String email, String nome, String senha, String sexo, String dataNascimento) throws Exception {
+    	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     	this.usuarioDAO = new UsuarioDAO();
-    	this.viajante = new Viajante(email, nome, senha, sexo, new Date());
+    	this.viajante = new Viajante(email, nome, senha, sexo, dateFormat.parse(dataNascimento));
     	this.usuarioDAO.incluir((Usuario)this.viajante);
     	this.viajante.setIdUsuario(((Usuario)this.usuarioDAO.consultar(email, senha)).getIdUsuario());
       	this.viajanteDAO = new ViajanteDAO();
@@ -98,12 +100,13 @@ public class ViajanteBean extends UsuarioBean {
      * @throws Exception
      */
     public void alterar(int idUsuario, String nome, String sexo, String dataNascimento) throws Exception {
+    	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     	this.usuarioDAO = new UsuarioDAO();
     	this.viajanteDAO = new ViajanteDAO();
       	this.viajante = this.viajanteDAO.consultar(idUsuario);
       	this.viajante.setNome(nome);
       	this.viajante.setSexo(sexo);
-      	//this.viajante.setDataNascimento(new Date(dataNascimento));
+      	this.viajante.setDataNascimento(dateFormat.parse(dataNascimento));
     	this.usuarioDAO.alterar((Usuario)this.viajante);
     	this.viajanteDAO.alterar(this.viajante);
     }
