@@ -1,6 +1,6 @@
 #sidebar Dashboard
 
-= Partiu = 
+= `#`Partiu = 
 
   * [HowTo HowTo]
     * [Configurar_Ambiente Configurar Ambiente]
