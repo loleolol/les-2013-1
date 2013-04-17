@@ -12,6 +12,13 @@
  * mysql-connector-java 5.1.24
 
 Sistema desenvolvido em ambiente J2EE utilizando MVC2 Model 2.
+
+<br></br>
+=== Visual Paradigm (para visualização dos diagramas) ===
+
+ * O Visual Paradigm Community Edition (no install) pode ser baixado [http://www.visual-paradigm.com/download/vpuml.jsp?edition=ce neste link]
+
+
 <br></br>
 === Pré-requisitos ===
 
