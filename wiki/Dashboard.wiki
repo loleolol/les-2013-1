@@ -27,4 +27,3 @@
   * [Equipe Equipe]
     * [Integrantes Integrantes]
   * [Teste Teste]
-  * [NovaPagina Nome qualquer]
