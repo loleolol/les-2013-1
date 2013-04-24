@@ -28,9 +28,9 @@ public class Viajante extends Usuario {
 	/**
 	 * Armazena imagem do viajante
 	 * @access private
-	 * @var Blob
+	 * @var InputStream
 	 */
-	private Blob imagem;
+	private InputStream imagem;
 	
 	/**
 	 * Construtor da classe
@@ -104,19 +104,19 @@ public class Viajante extends Usuario {
 	/**
 	 * Retorna a imagem do viajante
 	 * @access public
-	 * @return Blob
+	 * @return InputStream
 	 */
-	public Blob getImagem() {
+	public InputStream getImagem() {
 		return imagem;
 	}
 
 	/**
 	 * Define a imagem do viajante
 	 * @access public
-	 * @param Blob imagem
+	 * @param InputStream imagem
 	 * @return void
 	 */
-	public void setImagem(Blob imagem) {
+	public void setImagem(InputStream imagem) {
 		this.imagem = imagem;
 	}
 	

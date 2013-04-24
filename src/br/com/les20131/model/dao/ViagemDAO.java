@@ -31,14 +31,14 @@ public class ViagemDAO extends DAOBase<Viagem> {
     public Viagem consultar(int idViagem) throws DAOException {
         PreparedStatement stmt = null;
         ResultSet resultSet = null;
-
+        int indice = 0;
         String sql = "SELECT v.id_viagem, v.id_usuario, v.titulo, v.descricao, v.data_inicial, v.data_final"
                     + "\n FROM viagem v"
                     + "\n WHERE v.id_viagem = ?";
 
         try {
             stmt = this.conexao.prepareStatement(sql);
-            stmt.setInt(1, idViagem);
+            stmt.setInt(++indice, idViagem);
             resultSet = stmt.executeQuery();
             
             ViajanteDAO viajanteDAO = new ViajanteDAO();
@@ -69,7 +69,7 @@ public class ViagemDAO extends DAOBase<Viagem> {
         if (obj == null) {
             throw new DAOException("Viagem inválida para incluir!");
         }
-
+        int indice = 0;
         PreparedStatement stmt = null;
 
         String sql = "INSERT INTO viagem"
@@ -78,13 +78,13 @@ public class ViagemDAO extends DAOBase<Viagem> {
 
         try {
             stmt = this.conexao.prepareStatement(sql);
-            stmt.setInt(1, obj.getViajante().getIdUsuario());
-            stmt.setString(2, obj.getTitulo());
-            stmt.setString(3, obj.getDescricao());
-            stmt.setDate(4, new java.sql.Date(obj.getDataInicial().getTime()));
-            stmt.setDate(5, new java.sql.Date(obj.getDataFinal().getTime()));
-            stmt.setInt(6, obj.getExcluido());
-            stmt.setInt(7, obj.getBloqueado());
+            stmt.setInt(++indice, obj.getViajante().getIdUsuario());
+            stmt.setString(++indice, obj.getTitulo());
+            stmt.setString(++indice, obj.getDescricao());
+            stmt.setDate(++indice, new java.sql.Date(obj.getDataInicial().getTime()));
+            stmt.setDate(++indice, new java.sql.Date(obj.getDataFinal().getTime()));
+            stmt.setInt(++indice, obj.getExcluido());
+            stmt.setInt(++indice, obj.getBloqueado());
             stmt.executeUpdate();
         } catch (Exception excecao) {
             throw new DAOException(excecao);
@@ -103,7 +103,7 @@ public class ViagemDAO extends DAOBase<Viagem> {
         if (obj == null) {
             throw new DAOException("viagem inválido para alterar!");
         }
-    	
+        int indice = 0;
     	PreparedStatement stmt = null;
 
         String sql = "UPDATE viagem SET"
@@ -118,14 +118,14 @@ public class ViagemDAO extends DAOBase<Viagem> {
 
         try {
 	        stmt = this.conexao.prepareStatement(sql);
-	        stmt.setInt(1, obj.getViajante().getIdUsuario());
-	        stmt.setString(2, obj.getTitulo());
-	        stmt.setString(3, obj.getDescricao());
-	        stmt.setDate(4, new java.sql.Date(obj.getDataInicial().getTime()));
-	        stmt.setDate(5, new java.sql.Date(obj.getDataFinal().getTime()));
-	        stmt.setInt(6, obj.getExcluido());
-	        stmt.setInt(7, obj.getBloqueado());
-	        stmt.setInt(8, obj.getIdViagem());
+	        stmt.setInt(++indice, obj.getViajante().getIdUsuario());
+	        stmt.setString(++indice, obj.getTitulo());
+	        stmt.setString(++indice, obj.getDescricao());
+	        stmt.setDate(++indice, new java.sql.Date(obj.getDataInicial().getTime()));
+	        stmt.setDate(++indice, new java.sql.Date(obj.getDataFinal().getTime()));
+	        stmt.setInt(++indice, obj.getExcluido());
+	        stmt.setInt(++indice, obj.getBloqueado());
+	        stmt.setInt(++indice, obj.getIdViagem());
             stmt.executeUpdate();
         } catch (Exception excecao) {
             throw new DAOException(excecao);
@@ -144,7 +144,7 @@ public class ViagemDAO extends DAOBase<Viagem> {
         if (obj == null) {
             throw new DAOException("Viagem inválida para excluir!");
         }
-
+        int indice = 0;
         PreparedStatement stmt = null;
 
         String sql = "DELETE FROM viagem"
@@ -152,7 +152,7 @@ public class ViagemDAO extends DAOBase<Viagem> {
 
         try {
             stmt = this.conexao.prepareStatement(sql);
-            stmt.setInt(1, obj.getIdViagem());
+            stmt.setInt(++indice, obj.getIdViagem());
             stmt.executeUpdate();
         } catch (Exception excecao) {
             throw new DAOException(excecao);
@@ -176,14 +176,14 @@ public class ViagemDAO extends DAOBase<Viagem> {
     public List<Viagem> consultarPorViajante(int idUsuario) throws DAOException {
         PreparedStatement stmt = null;
         ResultSet resultSet = null;
-
+        int indice = 0;
         String sql = "SELECT v.id_viagem, v.id_usuario, v.titulo, v.descricao, v.data_inicial, v.data_final"
                     + "\n FROM viagem v"
                     + "\n WHERE v.id_usuario = ?";
 
         try {
             stmt = this.conexao.prepareStatement(sql);
-            stmt.setInt(1, idUsuario);
+            stmt.setInt(++indice, idUsuario);
             resultSet = stmt.executeQuery();
 
             List<Viagem> listaViagem = new ArrayList<Viagem>();

@@ -27,7 +27,7 @@ public class ViajanteDAO extends DAOBase<Viajante> {
     	if (intId <= 0) {
             throw new DAOException("Usuário inválido!");
         }
-
+        int indice = 0;
         PreparedStatement stmt = null;
         ResultSet resultSet = null;
 
@@ -39,7 +39,7 @@ public class ViajanteDAO extends DAOBase<Viajante> {
 
         try {
             stmt = this.conexao.prepareStatement(sql);
-            stmt.setInt(1, intId);
+            stmt.setInt(++indice, intId);
             resultSet = stmt.executeQuery();
 
             Viajante viajante = null;
@@ -70,7 +70,7 @@ public class ViajanteDAO extends DAOBase<Viajante> {
         if (obj == null) {
             throw new DAOException("Viajante inválido para incluir!");
         }
-
+        int indice = 0;
         PreparedStatement stmt = null;
 
         String sql = "INSERT INTO viajante"
@@ -79,9 +79,9 @@ public class ViajanteDAO extends DAOBase<Viajante> {
 
         try {
             stmt = this.conexao.prepareStatement(sql);
-            stmt.setInt(1, obj.getIdUsuario());
-            stmt.setString(2, obj.getSexo());
-            stmt.setDate(3, new java.sql.Date(obj.getDataNascimento().getTime()));
+            stmt.setInt(++indice, obj.getIdUsuario());
+            stmt.setString(++indice, obj.getSexo());
+            stmt.setDate(++indice, new java.sql.Date(obj.getDataNascimento().getTime()));
             stmt.executeUpdate();
         } catch (Exception excecao) {
             throw new DAOException(excecao);
@@ -99,19 +99,21 @@ public class ViajanteDAO extends DAOBase<Viajante> {
         if (obj == null) {
             throw new DAOException("Viajante inválido para alterar!");
         }
-    	
+        int indice = 0;
     	PreparedStatement stmt = null;
 
         try {
             String sql = "UPDATE viajante SET"
                         + "\n sexo = ?"
                         + "\n, data_nascimento = ?"
+                        + "\n, imagem = ?"
                         + "\n WHERE id_usuario = ?";
 
             stmt = this.conexao.prepareStatement(sql);
-            stmt.setString(1, obj.getSexo());
-            stmt.setDate(2, new java.sql.Date(obj.getDataNascimento().getTime()));
-            stmt.setInt(3, obj.getIdUsuario());
+            stmt.setString(++indice, obj.getSexo());
+            stmt.setDate(++indice, new java.sql.Date(obj.getDataNascimento().getTime()));
+            stmt.setBlob(++indice, obj.getImagem());
+            stmt.setInt(++indice, obj.getIdUsuario());
             stmt.executeUpdate();
         } catch (Exception excecao) {
             throw new DAOException(excecao);
