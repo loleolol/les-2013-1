@@ -58,10 +58,11 @@ public class Viajante extends Usuario {
 	 * @param Date dataNascimento
 	 * @param InputStream imagem
 	 */
-	public Viajante(int idUsuario, String email, String nome, String senha, int excluido, int bloqueado, String sexo, Date dataNascimento) {
+	public Viajante(int idUsuario, String email, String nome, String senha, int excluido, int bloqueado, String sexo, Date dataNascimento, InputStream imagem) {
 		super(idUsuario, email, nome, senha, excluido, bloqueado);
 		this.sexo = sexo;
 		this.dataNascimento = dataNascimento;
+		this.imagem = imagem;
 	}
 	
 	/**
