@@ -5,17 +5,22 @@ import br.com.les20131.model.bean.ViajanteBean;
 import br.com.les20131.util.InvalidPageException;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author 200920183
  */
+@MultipartConfig
 public class ViajanteController extends BaseController {
 
     /**
@@ -121,8 +126,10 @@ public class ViajanteController extends BaseController {
         String dataNascimento = request.getParameter("dataNascimentoAno") 
         		+ '-' + request.getParameter("dataNascimentoMes")
         		+ '-' + request.getParameter("dataNascimentoDia");
+	    Part imagemParte = request.getPart("imagem"); // Retrieves <input type="file" name="file">
+	    InputStream imagem = imagemParte.getInputStream();
         this.validarViajante(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), request.getParameter("nome"), request.getParameter("sexo"), dataNascimento);
-        viajanteBean.alterar(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), request.getParameter("nome"), request.getParameter("sexo"), dataNascimento);
+        viajanteBean.alterar(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), request.getParameter("nome"), request.getParameter("sexo"), dataNascimento, imagem);
         request.setAttribute("viajanteBean", viajanteBean);
     }
     

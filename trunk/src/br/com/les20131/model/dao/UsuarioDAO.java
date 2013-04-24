@@ -26,7 +26,7 @@ public class UsuarioDAO extends DAOBase<Usuario> {
         if (idUsuario <= 0) {
             throw new DAOException("Usuarío inválido!");
         }
-
+        int indice = 0;
         PreparedStatement stmt = null;
         ResultSet resultSet = null;
 
@@ -36,7 +36,7 @@ public class UsuarioDAO extends DAOBase<Usuario> {
 
         try {
             stmt = this.conexao.prepareStatement(sql);
-            stmt.setInt(1, idUsuario);
+            stmt.setInt(++indice, idUsuario);
             resultSet = stmt.executeQuery();
 
             Usuario usuario = null;
@@ -66,7 +66,7 @@ public class UsuarioDAO extends DAOBase<Usuario> {
         if (email.isEmpty() || senha.isEmpty()) {
             throw new DAOException("Email ou senha inválidos!");
         }
-
+        int indice = 0;
         PreparedStatement stmt = null;
         ResultSet resultSet = null;
 
@@ -77,8 +77,8 @@ public class UsuarioDAO extends DAOBase<Usuario> {
 
         try {
             stmt = this.conexao.prepareStatement(sql);
-            stmt.setString(1, email);
-            stmt.setString(2, senha);
+            stmt.setString(++indice, email);
+            stmt.setString(++indice, senha);
             resultSet = stmt.executeQuery();
 
             Usuario user = null;
@@ -107,7 +107,7 @@ public class UsuarioDAO extends DAOBase<Usuario> {
         if (obj == null) {
             throw new DAOException("Usuário inválido para incluir!");
         }
-
+        int indice = 0;
         PreparedStatement stmt = null;
 
         String sql = "INSERT INTO usuario"
@@ -116,11 +116,11 @@ public class UsuarioDAO extends DAOBase<Usuario> {
 
         try {
             stmt = this.conexao.prepareStatement(sql);
-            stmt.setString(1, obj.getEmail());
-            stmt.setString(2, obj.getSenha());
-            stmt.setString(3, obj.getNome());
-            stmt.setInt(4, obj.getExcluido());
-            stmt.setInt(5, obj.getBloqueado());
+            stmt.setString(++indice, obj.getEmail());
+            stmt.setString(++indice, obj.getSenha());
+            stmt.setString(++indice, obj.getNome());
+            stmt.setInt(++indice, obj.getExcluido());
+            stmt.setInt(++indice, obj.getBloqueado());
             stmt.executeUpdate();
         } catch (Exception excecao) {
             throw new DAOException(excecao);
@@ -131,7 +131,7 @@ public class UsuarioDAO extends DAOBase<Usuario> {
         if (obj == null) {
             throw new DAOException("Usuário inválido para alterar!");
         }
-    	
+    	int indice = 0;
     	PreparedStatement stmt = null;
 
         try {
@@ -144,12 +144,12 @@ public class UsuarioDAO extends DAOBase<Usuario> {
                         + "\n WHERE id_usuario = ?";
 
             stmt = this.conexao.prepareStatement(sql);
-            stmt.setString(1, obj.getEmail());
-            stmt.setString(2, obj.getSenha());
-            stmt.setString(3, obj.getNome());
-            stmt.setInt(4, obj.getExcluido());
-            stmt.setInt(5, obj.getBloqueado());
-            stmt.setInt(6, obj.getIdUsuario());
+            stmt.setString(++indice, obj.getEmail());
+            stmt.setString(++indice, obj.getSenha());
+            stmt.setString(++indice, obj.getNome());
+            stmt.setInt(++indice, obj.getExcluido());
+            stmt.setInt(++indice, obj.getBloqueado());
+            stmt.setInt(++indice, obj.getIdUsuario());
             stmt.executeUpdate();
         } catch (Exception excecao) {
             throw new DAOException(excecao);
@@ -175,7 +175,7 @@ public class UsuarioDAO extends DAOBase<Usuario> {
         if (senha.isEmpty()) {
             throw new DAOException("Senha inválida!");
         }
-
+        int indice = 0;
         PreparedStatement stmt = null;
         ResultSet resultSet = null;
 
@@ -184,7 +184,7 @@ public class UsuarioDAO extends DAOBase<Usuario> {
 
         try {
             stmt = this.conexao.prepareStatement(sql);
-            stmt.setString(1, senha);
+            stmt.setString(++indice, senha);
             resultSet = stmt.executeQuery();
 
             if (resultSet.next()) {

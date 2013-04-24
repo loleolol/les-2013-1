@@ -99,7 +99,7 @@ public class ViajanteBean extends UsuarioBean {
      * @return void
      * @throws Exception
      */
-    public void alterar(int idUsuario, String nome, String sexo, String dataNascimento) throws Exception {
+    public void alterar(int idUsuario, String nome, String sexo, String dataNascimento, InputStream imagem) throws Exception {
     	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     	this.usuarioDAO = new UsuarioDAO();
     	this.viajanteDAO = new ViajanteDAO();
@@ -107,6 +107,7 @@ public class ViajanteBean extends UsuarioBean {
       	this.viajante.setNome(nome);
       	this.viajante.setSexo(sexo);
       	this.viajante.setDataNascimento(dateFormat.parse(dataNascimento));
+      	this.viajante.setImagem(imagem);
     	this.usuarioDAO.alterar((Usuario)this.viajante);
     	this.viajanteDAO.alterar(this.viajante);
     }
