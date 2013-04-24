@@ -32,7 +32,7 @@ public class ViajanteDAO extends DAOBase<Viajante> {
         ResultSet resultSet = null;
 
         String sql = "SELECT u.id_usuario, u.email, u.nome, u.senha, u.excluido, u.bloqueado"
-        			+ "\n, v.sexo, v.data_nascimento"
+        			+ "\n, v.sexo, v.data_nascimento, v.imagem"
                     + "\n FROM usuario u, viajante v"
                     + "\n WHERE u.id_usuario = ?"
                     + "\n AND u.id_usuario = v.id_usuario";
@@ -51,7 +51,8 @@ public class ViajanteDAO extends DAOBase<Viajante> {
                                 , resultSet.getInt("excluido")
                                 , resultSet.getInt("bloqueado")
                                 , resultSet.getString("sexo")
-                                , resultSet.getDate("data_nascimento"));
+                                , resultSet.getDate("data_nascimento")
+                                , resultSet.getBinaryStream("imagem"));
             }
             return viajante;
         } catch (Exception excecao) {
