@@ -26,7 +26,7 @@
 			        <div class="blocoImagem">
 				        <label for="imagemPrevia">Imagem:</label>
 				        <span id="novaImagem" class="sobrepoe"></span>
-				        <img id="imagemPrevia" src="/les20131/view/publico/images/semfoto.jpg" onclick="$('#imagem').click()"/>
+				        <img id="imagemPrevia" src="<c:url value="/ImagemController"></c:url>" onclick="$('#imagem').click()"/>
 				        <br/>
 				        <input id="imagem" type="file" name="imagem" onchange="trocaImagem($('#imagemPrevia'), $('#novaImagem'), $('#imagem'))"/>
 				        <span id="imagemErro" class="atencao"></span>
