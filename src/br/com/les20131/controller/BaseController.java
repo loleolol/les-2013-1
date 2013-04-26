@@ -23,13 +23,41 @@ import br.com.les20131.util.UserAuthenticationException;
 @WebServlet("/BaseController")
 public abstract class BaseController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    
+	/**
+	 * Armazena a requisição
+	 * @access protected
+	 * @var HttpServletRequest
+	 */
+	protected HttpServletRequest requisicao;
+
+	/**
+	 * Armazena a resposta
+	 * @access protected
+	 * @var HttpServletResponse
+	 */
+	protected HttpServletResponse resposta;
+	
+	/**
+	 * Armazena o despachante
+	 * @access protected
+	 * @var RequestDispatcher
+	 */
+	protected RequestDispatcher despachante;
+	
+	/**
+	 * Armazena a ação
+	 * @access protected
+	 * @var acao
+	 */
+	protected String acao;
+	
     /**
+     * Construtor do servlet
      * @see HttpServlet#HttpServlet()
      */
     public BaseController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -49,15 +77,41 @@ public abstract class BaseController extends HttpServlet {
         }
 	}
 	
+	/**
+	 * Configura os atributos do controller
+	 * @access protected
+	 * @param HttpServletRequest request
+	 * @param HttpServletResponse response
+	 * @return void
+	 */
+	protected void configurarController(HttpServletRequest request, HttpServletResponse response) {
+    	this.requisicao = request;
+    	this.resposta = response;
+    	this.despachante = null;
+    	this.acao = (request.getParameter("acao") == null ? "" : request.getParameter("acao"));
+	}
+	
+	/**
+	 * Configura o despachante para o caminho e despacha
+	 * @access protected
+	 * @param String caminho
+	 * @return void
+	 * @throws IOException 
+	 * @throws ServletException 
+	 */
+	protected void despachar(String caminho) throws ServletException, IOException {
+		this.despachante = this.getServletContext().getRequestDispatcher(caminho);
+    	this.despachante.forward(this.requisicao, this.resposta);
+	}
+	
     /**
      * Verifica a sessão do usuário
      * @access protected
-     * @param HttpServletRequest request
      * @return void
      * @throws Exception
      */
-    protected void verificarSessao(HttpServletRequest request) throws Exception {
-        HttpSession sessao = request.getSession(false);
+    protected void verificarSessao() throws Exception {
+        HttpSession sessao = this.requisicao.getSession(false);
         if (sessao == null) {
             /**
              * Se não há sessão, retorna ao login
@@ -71,8 +125,23 @@ public abstract class BaseController extends HttpServlet {
         } else {
         	UsuarioBean usuarioBean = new UsuarioBean();
         	usuarioBean.setUsuario((Usuario)sessao.getAttribute("usuario"));
-        	request.setAttribute("usuarioBean", usuarioBean);
+        	this.requisicao.setAttribute("usuarioBean", usuarioBean);
         }
     }
-
+    
+    /**
+     * Tratamento de exceção padrão
+     * @access protected
+     * @param Exception excecao
+     * @return void
+     */
+    protected void tratarExcecao(Exception excecao)
+    {
+    	try {
+    		this.requisicao.setAttribute("excecao", excecao);
+    		this.despachar("/ErroController");
+    	} catch (Exception tratamentoExcecao) {
+    		
+    	}
+    }
 }

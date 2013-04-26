@@ -2,13 +2,9 @@ package br.com.les20131.controller;
 
 import br.com.les20131.model.Usuario;
 import br.com.les20131.model.bean.UsuarioBean;
-import br.com.les20131.model.bean.ViajanteBean;
-import br.com.les20131.model.dao.UsuarioDAO;
-import br.com.les20131.model.dao.ViajanteDAO;
 import br.com.les20131.util.InvalidPageException;
 
 import java.io.IOException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +17,11 @@ import javax.servlet.http.HttpSession;
 public class UsuarioController extends BaseController {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 411902382744835366L;
+
+	/**
      * Handles the HTTP <code>POST</code> method.
      * @param request servlet request
      * @param response servlet response
@@ -30,58 +31,110 @@ public class UsuarioController extends BaseController {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String acao = (request.getParameter("acao") == null ? "" : request.getParameter("acao"));
-        RequestDispatcher dispatcher;
         try {
-            if (acao.isEmpty()) {
-			    dispatcher = this.getServletContext().getRequestDispatcher("/view/index.jsp");
-			    dispatcher.forward(request, response);
-            } else if (acao.equalsIgnoreCase("login")) {
-                UsuarioBean usuarioBean = new UsuarioBean();
-                usuarioBean.autenticaUsuario(request.getParameter("loginEmail"), request.getParameter("loginSenha"));
-                HttpSession sessao = request.getSession(true);
-                sessao.setAttribute("usuario", usuarioBean.getUsuario());
-                this.verificarSessao(request);
-                dispatcher = this.getServletContext().getRequestDispatcher("/view/viajante/inicio.jsp");
-                dispatcher.forward(request, response);
-            } else if (acao.equalsIgnoreCase("logoff")) {
-               	request.getSession().invalidate();
-                dispatcher = this.getServletContext().getRequestDispatcher("/view/index.jsp");
-                dispatcher.forward(request, response);
-            } else if (acao.equalsIgnoreCase("cadastre-se")) {
-                dispatcher = this.getServletContext().getRequestDispatcher("/view/viajante/incluir.jsp");
-                dispatcher.forward(request, response);
-            } else if (acao.equalsIgnoreCase("alterar conta")) {
-                dispatcher = this.getServletContext().getRequestDispatcher("/view/usuario/alterar.jsp");
-                dispatcher.forward(request, response);
-            } else if (acao.equalsIgnoreCase("alterar")) {
-            	this.verificarSessao(request);
-				this.alterarUsuario(request, response);
-				dispatcher = this.getServletContext().getRequestDispatcher("/view/usuario/alterar.jsp");
-				dispatcher.forward(request, response);
+        	this.configurarController(request, response);
+            if (this.acao.isEmpty()) {
+            	this.acaoPadrao();
+            } else if (this.acao.equalsIgnoreCase("login")) {
+            	this.acaoLogin();
+            } else if (this.acao.equalsIgnoreCase("logoff")) {
+            	this.acaoLogoff();
+            } else if (this.acao.equalsIgnoreCase("novo")) {
+            	this.acaoNovo();
+            } else if (this.acao.equalsIgnoreCase("selecionar")) {
+            	this.acaoSelecionar();
+            } else if (this.acao.equalsIgnoreCase("alterar")) {
+            	this.acaoAlterar();
             } else {
                	throw new InvalidPageException();
             }
         } catch (Exception excecao) {
-        	request.setAttribute("excecao", excecao);
-            dispatcher = this.getServletContext().getRequestDispatcher("/ErroController");
-            dispatcher.forward(request, response);
+        	this.tratarExcecao(excecao);
         }
     }
 
     /**
-     * Altera um usuário
-     * @param request
-     * @param response
+     * Ação padrão do controlador
+     * @access private
+     * @return void
      * @throws Exception
      */
-    private void alterarUsuario(HttpServletRequest request, HttpServletResponse response) throws Exception {
-    	HttpSession sessao = request.getSession();
+    private void acaoPadrao() throws Exception {
+    	this.despachar("/view/index.jsp");
+    }
+    
+    /**
+     * Ação que realiza o login
+     * @access private
+     * @return void
+     * @throws Exception
+     */
+    private void acaoLogin() throws Exception {
         UsuarioBean usuarioBean = new UsuarioBean();
-        this.validarUsuario(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), request.getParameter("email"), request.getParameter("emailConfirma"), request.getParameter("senha"), request.getParameter("senhaConfirma"));
-        usuarioBean.alterar(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), request.getParameter("email"), request.getParameter("senha"));
+        usuarioBean.autenticaUsuario(this.requisicao.getParameter("loginEmail"), this.requisicao.getParameter("loginSenha"));
+        HttpSession sessao = this.requisicao.getSession(true);
         sessao.setAttribute("usuario", usuarioBean.getUsuario());
-        request.setAttribute("usuarioBean", usuarioBean);
+        this.verificarSessao();
+        this.despachar("/view/viajante/inicio.jsp");
+    }
+    
+    /**
+     * Ação que realiza o logoff
+     * @access private
+     * @return void
+     * @throws Exception
+     */
+    private void acaoLogoff() throws Exception {
+       	this.requisicao.getSession().invalidate();
+       	this.despachar("/view/index.jsp");
+    }
+    
+    /**
+     * Ação para criação de novo usuário
+     * @access private
+     * @return void
+     * @throws Exception
+     */
+    private void acaoNovo() throws Exception {
+    	this.despachar("/view/viajante/incluir.jsp");
+    }
+    
+    /**
+     * Ação para seleção de usuário
+     * @access private
+     * @return void
+     * @throws Exception
+     */
+    private void acaoSelecionar() throws Exception {
+    	this.verificarSessao();
+        this.despachar("/view/usuario/alterar.jsp");
+    }
+    
+    /**
+     * Ação de alteração de usuário
+     * @access private
+     * @return void
+     * @throws Exception
+     */
+    private void acaoAlterar() throws Exception {
+    	this.verificarSessao();
+		this.alterarUsuario();
+		this.despachar("/view/usuario/alterar.jsp");
+    }
+    
+    /**
+     * Altera um usuário
+     * @access private
+     * @return void
+     * @throws Exception
+     */
+    private void alterarUsuario() throws Exception {
+    	HttpSession sessao = this.requisicao.getSession();
+        UsuarioBean usuarioBean = new UsuarioBean();
+        this.validarUsuario(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), this.requisicao.getParameter("email"), this.requisicao.getParameter("emailConfirma"), this.requisicao.getParameter("senha"), this.requisicao.getParameter("senhaConfirma"));
+        usuarioBean.alterar(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), this.requisicao.getParameter("email"), this.requisicao.getParameter("senha"));
+        sessao.setAttribute("usuario", usuarioBean.getUsuario());
+        this.requisicao.setAttribute("usuarioBean", usuarioBean);
     }
     
     /**

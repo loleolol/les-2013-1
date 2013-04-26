@@ -8,7 +8,6 @@ package br.com.les20131.controller;
 import br.com.les20131.model.Usuario;
 import br.com.les20131.model.bean.MensagemBean;
 import br.com.les20131.model.bean.UsuarioBean;
-import br.com.les20131.util.InvalidPageException;
 import br.com.les20131.util.UserAuthenticationException;
 
 import javax.servlet.RequestDispatcher;
@@ -23,7 +22,12 @@ import javax.servlet.http.HttpSession;
  */
 public class ErroController extends HttpServlet {
    
-    /** 
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -1100213106927082279L;
+
+	/** 
      * Handles the HTTP <code>GET</code> method.
      * @param request servlet request
      * @param response servlet response
