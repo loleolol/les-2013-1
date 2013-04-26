@@ -1,6 +1,6 @@
 <div class="barra">
 	<div class="logo">
-		<h1>Partiu</h1>
+		<h1>#Partiu</h1>
 	</div>
 	<div id="barra_login">
 		<form id="login" class="formulario_login" action="<c:url value="/UsuarioController"></c:url>" method="post" onsubmit="return validaFormulario(new Array('loginEmail;String;1', 'loginSenha;String;1'))">

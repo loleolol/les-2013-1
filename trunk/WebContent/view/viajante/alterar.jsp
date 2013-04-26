@@ -52,8 +52,8 @@
 					</div>
 			        <div class="block">
 	                    <label>Sexo<span class="atencao">*</span>:</label>
-                    	<input id="sexoM" type="radio" name="sexo" value="M" ${viajanteBean.viajante.sexo == 'M' ? 'checked' : ''}/><label for="sexoM">Masculino</label>
-                    	<input id="sexoF" type="radio" name="sexo" value="F" ${viajanteBean.viajante.sexo == 'F' ? 'checked' : ''}/><label for="sexoF">Feminino</label>
+                    	<input id="sexoM" type="radio" name="sexo" value="M" ${viajanteBean.viajante.sexo == 'M' ? 'checked' : ''}/><label class="label_radio" for="sexoM">Masculino</label>
+                    	<input id="sexoF" type="radio" name="sexo" value="F" ${viajanteBean.viajante.sexo == 'F' ? 'checked' : ''}/><label class="label_radio" for="sexoF">Feminino</label>
 	                    <span id="sexoErro" class="atencao"></span>
 					</div>
 			        <div class="block">
