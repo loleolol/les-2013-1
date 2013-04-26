@@ -61,6 +61,7 @@ th{
     -------------------------------------------*/
 input[type=text],
 input[type=password],
+textarea,
 button{
     padding: 4px;
     border:solid 1px #CCC;
@@ -93,6 +94,7 @@ input[type=password]:hover,
 input[type=submit]:hover,
 input[type=button]:hover,
 input[type=reset]:hover,
+textarea:hover,
 button:hover{
     border: solid 1px #999;
 }
@@ -114,16 +116,20 @@ legend{
     text-transform: uppercase;
 }
 img {
+	border:solid 1px #CCC;
 	cursor: pointer;
+}
+img:hover {
+	border: solid 1px #999;
 }
 .block{
     border-top: 1px dotted #CCC;
-    padding: 15px 0;
+    padding: 15px;
 }
 .blocoImagem {
 	position: relative;
     border-top: 1px dotted #CCC;
-    padding: 15px 0;
+    padding: 15px;
 }
 .sobrepoe {
 	position: absolute;
@@ -131,6 +137,28 @@ img {
 }
 .formulario_invisivel {
 	inherit: none;
+}
+.formulario_menu button {
+    background: #FFF; /* para browsers sem suporte a CSS 3 */
+    width: 200px;
+	border: 0px;
+    padding: 0px;
+
+}
+.formulario_menu div:hover {
+    background: #060; /* para browsers sem suporte a CSS 3 */
+    color: #FFF;
+}
+.formulario_menu button:hover {
+    background: #060; /* para browsers sem suporte a CSS 3 */
+    color: #FFF;
+}
+.formulario_padrao label {
+    width: 200px;
+    
+}
+.formulario_padrao .label_radio {
+	width: 100px;
 }
 .barra{
 	color: #FFF; 
@@ -179,7 +207,6 @@ label{
 	float: left;
 	border-right: 1px dotted #CCC;
 	padding-left: 200px;
-	padding-right: 50px;
 }
 
 #barra_esquerda input[type=submit] {
