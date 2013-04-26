@@ -11,6 +11,15 @@ function trocaImagem(imagem, sobrepoe, campo) {
 	
 }
 
+function removerValidacao(form) {
+	$(form).attr("onsubmit", "");
+}
+
+function enviarSemValidacao(form) {
+	removerValidacao(form);
+	$(form).submit();
+}
+
 function pad(str, max) {
 	  return str.length < max ? pad("0" + str, max) : str;
 }

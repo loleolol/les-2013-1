@@ -32,43 +32,35 @@ public class ImagemController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    response.setHeader("Cache-Control", "no-store");  
-	    response.setHeader("Pragma", "no-cache");  
-	    response.setDateHeader("Expires", 0);  
-	    response.setContentType("image/jpeg");  
-	    ViajanteBean viajanteBean = new ViajanteBean();
-	    try {
-	    viajanteBean.consultar(1);
-	    } catch (Exception e) {
-	    	viajanteBean = null;
-	    }
-	    ServletOutputStream out = response.getOutputStream();  
-	    BufferedImage buffer = ImageIO.read(viajanteBean.getViajante().getImagem());  
-	    ImageIO.write(buffer, "jpeg", response.getOutputStream());  
-	    out.flush();  
-	    out.close(); 
-		// TODO Auto-generated method stub
+		try {
+			String id = request.getParameter("id");
+			if (id.isEmpty() == false) {
+				response.setHeader("Cache-Control", "no-store");  
+				response.setHeader("Pragma", "no-cache");  
+				response.setDateHeader("Expires", 0);  
+				response.setContentType("image/jpeg");  
+				ViajanteBean viajanteBean = new ViajanteBean();
+				try {
+				viajanteBean.consultar(Integer.parseInt(id));
+				} catch (Exception e) {
+					viajanteBean = null;
+				}
+				ServletOutputStream out = response.getOutputStream();  
+				BufferedImage buffer = ImageIO.read(viajanteBean.getViajante().getImagem());  
+				ImageIO.write(buffer, "jpeg", response.getOutputStream());  
+				out.flush();  
+				out.close();
+			}
+		} catch (Exception excecao) {
+			
+		}
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    response.setHeader("Cache-Control", "no-store");  
-	    response.setHeader("Pragma", "no-cache");  
-	    response.setDateHeader("Expires", 0);  
-	    response.setContentType("image/jpeg");  
-	    ViajanteBean viajanteBean = new ViajanteBean();
-	    try {
-	    viajanteBean.consultar(1);
-	    } catch (Exception e) {
-	    	
-	    }
-	    ServletOutputStream out = response.getOutputStream();  
-	    BufferedImage buffer = ImageIO.read(viajanteBean.getViajante().getImagem());  
-	    ImageIO.write(buffer, "jpeg", response.getOutputStream());  
-	    out.flush();  
-	    out.close(); 
+
 	}
 
 }

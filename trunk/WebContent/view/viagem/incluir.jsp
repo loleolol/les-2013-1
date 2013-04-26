@@ -37,7 +37,7 @@
 			<span id="dataFinalAnoErro" class="atencao"></span>
 		</div>
         <div class="block">
-			<input type="submit" name="acao" value="Registrar"/>
+        	<button type="submit" name="acao" value="incluir">Registrar</button>
         </div>
 	</form>
 </fieldset>

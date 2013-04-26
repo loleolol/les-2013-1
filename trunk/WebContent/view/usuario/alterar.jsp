@@ -42,7 +42,7 @@
 				        <span id="senhaConfirmaErro" class="atencao"></span>
 					</div>			
 			        <div class="block">
-						<input type="submit" name="acao" value="Alterar"/>
+			           	<button type="submit" name="acao" value="alterar">Alterar</button>
 			        </div>
 				</form>
 			</fieldset>

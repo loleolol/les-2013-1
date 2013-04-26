@@ -26,7 +26,7 @@
 			        <div class="blocoImagem">
 				        <label for="imagemPrevia">Imagem:</label>
 				        <span id="novaImagem" class="sobrepoe"></span>
-				        <img id="imagemPrevia" src="<c:url value="/ImagemController"></c:url>" onclick="$('#imagem').click()"/>
+				        <img id="imagemPrevia" src="<c:url value="/ImagemController?id=${viajanteBean.viajante.idUsuario}"></c:url>" onclick="$('#imagem').click()"/>
 				        <br/>
 				        <input id="imagem" type="file" name="imagem" onchange="trocaImagem($('#imagemPrevia'), $('#novaImagem'), $('#imagem'))"/>
 				        <span id="imagemErro" class="atencao"></span>
@@ -57,7 +57,7 @@
 	                    <span id="sexoErro" class="atencao"></span>
 					</div>
 			        <div class="block">
-						<input type="submit" name="acao" value="Alterar"/>
+			        	<button type="submit" name="acao" value="alterar" >Alterar</button>
 			        </div>
 				</form>
 			</fieldset>

@@ -63,7 +63,7 @@
 	                    <span id="sexoErro" class="atencao"></span>
 					</div>
 			        <div class="block">
-						<input type="submit" name="acao" value="Cadastrar"/>
+			        	<button type="submit" name="acao" value="incluir">Cadastrar</button>
 			        </div>
 			</form>
 		</fieldset>
