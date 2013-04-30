@@ -107,7 +107,9 @@ public class ViajanteBean extends UsuarioBean {
       	this.viajante.setNome(nome);
       	this.viajante.setSexo(sexo);
       	this.viajante.setDataNascimento(dateFormat.parse(dataNascimento));
-      	this.viajante.setImagem(imagem);
+      	if (imagem != null) {
+      		this.viajante.setImagem(imagem);
+      	}
     	this.usuarioDAO.alterar((Usuario)this.viajante);
     	this.viajanteDAO.alterar(this.viajante);
     }

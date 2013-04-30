@@ -24,7 +24,7 @@
 			<select id="dataInicialAno" name="dataInicialAno">
 			</select>
 			<span id="dataInicialAnoErro" class="atencao"></span>
-			
+			<br/>
 	        <label for="dataFinalDia">à</label>
 			<select id="dataFinalDia" name="dataFinalDia">
 			</select>

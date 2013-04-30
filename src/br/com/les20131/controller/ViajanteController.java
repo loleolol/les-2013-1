@@ -149,8 +149,11 @@ public class ViajanteController extends BaseController {
         String dataNascimento = this.requisicao.getParameter("dataNascimentoAno") 
         		+ '-' + this.requisicao.getParameter("dataNascimentoMes")
         		+ '-' + this.requisicao.getParameter("dataNascimentoDia");
-	    Part imagemParte = this.requisicao.getPart("imagem");
-	    InputStream imagem = imagemParte.getInputStream();
+    	InputStream imagem = null;
+       	Part imagemParte = this.requisicao.getPart("imagem");
+       	if (imagemParte.getSize() > 0) {
+    	    imagem = imagemParte.getInputStream();
+        }
         this.validarViajante(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), this.requisicao.getParameter("nome"), this.requisicao.getParameter("sexo"), dataNascimento);
         viajanteBean.alterar(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), this.requisicao.getParameter("nome"), this.requisicao.getParameter("sexo"), dataNascimento, imagem);
         this.requisicao.setAttribute("viajanteBean", viajanteBean);
