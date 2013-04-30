@@ -25,8 +25,10 @@
 				<form id="cadastro_viajante" class="formulario_padrao" enctype="multipart/form-data" action="<c:url value="/ViajanteController"></c:url>" method="post" onsubmit="return validaFormulario(new Array('nome;String;1', 'dataNascimentoDia;int;1', 'dataNascimentoMes;int;1', 'dataNascimentoAno;int;1', 'sexo;String;1'))">
 			        <div class="blocoImagem">
 				        <label for="imagemPrevia">Imagem:</label>
+				        <div id="selecionaImagem" class="imagemPerfil" onclick="$('#imagem').click()">
 				        <span id="novaImagem" class="sobrepoe"></span>
-				        <img id="imagemPrevia" src="<c:url value="/ImagemController?id=${viajanteBean.viajante.idUsuario}"></c:url>" onclick="$('#imagem').click()"/>
+				        <img id="imagemPrevia" src="<c:url value="/ImagemController?id=${viajanteBean.viajante.idUsuario}"></c:url>"/>
+						</div>
 				        <br/>
 				        <input id="imagem" type="file" name="imagem" onchange="trocaImagem($('#imagemPrevia'), $('#novaImagem'), $('#imagem'))"/>
 				        <span id="imagemErro" class="atencao"></span>

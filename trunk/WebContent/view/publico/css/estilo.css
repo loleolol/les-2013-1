@@ -115,21 +115,25 @@ legend{
     padding: 5px;
     text-transform: uppercase;
 }
-img {
-	border:solid 1px #CCC;
-	cursor: pointer;
-}
-img:hover {
-	border: solid 1px #999;
-}
 .block{
     border-top: 1px dotted #CCC;
     padding: 15px;
 }
 .blocoImagem {
+	cursor: pointer;
 	position: relative;
     border-top: 1px dotted #CCC;
     padding: 15px;
+}
+.imagemPerfil {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+	border:solid 1px #CCC;
+	cursor: pointer;
+}
+.imagemPerfil:hover {
+	border: solid 1px #999;
 }
 .sobrepoe {
 	position: absolute;
