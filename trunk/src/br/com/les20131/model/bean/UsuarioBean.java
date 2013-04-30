@@ -84,6 +84,18 @@ public class UsuarioBean {
       		this.usuario.setSenha(this.usuarioDAO.retornarHashSenha(senha));
       	}
       	this.usuarioDAO.alterar(this.usuario);
-    }    
+    }
+    
+    /**
+     * Consulta um usuário pelo id
+     * @access public
+     * @param int idUsuario
+     * @return void
+     * @throws Exception
+     */
+    public void consultar(int idUsuario) throws Exception {
+    	this.usuarioDAO = new UsuarioDAO();
+      	this.usuario = this.usuarioDAO.consultar(idUsuario);
+    }
     
 }

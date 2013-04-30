@@ -1,6 +1,7 @@
 package br.com.les20131.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -156,7 +157,7 @@ public class ViagemController extends BaseController {
         String dataFinal = this.requisicao.getParameter("dataFinalAno") 
         		+ '-' + this.requisicao.getParameter("dataFinalMes")
         		+ '-' + this.requisicao.getParameter("dataFinalDia");
-        this.validarViagem(this.requisicao.getParameter("descricao"), dataInicial, dataFinal);
+        this.validarViagem(this.requisicao.getParameter("titulo"), this.requisicao.getParameter("descricao"), dataInicial, dataFinal);
         viagemBean.incluir(((Usuario)sessao.getAttribute("usuario")).getIdUsuario()
         		, this.requisicao.getParameter("titulo"), this.requisicao.getParameter("descricao"), dataInicial, dataFinal);
         //request.setAttribute("mensagemBean", new MensagemBean("Viagem inserida com sucesso!"));
@@ -176,7 +177,7 @@ public class ViagemController extends BaseController {
         String dataFinal = this.requisicao.getParameter("dataFinalAno") 
         		+ '-' + this.requisicao.getParameter("dataFinalMes")
         		+ '-' + this.requisicao.getParameter("dataFinalDia");
-        this.validarViagem(this.requisicao.getParameter("descricao"), dataInicial, dataFinal);
+        this.validarViagem(this.requisicao.getParameter("idViagem"), this.requisicao.getParameter("titulo"), this.requisicao.getParameter("descricao"), dataInicial, dataFinal);
         viagemBean.alterar(Integer.parseInt(this.requisicao.getParameter("idViagem"))
         		, this.requisicao.getParameter("titulo"), this.requisicao.getParameter("descricao"), dataInicial, dataFinal);
         this.requisicao.setAttribute("viagemBean", viagemBean);
@@ -208,14 +209,107 @@ public class ViagemController extends BaseController {
     /**
      * Valida o viagem
      * @access private
+     * @param String idViagem
+     * @param String titulo
      * @param String descricao
+     * @param String dataInicial
+     * @param String dataFinal
      * @return void
      * @throws Exception
      */
-    private void validarViagem(String descricao, String dataInicial, String dataFinal) throws Exception {
+    private void validarViagem(String idViagem, String titulo, String descricao, String dataInicial, String dataFinal) throws Exception {
+    	this.validarIdViagem(idViagem);
+        this.validarTitulo(titulo);
         this.validarDescricao(descricao);
+        this.validarDataInicial(dataInicial);
+        this.validarDataFinal(dataFinal);
+    }    
+    
+    /**
+     * Valida o viagem
+     * @access private
+     * @param String titulo
+     * @param String descricao
+     * @param String dataInicial
+     * @param String dataFinal
+     * @return void
+     * @throws Exception
+     */
+    private void validarViagem(String titulo, String descricao, String dataInicial, String dataFinal) throws Exception {
+        this.validarTitulo(titulo);
+        this.validarDescricao(descricao);
+        this.validarDataInicial(dataInicial);
+        this.validarDataFinal(dataFinal);
     }
-   
+    
+    /**
+     * Validar id da viagem
+     * @access private
+     * @param String idViagem
+     * @return void
+     * @throws Exception
+     */
+    private void validarIdViagem(String idViagem) throws Exception {
+    	try {
+    		int id;
+    		id = Integer.parseInt(idViagem);
+    		ViagemBean viagemBean = new ViagemBean();
+    		viagemBean.consultar(id);
+    		if (viagemBean.getViagem() == null) {
+    			throw new Exception();
+    		}
+    	} catch (Exception excecao) {
+    		throw new Exception("Viagem inválida.");
+    	}
+    }
+    
+    /**
+     * Valida o título
+     * @access private
+     * @param String titulo
+     * @return void
+     * @throws Exception
+     */
+    private void validarTitulo(String titulo) throws Exception {
+    	if (titulo.isEmpty()) {
+    		throw new Exception("Título em branco.");
+    	} else if (titulo.length() > 50) {
+    		throw new Exception("Título acima do limite de 50 caracteres.");
+    	}
+    }
+    
+    /**
+     * Valida a data inicial
+     * @access private
+     * @param String dataInicial
+     * @return void
+     * @throws Exception
+     */
+    private void validarDataInicial(String dataInicial) throws Exception {
+    	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    	try {
+    		dateFormat.parse(dataInicial);
+    	} catch (Exception excecao) {
+    		throw new Exception("Data inicial inválida.");
+    	}
+    }
+
+    /**
+     * Valida a data final
+     * @access private
+     * @param String dataFinal
+     * @return void
+     * @throws Exception
+     */
+    private void validarDataFinal(String dataFinal) throws Exception {
+    	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    	try {
+    		dateFormat.parse(dataFinal);
+    	} catch (Exception excecao) {
+    		throw new Exception("Data final inválida.");
+    	}
+    }
+        
     /**
      * Valida o descricao
      * @access private
@@ -225,9 +319,9 @@ public class ViagemController extends BaseController {
      */
     private void validarDescricao(String descricao) throws Exception {
         if (descricao.isEmpty()) {
-            throw new Exception("Descrição em branco!");
+            throw new Exception("Descrição em branco.");
         } else if (descricao.length() > 500) {
-            throw new Exception("Descrição acima do limite de 500 caracteres!");
+            throw new Exception("Descrição acima do limite de 500 caracteres.");
         }
     }    
 	
