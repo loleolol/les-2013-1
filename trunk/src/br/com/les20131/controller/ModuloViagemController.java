@@ -15,10 +15,10 @@ import br.com.les20131.model.bean.ViagemBean;
 import br.com.les20131.util.InvalidPageException;
 
 /**
- * Servlet implementation class ViagemController
+ * Servlet implementation class ModuloViagemController
  */
-@WebServlet("/ViagemController")
-public class ViagemController extends BaseController {
+@WebServlet("/ModuloViagemController")
+public class ModuloViagemController extends BaseController {
        
     /**
 	 * 
@@ -28,7 +28,7 @@ public class ViagemController extends BaseController {
 	/**
      * @see HttpServlet#HttpServlet()
      */
-    public ViagemController() {
+    public ModuloViagemController() {
         super();
         // TODO Auto-generated constructor stub
     }

@@ -9,14 +9,23 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  <display-name>Usuario</display-name>
+  <display-name>Login</display-name>
   <servlet>
-    <servlet-name>UsuarioController</servlet-name>
-    <servlet-class>br.com.les20131.controller.UsuarioController</servlet-class>
+    <servlet-name>LoginController</servlet-name>
+    <servlet-class>br.com.les20131.controller.LoginController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>UsuarioController</servlet-name>
-    <url-pattern>/UsuarioController</url-pattern>
+    <servlet-name>LoginController</servlet-name>
+    <url-pattern>/LoginController</url-pattern>
+  </servlet-mapping>
+  <display-name>ModuloUsuario</display-name>
+  <servlet>
+    <servlet-name>ModuloUsuarioController</servlet-name>
+    <servlet-class>br.com.les20131.controller.ModuloUsuarioController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModuloUsuarioController</servlet-name>
+    <url-pattern>/ModuloUsuarioController</url-pattern>
   </servlet-mapping>
   <display-name>Erro</display-name>
   <servlet>
@@ -27,23 +36,23 @@
     <servlet-name>ErroController</servlet-name>
     <url-pattern>/ErroController</url-pattern>
   </servlet-mapping>
-  <display-name>Viajante</display-name>
+  <display-name>ModuloViajante</display-name>
   <servlet>
-    <servlet-name>ViajanteController</servlet-name>
-    <servlet-class>br.com.les20131.controller.ViajanteController</servlet-class>
+    <servlet-name>ModuloViajanteController</servlet-name>
+    <servlet-class>br.com.les20131.controller.ModuloViajanteController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ViajanteController</servlet-name>
-    <url-pattern>/ViajanteController</url-pattern>
+    <servlet-name>ModuloViajanteController</servlet-name>
+    <url-pattern>/ModuloViajanteController</url-pattern>
   </servlet-mapping>
-  <display-name>Viagem</display-name>
+  <display-name>ModuloViagem</display-name>
   <servlet>
-    <servlet-name>ViagemController</servlet-name>
-    <servlet-class>br.com.les20131.controller.ViagemController</servlet-class>
+    <servlet-name>ModuloViagemController</servlet-name>
+    <servlet-class>br.com.les20131.controller.ModuloViagemController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ViagemController</servlet-name>
-    <url-pattern>/ViagemController</url-pattern>
+    <servlet-name>ModuloViagemController</servlet-name>
+    <url-pattern>/ModuloViagemController</url-pattern>
   </servlet-mapping>
   <display-name>Imagem</display-name>
   <servlet>
@@ -53,5 +62,5 @@
   <servlet-mapping>
     <servlet-name>ImagemController</servlet-name>
     <url-pattern>/ImagemController</url-pattern>
-  </servlet-mapping>  
+  </servlet-mapping>
 </web-app>

@@ -26,7 +26,7 @@
         <div class="corpo">
             <fieldset>
                 <legend>Minhas viagens</legend>
-                <form id="lista_viagem" class="formulario_padrao" action="<c:url value="/ViagemController"></c:url>" method="post">
+                <form id="lista_viagem" class="formulario_padrao" action="<c:url value="/ModuloViagemController"></c:url>" method="post">
 	                <button type="submit" name="acao" value="">Registrar viagem</button>
 	            </form>
 	            <c:forEach items="${viagemBean.listaViagem}" var="viagem">

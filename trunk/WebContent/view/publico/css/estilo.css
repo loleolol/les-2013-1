@@ -119,14 +119,10 @@ legend{
     border-top: 1px dotted #CCC;
     padding: 15px;
 }
-.blocoImagem {
+.imagemPerfil {
 	cursor: pointer;
 	position: relative;
-    border-top: 1px dotted #CCC;
-    padding: 15px;
-}
-.imagemPerfil {
-    width: 150px;
+	width: 150px;
     height: 150px;
     overflow: hidden;
 	border:solid 1px #CCC;
