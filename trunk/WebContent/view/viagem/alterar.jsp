@@ -47,7 +47,7 @@
 						<span id="dataInicialAnoErro" class="atencao"></span>
 						<fmt:formatDate type="date" pattern="yyyy-MM-dd" value="${viagemBean.viagem.dataInicial}" var="dataInicial"/>	                    
 	                    <input id="dataInicial" type="hidden" name="dataInicial" value="${dataInicial}"/>
-						
+						<br/>
 				        <label for="dataFinalDia">à</label>
 						<select id="dataFinalDia" name="dataFinalDia">
 						</select>
