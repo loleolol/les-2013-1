@@ -1,11 +1,13 @@
 package br.com.les20131.controller;
 
 import br.com.les20131.model.Usuario;
+import br.com.les20131.model.bean.UsuarioBean;
 import br.com.les20131.model.bean.ViajanteBean;
 import br.com.les20131.util.InvalidPageException;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -171,7 +173,13 @@ public class ViajanteController extends BaseController {
     private void validarViajante(String email, String senha, String emailConfirma, String senhaConfirma, String nome, String sexo, String dataNascimento) throws Exception {
         this.validarEmail(email);
         this.validarEmail(emailConfirma);
+        this.validarConfirmacaoEmail(email, emailConfirma);
+        this.validarSenha(senha);
+        this.validarSenha(senhaConfirma);
+        this.validarConfirmacaoSenha(senha, senhaConfirma);
         this.validarNome(nome);
+        this.validarSexo(sexo);
+        this.validarDataNascimento(dataNascimento);
     }
 
     /**
@@ -185,7 +193,29 @@ public class ViajanteController extends BaseController {
      * @throws Exception
      */
     private void validarViajante(int idUsuario, String nome, String sexo, String dataNascimento) throws Exception {
-    	this.validarNome(nome);
+    	this.validarIdUsuario(idUsuario);
+        this.validarNome(nome);
+        this.validarSexo(sexo);
+        this.validarDataNascimento(dataNascimento);
+    }
+    
+    /**
+     * Valida o id do usuário
+     * @access private
+     * @param int idUsuario
+     * @return void
+     * @throws Exception
+     */
+    private void validarIdUsuario(int idUsuario) throws Exception {
+    	try {
+    		UsuarioBean usuarioBean = new UsuarioBean();
+            usuarioBean.consultar(idUsuario);
+    		if (usuarioBean.getUsuario() == null) {
+    			throw new Exception();
+    		}
+    	} catch (Exception excecao) {
+    		throw new Exception("Usuário inválido.");
+    	} 
     }
     
     /**
@@ -197,10 +227,39 @@ public class ViajanteController extends BaseController {
      */
     private void validarEmail(String email) throws Exception {
         if (email.isEmpty()) {
-            throw new Exception("E-mail em branco!");
+            throw new Exception("E-mail em branco.");
         } else if (email.length() > 100) {
-            throw new Exception("E-mail acima do limite de 100 caracteres!");
+            throw new Exception("E-mail acima do limite de 100 caracteres.");
         }
+    }
+    
+    /**
+     * Valida a senha
+     * @access private
+     * @param String senha
+     * @return void
+     * @throws Exception
+     */
+    private void validarSenha(String senha) throws Exception {
+    	if (senha.isEmpty()) {
+    		throw new Exception("Senha em branco.");
+    	} else if (senha.length() > 40) {
+    		throw new Exception("Senha acima do limite de 40 caracteres.");
+    	}
+    }
+    
+    /**
+     * Valida a confirmação de senha
+     * @access private
+     * @param String senha
+     * @param String senhaConfirma
+     * @return void
+     * @throws Exception
+     */
+    private void validarConfirmacaoSenha(String senha, String senhaConfirma) throws Exception {
+    	if (senha.equals(senhaConfirma) == false) {
+    		throw new Exception("Senhas informadas são diferentes.");
+    	}
     }
     
     /**
@@ -212,10 +271,55 @@ public class ViajanteController extends BaseController {
      */
     private void validarNome(String nome) throws Exception {
         if (nome.isEmpty()) {
-            throw new Exception("Nome em branco!");
+            throw new Exception("Nome em branco.");
         } else if (nome.length() > 100) {
-            throw new Exception("Nome acima do limite de 100 caracteres!");
+            throw new Exception("Nome acima do limite de 100 caracteres.");
         }
+    }
+    
+    /**
+     * Valida a confirmação de email
+     * @access private
+     * @param String email
+     * @param String emailConfirma
+     * @return void
+     * @throws Exception
+     */
+    private void validarConfirmacaoEmail(String email, String emailConfirma) throws Exception {
+    	if (email.equals(emailConfirma) == false) {
+    		throw new Exception("E-mails informados são diferentes.");
+    	}
+    }
+    
+    /**
+     * Valida o sexo
+     * @access private
+     * @param String sexo
+     * @return void
+     * @throws Exception
+     */
+    private void validarSexo(String sexo) throws Exception {
+    	if (sexo.isEmpty()) {
+    		throw new Exception("Sexo em branco.");
+    	} else if (sexo.length() > 1 || (sexo.equalsIgnoreCase("m") == false && sexo.equalsIgnoreCase("f") == false)) {
+    		throw new Exception("Sexo inválido.");
+    	}
+    }
+    
+    /**
+     * Valida a data de nascimento
+     * @access private
+     * @param String dataNascimento
+     * @return void
+     * @throws Exception
+     */
+    private void validarDataNascimento(String dataNascimento) throws Exception {
+    	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    	try {
+    		dateFormat.parse(dataNascimento);
+    	} catch (Exception excecao) {
+    		throw new Exception("Data de nascimento inválida.");
+    	}
     }
     
     /**
