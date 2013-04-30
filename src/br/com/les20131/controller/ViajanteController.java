@@ -48,7 +48,11 @@ public class ViajanteController extends BaseController {
 				this.acaoSelecionar();
 			} else if (this.acao.equalsIgnoreCase("alterar")) {
 				this.acaoAlterar();
-			} else {
+			//ADMIN
+			} else if (this.acao.equalsIgnoreCase("admin")) {
+				this.acaoAdmin();
+			//ADMIN
+			}else {
 				throw new InvalidPageException();
 			}
 		} catch (Exception excecao) {
@@ -101,6 +105,19 @@ public class ViajanteController extends BaseController {
 		this.alterarViajante();
 		this.despachar("/view/viajante/alterar.jsp");
     }
+    
+    //ADMIN
+    /**
+     * Ação Admin
+     * @access private
+     * @return void
+     * @throws Exception
+     */
+    private void acaoAdmin() throws Exception {
+		this.verificarSessao();
+		this.despachar("/view/admin/listar-usuario.jsp");
+    }
+    //ADMIN
     
     /**
      * Efetua a inclusão de novo registro
