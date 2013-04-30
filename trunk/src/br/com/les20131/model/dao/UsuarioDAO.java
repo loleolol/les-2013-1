@@ -2,9 +2,11 @@ package br.com.les20131.model.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.les20131.model.Usuario;
+import br.com.les20131.model.Viagem;
 import br.com.les20131.model.Viajante;
 
 /**
@@ -195,5 +197,42 @@ public class UsuarioDAO extends DAOBase<Usuario> {
             throw new DAOException(excecao);
         }
     }
+    
+    //ADMIN
+    /**
+     * Consulta todos os usuários
+     * @access public
+     * @return List<Usuario>
+     * @throws Exception
+     */
+    public List<Usuario> listarUsuarios() throws DAOException {
+        PreparedStatement stmt = null;
+        ResultSet resultSet = null;
+        int indice = 0;
+        
+        String sql = "SELECT u.id_usuario, u.email, u.nome, u.senha, u.excluido, u.bloqueado"
+                + "\n FROM usuario u";
+
+        try {
+            stmt = this.conexao.prepareStatement(sql);
+            resultSet = stmt.executeQuery();
+
+            List<Usuario> listaUsuario = new ArrayList<Usuario>();
+
+            while (resultSet.next()) {
+                listaUsuario.add( new Usuario(resultSet.getInt("id_usuario")
+                , resultSet.getString("email")
+                , resultSet.getString("nome")
+                , resultSet.getString("senha")
+                , resultSet.getInt("excluido")
+                , resultSet.getInt("bloqueado")));
+            }
+
+            return listaUsuario;
+        } catch (Exception excecao) {
+            throw new DAOException(excecao);
+        }
+    }
+    //ADMIN
 
 }

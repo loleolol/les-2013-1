@@ -21,6 +21,12 @@
 		        	<button type="submit" name="acao" value="listar">Minhas viagens</button>
 				</div>
 			</form>
+			
+			<form id="menu_usuario_admin" class="formulario_menu" action="<c:url value="/ViajanteController"></c:url>" method="post">
+				<div>
+		        	<button type="submit" name="acao" value="admin">Admin</button>
+				</div>
+			</form>
 		</c:when>
 		<c:otherwise>
 			<br/>
