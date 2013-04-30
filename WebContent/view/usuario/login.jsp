@@ -3,7 +3,7 @@
 		<h1>#Partiu</h1>
 	</div>
 	<div id="barra_login">
-		<form id="login" class="formulario_login" action="<c:url value="/UsuarioController"></c:url>" method="post" onsubmit="return validaFormulario(new Array('loginEmail;String;1', 'loginSenha;String;1'))">
+		<form id="login" class="formulario_login" action="<c:url value="/LoginController"></c:url>" method="post" onsubmit="return validaFormulario(new Array('loginEmail;String;1', 'loginSenha;String;1'))">
 			<jsp:useBean id="mensagemBean" class="br.com.les20131.model.bean.MensagemBean" scope="request"/>
 			<jsp:useBean id="usuarioBean" class="br.com.les20131.model.bean.UsuarioBean" scope="request"/>
 			<div>
@@ -16,8 +16,7 @@
 						<input id="loginSenha" type="password" name="loginSenha" value="" maxlength="50"/>
 						<span id="loginSenhaErro"></span>
 						<button type="submit" name="acao" value="login">Login</button>
-						<button type="button" onclick="enviarSemValidacao($('#login'))">Cadastre-se</button>
-						<input type="hidden" name="acao" value="novo"/>
+						<button type="button" onclick="$('#cadastro').submit()">Cadastre-se</button>
 				    </c:when>
 				    <c:otherwise>
 				    	<label>Logado como: ${usuarioBean.usuario.email}</label>
@@ -25,6 +24,9 @@
 				    </c:otherwise>
 				</c:choose>
 			</div>
+		</form>
+		<form id="cadastro" action="<c:url value="/ModuloUsuarioController"></c:url>" method="post">
+			<input type="hidden" name="acao" value="novo"/>
 		</form>
 	</div>
 </div>

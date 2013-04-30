@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author 200920183
  */
-public class UsuarioController extends BaseController {
+public class ModuloUsuarioController extends BaseController {
 
     /**
 	 * 
@@ -35,10 +35,6 @@ public class UsuarioController extends BaseController {
         	this.configurarController(request, response);
             if (this.acao.isEmpty()) {
             	this.acaoPadrao();
-            } else if (this.acao.equalsIgnoreCase("login")) {
-            	this.acaoLogin();
-            } else if (this.acao.equalsIgnoreCase("logoff")) {
-            	this.acaoLogoff();
             } else if (this.acao.equalsIgnoreCase("novo")) {
             	this.acaoNovo();
             } else if (this.acao.equalsIgnoreCase("selecionar")) {
@@ -60,35 +56,9 @@ public class UsuarioController extends BaseController {
      * @throws Exception
      */
     private void acaoPadrao() throws Exception {
-    	this.despachar("/view/index.jsp");
+        this.despachar("/view/index.jsp");
     }
-    
-    /**
-     * Ação que realiza o login
-     * @access private
-     * @return void
-     * @throws Exception
-     */
-    private void acaoLogin() throws Exception {
-        UsuarioBean usuarioBean = new UsuarioBean();
-        usuarioBean.autenticaUsuario(this.requisicao.getParameter("loginEmail"), this.requisicao.getParameter("loginSenha"));
-        HttpSession sessao = this.requisicao.getSession(true);
-        sessao.setAttribute("usuario", usuarioBean.getUsuario());
-        this.verificarSessao();
-        this.despachar("/view/viajante/inicio.jsp");
-    }
-    
-    /**
-     * Ação que realiza o logoff
-     * @access private
-     * @return void
-     * @throws Exception
-     */
-    private void acaoLogoff() throws Exception {
-       	this.requisicao.getSession().invalidate();
-       	this.despachar("/view/index.jsp");
-    }
-    
+       
     /**
      * Ação para criação de novo usuário
      * @access private
@@ -106,7 +76,7 @@ public class UsuarioController extends BaseController {
      * @throws Exception
      */
     private void acaoSelecionar() throws Exception {
-    	this.verificarSessao();
+		this.verificarSessao();
         this.despachar("/view/usuario/alterar.jsp");
     }
     
@@ -117,7 +87,7 @@ public class UsuarioController extends BaseController {
      * @throws Exception
      */
     private void acaoAlterar() throws Exception {
-    	this.verificarSessao();
+		this.verificarSessao();
 		this.alterarUsuario();
 		this.despachar("/view/usuario/alterar.jsp");
     }

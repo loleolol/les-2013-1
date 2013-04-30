@@ -22,8 +22,8 @@
 		<div id="corpo">
 			<fieldset>
 			<legend>Perfil</legend>
-				<form id="cadastro_viajante" class="formulario_padrao" enctype="multipart/form-data" action="<c:url value="/ViajanteController"></c:url>" method="post" onsubmit="return validaFormulario(new Array('nome;String;1', 'dataNascimentoDia;int;1', 'dataNascimentoMes;int;1', 'dataNascimentoAno;int;1', 'sexo;String;1'))">
-			        <div class="blocoImagem">
+				<form id="cadastro_viajante" class="formulario_padrao" enctype="multipart/form-data" action="<c:url value="/ModuloViajanteController"></c:url>" method="post" onsubmit="return validaFormulario(new Array('nome;String;1', 'dataNascimentoDia;int;1', 'dataNascimentoMes;int;1', 'dataNascimentoAno;int;1', 'sexo;String;1'))">
+			        <div class="block">
 				        <label for="imagemPrevia">Imagem:</label>
 				        <div id="selecionaImagem" class="imagemPerfil" onclick="$('#imagem').click()">
 				        <span id="novaImagem" class="sobrepoe"></span>

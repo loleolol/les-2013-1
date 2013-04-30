@@ -19,7 +19,7 @@
 		<div id="corpo">
 			<fieldset>
 			<legend>Conta</legend>
-				<form id="cadastro_usuario" class="formulario_padrao" action="<c:url value="/UsuarioController"></c:url>"
+				<form id="cadastro_usuario" class="formulario_padrao" action="<c:url value="/ModuloUsuarioController"></c:url>"
 				 method="post" onsubmit="return (verificarValorIgualCampos('email') && verificarValorIgualCampos('senha') && validaFormulario(new Array('email;String;1;validaEmail', 'emailConfirma;String;1;validaEmail', 'senha;String;0', 'senhaConfirma;String;0')))">
 			        <div class="block">
 				        <label for="email">E-mail<span class="atencao">*</span>:</label>
