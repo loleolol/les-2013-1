@@ -3,7 +3,7 @@
 		<h1>#Partiu</h1>
 	</div>
 	<div id="barra_login">
-		<form id="login" class="formulario_login" action="<c:url value="/LoginController"></c:url>" method="post" onsubmit="return validaFormulario(new Array('loginEmail;String;1', 'loginSenha;String;1'))">
+		<form id="login" class="formulario_login" action="<c:url value="/Login"></c:url>" method="post" onsubmit="return validaFormulario(new Array('loginEmail;String;1', 'loginSenha;String;1'))">
 			<jsp:useBean id="mensagemBean" class="br.com.les20131.model.bean.MensagemBean" scope="request"/>
 			<jsp:useBean id="usuarioBean" class="br.com.les20131.model.bean.UsuarioBean" scope="request"/>
 			<div>
@@ -25,7 +25,7 @@
 				</c:choose>
 			</div>
 		</form>
-		<form id="cadastro" action="<c:url value="/ModuloUsuarioController"></c:url>" method="post">
+		<form id="cadastro" action="<c:url value="/Usuario"></c:url>" method="post">
 			<input type="hidden" name="acao" value="novo"/>
 		</form>
 	</div>

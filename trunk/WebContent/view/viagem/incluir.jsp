@@ -1,6 +1,6 @@
 <fieldset>
 <legend>Registro de viagem</legend>
-	<form id="cadastro_viagem" class="formulario_padrao" action="<c:url value="/ModuloViagemController"></c:url>" method="post" onsubmit="return validaFormulario(new Array('titulo;String;1', 'descricao;String;1', 'dataInicialDia;int;0', 'dataInicialMes;int;0', 'dataInicialAno;int;0', 'dataFinalDia;int;0', 'dataFinalMes;int;0', 'dataFinalAno;int;0'))">
+	<form id="cadastro_viagem" class="formulario_padrao" action="<c:url value="/Viagem"></c:url>" method="post" onsubmit="return validaFormulario(new Array('titulo;String;1', 'descricao;String;1', 'dataInicialDia;int;0', 'dataInicialMes;int;0', 'dataInicialAno;int;0', 'dataFinalDia;int;0', 'dataFinalMes;int;0', 'dataFinalAno;int;0'))">
         <div class="block">
 	        <label for="titulo">Título<span class="atencao">*</span>:</label>
 	        <input id="titulo" type="text" name="titulo" value="" maxlength="100"/>
