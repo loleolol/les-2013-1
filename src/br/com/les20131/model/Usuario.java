@@ -193,6 +193,10 @@ public class Usuario {
 	public void setBloqueado(int bloqueado) {
 		this.bloqueado = bloqueado;
 	}
+	
+	public void teste() {
+		//teste
+	}
 
 
 }
