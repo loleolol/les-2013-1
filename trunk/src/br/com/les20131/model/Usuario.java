@@ -194,10 +194,6 @@ public class Usuario {
 		this.bloqueado = bloqueado;
 	}
 	
-	public void teste() {
-		//teste
-	}
-
 
 }
 
