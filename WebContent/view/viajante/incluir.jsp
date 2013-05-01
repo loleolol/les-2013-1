@@ -17,7 +17,7 @@
 		<%@include file="adicional.jsp"%>
 		<fieldset>
 		<legend>Cadastre-se</legend>
-			<form id="cadastro_viajante" class="formulario_padrao" action="<c:url value="/ModuloViajanteController"></c:url>"
+			<form id="cadastro_viajante" class="formulario_padrao" action="<c:url value="/Viajante"></c:url>"
 			 method="post" onsubmit="return (verificarValorIgualCampos('email') && verificarValorIgualCampos('senha') && validaFormulario(new Array('nome;String;1', 'email;String;1;validaEmail', 'emailConfirma;String;1;validaEmail', 'senha;String;1', 'senhaConfirma;String;1', 'dataNascimentoDia;int;1', 'dataNascimentoMes;int;1', 'dataNascimentoAno;int;1', 'sexo;String;1')))">
 			        <div class="block">
 				        <label for="nome">Nome<span class="atencao">*</span>:</label>

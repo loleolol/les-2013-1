@@ -21,12 +21,12 @@
 		<div id="corpo">
 			<fieldset>
 			<legend>Registro de viagem</legend>
-				<form id="cadastro_viagem" class="formulario_padrao" action="<c:url value="/ModuloViagemController"></c:url>" method="post" onsubmit="return validaFormulario(new Array('titulo;String;1', 'descricao;String;1', 'dataInicialDia;int;0', 'dataInicialMes;int;0', 'dataInicialAno;int;0', 'dataFinalDia;int;0', 'dataFinalMes;int;0', 'dataFinalAno;int;0'))">
+				<form id="cadastro_viagem" class="formulario_padrao" action="<c:url value="/Viagem"></c:url>" method="post" onsubmit="return validaFormulario(new Array('titulo;String;1', 'descricao;String;1', 'dataInicialDia;int;0', 'dataInicialMes;int;0', 'dataInicialAno;int;0', 'dataFinalDia;int;0', 'dataFinalMes;int;0', 'dataFinalAno;int;0'))">
 			        <div class=block>
 				        <label for="imagemPrevia">Imagem:</label>
 				        <div id="selecionaImagem" class="imagemPerfil" onclick="$('#imagem').click()">
 				        <span id="novaImagem" class="sobrepoe"></span>
-				        <img id="imagemPrevia" src="<c:url value="/ImagemController?id=${viajanteBean.viajante.idUsuario}"></c:url>"/>
+				        <img id="imagemPrevia" src="<c:url value="/Imagem?id=${viajanteBean.viajante.idUsuario}"></c:url>"/>
 						</div>
 				        <br/>
 				        <input id="imagem" type="file" name="imagem" onchange="trocaImagem($('#imagemPrevia'), $('#novaImagem'), $('#imagem'))"/>

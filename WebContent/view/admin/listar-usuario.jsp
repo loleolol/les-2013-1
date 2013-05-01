@@ -23,7 +23,7 @@
 				<c:forEach items="${usuarioBean.listaUsuario}" var="usuario">
 					<fieldset>
 						<form id="usuario_${usuario.idUsuario}" class="formulario_invisivel" 
-							action="<c:url value="/UsuarioController"></c:url>" method="post">
+							action="<c:url value="/AdminUsuario"></c:url>" method="post">
 							<label>${usuario.nome}</label>
 						</form>
 					</fieldset>

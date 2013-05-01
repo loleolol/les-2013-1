@@ -1,5 +1,7 @@
 package br.com.les20131.model.bean;
 
+import java.util.List;
+
 import br.com.les20131.model.Usuario;
 import br.com.les20131.model.dao.UsuarioDAO;
 import br.com.les20131.model.dao.ViajanteDAO;
@@ -24,6 +26,15 @@ public class UsuarioBean {
      * @var Usuario
      */
     protected Usuario usuario;
+    
+    //ADMIN
+    /**
+     * Armazena uma lista de usuários
+     * @access private
+     * @var List<Usuario>
+     */
+    private List<Usuario> listaUsuario;
+    //ADMIN
 
     /**
      * Construtor da classe
@@ -51,6 +62,17 @@ public class UsuarioBean {
     public void setUsuario(Usuario usuario) {
     	this.usuario = usuario;
     }
+    
+    //ADMIN
+    /**
+     * Retorna a lista de viagens
+     * @access public
+     * @return List<Viagem>
+     */
+    public List<Usuario> getListaUsuario() {
+        return this.listaUsuario;
+    }
+    //ADMIN
 
     /**
      * Autentica um usuario e senha
@@ -97,5 +119,18 @@ public class UsuarioBean {
     	this.usuarioDAO = new UsuarioDAO();
       	this.usuario = this.usuarioDAO.consultar(idUsuario);
     }
+    
+    //ADMIN
+    /**
+     * Consulta os usuários cadastrados
+     * @access public
+     * @return void
+     * @throws Exception
+     */
+    public void listarUsuarios() throws Exception {
+        this.usuarioDAO = new UsuarioDAO();
+        this.listaUsuario = this.usuarioDAO.listarUsuarios();
+    }
+    //ADMIN
     
 }

@@ -1,7 +1,7 @@
 <div id="barra_direita">
 	<c:choose>
 		<c:when test="${usuarioBean.usuario != null}">
-			<form id="menu_usuario" class="formulario_menu" action="<c:url value="/ViajanteController"></c:url>" method="post">
+			<form id="menu_usuario" class="formulario_menu" action="<c:url value="/Viajante"></c:url>" method="post">
         		<div class="block">
         			Anúncios
         			<br/>
