@@ -22,12 +22,12 @@
 		<div id="corpo">
 			<fieldset>
 			<legend>Perfil</legend>
-				<form id="cadastro_viajante" class="formulario_padrao" enctype="multipart/form-data" action="<c:url value="/Viajante"></c:url>" method="post" onsubmit="return validaFormulario(new Array('nome;String;1', 'dataNascimentoDia;int;1', 'dataNascimentoMes;int;1', 'dataNascimentoAno;int;1', 'sexo;String;1'))">
+				<form id="cadastro_viajante" class="formulario_padrao" enctype="multipart/form-data" action="<c:url value="/ModuloViajanteController"></c:url>" method="post" onsubmit="return validaFormulario(new Array('nome;String;1', 'dataNascimentoDia;int;1', 'dataNascimentoMes;int;1', 'dataNascimentoAno;int;1', 'sexo;String;1'))">
 			        <div class="block">
 				        <label for="imagemPrevia">Imagem:</label>
 				        <div id="selecionaImagem" class="imagemPerfil" onclick="$('#imagem').click()">
 				        <span id="novaImagem" class="sobrepoe"></span>
-				        <img id="imagemPrevia" src="<c:url value="/Imagem?id=${viajanteBean.viajante.idUsuario}"></c:url>"/>
+				        <img id="imagemPrevia" class="imagemPerfil" src="<c:url value="/Imagem?id=${viajanteBean.viajante.idUsuario}"></c:url>"/>
 						</div>
 				        <br/>
 				        <input id="imagem" type="file" name="imagem" onchange="trocaImagem($('#imagemPrevia'), $('#novaImagem'), $('#imagem'))"/>

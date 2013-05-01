@@ -1,6 +1,7 @@
 package br.com.les20131.controller;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -40,13 +41,21 @@ public class ImagemController extends HttpServlet {
 				response.setDateHeader("Expires", 0);  
 				response.setContentType("image/jpeg");  
 				ViajanteBean viajanteBean = new ViajanteBean();
+				BufferedImage buffer = null;
 				try {
-				viajanteBean.consultar(Integer.parseInt(id));
+					viajanteBean.consultar(Integer.parseInt(id));
+					if (viajanteBean.getViajante().getImagem() != null) {
+						buffer = ImageIO.read(viajanteBean.getViajante().getImagem());  
+					} else {
+						File semimagem = new File("/les20131/view/publico/images/semimagem.jpg");
+						buffer = ImageIO.read(semimagem);
+					}
 				} catch (Exception e) {
 					viajanteBean = null;
+					File semimagem = new File("/les20131/view/publico/images/semimagem.jpg");
+					buffer = ImageIO.read(semimagem);
 				}
-				ServletOutputStream out = response.getOutputStream();  
-				BufferedImage buffer = ImageIO.read(viajanteBean.getViajante().getImagem());  
+				ServletOutputStream out = response.getOutputStream(); 
 				ImageIO.write(buffer, "jpeg", response.getOutputStream());  
 				out.flush();  
 				out.close();
