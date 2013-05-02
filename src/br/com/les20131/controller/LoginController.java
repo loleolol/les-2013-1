@@ -44,6 +44,8 @@ public class LoginController extends BaseController {
             	this.acaoLogin();
             } else if (this.acao.equalsIgnoreCase("logoff")) {
             	this.acaoLogoff();
+            } else if (this.acao.equalsIgnoreCase("novo")) {
+            	this.acaoNovo();
             } else {
                	throw new InvalidPageException();
             }
@@ -60,6 +62,16 @@ public class LoginController extends BaseController {
      */
     private void acaoPadrao() throws Exception {
     	this.despachar("/view/index.jsp");
+    }
+    
+    /**
+     * Ação para criação de novo usuário
+     * @access private
+     * @return void
+     * @throws Exception
+     */
+    private void acaoNovo() throws Exception {
+    	this.despachar("/view/viajante/incluir.jsp");
     }
     
     /**

@@ -16,17 +16,16 @@
 						<input id="loginSenha" type="password" name="loginSenha" value="" maxlength="50"/>
 						<span id="loginSenhaErro"></span>
 						<button type="submit" name="acao" value="login">Login</button>
-						<button type="button" onclick="$('#cadastro').submit()">Cadastre-se</button>
+						<button type="button" onclick="enviarSemValidacao($('#login'))">Cadastre-se</button>
+						<input type="hidden" name="acao" value="novo"/>
 				    </c:when>
 				    <c:otherwise>
 				    	<label>Logado como: ${usuarioBean.usuario.email}</label>
-						<button type="submit" name="acao" value="logoff" onclick="enviarSemValidacao($('#login'))">Logoff</button>
+						<button type="button" onclick="enviarSemValidacao($('#login'))">Logoff</button>
+						<input type="hidden" name="acao" value="logoff"/>
 				    </c:otherwise>
 				</c:choose>
 			</div>
-		</form>
-		<form id="cadastro" action="<c:url value="/Usuario"></c:url>" method="post">
-			<input type="hidden" name="acao" value="novo"/>
 		</form>
 	</div>
 </div>
