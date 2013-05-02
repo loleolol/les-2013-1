@@ -72,8 +72,7 @@ public abstract class BaseController extends HttpServlet {
         	}
         } catch (Exception excecao) {
 			request.setAttribute("excecao", excecao);
-			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/Erro");
-			dispatcher.forward(request, response);
+			this.despachar("/Erro");
         }
 	}
 	

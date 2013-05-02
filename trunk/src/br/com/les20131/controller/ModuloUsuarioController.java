@@ -35,8 +35,6 @@ public class ModuloUsuarioController extends BaseController {
         	this.configurarController(request, response);
             if (this.acao.isEmpty()) {
             	this.acaoPadrao();
-            } else if (this.acao.equalsIgnoreCase("novo")) {
-            	this.acaoNovo();
             } else if (this.acao.equalsIgnoreCase("selecionar")) {
             	this.acaoSelecionar();
             } else if (this.acao.equalsIgnoreCase("alterar")) {
@@ -59,16 +57,6 @@ public class ModuloUsuarioController extends BaseController {
         this.despachar("/view/index.jsp");
     }
        
-    /**
-     * Ação para criação de novo usuário
-     * @access private
-     * @return void
-     * @throws Exception
-     */
-    private void acaoNovo() throws Exception {
-    	this.despachar("/view/viajante/incluir.jsp");
-    }
-    
     /**
      * Ação para seleção de usuário
      * @access private
