@@ -120,17 +120,16 @@ legend{
     padding: 15px;
 }
 .edicao_galeria{
-	width: 770px;
-	height: 200px;
-	overflow-x: scroll;
+	width: 98%;
+	height: 190px;
+	overflow: auto;
 }
 .imagem_edicao {
 	cursor: pointer;
 	width: 150px;
     height: 150px;
-    overflow: hidden;
 	border: solid 1px #CCC;
-	cursor: pointer;
+	float: left;
 }
 .imagem_edicao:hover {
 	border: solid 1px #999;
@@ -140,10 +139,9 @@ legend{
 .adiciona_imagem {
 	background: url(../imagens/adicionar.jpg) no-repeat center center;
 	opacity: 0.4; 
-	filter: alpha(opacity=40);	
+	filter: alpha(opacity=40);
 }
 .sobrepoe {
-	position: absolute;
 	z-index: 2;	
 }
 .formulario_invisivel {

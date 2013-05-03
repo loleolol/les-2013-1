@@ -8,6 +8,7 @@
 		</div>
         <div class="block edicao_galeria">
 	        <label for="imagemPrevia">Imagens:</label>
+	        <br/>
 	        <input id="quantidadeImagem" type="hidden" name="quantidadeImagem" value="1"/>
 	        <div id="selecionaImagem1" class="imagem_edicao" onclick="$('#imagem1').click()">
 	        	<span id="novaImagem1" class="sobrepoe"></span>

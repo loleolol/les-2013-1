@@ -81,4 +81,13 @@
     <servlet-name>ModuloAdminViajanteController</servlet-name>
     <url-pattern>/AdminViajante</url-pattern>
   </servlet-mapping>
+  <display-name>ImagemPrevia</display-name>
+  <servlet>
+    <servlet-name>ImagemPreviaController</servlet-name>
+    <servlet-class>br.com.les20131.controller.ImagemPreviaController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ImagemPreviaController</servlet-name>
+    <url-pattern>/ImagemPrevia</url-pattern>
+  </servlet-mapping>
 </web-app>
