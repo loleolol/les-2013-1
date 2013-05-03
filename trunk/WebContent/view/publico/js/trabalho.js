@@ -8,6 +8,22 @@ function trocaImagem(imagem, sobrepoe, campo) {
 	$(imagem).css('opacity', '0.2'); 
 	$(imagem).css('filter', 'alpha(opacity=20)');
 	$(sobrepoe).html($(campo).val().split("\\").pop());
+	var data = new FormData();
+	/*jQuery.each($(campo[0].files, function(i, file) {
+	    data.append('imagem'+i, file);
+	}));*/
+	data.append('imagem', $(campo).files);
+	$.ajax({
+	    url: '/les20131/ImagemPrevia',
+	    data: data,
+	    cache: false,
+	    contentType: false,
+	    processData: false,
+	    type: 'POST',
+	    success: function(data){
+	        $(imagem).attr("src", "/les20131/Imagem?acao=previa&nome=imagem");
+	    }
+	});
 	
 }
 
@@ -139,7 +155,7 @@ function adicionaCampoImagem(campo, quantidade) {
     
 	$(quantidade).val(parseInt($(quantidade).val())+1);
 	indice = $(quantidade).val();
-	str = "<div id=\"selecionaImagem"+indice+"\" class=\"imagemEdicao\" onclick=\"$('#imagem"+indice+"').click()\">"
+	str = "<div id=\"selecionaImagem"+indice+"\" class=\"imagem_edicao\" onclick=\"$('#imagem"+indice+"').click()\">"
 	 + "<span id=\"novaImagem"+indice+"\" class=\"sobrepoe\"></span>"
 	 + "<img id=\"imagemPrevia"+indice+"\" src=\"\"/>"
 	 + "</div>"

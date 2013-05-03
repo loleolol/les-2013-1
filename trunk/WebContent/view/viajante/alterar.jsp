@@ -25,8 +25,9 @@
 			<fieldset>
 			<legend>Perfil</legend>
 				<form id="cadastro_viajante" class="formulario_padrao" enctype="multipart/form-data" action="<c:url value="/Viajante"></c:url>" method="post" onsubmit="return validaFormulario(new Array('nome;String;1', 'dataNascimentoDia;int;1', 'dataNascimentoMes;int;1', 'dataNascimentoAno;int;1', 'sexo;String;1'))">
-			        <div class="block">
+			        <div class="block edicao_galeria">
 				        <label for="imagemPrevia">Imagem:</label>
+				        <br/>
 				        <div id="selecionaImagem" class="imagem_edicao" onclick="$('#imagem').click()">
 					        <span id="novaImagem" class="sobrepoe"></span>
 					        <img id="imagemPrevia" class="imagem_edicao" src="<c:url value="/Imagem?id=${viajanteBean.viajante.idUsuario}"></c:url>"/>
