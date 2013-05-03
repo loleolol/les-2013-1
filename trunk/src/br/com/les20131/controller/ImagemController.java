@@ -50,10 +50,10 @@ public class ImagemController extends HttpServlet {
 					if (viajanteBean.getViajante().getImagem() != null) {
 						buffer = ImageIO.read(viajanteBean.getViajante().getImagem());  
 					} else {
-						response.sendRedirect("/les20131/view/publico/images/semimagem.jpg");
+						response.sendRedirect("/les20131/view/publico/imagens/semimagem.jpg");
 					}
 				} catch (Exception e) {
-					response.sendRedirect("/les20131/view/publico/images/semimagem.jpg");
+					response.sendRedirect("/les20131/view/publico/imagens/semimagem.jpg");
 				}
 				ServletOutputStream out = response.getOutputStream(); 
 				ImageIO.write(buffer, "jpeg", response.getOutputStream());  
