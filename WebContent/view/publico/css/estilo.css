@@ -49,11 +49,11 @@ th{
     border-radius: 5px;
 }
 .edit{
-    background: url(../images/edit.png) no-repeat center center;
+    background: url(../imagens/edit.png) no-repeat center center;
     height: 20px;
 }
 .delete{
-    background: url(../images/delete.png) no-repeat center center;
+    background: url(../imagens/delete.png) no-repeat center center;
     height: 20px;
 }
 
@@ -119,17 +119,28 @@ legend{
     border-top: 1px dotted #CCC;
     padding: 15px;
 }
-.imagemPerfil {
+.edicao_galeria{
+	width: 770px;
+	height: 200px;
+	overflow-x: scroll;
+}
+.imagem_edicao {
 	cursor: pointer;
-	position: relative;
 	width: 150px;
     height: 150px;
     overflow: hidden;
-	border:solid 1px #CCC;
+	border: solid 1px #CCC;
 	cursor: pointer;
 }
-.imagemPerfil:hover {
+.imagem_edicao:hover {
 	border: solid 1px #999;
+	opacity: 0.4; 
+	filter: alpha(opacity=40);
+}
+.adiciona_imagem {
+	background: url(../imagens/adicionar.jpg) no-repeat center center;
+	opacity: 0.4; 
+	filter: alpha(opacity=40);	
 }
 .sobrepoe {
 	position: absolute;

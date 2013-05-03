@@ -6,6 +6,17 @@
 	        <input id="titulo" type="text" name="titulo" value="" maxlength="100"/>
 	        <span id="tituloErro" class="atencao"></span>
 		</div>
+        <div class="block edicao_galeria">
+	        <label for="imagemPrevia">Imagens:</label>
+	        <input id="quantidadeImagem" type="hidden" name="quantidadeImagem" value="1"/>
+	        <div id="selecionaImagem1" class="imagem_edicao" onclick="$('#imagem1').click()">
+	        	<span id="novaImagem1" class="sobrepoe"></span>
+	        	<img id="imagemPrevia1" src=""/>
+			</div>
+	       	<input id="imagem1" type="file" name="imagem1" onchange="trocaImagem($('#imagemPrevia1'), $('#novaImagem1'), $('#imagem1'))"/>
+	        <div id="adicionaImagem" class="imagem_edicao adiciona_imagem" onclick="adicionaCampoImagem($('#adicionaImagem'), $('#quantidadeImagem'))">
+			</div>
+		</div>
         <div class="block">
 	        <label for="descricao">Descricao<span class="atencao">*</span>:</label>
 	        <textarea id="descricao" name="descricao" rows="8" cols="60"></textarea>

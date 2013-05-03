@@ -7,11 +7,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-        <title>Login</title>
+        <title>#Partiu</title>
         <link type="text/css" rel="stylesheet" href="/les20131/view/publico/css/estilo.css"/>
+        <link type="text/css" rel="stylesheet" href="/les20131/view/publico/css/jquery-ui.css"/>
         <script type="text/javascript" src="/les20131/view/publico/js/trabalho.js" charset="ISO-8859-1"></script>
         <script type="text/javascript" src="/les20131/view/publico/js/jquery-1.9.1.min.js" charset="ISO-8859-1"></script>
-        
+        <script type="text/javascript" src="/les20131/view/publico/js/jquery-ui.js"></script>        
     </head>
 	<body class="perfil" onload="mostraMensagem('${mensagemBean.mensagem}')"> 
 		<%@include file="../usuario/login.jsp"%>
@@ -22,16 +23,6 @@
 			<fieldset>
 			<legend>Registro de viagem</legend>
 				<form id="cadastro_viagem" class="formulario_padrao" action="<c:url value="/Viagem"></c:url>" method="post" onsubmit="return validaFormulario(new Array('titulo;String;1', 'descricao;String;1', 'dataInicialDia;int;0', 'dataInicialMes;int;0', 'dataInicialAno;int;0', 'dataFinalDia;int;0', 'dataFinalMes;int;0', 'dataFinalAno;int;0'))">
-			        <div class=block>
-				        <label for="imagemPrevia">Imagem:</label>
-				        <div id="selecionaImagem" class="imagemPerfil" onclick="$('#imagem').click()">
-				        <span id="novaImagem" class="sobrepoe"></span>
-				        <img id="imagemPrevia" src="<c:url value="/Imagem?id=${viajanteBean.viajante.idUsuario}"></c:url>"/>
-						</div>
-				        <br/>
-				        <input id="imagem" type="file" name="imagem" onchange="trocaImagem($('#imagemPrevia'), $('#novaImagem'), $('#imagem'))"/>
-				        <span id="imagemErro" class="atencao"></span>
-					</div>
 			        <div class="block">
 				        <label for="titulo">Título<span class="atencao">*</span>:</label>
 				        <input id="titulo" type="text" name="titulo" value="${viagemBean.viagem.titulo}" maxlength="100"/>

@@ -135,12 +135,29 @@ function confirmaExclusao(form) {
     }
 }
 
+function adicionaCampoImagem(campo, quantidade) {
+    
+	$(quantidade).val(parseInt($(quantidade).val())+1);
+	indice = $(quantidade).val();
+	str = "<div id=\"selecionaImagem"+indice+"\" class=\"imagemEdicao\" onclick=\"$('#imagem"+indice+"').click()\">"
+	 + "<span id=\"novaImagem"+indice+"\" class=\"sobrepoe\"></span>"
+	 + "<img id=\"imagemPrevia"+indice+"\" src=\"\"/>"
+	 + "</div>"
+	 + "<input id=\"imagem"+indice+"\" type=\"file\" name=\"imagem"+indice+"\""
+	 + " onchange=\"trocaImagem($('#imagemPrevia"+indice+"'), $('#novaImagem"+indice+"'), $('#imagem"+indice+"'))\"/>";
+
+	$(campo).before(str);
+}
+
 /**
  * Mostra mensagem na tela
  */
 function mostraMensagem(mensagem) {
     if (mensagem != "") {
-        alert(mensagem);
+    	$(document.body).append("<div id=\"dialog\"title=\"Dialog Title\">I'm a dialog</div>");
+    	$("#dialog").dialog({ autoOpen: false });
+   		$("#dialog").dialog("open");
+        //alert(mensagem);
     }
 }
 

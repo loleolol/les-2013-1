@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import br.com.les20131.model.Usuario;
+import br.com.les20131.model.bean.MensagemBean;
 import br.com.les20131.model.bean.ViagemBean;
 import br.com.les20131.util.InvalidPageException;
 
@@ -160,7 +161,7 @@ public class ModuloViagemController extends BaseController {
         this.validarViagem(this.requisicao.getParameter("titulo"), this.requisicao.getParameter("descricao"), dataInicial, dataFinal);
         viagemBean.incluir(((Usuario)sessao.getAttribute("usuario")).getIdUsuario()
         		, this.requisicao.getParameter("titulo"), this.requisicao.getParameter("descricao"), dataInicial, dataFinal);
-        //request.setAttribute("mensagemBean", new MensagemBean("Viagem inserida com sucesso!"));
+        //this.requisicao.setAttribute("mensagemBean", new MensagemBean("Viagem inserida com sucesso!"));
     }
     
     /**

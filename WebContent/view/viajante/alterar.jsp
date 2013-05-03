@@ -9,10 +9,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-        <title>Login</title>
+        <title>#Partiu</title>
         <link type="text/css" rel="stylesheet" href="/les20131/view/publico/css/estilo.css"/>
+        <link type="text/css" rel="stylesheet" href="/les20131/view/publico/css/jquery-ui.css"/>
         <script type="text/javascript" src="/les20131/view/publico/js/trabalho.js" charset="ISO-8859-1"></script>
         <script type="text/javascript" src="/les20131/view/publico/js/jquery-1.9.1.min.js" charset="ISO-8859-1"></script>
+        <script type="text/javascript" src="/les20131/view/publico/js/jquery-ui.js"></script>
     </head>
 	<body class="perfil" onload="mostraMensagem('${mensagemBean.mensagem}')"> 
 		<%@include file="../usuario/login.jsp"%>
@@ -25,9 +27,9 @@
 				<form id="cadastro_viajante" class="formulario_padrao" enctype="multipart/form-data" action="<c:url value="/Viajante"></c:url>" method="post" onsubmit="return validaFormulario(new Array('nome;String;1', 'dataNascimentoDia;int;1', 'dataNascimentoMes;int;1', 'dataNascimentoAno;int;1', 'sexo;String;1'))">
 			        <div class="block">
 				        <label for="imagemPrevia">Imagem:</label>
-				        <div id="selecionaImagem" class="imagemPerfil" onclick="$('#imagem').click()">
+				        <div id="selecionaImagem" class="imagem_edicao" onclick="$('#imagem').click()">
 					        <span id="novaImagem" class="sobrepoe"></span>
-					        <img id="imagemPrevia" class="imagemPerfil" src="<c:url value="/Imagem?id=${viajanteBean.viajante.idUsuario}"></c:url>"/>
+					        <img id="imagemPrevia" class="imagem_edicao" src="<c:url value="/Imagem?id=${viajanteBean.viajante.idUsuario}"></c:url>"/>
 						</div>
 				        <br/>
 				        <input id="imagem" type="file" name="imagem" onchange="trocaImagem($('#imagemPrevia'), $('#novaImagem'), $('#imagem'))"/>
