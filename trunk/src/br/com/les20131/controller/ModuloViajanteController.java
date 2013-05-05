@@ -2,6 +2,7 @@ package br.com.les20131.controller;
 
 import br.com.les20131.model.Usuario;
 import br.com.les20131.model.bean.UsuarioBean;
+import br.com.les20131.model.bean.ViagemBean;
 import br.com.les20131.model.bean.ViajanteBean;
 import br.com.les20131.util.InvalidPageException;
 
@@ -11,6 +12,7 @@ import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -28,6 +30,20 @@ public class ModuloViajanteController extends BaseController {
 	 */
 	private static final long serialVersionUID = -4226184306349339560L;
 
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		this.configurarController(request, response);
+		if (this.acao.equalsIgnoreCase("previrImagem")) {
+			this.acaoExibirPreviaImagem();
+		} else if (this.acao.equalsIgnoreCase("carregarImagem")) {
+			this.acaoCarregarImagemPerfil();
+		} else {
+			super.doGet(request, response);
+		}
+	}	
+	
 	/**
      * Handles the HTTP <code>POST</code> method.
      * @param request servlet request
@@ -48,6 +64,8 @@ public class ModuloViajanteController extends BaseController {
 				this.acaoSelecionar();
 			} else if (this.acao.equalsIgnoreCase("alterar")) {
 				this.acaoAlterar();
+			} else if (this.acao.equalsIgnoreCase("previaImagem")) {
+				this.acaoCarregarPreviaImagem();
 			} else {
 				throw new InvalidPageException();
 			}
@@ -100,6 +118,24 @@ public class ModuloViajanteController extends BaseController {
     	this.verificarSessao();
 		this.alterarViajante();
 		this.despachar("/view/viajante/alterar.jsp");
+    }
+    
+    /**
+     * Ação de carregamento da imagem do perfil
+     * @access private
+     * @return void
+     * @throws IOException
+     */
+    private void acaoCarregarImagemPerfil() throws IOException {
+    	InputStream imagem = null;
+    	try {
+    		this.validarIdUsuario(this.requisicao.getParameter("id"));
+			ViajanteBean viajanteBean = new ViajanteBean();
+	    	viajanteBean.consultar(Integer.parseInt(this.requisicao.getParameter("id")));
+	    	imagem = viajanteBean.getViajante().getImagem(); 	
+    	} catch (Exception excecao) {
+    	}
+    	this.acaoCarregarImagem(imagem);
     }
     
     /**
@@ -220,6 +256,23 @@ public class ModuloViajanteController extends BaseController {
     		throw new Exception("Usuário inválido.");
     	} 
     }
+    
+    /**
+     * Valida o id do usuário
+     * @access private
+     * @param String idUsuario
+     * @return void
+     * @throws Exception
+     */
+    private void validarIdUsuario(String idUsuario) throws Exception {
+    	try {
+			int id;
+			id = Integer.parseInt(idUsuario);
+			this.validarIdUsuario(id);
+		} catch (Exception excecao) {
+			throw new Exception("Usuário inválido.");
+		}
+	}
     
     /**
      * Valida o email

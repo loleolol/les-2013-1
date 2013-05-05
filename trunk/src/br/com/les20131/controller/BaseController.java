@@ -1,18 +1,27 @@
 package br.com.les20131.controller;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
+import javax.imageio.ImageIO;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import javax.servlet.http.HttpSession;
 
 import br.com.les20131.model.Usuario;
 import br.com.les20131.model.bean.UsuarioBean;
+import br.com.les20131.model.bean.ViajanteBean;
 import br.com.les20131.util.InvalidPageException;
 import br.com.les20131.util.UserAuthenticationException;
 
@@ -126,6 +135,72 @@ public abstract class BaseController extends HttpServlet {
         	usuarioBean.setUsuario((Usuario)sessao.getAttribute("usuario"));
         	this.requisicao.setAttribute("usuarioBean", usuarioBean);
         }
+    }
+    
+    /**
+     * Carrega uma prévia da imagem para a sessão
+     * @access protected
+     * @return void
+     * @throws IOException
+     * @throws ServletException
+     */
+    protected void acaoCarregarPreviaImagem() throws IOException, ServletException
+    {
+		HttpSession sessao = this.requisicao.getSession();
+    	Part imagemParte = this.requisicao.getPart(this.requisicao.getParameter("nome"));
+    	InputStream imagem = imagemParte.getInputStream();
+    	ByteArrayOutputStream out = new ByteArrayOutputStream();
+    	byte[] bytes = new byte[imagem.available()];
+    	int b = imagem.read();
+    	while (b != -1) {
+    	    out.write(b);
+    	    b = imagem.read();
+    	}
+    	bytes = out.toByteArray();    	
+    	
+       	sessao.setAttribute(this.requisicao.getParameter("nome"), bytes);    	
+    }
+    
+    /**
+     * Prévia de uma imagem via Servlet
+     * @access protected
+     * @throws IOException
+     */
+    protected void acaoExibirPreviaImagem() throws IOException 
+    {
+		HttpSession sessao = this.requisicao.getSession();
+		byte[] b = (byte[])sessao.getAttribute(this.requisicao.getParameter("nome"));
+		sessao.removeAttribute(this.requisicao.getParameter("nome"));
+		this.acaoCarregarImagem(new ByteArrayInputStream(b));
+    }
+    
+    /**
+     * Carrega uma imagem para exibição
+     * @access protected
+     * @param InputStream imagem
+     * @return void
+     * @throws IOException
+     */
+    protected void acaoCarregarImagem(InputStream imagem) throws IOException
+    {
+    	String urlSemImagem = "/les20131/view/publico/imagens/semimagem.jpg";
+		try {
+			if (imagem != null) {
+				this.resposta.setHeader("Cache-Control", "no-store");  
+				this.resposta.setHeader("Pragma", "no-cache");  
+				this.resposta.setDateHeader("Expires", 0);  
+				this.resposta.setContentType("image/jpeg");
+				BufferedImage buffer = ImageIO.read(imagem);
+				ServletOutputStream out = this.resposta.getOutputStream(); 
+				ImageIO.write(buffer, "jpeg", this.resposta.getOutputStream());  
+				out.flush();  
+				out.close();
+			} else {
+				this.resposta.sendRedirect(urlSemImagem);
+			}
+		} catch (Exception e) {
+			this.resposta.sendRedirect(urlSemImagem);
+		}
     }
     
     /**

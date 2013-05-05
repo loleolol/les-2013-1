@@ -54,15 +54,6 @@
     <servlet-name>ModuloViagemController</servlet-name>
     <url-pattern>/Viagem</url-pattern>
   </servlet-mapping>
-  <display-name>Imagem</display-name>
-  <servlet>
-    <servlet-name>ImagemController</servlet-name>
-    <servlet-class>br.com.les20131.controller.ImagemController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ImagemController</servlet-name>
-    <url-pattern>/Imagem</url-pattern>
-  </servlet-mapping>
   <display-name>ModuloAdminUsuario</display-name>
   <servlet>
     <servlet-name>ModuloAdminUsuarioController</servlet-name>
@@ -80,14 +71,5 @@
   <servlet-mapping>
     <servlet-name>ModuloAdminViajanteController</servlet-name>
     <url-pattern>/AdminViajante</url-pattern>
-  </servlet-mapping>
-  <display-name>ImagemPrevia</display-name>
-  <servlet>
-    <servlet-name>ImagemPreviaController</servlet-name>
-    <servlet-class>br.com.les20131.controller.ImagemPreviaController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ImagemPreviaController</servlet-name>
-    <url-pattern>/ImagemPrevia</url-pattern>
   </servlet-mapping>
 </web-app>
