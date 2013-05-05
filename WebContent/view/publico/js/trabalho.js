@@ -4,24 +4,24 @@
  * @param sobrepoe
  * @param campo
  */
-function trocaImagem(imagem, sobrepoe, campo) {
-	$(imagem).css('opacity', '0.2'); 
-	$(imagem).css('filter', 'alpha(opacity=20)');
-	$(sobrepoe).html($(campo).val().split("\\").pop());
+function trocaImagem(imagem, sobrepoe, campo, url, acao) {
+	$(imagem).css('opacity', '0.6'); 
+	$(imagem).css('filter', 'alpha(opacity=60)');
 	var data = new FormData();
-	/*jQuery.each($(campo[0].files, function(i, file) {
-	    data.append('imagem'+i, file);
-	}));*/
-	data.append('imagem', $(campo).files);
+	jQuery.each($(campo)[0].files, function(i, file) {
+	    data.append($(campo).attr("id"), file);
+	});	
+	data.append("nome", $(campo).attr("id"));
+	data.append("acao", acao);
 	$.ajax({
-	    url: '/les20131/ImagemPrevia',
+	    url: url,
 	    data: data,
 	    cache: false,
 	    contentType: false,
 	    processData: false,
 	    type: 'POST',
 	    success: function(data){
-	        $(imagem).attr("src", "/les20131/Imagem?acao=previa&nome=imagem");
+	        $(imagem).attr("src", url+"?acao=previrImagem&nome="+$(campo).attr("id"));
 	    }
 	});
 	
