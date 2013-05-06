@@ -15,6 +15,5 @@
     </head>
 	<body> 
 		<%@include file="usuario/login.jsp"%>
-		
 	</body>
 </html>

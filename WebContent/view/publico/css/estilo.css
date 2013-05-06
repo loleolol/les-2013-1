@@ -6,16 +6,38 @@
         Purpose of the stylesheet follows.
 */
 
-body, a{
+html, body {
+	padding: 0; 
+	margin: 0; 
+	height: 100%;
     font: 12px/20px arial;
     color: #333;
-    outline: none;
 }
-h1{
+
+.barra {
+	color: #FFF; 
     background-color: #060;
-    color: #FFF;
-    padding: 5px;
-    margin: 15px 0;
+    position: relative;
+	border-bottom: 1px dotted #CCC;
+	height: 30px;
+	width: 100%;
+}
+
+.barra_login {
+	position: relative;
+	float: right;
+}
+
+.logo {
+	padding: 0;
+	margin: 0;
+	position: relative;
+	float: left;
+}
+
+.logo h1 {
+	padding: 0;
+	margin: 0;
 }
 
 /*  #TABLE
@@ -121,8 +143,7 @@ legend{
 }
 .edicao_galeria{
 	width: 98%;
-	height: 190px;
-	overflow: auto;
+	overflow: hidden;
 }
 .imagem_edicao {
 	cursor: pointer;
@@ -135,6 +156,11 @@ legend{
 	border: solid 1px #999;
 	opacity: 0.4; 
 	filter: alpha(opacity=40);
+}
+.imagem_barra {
+	width: 20px;
+	height: 20px;
+	border: solid 1px #CCC;
 }
 .adiciona_imagem {
 	background: url(../imagens/adicionar.jpg) no-repeat center center;
@@ -169,25 +195,9 @@ legend{
 .formulario_padrao .label_radio {
 	width: 100px;
 }
-.barra{
-	color: #FFF; 
-    background-color: #060;
-	padding-top: 0px;
-	padding-bottom: 5px;
-	border-bottom: 1px dotted #CCC;
-	display: absolute;
-}
-.barra #barra_login{
-	padding-left: 200px;
-}
+
 .atencao {
 	color: #F00;
-}
-.logo{
-	float: up;
-	padding-top: 0px;
-	padding-right: 50px;
-	height: 0px;
 }
 
 legend + .block{

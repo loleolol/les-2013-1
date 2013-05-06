@@ -9,12 +9,7 @@
         <div class="block edicao_galeria">
 	        <label for="imagemPrevia">Imagens:</label>
 	        <br/>
-	        <input id="quantidadeImagem" type="hidden" name="quantidadeImagem" value="1"/>
-	        <div id="selecionaImagem1" class="imagem_edicao" onclick="$('#imagem1').click()">
-	        	<span id="novaImagem1" class="sobrepoe"></span>
-	        	<img id="imagemPrevia1" src=""/>
-			</div>
-	       	<input id="imagem1" type="file" name="imagem1" onchange="trocaImagem($('#imagemPrevia1'), $('#novaImagem1'), $('#imagem1'))"/>
+	        <input id="quantidadeImagem" type="hidden" name="quantidadeImagem" value="0"/>
 	        <div id="adicionaImagem" class="imagem_edicao adiciona_imagem" onclick="adicionaCampoImagem($('#adicionaImagem'), $('#quantidadeImagem'))">
 			</div>
 		</div>
