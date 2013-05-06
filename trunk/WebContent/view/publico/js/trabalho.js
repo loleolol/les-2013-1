@@ -157,9 +157,9 @@ function adicionaCampoImagem(campo, quantidade) {
 	indice = $(quantidade).val();
 	str = "<div id=\"selecionaImagem"+indice+"\" class=\"imagem_edicao\" onclick=\"$('#imagem"+indice+"').click()\">"
 	 + "<span id=\"novaImagem"+indice+"\" class=\"sobrepoe\"></span>"
-	 + "<img id=\"imagemPrevia"+indice+"\" src=\"\"/>"
+	 + "<img id=\"imagemPrevia"+indice+"\" src=\"/les20131/view/publico/imagens/semimagem.jpg\"/>"
 	 + "</div>"
-	 + "<input id=\"imagem"+indice+"\" type=\"file\" name=\"imagem"+indice+"\""
+	 + "<input id=\"imagem"+indice+"\" type=\"file\" name=\"imagem"+indice+"\" accept=\"image/x-png, image/jpeg\""
 	 + " onchange=\"trocaImagem($('#imagemPrevia"+indice+"'), $('#novaImagem"+indice+"'), $('#imagem"+indice+"'))\"/>";
 
 	$(campo).before(str);
