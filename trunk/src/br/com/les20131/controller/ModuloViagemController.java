@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ import br.com.les20131.util.InvalidPageException;
  * Servlet implementation class ModuloViagemController
  */
 @WebServlet("/ModuloViagemController")
+@MultipartConfig
 public class ModuloViagemController extends BaseController {
        
     /**
