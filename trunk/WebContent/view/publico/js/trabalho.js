@@ -163,6 +163,7 @@ function adicionaCampoImagem(campo, quantidade, acao) {
 	 + " onchange=\"trocaImagem($('#imagemPrevia"+indice+"'), $('#novaImagem"+indice+"'), $('#imagem"+indice+"'), $(this.form).attr('action'), '"+acao+"')\"/>";
 
 	$(campo).before(str);
+	$("#imagem"+indice).click();
 }
 
 /**

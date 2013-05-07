@@ -37,6 +37,10 @@ html, body {
 	padding-left: 250px;
 }
 
+#imagemBarra {
+	margin-top: 5px;
+}
+
 /* #PÁGINA
    --------------------------------------------*/
    
@@ -199,7 +203,11 @@ legend{
 	filter: alpha(opacity=40);
 }
 .sobrepoe {
+	position: relative;
 	z-index: 2;	
+}
+.remover {
+	background: url(../imagens/remover.jpg) no-repeat center center;
 }
 .formulario_invisivel {
 	inherit: none;
