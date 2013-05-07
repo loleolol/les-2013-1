@@ -9,7 +9,7 @@ import br.com.les20131.model.Usuario;
 import br.com.les20131.model.Viajante;
 
 /**
- * 
+ * Classe DAO de viajante
  * @author 200920183
  */
 public class ViajanteDAO extends DAOBase<Viajante> {
@@ -25,7 +25,7 @@ public class ViajanteDAO extends DAOBase<Viajante> {
 
     public Viajante consultar(int intId) throws DAOException {
     	if (intId <= 0) {
-            throw new DAOException("Usuário inválido!");
+            throw new DAOException("Usuário inválido.");
         }
         int indice = 0;
         PreparedStatement stmt = null;
@@ -69,7 +69,7 @@ public class ViajanteDAO extends DAOBase<Viajante> {
      */    
     public void incluir(Viajante obj) throws DAOException {
         if (obj == null) {
-            throw new DAOException("Viajante inválido para incluir!");
+            throw new DAOException("Viajante inválido para incluir.");
         }
         int indice = 0;
         PreparedStatement stmt = null;
@@ -98,7 +98,7 @@ public class ViajanteDAO extends DAOBase<Viajante> {
      */ 
     public void alterar(Viajante obj) throws DAOException {
         if (obj == null) {
-            throw new DAOException("Viajante inválido para alterar!");
+            throw new DAOException("Viajante inválido para alterar.");
         }
         int indice = 0;
     	PreparedStatement stmt = null;
