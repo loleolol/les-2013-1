@@ -12,6 +12,7 @@ html, body {
 	height: 100%;
     font: 12px/20px arial;
     color: #333;
+    overflow: hidden;
 }
 
 .barra {
@@ -24,8 +25,8 @@ html, body {
 }
 
 .barra_login {
-	position: relative;
 	float: right;
+	padding-right: 250px;
 }
 
 .logo {
@@ -33,12 +34,43 @@ html, body {
 	margin: 0;
 	position: relative;
 	float: left;
+	padding-left: 250px;
 }
 
-.logo h1 {
-	padding: 0;
-	margin: 0;
+/* #PÁGINA
+   --------------------------------------------*/
+   
+#barra_esquerda {
+	float: left;
+	border-right: 1px dotted #CCC;
+	padding-left: 200px;
+	height: 100%;
+	z-index: 2;
 }
+
+#barra_esquerda input[type=submit] {
+	border: 0px;
+	background: #FFF;
+	background-color: #FFF;
+}
+
+#barra_esquerda input[type=submit]:hover {
+	background-color: #060;
+	color: #FFF;
+}
+
+#corpo {
+	float: center;
+	height: 100%;
+}
+#barra_direita {
+	position: relative;
+	float: right;
+	border-left: 1px dotted #CCC;
+	height: 100%;
+	z-index: 2;
+}
+
 
 /*  #TABLE
     -------------------------------------------*/
@@ -142,7 +174,6 @@ legend{
     padding: 15px;
 }
 .edicao_galeria{
-	width: 98%;
 	overflow: hidden;
 }
 .imagem_edicao {
@@ -221,33 +252,6 @@ label{
     top:5px;
 }
 /*  Perfil */
-.perfil { }
-.perfil #barra_esquerda {
-	float: left;
-	border-right: 1px dotted #CCC;
-	padding-left: 200px;
-}
-
-#barra_esquerda input[type=submit] {
-	border: 0px;
-	background: #FFF;
-	background-color: #FFF;
-}
-
-#barra_esquerda input[type=submit]:hover {
-	background-color: #060;
-	color: #FFF;
-}
-
-.perfil #corpo {
-	float: center;
-}
-.perfil #barra_direita {
-	float: right;
-	border-left: 1px dotted #CCC;
-	padding-right: 200px;
-	padding-left: 50px;
-}
 
 /*  #NAVIGATION
     -------------------------------------------*/

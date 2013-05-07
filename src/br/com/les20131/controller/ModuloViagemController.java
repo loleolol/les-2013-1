@@ -35,6 +35,20 @@ public class ModuloViagemController extends BaseController {
     }
 	
 	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		this.configurarController(request, response);
+		if (this.acao.equalsIgnoreCase("previrImagem")) {
+			this.acaoExibirPreviaImagem();
+		} else if (this.acao.equalsIgnoreCase("carregarImagem")) {
+			//this.acaoCarregarImagemPerfil();
+		} else {
+			super.doGet(request, response);
+		}
+	}	    
+    
+	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -53,6 +67,8 @@ public class ModuloViagemController extends BaseController {
 				this.acaoAlterar();
 			} else if (this.acao.equalsIgnoreCase("excluir")) {
 				this.acaoExcluir();
+			} else if (this.acao.equalsIgnoreCase("previrImagem")) {
+				this.acaoCarregarPreviaImagem();				
 			} else {
 				throw new InvalidPageException();
 			}
