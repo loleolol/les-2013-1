@@ -31,7 +31,6 @@
 				        <div id="selecionaImagem" class="imagem_edicao" onclick="$('#imagem').click()">
 					        <img id="imagemPrevia" class="imagem_edicao" src="<c:url value="/Viajante?acao=carregarImagem&id=${viajanteBean.viajante.idUsuario}"></c:url>"/>
 						</div>
-				        <br/>
 				        <input id="imagem" type="file" name="imagem" accept="image/x-png, image/jpeg" onchange="trocaImagem($('#imagemPrevia'), $('#novaImagem'), $('#imagem'), $(this.form).attr('action'), 'previrImagem')"/>
 				        <span id="imagemErro" class="atencao"></span>
 					</div>
