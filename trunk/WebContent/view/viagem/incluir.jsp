@@ -10,12 +10,12 @@
 	        <label for="imagemPrevia">Imagens:</label>
 	        <br/>
 	        <input id="quantidadeImagem" type="hidden" name="quantidadeImagem" value="0"/>
-	        <div id="adicionaImagem" class="imagem_edicao adiciona_imagem" onclick="adicionaCampoImagem($('#adicionaImagem'), $('#quantidadeImagem'))">
+	        <div id="adicionaImagem" class="imagem_edicao adiciona_imagem" onclick="adicionaCampoImagem($('#adicionaImagem'), $('#quantidadeImagem'), 'previrImagem')">
 			</div>
 		</div>
         <div class="block">
 	        <label for="descricao">Descricao<span class="atencao">*</span>:</label>
-	        <textarea id="descricao" name="descricao" rows="8" cols="60"></textarea>
+	        <textarea id="descricao" name="descricao" rows="8" cols="56"></textarea>
 	        <span id="descricaoErro" class="atencao"></span>
 		</div>
         <div class="block">

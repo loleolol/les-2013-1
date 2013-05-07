@@ -64,7 +64,7 @@ public class ModuloViajanteController extends BaseController {
 				this.acaoSelecionar();
 			} else if (this.acao.equalsIgnoreCase("alterar")) {
 				this.acaoAlterar();
-			} else if (this.acao.equalsIgnoreCase("previaImagem")) {
+			} else if (this.acao.equalsIgnoreCase("previrImagem")) {
 				this.acaoCarregarPreviaImagem();
 			} else {
 				throw new InvalidPageException();

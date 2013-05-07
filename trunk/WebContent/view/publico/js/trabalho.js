@@ -7,6 +7,7 @@
 function trocaImagem(imagem, sobrepoe, campo, url, acao) {
 	$(imagem).css('opacity', '0.6'); 
 	$(imagem).css('filter', 'alpha(opacity=60)');
+	urlImagem = url+"?acao="+acao+"&nome="+$(campo).attr("id");
 	var data = new FormData();
 	jQuery.each($(campo)[0].files, function(i, file) {
 	    data.append($(campo).attr("id"), file);
@@ -21,7 +22,7 @@ function trocaImagem(imagem, sobrepoe, campo, url, acao) {
 	    processData: false,
 	    type: 'POST',
 	    success: function(data){
-	        $(imagem).attr("src", url+"?acao=previrImagem&nome="+$(campo).attr("id"));
+	        $(imagem).attr("src", urlImagem);
 	    }
 	});
 	
@@ -151,7 +152,7 @@ function confirmaExclusao(form) {
     }
 }
 
-function adicionaCampoImagem(campo, quantidade) {
+function adicionaCampoImagem(campo, quantidade, acao) {
     
 	$(quantidade).val(parseInt($(quantidade).val())+1);
 	indice = $(quantidade).val();
@@ -160,7 +161,7 @@ function adicionaCampoImagem(campo, quantidade) {
 	 + "<img id=\"imagemPrevia"+indice+"\" src=\"/les20131/view/publico/imagens/semimagem.jpg\"/>"
 	 + "</div>"
 	 + "<input id=\"imagem"+indice+"\" type=\"file\" name=\"imagem"+indice+"\" accept=\"image/x-png, image/jpeg\""
-	 + " onchange=\"trocaImagem($('#imagemPrevia"+indice+"'), $('#novaImagem"+indice+"'), $('#imagem"+indice+"'))\"/>";
+	 + " onchange=\"trocaImagem($('#imagemPrevia"+indice+"'), $('#novaImagem"+indice+"'), $('#imagem"+indice+"'), $(this.form).attr('action'), '"+acao+"')\"/>";
 
 	$(campo).before(str);
 }
