@@ -10,11 +10,10 @@ import br.com.les20131.model.Viagem;
 import br.com.les20131.model.Viajante;
 
 /**
- * 
+ * Classe DAO de usuário
  * @author 200920183
  */
 public class UsuarioDAO extends DAOBase<Usuario> {
-
     /**
      * Construtor da classe
      * @access public
@@ -23,10 +22,16 @@ public class UsuarioDAO extends DAOBase<Usuario> {
     public UsuarioDAO() throws Exception {
         super();
     }
-
+    
+    /**
+     * Consultar um usuário pelo id
+     * @access public
+     * @param int idUsuario
+     * @return Usuario
+     */
     public Usuario consultar(int idUsuario) throws DAOException {
         if (idUsuario <= 0) {
-            throw new DAOException("Usuarío inválido!");
+            throw new DAOException("Usuarío inválido.");
         }
         int indice = 0;
         PreparedStatement stmt = null;
@@ -57,7 +62,7 @@ public class UsuarioDAO extends DAOBase<Usuario> {
     }
 
     /**
-     * Consulta um email e senha
+     * Consultar um email e senha
      * @access public
      * @param String email
      * @param String senha
@@ -66,7 +71,7 @@ public class UsuarioDAO extends DAOBase<Usuario> {
      */
     public Usuario consultar(String email, String senha) throws DAOException {
         if (email.isEmpty() || senha.isEmpty()) {
-            throw new DAOException("Email ou senha inválidos!");
+            throw new DAOException("Email ou senha inválidos.");
         }
         int indice = 0;
         PreparedStatement stmt = null;
@@ -107,7 +112,7 @@ public class UsuarioDAO extends DAOBase<Usuario> {
      */    
     public void incluir(Usuario obj) throws DAOException {
         if (obj == null) {
-            throw new DAOException("Usuário inválido para incluir!");
+            throw new DAOException("Usuário inválido para incluir.");
         }
         int indice = 0;
         PreparedStatement stmt = null;
@@ -129,9 +134,15 @@ public class UsuarioDAO extends DAOBase<Usuario> {
         }
     }
     
+    /**
+     * Alterar um usuário
+     * @access public
+     * @param Usuario obj
+     * @return void
+     */
     public void alterar(Usuario obj) throws DAOException {
         if (obj == null) {
-            throw new DAOException("Usuário inválido para alterar!");
+            throw new DAOException("Usuário inválido para alterar.");
         }
     	int indice = 0;
     	PreparedStatement stmt = null;

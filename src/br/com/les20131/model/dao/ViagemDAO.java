@@ -9,7 +9,7 @@ import br.com.les20131.model.Viagem;
 import br.com.les20131.model.Viajante;
 
 /**
- * 
+ * Classe DAO de viagem
  * @author 200920183
  */
 public class ViagemDAO extends DAOBase<Viagem> {
@@ -20,6 +20,7 @@ public class ViagemDAO extends DAOBase<Viagem> {
      * @throws DAOException
      */
     public ViagemDAO() throws Exception {
+    	super();
     }
 
     /**
@@ -67,7 +68,7 @@ public class ViagemDAO extends DAOBase<Viagem> {
      */    
     public void incluir(Viagem obj) throws DAOException {
         if (obj == null) {
-            throw new DAOException("Viagem inválida para incluir!");
+            throw new DAOException("Viagem inválida para incluir.");
         }
         int indice = 0;
         PreparedStatement stmt = null;
@@ -101,7 +102,7 @@ public class ViagemDAO extends DAOBase<Viagem> {
 	@Override
 	public void alterar(Viagem obj) throws DAOException {
         if (obj == null) {
-            throw new DAOException("viagem inválido para alterar!");
+            throw new DAOException("viagem inválido para alterar.");
         }
         int indice = 0;
     	PreparedStatement stmt = null;
@@ -142,7 +143,7 @@ public class ViagemDAO extends DAOBase<Viagem> {
 	@Override
 	public void excluir(Viagem obj) throws DAOException {
         if (obj == null) {
-            throw new DAOException("Viagem inválida para excluir!");
+            throw new DAOException("Viagem inválida para excluir.");
         }
         int indice = 0;
         PreparedStatement stmt = null;
