@@ -18,9 +18,9 @@ public class ImagemViagem {
 	/**
 	 * Armazena a viagem da imagem
 	 * @access private
-	 * @var int
+	 * @var Viagem
 	 */
-	private int idViagem;
+	private Viagem viagem;
 	
 	/**
 	 * Armazena a imagem
@@ -33,26 +33,35 @@ public class ImagemViagem {
 	 * Construtor da classe
 	 * @access public
 	 * @param int idImagemViagem
-	 * @param int idViagem
+	 * @param Viagem viagem
 	 * @param InputStream imagem
 	 */
-	public ImagemViagem(int idImagemViagem, int idViagem, InputStream imagem) {
+	public ImagemViagem(int idImagemViagem, Viagem viagem, InputStream imagem) {
 		this.idImagemViagem = idImagemViagem;
-		this.idViagem = idViagem;
+		this.viagem = viagem;
 		this.imagem = imagem;
 	}
 	
 	/**
 	 * Construtor da classe
 	 * @access public
-	 * @param int idViagem
+	 * @param Viagem viagem
 	 * @param InputStream imagem
 	 */
-	public ImagemViagem(int idViagem, InputStream imagem) {
-		this.idViagem = idViagem;
+	public ImagemViagem(Viagem viagem, InputStream imagem) {
+		this.viagem = viagem;
 		this.imagem = imagem;
 	}
 
+	/**
+	 * Construtor da classe
+	 * @access public
+	 * @param InputStream imagem
+	 */
+	public ImagemViagem(InputStream imagem) {
+		this.imagem = imagem;
+	}
+	
 	/**
 	 * Retorna id da imagem de viagem
 	 * @access public
@@ -75,20 +84,20 @@ public class ImagemViagem {
 	/**
 	 * Retorna o id da viagem
 	 * @access public
-	 * @return int
+	 * @return Viagem
 	 */
-	public int getIdViagem() {
-		return idViagem;
+	public Viagem getViagem() {
+		return viagem;
 	}
 
 	/**
 	 * Define o id da viagem
 	 * @access public
-	 * @param int idViagem
+	 * @param Viagem viagem
 	 * @return void
 	 */
-	public void setIdViagem(int idViagem) {
-		this.idViagem = idViagem;
+	public void setViagem(Viagem viagem) {
+		this.viagem = viagem;
 	}
 
 	/**

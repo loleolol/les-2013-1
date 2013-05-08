@@ -8,7 +8,7 @@ import br.com.les20131.model.dao.ViajanteDAO;
 import br.com.les20131.util.UserAuthenticationException;
 
 /**
- *
+ * Classe bean de usuário
  * @author 200920183
  */
 public class UsuarioBean {
@@ -55,7 +55,7 @@ public class UsuarioBean {
     
     /**
      * Define o usuário
-     * @param usuario
+     * @param Usuario usuario
      * @access public
      * @return void
      */
@@ -86,6 +86,8 @@ public class UsuarioBean {
     /**
      * Autentica um usuario e senha
      * @access public
+     * @param String email
+     * @param String senha
      * @return void
      * @throws Exception
      */

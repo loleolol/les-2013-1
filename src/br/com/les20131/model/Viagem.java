@@ -76,7 +76,7 @@ public class Viagem {
 	public Viagem(Viajante viajante, String titulo, String descricao, Date dataInicial, Date dataFinal) {
 		this.setViajante(viajante);
 		this.setTitulo(titulo);
-		this.descricao = descricao;
+		this.setDescricao(descricao);
 		this.setDataInicial(dataInicial);
 		this.setDataFinal(dataFinal);
 	}
@@ -95,7 +95,7 @@ public class Viagem {
 		this.idViagem = idViagem;
 		this.setViajante(viajante);
 		this.setTitulo(titulo);
-		this.descricao = descricao;
+		this.setDescricao(descricao);
 		this.setDataInicial(dataInicial);
 		this.setDataFinal(dataFinal);
 	}

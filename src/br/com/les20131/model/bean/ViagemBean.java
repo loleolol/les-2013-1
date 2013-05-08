@@ -14,7 +14,7 @@ import br.com.les20131.model.dao.ViagemDAO;
 import br.com.les20131.model.dao.ViajanteDAO;
 
 /**
- *
+ * Classe bean de viagem
  * @author 200920183
  */
 public class ViagemBean {
@@ -79,6 +79,7 @@ public class ViagemBean {
     /**
      * Consulta as viagens cadastradas por viajante
      * @access public
+     * @param String idUsuario
      * @return void
      * @throws Exception
      */
@@ -102,7 +103,11 @@ public class ViagemBean {
     /**
      * Insere um viagem
      * @access public
+     * @param int idUsuario
+     * @param String titulo
      * @param String descricao
+     * @param String dataInicial
+     * @param String dataFinal
      * @return void
      * @throws Exception
      */
@@ -113,11 +118,17 @@ public class ViagemBean {
     	Viajante viajante = viajanteDAO.consultar(idUsuario);
     	this.viagem = new Viagem(viajante, titulo, descricao, dateFormat.parse(dataInicial), dateFormat.parse(dataFinal));
     	this.viagemDAO.incluir(this.viagem);
+    	this.viagem.setIdViagem(this.viagemDAO.retornarUltimoId());
     }
 
     /**
      * Altera um viagem
      * @access public
+     * @param int idViagem
+     * @param String titulo
+     * @param String descricao
+     * @param String dataInicial
+     * @param String dataFinal
      * @return void
      * @throws Exception
      */
@@ -135,6 +146,7 @@ public class ViagemBean {
     /**
      * Exclui um viagem
      * @access public
+     * @param int idViagem
      * @return void
      * @throws Exception
      */

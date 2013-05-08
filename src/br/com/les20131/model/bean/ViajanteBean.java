@@ -17,7 +17,7 @@ import br.com.les20131.model.dao.ViajanteDAO;
 import br.com.les20131.util.UserAuthenticationException;
 
 /**
- *
+ * Classe bean de viajante
  * @author 200920183
  */
 public class ViajanteBean extends UsuarioBean {
@@ -79,7 +79,11 @@ public class ViajanteBean extends UsuarioBean {
     /**
      * Insere um viajante
      * @access public
-     * @param String descrMarca
+     * @param String email
+     * @param String nome
+     * @param String senha
+     * @param String sexo
+     * @param String dataNascimento
      * @return void
      * @throws Exception
      */
@@ -96,6 +100,11 @@ public class ViajanteBean extends UsuarioBean {
     /**
      * Altera um viajante
      * @access public
+     * @param int idUsuario
+     * @param String nome
+     * @param String sexo
+     * @param String dataNascimento
+     * @param InputStream imagem
      * @return void
      * @throws Exception
      */

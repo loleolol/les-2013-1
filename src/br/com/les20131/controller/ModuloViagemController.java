@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import br.com.les20131.model.Usuario;
+import br.com.les20131.model.bean.ImagemViagemBean;
 import br.com.les20131.model.bean.MensagemBean;
 import br.com.les20131.model.bean.ViagemBean;
 import br.com.les20131.util.InvalidPageException;
@@ -170,6 +172,7 @@ public class ModuloViagemController extends BaseController {
     private void incluirViagem() throws Exception {
     	HttpSession sessao = this.requisicao.getSession();
         ViagemBean viagemBean = new ViagemBean();
+        ImagemViagemBean imagemViagemBean = new ImagemViagemBean();
         String dataInicial = this.requisicao.getParameter("dataInicialAno") 
         		+ '-' + this.requisicao.getParameter("dataInicialMes")
         		+ '-' + this.requisicao.getParameter("dataInicialDia");
@@ -179,6 +182,14 @@ public class ModuloViagemController extends BaseController {
         this.validarViagem(this.requisicao.getParameter("titulo"), this.requisicao.getParameter("descricao"), dataInicial, dataFinal);
         viagemBean.incluir(((Usuario)sessao.getAttribute("usuario")).getIdUsuario()
         		, this.requisicao.getParameter("titulo"), this.requisicao.getParameter("descricao"), dataInicial, dataFinal);
+        
+        int quantidade = Integer.parseInt(this.requisicao.getParameter("quantidadeImagem"));
+       	for (int i = 0; i < quantidade; i++) {
+            Part imagemParte = this.requisicao.getPart("imagem"+i);
+           	if (imagemParte.getSize() > 0) {
+           		imagemViagemBean.incluir(viagemBean.getViagem().getIdViagem(), imagemParte.getInputStream());
+            }
+       	}
         //this.requisicao.setAttribute("mensagemBean", new MensagemBean("Viagem inserida com sucesso!"));
     }
     
