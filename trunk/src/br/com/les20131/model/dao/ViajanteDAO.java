@@ -23,9 +23,9 @@ public class ViajanteDAO extends DAOBase<Viajante> {
         super();
     }
 
-    public Viajante consultar(int intId) throws DAOException {
-    	if (intId <= 0) {
-            throw new DAOException("Usuário inválido.");
+    public Viajante consultar(int id) throws DAOException {
+    	if (id <= 0) {
+            throw new DAOException("Viajante inválido.");
         }
         int indice = 0;
         PreparedStatement stmt = null;
@@ -39,7 +39,7 @@ public class ViajanteDAO extends DAOBase<Viajante> {
 
         try {
             stmt = this.conexao.prepareStatement(sql);
-            stmt.setInt(++indice, intId);
+            stmt.setInt(++indice, id);
             resultSet = stmt.executeQuery();
 
             Viajante viajante = null;

@@ -3,9 +3,11 @@ package br.com.les20131.model.dao;
 import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.les20131.model.ImagemViagem;
+import br.com.les20131.model.Viagem;
 import br.com.les20131.model.Viajante;
 
 /**
@@ -47,8 +49,9 @@ public class ImagemViagemDAO extends DAOBase<ImagemViagem> {
 
             ImagemViagem imagemViagem = null;
             if (resultSet.next()) {
+            	ViagemDAO viagemDAO = new ViagemDAO();
             	imagemViagem = new ImagemViagem(resultSet.getInt("id_imagem_viagem")
-                                , resultSet.getInt("id_viagem")
+                                , viagemDAO.consultar(resultSet.getInt("id_viagem"))
                                 , resultSet.getBinaryStream("imagem"));
             }
             return imagemViagem;
@@ -56,7 +59,42 @@ public class ImagemViagemDAO extends DAOBase<ImagemViagem> {
             throw new DAOException(excecao);
         }
     }
+    
+    /**
+     * Consulta as imagens de viagem pela viagem
+     * @access public
+     * @param int idViagem
+     * @return List<ImagemViagem>
+     * @throws Exception
+     */
+    public List<ImagemViagem> consultarPorViagem(int idViagem) throws DAOException {
+        PreparedStatement stmt = null;
+        ResultSet resultSet = null;
+        int indice = 0;
+        String sql = "SELECT iv.id_imagem_viagem, iv.id_viagem, iv.imagem"
+                    + "\n FROM imagem_viagem iv"
+                    + "\n WHERE iv.id_viagem = ?";
 
+        try {
+            stmt = this.conexao.prepareStatement(sql);
+            stmt.setInt(++indice, idViagem);
+            resultSet = stmt.executeQuery();
+
+            List<ImagemViagem> listaImagemViagem = new ArrayList<ImagemViagem>();
+            ViagemDAO viagemDAO = new ViagemDAO();
+
+            while (resultSet.next()) {
+            	listaImagemViagem.add(new ImagemViagem(resultSet.getInt("id_imagem_viagem")
+                , viagemDAO.consultar(resultSet.getInt("id_viagem"))
+                , resultSet.getBinaryStream("imagem")));
+            }
+
+            return listaImagemViagem;
+        } catch (Exception excecao) {
+            throw new DAOException(excecao);
+        }
+    }    
+    
     /**
      * Incluir uma imagem de viagem
      * @access public
@@ -72,13 +110,12 @@ public class ImagemViagemDAO extends DAOBase<ImagemViagem> {
         PreparedStatement stmt = null;
 
         String sql = "INSERT INTO imagem_viagem"
-                    + "\n(id_imagem_viagem, id_viagem, imagem)"
-                    + "\n VALUES (?, ?, ?)";
+                    + "\n(id_viagem, imagem)"
+                    + "\n VALUES (?, ?)";
 
         try {
             stmt = this.conexao.prepareStatement(sql);
-            stmt.setInt(++indice, obj.getIdImagemViagem());
-            stmt.setInt(++indice, obj.getIdViagem());
+           	stmt.setInt(++indice, obj.getViagem().getIdViagem());
             stmt.setBlob(++indice, obj.getImagem());
             stmt.executeUpdate();
         } catch (Exception excecao) {
@@ -107,7 +144,7 @@ public class ImagemViagemDAO extends DAOBase<ImagemViagem> {
                         + "\n WHERE id_viagem_imagem = ?";
 
             stmt = this.conexao.prepareStatement(sql);
-            stmt.setInt(++indice, obj.getIdViagem());
+            stmt.setInt(++indice, obj.getViagem().getIdViagem());
             stmt.setBlob(++indice, obj.getImagem());
             stmt.setInt(++indice, obj.getIdImagemViagem());
             stmt.executeUpdate();
