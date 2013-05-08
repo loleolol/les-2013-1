@@ -65,12 +65,21 @@ public class UsuarioBean {
     
     //ADMIN
     /**
+     * Retorna a lista de usuários
+     * @access public
+     * @return List<Usuario>
+     */
+    public List<Usuario> getListaUsuario() {
+        return this.listaUsuario;
+    }
+    
+    /**
      * Retorna a lista de viagens
      * @access public
      * @return List<Viagem>
      */
-    public List<Usuario> getListaUsuario() {
-        return this.listaUsuario;
+    public int getTamanhoListaUsuario() {
+        return this.listaUsuario.size();
     }
     //ADMIN
 

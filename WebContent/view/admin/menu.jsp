@@ -8,6 +8,7 @@
 			</form>
 		</c:when>
 		<c:otherwise>
+			<legend>TESTE</legend>
 			<br/>
 		</c:otherwise>
 	</c:choose>

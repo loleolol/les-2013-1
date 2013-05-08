@@ -2,7 +2,6 @@ package br.com.les20131.controller;
 
 import br.com.les20131.model.Usuario;
 import br.com.les20131.model.bean.UsuarioBean;
-import br.com.les20131.model.bean.ViagemBean;
 import br.com.les20131.util.InvalidPageException;
 
 import java.io.IOException;
@@ -34,22 +33,15 @@ public class ModuloAdminUsuarioController extends BaseController {
     throws ServletException, IOException {
         try {
         	this.configurarController(request, response);
+        	this.verificarSessao();
             if (this.acao.isEmpty()) {
             	this.acaoPadrao();
-            } else if (this.acao.equalsIgnoreCase("login")) {
-            	this.acaoLogin();
-            } else if (this.acao.equalsIgnoreCase("logoff")) {
-            	this.acaoLogoff();
-            } else if (this.acao.equalsIgnoreCase("novo")) {
-            	this.acaoNovo();
-            } else if (this.acao.equalsIgnoreCase("selecionar")) {
-            	this.acaoSelecionar();
-            } else if (this.acao.equalsIgnoreCase("alterar")) {
-            	this.acaoAlterar();
-            //ADMIN
             } else if (this.acao.equalsIgnoreCase("listarUsuarios")) {
             	this.acaoListarUsuarios();
-            //ADMIN
+            } else if (this.acao.equalsIgnoreCase("bloquear")) {
+            	this.acaoBloquear();
+            } else if (this.acao.equalsIgnoreCase("excluir")) {
+            	this.acaoExcluir();
             }else {
                	throw new InvalidPageException();
             }
@@ -66,68 +58,8 @@ public class ModuloAdminUsuarioController extends BaseController {
      */
     private void acaoPadrao() throws Exception {
     	this.despachar("/view/index.jsp");
-    }
-    
-    /**
-     * Ação que realiza o login
-     * @access private
-     * @return void
-     * @throws Exception
-     */
-    private void acaoLogin() throws Exception {
-        UsuarioBean usuarioBean = new UsuarioBean();
-        usuarioBean.autenticaUsuario(this.requisicao.getParameter("loginEmail"), this.requisicao.getParameter("loginSenha"));
-        HttpSession sessao = this.requisicao.getSession(true);
-        sessao.setAttribute("usuario", usuarioBean.getUsuario());
-        this.verificarSessao();
-        this.despachar("/view/viajante/inicio.jsp");
-    }
-    
-    /**
-     * Ação que realiza o logoff
-     * @access private
-     * @return void
-     * @throws Exception
-     */
-    private void acaoLogoff() throws Exception {
-       	this.requisicao.getSession().invalidate();
-       	this.despachar("/view/index.jsp");
-    }
-    
-    /**
-     * Ação para criação de novo usuário
-     * @access private
-     * @return void
-     * @throws Exception
-     */
-    private void acaoNovo() throws Exception {
-    	this.despachar("/view/viajante/incluir.jsp");
-    }
-    
-    /**
-     * Ação para seleção de usuário
-     * @access private
-     * @return void
-     * @throws Exception
-     */
-    private void acaoSelecionar() throws Exception {
-    	this.verificarSessao();
-        this.despachar("/view/usuario/alterar.jsp");
-    }
-    
-    /**
-     * Ação de alteração de usuário
-     * @access private
-     * @return void
-     * @throws Exception
-     */
-    private void acaoAlterar() throws Exception {
-    	this.verificarSessao();
-		this.alterarUsuario();
-		this.despachar("/view/usuario/alterar.jsp");
-    }
-    
-    //ADMIN
+    }       
+
     /**
      * Ação de listagem de usuários
      * @access private
@@ -138,53 +70,29 @@ public class ModuloAdminUsuarioController extends BaseController {
 		this.listarUsuarios();
 		this.despachar("/view/admin/listar-usuario.jsp");
     }
-    //ADMIN
     
     /**
-     * Altera um usuário
+     * Ação de bloqueio de usuários
      * @access private
      * @return void
      * @throws Exception
      */
-    private void alterarUsuario() throws Exception {
-    	HttpSession sessao = this.requisicao.getSession();
-        UsuarioBean usuarioBean = new UsuarioBean();
-        this.validarUsuario(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), this.requisicao.getParameter("email"), this.requisicao.getParameter("emailConfirma"), this.requisicao.getParameter("senha"), this.requisicao.getParameter("senhaConfirma"));
-        usuarioBean.alterar(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), this.requisicao.getParameter("email"), this.requisicao.getParameter("senha"));
-        sessao.setAttribute("usuario", usuarioBean.getUsuario());
-        this.requisicao.setAttribute("usuarioBean", usuarioBean);
+    private void acaoBloquear() throws Exception {
+		this.listarUsuarios();
+		this.despachar("/view/admin/listar-usuario.jsp");
     }
     
     /**
-     * Valida o viajante
+     * Ação de exclusão de usuários
      * @access private
-     * @param int idUsuario
-     * @param String nome
-     * @param String sexo
-     * @param String dataNascimento
      * @return void
      * @throws Exception
      */
-    private void validarUsuario(int idUsuario, String email, String emailConfirma, String senha, String senhaConfirma) throws Exception {
-    	this.validarEmail(email);
+    private void acaoExcluir() throws Exception {
+		this.listarUsuarios();
+		this.despachar("/view/admin/listar-usuario.jsp");
     }
-    
-    /**
-     * Valida o email
-     * @access private
-     * @param String email
-     * @return void
-     * @throws Exception
-     */
-    private void validarEmail(String email) throws Exception {
-        if (email.isEmpty()) {
-            throw new Exception("E-mail em branco!");
-        } else if (email.length() > 100) {
-            throw new Exception("E-mail acima do limite de 100 caracteres!");
-        }
-    }
-    
-    //ADMIN
+
     /**
      * Lista os usuários
      * @access private
@@ -193,11 +101,10 @@ public class ModuloAdminUsuarioController extends BaseController {
      */
     private void listarUsuarios() throws Exception {
     	HttpSession sessao = this.requisicao.getSession();
-        UsuarioBean usuarioBean = new UsuarioBean();
-        usuarioBean.listarUsuarios();
-        this.requisicao.setAttribute("usuarioBean", usuarioBean);
+        UsuarioBean usuarioBeanLista = new UsuarioBean();
+        usuarioBeanLista.listarUsuarios();
+        this.requisicao.setAttribute("usuarioBeanLista", usuarioBeanLista);
     }
-    //ADMIN
     
     /**
      * Returns a short description of the servlet.
