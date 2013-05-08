@@ -184,7 +184,7 @@ public class ModuloViagemController extends BaseController {
         		, this.requisicao.getParameter("titulo"), this.requisicao.getParameter("descricao"), dataInicial, dataFinal);
         
         int quantidade = Integer.parseInt(this.requisicao.getParameter("quantidadeImagem"));
-       	for (int i = 0; i < quantidade; i++) {
+       	for (int i = 1; i <= quantidade; i++) {
             Part imagemParte = this.requisicao.getPart("imagem"+i);
            	if (imagemParte.getSize() > 0) {
            		imagemViagemBean.incluir(viagemBean.getViagem().getIdViagem(), imagemParte.getInputStream());
