@@ -36,7 +36,7 @@
 	                <legend>${viagem.titulo}</legend>
 						<form id="viagem_${viagem.idViagem}" class="formulario_invisivel" 
 							action="<c:url value="/Viagem"></c:url>" method="post">
-							<textarea readonly rows=8 cols=60>${viagem.descricao}</textarea>
+							<textarea readonly rows=8 cols=55>${viagem.descricao}</textarea>
 							<br/>
 							<span>
 								Realizada no período de ${fn:substring(viagem.dataInicial, 0, 10)} 
