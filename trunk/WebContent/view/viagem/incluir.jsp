@@ -9,7 +9,7 @@
         <div class="block edicao_galeria">
 	        <label for="imagemPrevia">Imagens:</label>
 	        <br/>
-	        <input id="quantidadeImagem" type="hidden" name="quantidadeImagem" value="0"/>
+	        <input id="quantidadeImagem" type="hidden" name="quantidadeImagem" value=""/>
 	        <div id="adicionaImagem" class="imagem_edicao adiciona_imagem" onclick="adicionaCampoImagem($('#adicionaImagem'), $('#quantidadeImagem'), 'previrImagem')">
 			</div>
 		</div>
@@ -56,6 +56,7 @@
 		populaDropDownAno($('#dataFinalAno'));
 		populaDropDownMes($('#dataFinalMes'));
 		populaDropDownDia($('#dataFinalDia'), $('#dataFinalMes').val());
+		$('#quantidadeImagem').val($('.adiciona_imagem').length-1);
 	});
 </script>			
 

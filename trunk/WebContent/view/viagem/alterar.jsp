@@ -18,6 +18,7 @@
 		<%@include file="../usuario/login.jsp"%>
 		<%@include file="../viajante/menu.jsp"%>
 		<%@include file="../viajante/adicional.jsp"%>
+		<jsp:useBean id="imagemViagemBean" class="br.com.les20131.model.bean.ImagemViagemBean" scope="request"/>
         <jsp:useBean id="viagemBean" class="br.com.les20131.model.bean.ViagemBean" scope="request"/>
 		<div id="corpo">
 			<fieldset>
@@ -28,9 +29,23 @@
 				        <input id="titulo" type="text" name="titulo" value="${viagemBean.viagem.titulo}" maxlength="100"/>
 				        <span id="tituloErro" class="atencao"></span>
 					</div>
+			        <div class="block edicao_galeria">
+				        <label for="imagemPrevia">Imagens:</label>
+				        <br/>
+				        <input id="quantidadeImagem" type="hidden" name="quantidadeImagem" value=""/>
+	 					<c:forEach items="${imagemViagemBean.listaImagemViagem}"  var="imagemViagem">
+							<div id="selecionaImagem" class="imagem_edicao" onclick="$('#imagem').click()">
+								<img id="imagemPrevia" class="imagem_edicao" src="/les20131/view/publico/imagens/semimagem.jpg"/>
+							</div>
+							<input id="imagem" type="file" name="imagem" accept="image/x-png, image/jpeg"
+								onchange="trocaImagem($('#imagemPrevia'), $('#novaImagem'), $('#imagem'), $(this.form).attr('action'), 'previrImagem')"/>
+						</c:forEach>
+				        <div id="adicionaImagem" class="imagem_edicao adiciona_imagem" onclick="adicionaCampoImagem($('#adicionaImagem'), $('#quantidadeImagem'), 'previrImagem')">
+						</div>
+					</div>
 			        <div class="block">
 				        <label for="descricao">Descricao<span class="atencao">*</span>:</label>
-				        <textarea id="descricao" name="descricao" rows="8" cols="60"><c:out value="${viagemBean.viagem.descricao}"></c:out></textarea>
+				        <textarea id="descricao" name="descricao" rows="8" cols="56"><c:out value="${viagemBean.viagem.descricao}"></c:out></textarea>
 				        <span id="descricaoErro" class="atencao"></span>
 					</div>
 			        <div class="block">
@@ -83,6 +98,7 @@
 					$('#dataFinalAno').val($('#dataFinal').val().split("-")[0]);
 					$('#dataFinalMes').val($('#dataFinal').val().split("-")[1]);
 					$('#dataFinalDia').val($('#dataFinal').val().split("-")[2]);
+					$('#quantidadeImagem').val($('.adiciona_imagem').length-1);
 				});
 			</script>			
 		</div>
