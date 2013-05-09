@@ -223,6 +223,9 @@ public class ModuloViagemController extends BaseController {
     	ViagemBean viagemBean = new ViagemBean();
     	viagemBean.consultar(Integer.parseInt(this.requisicao.getParameter("idViagem")));
     	this.requisicao.setAttribute("viagemBean", viagemBean);
+    	ImagemViagemBean imagemViagemBean = new ImagemViagemBean();
+    	imagemViagemBean.consultarPorViagem(Integer.parseInt(this.requisicao.getParameter("idViagem")));
+    	this.requisicao.setAttribute("imagemViagemBean", imagemViagemBean);
     }    
     
     /**
