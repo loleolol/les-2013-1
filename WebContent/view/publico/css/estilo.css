@@ -20,21 +20,29 @@ html, body {
     background-color: #060;
     position: relative;
 	border-bottom: 1px dotted #CCC;
-	height: 30px;
+	height: 35px;
+	display: inline-block;
 	width: 100%;
 }
 
 .barra_login {
-	position: relative;
-	width: 20%;
+	display: inline-block;
+	min-width: 29%;
+	text-align: left;
+	float: right;
+}
+
+.barra_intervalo {
+	display: inline-block;
+	width: 36%;
+	float: center;
 }
 
 .logo {
-	padding: 0;
-	margin: 0;
-	position: relative;
+	display: inline-block;
+	width: 30%;
 	text-align: right;
-	width: 20%
+	float: left;
 }
 
 #imagemBarra {
@@ -45,33 +53,38 @@ html, body {
    --------------------------------------------*/
    
 #barra_esquerda {
-	float: left;
 	border-right: 1px dotted #CCC;
-	padding-left: 200px;
+	float: left;
+	text-align: right;
+	display: inline-block;
+	width: 30%;
 	height: 100%;
-	z-index: 2;
 }
 
 #barra_esquerda input[type=submit] {
 	border: 0px;
-	background: #FFF;
-	background-color: #FFF;
+	background: #123;
+	background-color: #123;
 }
 
 #barra_esquerda input[type=submit]:hover {
-	background-color: #060;
+	background-color: #123;
 	color: #FFF;
 }
 
 #corpo {
 	float: center;
+	display: inline-block;
+	width: 40%;
 	height: 100%;
 }
 
 #barra_direita {
-	position: relative;
 	float: right;
 	border-left: 1px dotted #CCC;
+	width: 29%;
+	display: inline-block;
+	text-align: left;
 	height: 100%;
 }
 

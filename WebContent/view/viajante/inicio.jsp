@@ -16,9 +16,9 @@
 	<body class="perfil"> 
 		<%@include file="../usuario/login.jsp"%>
 		<%@include file="menu.jsp" %>
-		<%@include file="adicional.jsp" %>
 		<div id="corpo">
 			<%@include file="../viagem/incluir.jsp"%>
 		</div>
+		<%@include file="adicional.jsp" %>
 	</body>
 </html>
