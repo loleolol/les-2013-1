@@ -192,6 +192,8 @@ legend{
 .imagem_bloco {
 	width: 150px;
     height: 150px;
+    display: inline-block;
+    position: relative;
     margin: 0;
     paddign: 0;
 }
@@ -200,7 +202,9 @@ legend{
 	width: 150px;
     height: 150px;
 	border: solid 1px #CCC;
-	float: left;
+    display: inline-block;
+	opacity: 0.8; 
+	filter: alpha(opacity=80);
 }
 .imagem_edicao:hover {
 	border: solid 1px #999;
@@ -218,21 +222,23 @@ legend{
 	filter: alpha(opacity=40);
 }
 .sobrepoe {
-	position: relative;
-	z-index: 2;	
+	position: absolute;
+	z-index: 2;
 }
 .remover {
-	position: relative;
+	top: 3px;
+	left: 130px;
+	position: absolute;
 	cursor: pointer;
 	background: url(../imagens/remover.png) no-repeat center center;
-	opacity: 0.6; 
-	filter: alpha(opacity=60);
+	opacity: 0.5;
+	filter: alpha(opacity=50);
 	width: 16px;
 	height: 16px;
 }
 .remover:hover {
-	opacity: 0.4; 
-	filter: alpha(opacity=40);
+	opacity: 0.8; 
+	filter: alpha(opacity=80);
 }
 .formulario_invisivel {
 	inherit: none;
