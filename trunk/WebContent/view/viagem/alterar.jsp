@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -32,12 +33,12 @@
 			        <div class="block edicao_galeria">
 				        <label for="imagemPrevia">Imagens:</label>
 				        <br/>
-				        <input id="quantidadeImagem" type="hidden" name="quantidadeImagem" value=""/>
-	 					<c:forEach items="${imagemViagemBean.listaImagemViagem}"  var="imagemViagem">
-							<div id="selecionaImagem" class="imagem_edicao" onclick="$('#imagem').click()">
-								<img id="imagemPrevia" class="imagem_edicao" src="/les20131/view/publico/imagens/semimagem.jpg"/>
+				        <input id="quantidadeImagem" type="hidden" name="quantidadeImagem" value="${fn:length(imagemViagemBean.listaImagemViagem)}"/>
+	 					<c:forEach items="${imagemViagemBean.listaImagemViagem}" var="imagemViagem" varStatus="chave">
+							<div id="selecionaImagem${chave.count}" class="imagem_edicao" onclick="$('#imagem').click()">
+								<img id="imagemPrevia${chave.count}" class="imagem_edicao" src="<c:url value="/Viagem?acao=carregarImagem&id=${imagemViagem.idImagemViagem}"></c:url>"/>
 							</div>
-							<input id="imagem" type="file" name="imagem" accept="image/x-png, image/jpeg"
+							<input id="imagem${chave.count}" type="file" name="imagem" accept="image/x-png, image/jpeg"
 								onchange="trocaImagem($('#imagemPrevia'), $('#novaImagem'), $('#imagem'), $(this.form).attr('action'), 'previrImagem')"/>
 						</c:forEach>
 				        <div id="adicionaImagem" class="imagem_edicao adiciona_imagem" onclick="adicionaCampoImagem($('#adicionaImagem'), $('#quantidadeImagem'), 'previrImagem')">
@@ -98,7 +99,6 @@
 					$('#dataFinalAno').val($('#dataFinal').val().split("-")[0]);
 					$('#dataFinalMes').val($('#dataFinal').val().split("-")[1]);
 					$('#dataFinalDia').val($('#dataFinal').val().split("-")[2]);
-					$('#quantidadeImagem').val($('.adiciona_imagem').length-1);
 				});
 			</script>			
 		</div>

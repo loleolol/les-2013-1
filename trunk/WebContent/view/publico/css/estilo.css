@@ -45,10 +45,6 @@ html, body {
 	float: left;
 }
 
-#imagemBarra {
-	margin-top: 5px;
-}
-
 /* #PÁGINA
    --------------------------------------------*/
    
@@ -193,6 +189,12 @@ legend{
 .edicao_galeria{
 	overflow: hidden;
 }
+.imagem_bloco {
+	width: 150px;
+    height: 150px;
+    margin: 0;
+    paddign: 0;
+}
 .imagem_edicao {
 	cursor: pointer;
 	width: 150px;
@@ -220,7 +222,17 @@ legend{
 	z-index: 2;	
 }
 .remover {
-	background: url(../imagens/remover.jpg) no-repeat center center;
+	position: relative;
+	cursor: pointer;
+	background: url(../imagens/remover.png) no-repeat center center;
+	opacity: 0.6; 
+	filter: alpha(opacity=60);
+	width: 16px;
+	height: 16px;
+}
+.remover:hover {
+	opacity: 0.4; 
+	filter: alpha(opacity=40);
 }
 .formulario_invisivel {
 	inherit: none;

@@ -41,7 +41,7 @@ public class ImagemViagemDAO extends DAOBase<ImagemViagem> {
         String sql = "SELECT iv.id_imagem_viagem, iv.id_viagem, iv.imagem"
         		    + "\n FROM imagem_viagem iv"
                     + "\n WHERE iv.id_imagem_viagem = ?";
-
+        
         try {
             stmt = this.conexao.prepareStatement(sql);
             stmt.setInt(++indice, id);
@@ -73,7 +73,7 @@ public class ImagemViagemDAO extends DAOBase<ImagemViagem> {
         int indice = 0;
         String sql = "SELECT iv.id_imagem_viagem, iv.id_viagem, iv.imagem"
                     + "\n FROM imagem_viagem iv"
-                    + "\n WHERE iv.id_viagem = ?";
+                    + "\n WHERE iv.id_viagem = ?";    
 
         try {
             stmt = this.conexao.prepareStatement(sql);
