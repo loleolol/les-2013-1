@@ -156,8 +156,9 @@ function adicionaCampoImagem(campo, quantidade, acao) {
     
 	$(quantidade).val(parseInt($(quantidade).val())+1);
 	indice = $(quantidade).val();
-	str = "<div id=\"selecionaImagem"+indice+"\" class=\"imagem_edicao\" onclick=\"$('#imagem"+indice+"').click()\">"
+	str = "<div id=\"selecionaImagem"+indice+"\" class=\"imagem_bloco\" onclick=\"$('#imagem"+indice+"').click()\">"
 	 + "<img id=\"imagemPrevia"+indice+"\" class=\"imagem_edicao\" src=\"/les20131/view/publico/imagens/semimagem.jpg\"/>"
+	 + "<div id=\"removerImagem"+indice+"\" class=\"remover sobrepoe\"></div>"
 	 + "</div>"
 	 + "<input id=\"imagem"+indice+"\" type=\"file\" name=\"imagem"+indice+"\" accept=\"image/x-png, image/jpeg\""
 	 + " onchange=\"trocaImagem($('#imagemPrevia"+indice+"'), $('#novaImagem"+indice+"'), $('#imagem"+indice+"'), $(this.form).attr('action'), '"+acao+"')\"/>";

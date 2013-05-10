@@ -1,6 +1,7 @@
 package br.com.les20131.controller;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
@@ -16,6 +17,7 @@ import br.com.les20131.model.Usuario;
 import br.com.les20131.model.bean.ImagemViagemBean;
 import br.com.les20131.model.bean.MensagemBean;
 import br.com.les20131.model.bean.ViagemBean;
+import br.com.les20131.model.bean.ViajanteBean;
 import br.com.les20131.util.InvalidPageException;
 
 /**
@@ -46,7 +48,7 @@ public class ModuloViagemController extends BaseController {
 		if (this.acao.equalsIgnoreCase("previrImagem")) {
 			this.acaoExibirPreviaImagem();
 		} else if (this.acao.equalsIgnoreCase("carregarImagem")) {
-			//this.acaoCarregarImagemPerfil();
+			this.acaoCarregarImagemPerfil();
 		} else {
 			super.doGet(request, response);
 		}
@@ -149,6 +151,24 @@ public class ModuloViagemController extends BaseController {
 		this.listarMinhaViagem();
 		this.despachar("/view/viagem/listar.jsp");
 	}
+	
+    /**
+     * Ação de carregamento da imagem do perfil
+     * @access private
+     * @return void
+     * @throws IOException
+     */
+    private void acaoCarregarImagemPerfil() throws IOException {
+    	InputStream imagem = null;
+    	try {
+    		this.validarIdImagemViagem(this.requisicao.getParameter("id"));
+			ImagemViagemBean imagemViagemBean = new ImagemViagemBean();
+			imagemViagemBean.consultar(Integer.parseInt(this.requisicao.getParameter("id")));
+	    	imagem = imagemViagemBean.getImagemViagem().getImagem(); 	
+    	} catch (Exception excecao) {
+    	}
+    	this.acaoCarregarImagem(imagem);
+    }	
 	
     /**
      * Lista as viagens cadastradas
@@ -357,6 +377,22 @@ public class ModuloViagemController extends BaseController {
             throw new Exception("Descrição acima do limite de 500 caracteres.");
         }
     }    
+    
+    /**
+     * Valida o id da imagem de viagem
+     * @access private
+     * @param String idImagemViagem
+     * @return void
+     * @throws Exception
+     */
+    private void validarIdImagemViagem(String idImagemViagem) throws Exception {
+    	try {
+			int id;
+			id = Integer.parseInt(idImagemViagem);
+		} catch (Exception excecao) {
+			throw new Exception("Imagem de viagem inválida.");
+		}
+	}    
 	
 	
 }
