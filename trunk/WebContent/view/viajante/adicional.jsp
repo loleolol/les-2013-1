@@ -2,7 +2,7 @@
 	<c:choose>
 		<c:when test="${usuarioBean.usuario != null}">
 			<form id="menu_usuario" class="formulario_menu" action="<c:url value="/Viajante"></c:url>" method="post">
-        		<div class="block">
+        		<div class="anuncio">
         			Anúncios
         			<br/>
         		</div>

@@ -18,11 +18,13 @@ html, body {
 .barra {
 	color: #FFF; 
     background-color: #060;
-    position: relative;
-	border-bottom: 1px dotted #CCC;
+    position: fixed;
 	height: 35px;
-	display: inline-block;
 	width: 100%;
+	z-index: 99;
+	-webkit-box-shadow: 0 0 5px rgba(0,0,0,0.8);
+	-moz-box-shadow: 0 0 5px rgba(0,0,0,0.8);
+	box-shadow: 0 0 5px rgba(0,0,0,0.8);	
 }
 
 .barra_login {
@@ -49,12 +51,16 @@ html, body {
    --------------------------------------------*/
    
 #barra_esquerda {
-	border-right: 1px dotted #CCC;
 	float: left;
 	text-align: right;
 	display: inline-block;
 	width: 30%;
 	height: 100%;
+	overflow: auto;
+	-webkit-box-shadow: 0px 3px 2px rgba(0,0,0,0.8);
+	-moz-box-shadow: 0px 3px 2px rgba(0,0,0,0.8);
+	box-shadow: 0px 3px 2px rgba(0,0,0,0.8);	
+
 }
 
 #barra_esquerda input[type=submit] {
@@ -73,19 +79,33 @@ html, body {
 	display: inline-block;
 	width: 40%;
 	height: 100%;
+	overflow: auto;
 }
 
 #barra_direita {
 	float: right;
-	border-left: 1px dotted #CCC;
 	width: 29%;
 	display: inline-block;
 	text-align: left;
 	height: 100%;
+	overflow: auto;
+	-webkit-box-shadow: 0px 3px 2px rgba(0,0,0,0.8);
+	-moz-box-shadow: 0px 3px 2px rgba(0,0,0,0.8);
+	box-shadow: 0px 3px 2px rgba(0,0,0,0.8);	
 }
 
+.anuncio {
+	-webkit-box-shadow: 0px 0px 2px rgba(0,0,0,0.8);
+	-moz-box-shadow: 0px 0px 2px rgba(0,0,0,0.8);
+	box-shadow: 0px 0px 2px rgba(0,0,0,0.8);	
+	padding: 15px;
+}
 
-/*  #TABLE
+#login label {
+	width: auto;
+}
+
+/*  #TABELA
     -------------------------------------------*/
 table{
     width: 100%;
@@ -100,43 +120,21 @@ th{
     text-align: left;
     background: #E4E4E4;
 }
-.actions{
-    width: 50px;
-}
-.actions a{
-    display: block;
-    width: 18px;
-    line-height: 18px;
-    margin-right: 5px;
-    text-indent: -9999em;
-    float: left;
-    border:solid 1px #CCC;
-    
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-}
-.edit{
-    background: url(../imagens/edit.png) no-repeat center center;
-    height: 20px;
-}
-.delete{
-    background: url(../imagens/delete.png) no-repeat center center;
-    height: 20px;
-}
 
-/*  #FORM
+/*  #FORMULÁRIO
     -------------------------------------------*/
-input[type=text],
-input[type=password],
-textarea,
-button{
+.formulario_padrao input[type=text],
+.formulario_padrao input[type=password],
+.formulario_padrao textarea,
+.formulario_padrao button{
     padding: 4px;
     border:solid 1px #CCC;
 }
-input[type=submit],
-input[type=button],
-input[type=reset],
-button{
+.formulario_padrao input[type=submit],
+.formulario_padrao input[type=submit],
+.formulario_padrao input[type=button],
+.formulario_padrao input[type=reset],
+.formulario_padrao button{
     background: #CCC; /* para browsers sem suporte a CSS 3 */
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FAFAFA', endColorstr='#CCCCCC'); /* IE */
     background: -webkit-gradient(linear, left top, left bottom, from(#FAFAFA), to(#CCC)); /* webkit browsers */
@@ -148,33 +146,72 @@ button{
     border-radius: 5px;
 
 }
-input[type=submit]:pressed,
-input[type=button]:pressed,
-input[type=reset]:pressed,
-button:pressed{
+.formulario_padrao input[type=submit]:pressed,
+.formulario_padrao input[type=button]:pressed,
+.formulario_padrao input[type=reset]:pressed,
+.formulario_padrao button:pressed{
     position: relative;
     top: 1px;
     left: 1px;
 }
-input[type=text]:hover,
-input[type=password]:hover,
-input[type=submit]:hover,
-input[type=button]:hover,
-input[type=reset]:hover,
-textarea:hover,
-button:hover{
+.formulario_padrao input[type=text]:hover,
+.formulario_padrao input[type=password]:hover,
+.formulario_padrao input[type=submit]:hover,
+.formulario_padrao input[type=button]:hover,
+.formulario_padrao input[type=reset]:hover,
+.formulario_padrao textarea:hover,
+.formulario_padrao button:hover{
     border: solid 1px #999;
 }
-input[type=file]{
+.formulario_padrao input[type=file]{
 	display: none;
 }
-input:focus,
-button:focus{
+.formulario_padrao input:focus,
+.formulario_padrao button:focus{
    border: solid 1px #666;
 }
+
+.formulario_invisivel {
+	inherit: none;
+}
+.formulario_menu button {
+    background: #FFF; /* para browsers sem suporte a CSS 3 */
+    width: 200px;
+	border: 0px;
+    padding: 0px;
+
+}
+.formulario_menu button:hover {
+    background: #060; /* para browsers sem suporte a CSS 3 */
+    color: #FFF;
+}
+.formulario_padrao label {
+    width: 200px;
+    
+}
+
+.formulario_padrao .label_radio {
+	width: 100px;
+}
+
+.atencao {
+	color: #F00;
+}
+
+.edit{
+    background: url(../imagens/edit.png) no-repeat center center;
+    height: 20px;
+}
+.delete{
+    background: url(../imagens/delete.png) no-repeat center center;
+    height: 20px;
+}
+
+
 fieldset{
     padding: 20px;
     border:solid 1px #CCC;
+    width: 38,5%;
 }
 legend{
     background-color: #060;
@@ -183,7 +220,7 @@ legend{
     text-transform: uppercase;
 }
 .block{
-    border-top: 1px dotted #CCC;
+	border-bottom: 1px solid #CCC;
     padding: 15px;
 }
 .edicao_galeria{
@@ -195,7 +232,7 @@ legend{
     display: inline-block;
     position: relative;
     margin: 0;
-    paddign: 0;
+    padding: 0;
 }
 .imagem_edicao {
 	cursor: pointer;
@@ -217,8 +254,14 @@ legend{
 	border: solid 1px #CCC;
 }
 .adiciona_imagem {
-	background: url(../imagens/adicionar.jpg) no-repeat center center;
+	background: url(../imagens/adicionar.png) no-repeat center center;
 	opacity: 0.4; 
+    position: relative;
+	width: 150px;
+    height: 150px;    
+	display: inline-block;    
+    margin: 0;
+    padding: 0;
 	filter: alpha(opacity=40);
 }
 .sobrepoe {
@@ -240,35 +283,6 @@ legend{
 	opacity: 0.8; 
 	filter: alpha(opacity=80);
 }
-.formulario_invisivel {
-	inherit: none;
-}
-.formulario_menu button {
-    background: #FFF; /* para browsers sem suporte a CSS 3 */
-    width: 200px;
-	border: 0px;
-    padding: 0px;
-
-}
-.formulario_menu div:hover {
-    background: #060; /* para browsers sem suporte a CSS 3 */
-    color: #FFF;
-}
-.formulario_menu button:hover {
-    background: #060; /* para browsers sem suporte a CSS 3 */
-    color: #FFF;
-}
-.formulario_padrao label {
-    width: 200px;
-    
-}
-.formulario_padrao .label_radio {
-	width: 100px;
-}
-
-.atencao {
-	color: #F00;
-}
 
 legend + .block{
     border-top:none;
@@ -276,58 +290,4 @@ legend + .block{
 label{
     display: inline-block;
 }
-.buttons{
-    background-color: #F8F8F8;
-    border-color: #CCC;
-    border-style: dotted;
-    border-width: 1px 0;
-    padding: 5px;
-    position: relative;
-    text-align: right;
-}
-.buttons #btn-back-list{
-    left: 5px;
-    position: absolute;
-    top:5px;
-}
 /*  Perfil */
-
-/*  #NAVIGATION
-    -------------------------------------------*/
-.nav{
-    display: block;
-    overflow: hidden;
-    background: #E4E4E4;
-    padding: 0;
-    margin:0 0 20px 0;
-}
-.nav li{
-    float: left;
-    list-style-type: none;
-}
-.nav a{
-    display: block;
-    padding: 0 10px;
-    line-height: 40px;
-    text-decoration: none;
-    color: #333;
-    border-right: 1px solid #FFFFFF;
-    border-left: 1px solid #CCCCCC;
-}
-.nav a:hover{
-    color: #060;
-}
-.nav .first a{
-    border-left: none;
-}
-.nav .last a{
-    border-right: none;
-}
-.nav .logoff{
-    float: right;
-    background: #060;
-}
-.nav .logoff a{
-   color: #FFF;
-   padding: 0 20px;
-}
