@@ -17,14 +17,21 @@ html, body {
 
 .barra {
 	color: #FFF; 
-    background-color: #060;
     position: fixed;
 	height: 35px;
 	width: 100%;
 	z-index: 99;
 	-webkit-box-shadow: 0 0 5px rgba(0,0,0,0.8);
 	-moz-box-shadow: 0 0 5px rgba(0,0,0,0.8);
-	box-shadow: 0 0 5px rgba(0,0,0,0.8);	
+	box-shadow: 0 0 5px rgba(0,0,0,0.8);
+	background: #c9de96; /* Old browsers */
+	background: -moz-linear-gradient(top, #c9de96 0%, #8ab66b 44%, #398235 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c9de96), color-stop(44%,#8ab66b), color-stop(100%,#398235)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #c9de96 0%,#8ab66b 44%,#398235 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #c9de96 0%,#8ab66b 44%,#398235 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #c9de96 0%,#8ab66b 44%,#398235 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #c9de96 0%,#8ab66b 44%,#398235 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c9de96', endColorstr='#398235',GradientType=0 ); /* IE6-9 */	
 }
 
 .barra_login {
@@ -51,6 +58,7 @@ html, body {
    --------------------------------------------*/
    
 #barra_esquerda {
+	paddign: 0px;
 	float: left;
 	text-align: right;
 	display: inline-block;
@@ -173,6 +181,10 @@ th{
 
 .formulario_invisivel {
 	inherit: none;
+    display: inline-block;
+    position: relative;
+    margin: 0;
+    padding: 0;
 }
 .formulario_menu button {
     background: #FFF; /* para browsers sem suporte a CSS 3 */
@@ -184,6 +196,9 @@ th{
 .formulario_menu button:hover {
     background: #060; /* para browsers sem suporte a CSS 3 */
     color: #FFF;
+}
+.formulario_menu_selecionado {
+	background: #090;
 }
 .formulario_padrao label {
     width: 200px;
@@ -198,20 +213,11 @@ th{
 	color: #F00;
 }
 
-.edit{
-    background: url(../imagens/edit.png) no-repeat center center;
-    height: 20px;
-}
-.delete{
-    background: url(../imagens/delete.png) no-repeat center center;
-    height: 20px;
-}
-
-
 fieldset{
-    padding: 20px;
+    padding: 0px;
     border:solid 1px #CCC;
-    width: 38,5%;
+    position: relative;
+    width: 99,8%;
 }
 legend{
     background-color: #060;
@@ -269,8 +275,8 @@ legend{
 	z-index: 2;
 }
 .remover {
-	top: 3px;
-	left: 130px;
+	top: 2%;
+	left: 88%;
 	position: absolute;
 	cursor: pointer;
 	background: url(../imagens/remover.png) no-repeat center center;
@@ -282,6 +288,21 @@ legend{
 .remover:hover {
 	opacity: 0.8; 
 	filter: alpha(opacity=80);
+}
+.editar {
+	top: 15%;
+	left: 88%;
+	position: absolute;
+	cursor: pointer;
+	background: url(../imagens/editar.png) no-repeat center center;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+	width: 16px;
+	height: 16px;
+}
+.editar:hover {
+	opacity: 0.8;
+	filter: alpha(opacity=80);    
 }
 
 legend + .block{

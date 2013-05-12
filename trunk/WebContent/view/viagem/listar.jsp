@@ -34,6 +34,12 @@
 	            <c:forEach items="${viagemBean.listaViagem}" var="viagem">
 		            <fieldset>
 	                <legend>${viagem.titulo}</legend>
+						<a class="editar" href="javascript:void(0)" 
+							onclick="$('#acao_${viagem.idViagem}').val('Selecionar'); $('#viagem_${viagem.idViagem}').submit()">
+						</a>
+						<a class="remover" href="javascript:void(0)" 
+							onclick="$('#acao_${viagem.idViagem}').val('Excluir'); confirmaExclusao($('#viagem_${viagem.idViagem}'))">
+						</a>
 						<form id="viagem_${viagem.idViagem}" class="formulario_invisivel" 
 							action="<c:url value="/Viagem"></c:url>" method="post">
 							<textarea readonly rows=8 cols=55>${viagem.descricao}</textarea>
@@ -41,14 +47,6 @@
 							<span>
 								Realizada no período de ${fn:substring(viagem.dataInicial, 0, 10)} 
 								à ${fn:substring(viagem.dataFinal, 0, 10)}
-							</span>
-							<span class="actions">
-								<a class="edit" href="javascript:void(0)" 
-									onclick="$('#acao_${viagem.idViagem}').val('Selecionar'); $('#viagem_${viagem.idViagem}').submit()">
-								</a>
-								<a class="delete" href="javascript:void(0)" 
-									onclick="$('#acao_${viagem.idViagem}').val('Excluir'); confirmaExclusao($('#viagem_${viagem.idViagem}'))">
-								</a>
 							</span>
 							<input id="acao_${viagem.idViagem}" type="hidden" name="acao" value=""/>
 							<input type="hidden" name="idViagem" value="${viagem.idViagem}"/>

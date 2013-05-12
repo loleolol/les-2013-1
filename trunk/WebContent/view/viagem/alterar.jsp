@@ -39,7 +39,7 @@
 								<img id="imagemPrevia${chave.count}" class="imagem_edicao" src="<c:url value="/Viagem?acao=carregarImagem&id=${imagemViagem.idImagemViagem}"></c:url>"/>
 							</div>
 							<input id="imagem${chave.count}" type="file" name="imagem" accept="image/x-png, image/jpeg"
-								onchange="trocaImagem($('#imagemPrevia'), $('#novaImagem'), $('#imagem'), $(this.form).attr('action'), 'previrImagem')"/>
+								onchange="trocaImagem($('#imagemPrevia'), $('#novaImagem'), $('#imagem'), $(this.form).attr('action'), 'previrImagem', 'selecionaImagem', 'imagemPrevia', 'removerImagem', 'imagem')"/>
 						</c:forEach>
 				        <div id="adicionaImagem" class="imagem_edicao adiciona_imagem" onclick="adicionaCampoImagem($('#adicionaImagem'), $('#quantidadeImagem'), 'previrImagem')">
 						</div>
