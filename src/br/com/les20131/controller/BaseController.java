@@ -183,7 +183,7 @@ public abstract class BaseController extends HttpServlet {
      */
     protected void acaoCarregarImagem(InputStream imagem) throws IOException
     {
-    	String urlSemImagem = "/les20131/view/publico/imagens/semimagem.jpg";
+    	String urlSemImagem = "/les20131/view/publico/imagens/semimagem.png";
 		try {
 			if (imagem != null) {
 				this.resposta.setHeader("Cache-Control", "no-store");  

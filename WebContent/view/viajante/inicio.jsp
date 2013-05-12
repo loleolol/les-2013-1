@@ -13,7 +13,7 @@
         <script type="text/javascript" src="/les20131/view/publico/js/jquery-1.9.1.min.js" charset="ISO-8859-1"></script>
         <script type="text/javascript" src="/les20131/view/publico/js/jquery-ui.js"></script>
     </head>
-	<body class="perfil"> 
+	<body class="perfil">
 		<%@include file="../usuario/login.jsp"%>
 		<%@include file="menu.jsp" %>
 		<div id="corpo">

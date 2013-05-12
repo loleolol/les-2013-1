@@ -1,10 +1,9 @@
 /**
  * "Troca" a imagem
  * @param imagem
- * @param sobrepoe
  * @param campo
  */
-function trocaImagem(imagem, sobrepoe, campo, url, acao) {
+function trocaImagem(imagem, campo, url, acao) {
 	urlImagem = url+"?acao="+acao+"&nome="+$(campo).attr("id");
 	var data = new FormData();
 	jQuery.each($(campo)[0].files, function(i, file) {
@@ -150,19 +149,23 @@ function confirmaExclusao(form) {
     }
 }
 
-function adicionaCampoImagem(campo, quantidade, acao) {
-    
+function removerImagem(campo1, campo2, quantidade) {
+	$(campo1).remove();
+	$(campo2).remove();
+}
+
+function adicionaCampoImagem(campo, quantidade, acao, seleciona, imagem, remove, input) {
 	$(quantidade).val(parseInt($(quantidade).val())+1);
 	indice = $(quantidade).val();
-	str = "<div id=\"selecionaImagem"+indice+"\" class=\"imagem_bloco\" onclick=\"$('#imagem"+indice+"').click()\">"
-	 + "<img id=\"imagemPrevia"+indice+"\" class=\"imagem_edicao\" src=\"/les20131/view/publico/imagens/semimagem.jpg\"/>"
-	 + "<span id=\"removerImagem"+indice+"\" class=\"remover sobrepoe\"></span>"
+	str = "<div id=\""+seleciona+indice+"\" class=\"imagem_bloco\">"
+	 + "<img id=\""+imagem+indice+"\" class=\"imagem_edicao\" src=\"/les20131/view/publico/imagens/semimagem.png\" onclick=\"$('#"+input+indice+"').click()\"/>"
+	 + "<span id=\""+remove+indice+"\" class=\"remover sobrepoe\" onclick=\"removerImagem($('#"+seleciona+indice+"'), $('#"+input+indice+"'), $('#"+$(quantidade).attr("id")+"'))\"></span>"
 	 + "</div>"
-	 + "<input id=\"imagem"+indice+"\" type=\"file\" name=\"imagem"+indice+"\" accept=\"image/x-png, image/jpeg\""
-	 + " onchange=\"trocaImagem($('#imagemPrevia"+indice+"'), $('#novaImagem"+indice+"'), $('#imagem"+indice+"'), $(this.form).attr('action'), '"+acao+"')\"/>";
+	 + "<input id=\""+input+indice+"\" type=\"file\" name=\""+input+indice+"\" accept=\"image/x-png, image/jpeg\""
+	 + " onchange=\"trocaImagem($('#"+imagem+indice+"'), $('#"+input+indice+"'), $(this.form).attr('action'), '"+acao+"')\"/>";
 
 	$(campo).before(str);
-	$("#imagem"+indice).click();
+	$("#"+input+indice).click();
 }
 
 /**

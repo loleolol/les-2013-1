@@ -10,7 +10,7 @@
 	        <label for="imagemPrevia">Imagens:</label>
 	        <br/>
 	        <input id="quantidadeImagem" type="hidden" name="quantidadeImagem" value=""/>
-	        <div id="adicionaImagem" class="imagem_edicao adiciona_imagem" onclick="adicionaCampoImagem($('#adicionaImagem'), $('#quantidadeImagem'), 'previrImagem')">
+	        <div id="adicionaImagem" class="imagem_edicao adiciona_imagem" onclick="adicionaCampoImagem($('#adicionaImagem'), $('#quantidadeImagem'), 'previrImagem', 'selecionaImagem', 'imagemPrevia', 'removerImagem', 'imagem')">
 			</div>
 		</div>
         <div class="block">
