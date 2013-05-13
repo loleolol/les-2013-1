@@ -15,8 +15,48 @@
         <script type="text/javascript" src="/les20131/view/publico/js/trabalho.js" charset="ISO-8859-1"></script>
         <script type="text/javascript" src="/les20131/view/publico/js/jquery-1.9.1.min.js" charset="ISO-8859-1"></script>
         <script type="text/javascript" src="/les20131/view/publico/js/jquery-ui.js"></script>
+		<script type="text/javascript"
+    		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdl9ezzvGQd68O6zshDaBgJaHM_RH6-6g&sensor=true">
+		</script>
+	    <script type="text/javascript">
+	    	var map;
+	    	var markersArray = [];
+			function initialize() {
+				var mapOptions = {
+					center: new google.maps.LatLng(-20.767954,-48.071657),
+					zoom: 3,
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+				};
+				map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+				
+				
+				google.maps.event.addListener(map, 'click', function(event) {
+					placeMarker(event.latLng);
+				});
+			  
+				google.maps.Map.prototype.clearOverlays = function() {
+					for (var i = 0; i < markersArray.length; i++ ) {
+						markersArray[i].setMap(null);
+					}
+				}
+			}
+
+			function placeMarker(location) {
+				map.clearOverlays(); 
+				var marker = new google.maps.Marker({
+					position: location,
+					map: map
+				});
+				document.getElementById("latitude").setAttribute("value", location.lat());
+				document.getElementById("longitude").setAttribute("value", location.lng());
+				markersArray.push(marker);
+				map.setCenter(location);
+			}
+
+			google.maps.event.addDomListener(window, 'load', initialize);
+		 </script>		
     </head>
-	<body class="perfil" onload="mostraMensagem('${mensagemBean.mensagem}')"> 
+	<body class="perfil" onload="initialize(); mostraMensagem('${mensagemBean.mensagem}')"> 
 		<%@include file="../usuario/login.jsp"%>
 		<%@include file="menu.jsp" %>
 		<%@include file="adicional.jsp"%>
@@ -59,6 +99,12 @@
                     	<input id="sexoF" type="radio" name="sexo" value="F" ${viajanteBean.viajante.sexo == 'F' ? 'checked' : ''}/><label class="label_radio" for="sexoF">Feminino</label>
 	                    <span id="sexoErro" class="atencao"></span>
 					</div>
+					<div class="block">
+						<label>Localização:</label>
+						<div id="map-canvas"></div>
+						<input id="latitude" type="hidden" name="latitude" value=""/>
+						<input id="longitude" type="hidden" name="longitude" value=""/>
+    				</div>
 			        <div class="block">
 			        	<button type="submit" name="acao" value="alterar" >Alterar</button>
 			        </div>
