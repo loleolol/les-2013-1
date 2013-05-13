@@ -225,6 +225,10 @@ legend{
     padding: 5px;
     text-transform: uppercase;
 }
+#map-canvas {
+	width: 99,8%;
+	height: 400px;
+}
 .block{
 	border-bottom: 1px solid #CCC;
     padding: 15px;
