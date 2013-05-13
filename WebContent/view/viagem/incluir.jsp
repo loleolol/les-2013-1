@@ -7,7 +7,7 @@
 	        <span id="tituloErro" class="atencao"></span>
 		</div>
         <div class="block edicao_galeria">
-	        <label for="imagemPrevia">Imagens:</label>
+	        <label for="previrImagem">Imagens:</label>
 	        <br/>
 	        <input id="quantidadeImagem" type="hidden" name="quantidadeImagem" value=""/>
 	        <div id="adicionaImagem" class="imagem_edicao adiciona_imagem" onclick="adicionaCampoImagem($('#adicionaImagem'), $('#quantidadeImagem'), 'previrImagem', 'selecionaImagem', 'imagemPrevia', 'removerImagem', 'imagem')">

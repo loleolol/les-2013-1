@@ -159,15 +159,14 @@ public class ModuloViagemController extends BaseController {
      * @throws IOException
      */
     private void acaoCarregarImagemPerfil() throws IOException {
-    	InputStream imagem = null;
     	try {
     		this.validarIdImagemViagem(this.requisicao.getParameter("id"));
 			ImagemViagemBean imagemViagemBean = new ImagemViagemBean();
 			imagemViagemBean.consultar(Integer.parseInt(this.requisicao.getParameter("id")));
-	    	imagem = imagemViagemBean.getImagemViagem().getImagem(); 	
+			this.acaoCarregarImagem(imagemViagemBean.getImagemViagem().getImagem()); 	
     	} catch (Exception excecao) {
+        	this.acaoCarregarImagem(null);
     	}
-    	this.acaoCarregarImagem(imagem);
     }	
 	
     /**

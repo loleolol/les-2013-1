@@ -31,17 +31,10 @@
 				        <span id="tituloErro" class="atencao"></span>
 					</div>
 			        <div class="block edicao_galeria">
-				        <label for="imagemPrevia">Imagens:</label>
+				        <label for="previrImagem">Imagens:</label>
 				        <br/>
 				        <input id="quantidadeImagem" type="hidden" name="quantidadeImagem" value="${fn:length(imagemViagemBean.listaImagemViagem)}"/>
-	 					<c:forEach items="${imagemViagemBean.listaImagemViagem}" var="imagemViagem" varStatus="chave">
-							<div id="selecionaImagem${chave.count}" class="imagem_edicao" onclick="$('#imagem').click()">
-								<img id="imagemPrevia${chave.count}" class="imagem_edicao" src="<c:url value="/Viagem?acao=carregarImagem&id=${imagemViagem.idImagemViagem}"></c:url>"/>
-							</div>
-							<input id="imagem${chave.count}" type="file" name="imagem" accept="image/x-png, image/jpeg"
-								onchange="trocaImagem($('#imagemPrevia'), $('#novaImagem'), $('#imagem'), $(this.form).attr('action'), 'previrImagem', 'selecionaImagem', 'imagemPrevia', 'removerImagem', 'imagem')"/>
-						</c:forEach>
-				        <div id="adicionaImagem" class="imagem_edicao adiciona_imagem" onclick="adicionaCampoImagem($('#adicionaImagem'), $('#quantidadeImagem'), 'previrImagem')">
+				        <div id="adicionaImagem" class="imagem_edicao adiciona_imagem" onclick="adicionaCampoImagem($('#adicionaImagem'), $('#quantidadeImagem'), 'previrImagem', 'selecionaImagem', 'imagemPrevia', 'removerImagem', 'imagem')">
 						</div>
 					</div>
 			        <div class="block">
@@ -82,6 +75,9 @@
 					</div>
 			        <div class="block">
 			        	<button type="submit" name="acao" value="alterar">Alterar</button>
+	 					<c:forEach items="${imagemViagemBean.listaImagemViagem}" var="imagemViagem" varStatus="chave">
+	 						<input id="idImagemViagem${chave.count}"type="hidden" name="idImagemViagem${chave.count}" value="${imagemViagem.idImagemViagem}"/>
+						</c:forEach>
 			        </div>
 				</form>
 			</fieldset>
@@ -99,6 +95,7 @@
 					$('#dataFinalAno').val($('#dataFinal').val().split("-")[0]);
 					$('#dataFinalMes').val($('#dataFinal').val().split("-")[1]);
 					$('#dataFinalDia').val($('#dataFinal').val().split("-")[2]);
+					carregarImagens($('#adicionaImagem'), $('#quantidadeImagem'), 'previrImagem', 'selecionaImagem', 'imagemPrevia', 'removerImagem', 'imagem', $('#cadastro_viagem').attr('action'), 'idImagemViagem', 'carregarImagem');
 				});
 			</script>			
 		</div>
