@@ -193,6 +193,8 @@ public abstract class BaseController extends HttpServlet {
 				BufferedImage buffer = ImageIO.read(imagem);
 				ServletOutputStream out = this.resposta.getOutputStream(); 
 				ImageIO.write(buffer, "jpeg", this.resposta.getOutputStream());  
+				this.resposta.resetBuffer();
+				this.resposta.reset();
 				out.flush();  
 				out.close();
 			} else {

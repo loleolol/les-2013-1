@@ -154,10 +154,34 @@ function removerImagem(campo1, campo2, quantidade) {
 	$(campo2).remove();
 }
 
+
+function carregarImagens(campo, quantidade, acao, seleciona, imagem, remove, input, url, id, acaoCarregar) {
+	var quant = $(quantidade).val();
+	$(quantidade).val(0);
+	var indice;
+	var urlCampo;
+	var t;
+	for (indice = 1; indice <= quant; indice++) {
+		t = '#'+id+indice;
+		urlCampo = url+"?acao="+acaoCarregar+"&id="+$(t).val();
+		adicionaCampoImagem(campo, quantidade, acao, seleciona, imagem, remove, input);
+		$('#imagemPrevia'+indice).attr("src", "/les20131/view/publico/imagens/carregando.gif");
+		(function(index, link) {
+	        setTimeout(function() { carregarImagem($('#imagemPrevia'+index), link); }, ((index-1)*1000));
+	    })(indice, urlCampo);
+	}
+}
+
+function carregarImagem(imagem, url) {
+	if ($(imagem) != undefined) {
+		$(imagem).attr("src", url);
+	}
+}
+
 function adicionaCampoImagem(campo, quantidade, acao, seleciona, imagem, remove, input) {
 	$(quantidade).val(parseInt($(quantidade).val())+1);
-	indice = $(quantidade).val();
-	str = "<div id=\""+seleciona+indice+"\" class=\"imagem_bloco\">"
+	var indice = $(quantidade).val();
+	var str = "<div id=\""+seleciona+indice+"\" class=\"imagem_bloco\">"
 	 + "<img id=\""+imagem+indice+"\" class=\"imagem_edicao\" src=\"/les20131/view/publico/imagens/semimagem.png\" onclick=\"$('#"+input+indice+"').click()\"/>"
 	 + "<span id=\""+remove+indice+"\" class=\"remover sobrepoe\" onclick=\"removerImagem($('#"+seleciona+indice+"'), $('#"+input+indice+"'), $('#"+$(quantidade).attr("id")+"'))\"></span>"
 	 + "</div>"
