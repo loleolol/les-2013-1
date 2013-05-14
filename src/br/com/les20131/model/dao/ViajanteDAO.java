@@ -109,16 +109,20 @@ public class ViajanteDAO extends DAOBase<Viajante> {
             String sql = "UPDATE viajante SET"
                         + "\n sexo = ?"
                         + "\n, data_nascimento = ?"
-                        + "\n, latitude = ?"
-                        + "\n, longitude = ?"
+            			+ "\n, latitude = "+(obj.getLatitude() != -9999 ? "?" : "NULL")
+            			+ "\n, longitude = "+(obj.getLongitude() != -9999 ? "?" : "NULL")
                         + "\n, imagem = ?"
                         + "\n WHERE id_usuario = ?";
 
             stmt = this.conexao.prepareStatement(sql);
             stmt.setString(++indice, obj.getSexo());
             stmt.setDate(++indice, new java.sql.Date(obj.getDataNascimento().getTime()));
-            stmt.setDouble(++indice, obj.getLatitude());
-            stmt.setDouble(++indice, obj.getLongitude());
+            if (obj.getLatitude() != -9999) {
+            	stmt.setDouble(++indice, obj.getLatitude());
+            }
+            if (obj.getLongitude() != -9999) {
+            	stmt.setDouble(++indice, obj.getLongitude());
+            }
             stmt.setBlob(++indice, obj.getImagem());
             stmt.setInt(++indice, obj.getIdUsuario());
             stmt.executeUpdate();

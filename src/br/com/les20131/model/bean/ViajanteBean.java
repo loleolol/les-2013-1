@@ -118,11 +118,15 @@ public class ViajanteBean extends UsuarioBean {
       	this.viajante.setNome(nome);
       	this.viajante.setSexo(sexo);
       	this.viajante.setDataNascimento(dateFormat.parse(dataNascimento));
-      	if (latitude != null) {
+      	if (latitude.isEmpty() == false) {
       		this.viajante.setLatitude(Double.parseDouble(latitude));
+      	} else {
+      		this.viajante.setLatitude(-9999);
       	}
-      	if (longitude != null) {
+      	if (longitude.isEmpty() == false) {
       		this.viajante.setLongitude(Double.parseDouble(longitude));
+      	} else {
+      		this.viajante.setLongitude(-9999);
       	}
       	if (imagem != null) {
       		this.viajante.setImagem(imagem);
