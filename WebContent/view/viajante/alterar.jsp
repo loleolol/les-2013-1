@@ -24,15 +24,15 @@
 			function initialize() {
 				var latitude = document.getElementById("latitude").value;
 				var longitude = document.getElementById("longitude").value;
-				if (isNaN(latitude)) {
+				var semPosicao = false;
+				if ((latitude == -9999) && (longitude == -9999)) {
 					latitude = -20.767954;
-				}
-				if (isNaN(longitude)) {
 					longitude = -48.071657;
+					semPosicao = true;
 				}
 				posicao = new google.maps.LatLng(latitude,longitude);
 				var mapOptions = {
-					center: new google.maps.LatLng(posicao),
+					center: posicao,
 					zoom: 3,
 					mapTypeId: google.maps.MapTypeId.ROADMAP
 				};
@@ -49,8 +49,9 @@
 					document.getElementById("latitude").setAttribute("value", "");
 					document.getElementById("longitude").setAttribute("value", "");
 				}
-
-				placeMarker(posicao);
+				if (semPosicao == false) {
+					placeMarker(posicao);
+				}
 			}
 
 			function placeMarker(location) {
@@ -111,7 +112,7 @@
                     	<input id="sexoF" type="radio" name="sexo" value="F" ${viajanteBean.viajante.sexo == 'F' ? 'checked' : ''}/><label class="label_radio" for="sexoF">Feminino</label>
 	                    <span id="sexoErro" class="atencao"></span>
 					</div>
-					<div class="block">
+					<div class="block mapa">
 						<label for="map-canvas">Localização:</label>
 						<a class="remover" href="javascript:void(0)" 
 							onclick="map.clearOverlays();">

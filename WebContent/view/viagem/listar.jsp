@@ -34,26 +34,35 @@
 	            <c:forEach items="${viagemBean.listaViagem}" var="viagem">
 		            <fieldset>
 	                <legend>${viagem.titulo}</legend>
-						<a class="editar" href="javascript:void(0)" 
-							onclick="$('#acao_${viagem.idViagem}').val('Selecionar'); $('#viagem_${viagem.idViagem}').submit()">
-						</a>
-						<a class="remover" href="javascript:void(0)" 
-							onclick="$('#acao_${viagem.idViagem}').val('Excluir'); confirmaExclusao($('#viagem_${viagem.idViagem}'))">
-						</a>
-						<form id="viagem_${viagem.idViagem}" class="formulario_invisivel" 
-							action="<c:url value="/Viagem"></c:url>" method="post">
-							<textarea readonly rows=8 cols=55>${viagem.descricao}</textarea>
-							<br/>
-							<span>
-								Realizada no período de ${fn:substring(viagem.dataInicial, 0, 10)} 
-								à ${fn:substring(viagem.dataFinal, 0, 10)}
-							</span>
-							<input id="acao_${viagem.idViagem}" type="hidden" name="acao" value=""/>
-							<input type="hidden" name="idViagem" value="${viagem.idViagem}"/>
-					    </form>
+	                	<div class="container">
+		                	<a class="editar" href="javascript:void(0)" 
+								onclick="$('#acao${viagem.idViagem}').val('Selecionar'); $('#viagem${viagem.idViagem}').submit()">
+							</a>
+							<a class="remover" href="javascript:void(0)" 
+								onclick="$('#acao${viagem.idViagem}').val('Excluir'); confirmaExclusao($('#viagem${viagem.idViagem}'))">
+							</a>
+							<div class="galeria">
+							</div>
+		                	<form id="viagem${viagem.idViagem}" class="formulario_padrao" 
+								action="<c:url value="/Viagem"></c:url>" method="post">
+								<textarea readonly rows=8 cols=55>${viagem.descricao}</textarea>
+								<br/>
+								<span>
+									Realizada no período de ${fn:substring(viagem.dataInicial, 0, 10)} 
+									à ${fn:substring(viagem.dataFinal, 0, 10)}
+								</span>
+								<input id="acao${viagem.idViagem}" type="hidden" name="acao" value=""/>
+								<input type="hidden" name="idViagem" value="${viagem.idViagem}"/>
+						        <input id="quantidadeImagem${viagem.idViagem}" type="hidden" name="quantidadeImagem" value="${fn:length(imagemViagemBean.listaImagemViagem)}"/>
+						    </form>
+						 </div>
 				    </fieldset>
 	            </c:forEach>
             </fieldset>
+			<script type="text/javascript">
+				$(document).ready(function() { 
+				});
+			</script>			
 		</div>			
     </body>
 </html>

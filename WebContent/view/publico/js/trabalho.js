@@ -149,9 +149,13 @@ function confirmaExclusao(form) {
     }
 }
 
-function removerImagem(campo1, campo2, quantidade) {
+function removerImagem(campo1, campo2, id, quantidade) {
 	$(campo1).remove();
 	$(campo2).remove();
+	$(quantidade).val($(quantidade).val()-1);
+	if (id != undefined) {
+		$(id).remove();
+	}
 }
 
 
@@ -164,7 +168,7 @@ function carregarImagens(campo, quantidade, acao, seleciona, imagem, remove, inp
 	for (indice = 1; indice <= quant; indice++) {
 		t = '#'+id+indice;
 		urlCampo = url+"?acao="+acaoCarregar+"&id="+$(t).val();
-		adicionaCampoImagem(campo, quantidade, acao, seleciona, imagem, remove, input);
+		adicionaCampoImagem(campo, quantidade, acao, seleciona, imagem, remove, input, id);
 		$('#imagemPrevia'+indice).attr("src", "/les20131/view/publico/imagens/carregando.gif");
 		(function(index, link) {
 	        setTimeout(function() { carregarImagem($('#imagemPrevia'+index), link); }, ((index-1)*1000));
@@ -178,15 +182,18 @@ function carregarImagem(imagem, url) {
 	}
 }
 
-function adicionaCampoImagem(campo, quantidade, acao, seleciona, imagem, remove, input) {
+function adicionaCampoImagem(campo, quantidade, acao, seleciona, imagem, remove, input, id) {
 	$(quantidade).val(parseInt($(quantidade).val())+1);
 	var indice = $(quantidade).val();
 	var str = "<div id=\""+seleciona+indice+"\" class=\"imagem_bloco\">"
-	 + "<img id=\""+imagem+indice+"\" class=\"imagem_edicao\" src=\"/les20131/view/publico/imagens/semimagem.png\" onclick=\"$('#"+input+indice+"').click()\"/>"
-	 + "<span id=\""+remove+indice+"\" class=\"remover sobrepoe\" onclick=\"removerImagem($('#"+seleciona+indice+"'), $('#"+input+indice+"'), $('#"+$(quantidade).attr("id")+"'))\"></span>"
-	 + "</div>"
-	 + "<input id=\""+input+indice+"\" type=\"file\" name=\""+input+indice+"\" accept=\"image/x-png, image/jpeg\""
-	 + " onchange=\"trocaImagem($('#"+imagem+indice+"'), $('#"+input+indice+"'), $(this.form).attr('action'), '"+acao+"')\"/>";
+	 	+ "<img id=\""+imagem+indice+"\" class=\"imagem_edicao\" src=\"/les20131/view/publico/imagens/semimagem.png\" onclick=\"$('#"+input+indice+"').click()\"/>"
+	 	+ "<span id=\""+remove+indice+"\" class=\"remover sobrepoe\" onclick=\"removerImagem($('#"+seleciona+indice+"'), $('#"+input+indice+"')";
+	if (id != undefined) {
+		str += ", $('#"+id+indice+"')";
+	}
+	str += ", $('#"+$(quantidade).attr("id")+"'))\"></span></div>"
+		+ "<input id=\""+input+indice+"\" type=\"file\" name=\""+input+indice+"\" accept=\"image/x-png, image/jpeg\""
+		+ " onchange=\"trocaImagem($('#"+imagem+indice+"'), $('#"+input+indice+"'), $(this.form).attr('action'), '"+acao+"')\"/>";
 
 	$(campo).before(str);
 	$("#"+input+indice).click();
