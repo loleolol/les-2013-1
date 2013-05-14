@@ -190,8 +190,8 @@ public class ModuloViajanteController extends BaseController {
        	if (imagemParte.getSize() > 0) {
     	    imagem = imagemParte.getInputStream();
         }
-        this.validarViajante(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), this.requisicao.getParameter("nome"), this.requisicao.getParameter("sexo"), dataNascimento);
-        viajanteBean.alterar(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), this.requisicao.getParameter("nome"), this.requisicao.getParameter("sexo"), dataNascimento, imagem);
+        this.validarViajante(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), this.requisicao.getParameter("nome"), this.requisicao.getParameter("sexo"), dataNascimento, this.requisicao.getParameter("latitude"), this.requisicao.getParameter("longitude"));
+        viajanteBean.alterar(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), this.requisicao.getParameter("nome"), this.requisicao.getParameter("sexo"), dataNascimento, this.requisicao.getParameter("latitude"), this.requisicao.getParameter("longitude"), imagem);
         this.requisicao.setAttribute("viajanteBean", viajanteBean);
     }
     
@@ -228,14 +228,18 @@ public class ModuloViajanteController extends BaseController {
      * @param String nome
      * @param String sexo
      * @param String dataNascimento
+     * @param String latitude
+     * @param String longitude
      * @return void
      * @throws Exception
      */
-    private void validarViajante(int idUsuario, String nome, String sexo, String dataNascimento) throws Exception {
+    private void validarViajante(int idUsuario, String nome, String sexo, String dataNascimento, String latitude, String longitude) throws Exception {
     	this.validarIdUsuario(idUsuario);
         this.validarNome(nome);
         this.validarSexo(sexo);
         this.validarDataNascimento(dataNascimento);
+        this.validarLatitude(latitude);
+        this.validarLongitude(longitude);
     }
     
     /**
@@ -375,6 +379,40 @@ public class ModuloViajanteController extends BaseController {
     		dateFormat.parse(dataNascimento);
     	} catch (Exception excecao) {
     		throw new Exception("Data de nascimento inválida.");
+    	}
+    }
+    
+    /**
+     * Valida a latitude
+     * @access private
+     * @param String latitude
+     * @return void
+     * @throws Exception
+     */
+    private void validarLatitude(String latitude) throws Exception {
+    	if (latitude.isEmpty() == false) {
+	    	try {
+	    		Double.parseDouble(latitude);
+	    	} catch (Exception excecao) {
+	    		throw new Exception("Latitude inválida.");
+	    	}
+    	}
+    }
+    
+    /**
+     * Valida a longitude
+     * @access private
+     * @param String longitude
+     * @return void
+     * @throws Exception
+     */
+    private void validarLongitude(String longitude) throws Exception {
+    	if (longitude.isEmpty() == false) {
+	    	try {
+	    		Double.parseDouble(longitude);
+	    	} catch (Exception excecao) {
+	    		throw new Exception("Longitude inválida.");
+	    	}
     	}
     }
     

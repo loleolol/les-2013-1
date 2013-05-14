@@ -167,7 +167,7 @@ public class ModuloAdminViajanteController extends BaseController {
 	    Part imagemParte = this.requisicao.getPart("imagem");
 	    InputStream imagem = imagemParte.getInputStream();
         this.validarViajante(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), this.requisicao.getParameter("nome"), this.requisicao.getParameter("sexo"), dataNascimento);
-        viajanteBean.alterar(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), this.requisicao.getParameter("nome"), this.requisicao.getParameter("sexo"), dataNascimento, imagem);
+        //viajanteBean.alterar(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), this.requisicao.getParameter("nome"), this.requisicao.getParameter("sexo"), dataNascimento, imagem);
         this.requisicao.setAttribute("viajanteBean", viajanteBean);
     }
     
