@@ -22,13 +22,21 @@
 	    	var map;
 	    	var markersArray = [];
 			function initialize() {
+				var latitude = document.getElementById("latitude").value;
+				var longitude = document.getElementById("longitude").value;
+				if (isNaN(latitude)) {
+					latitude = -20.767954;
+				}
+				if (isNaN(longitude)) {
+					longitude = -48.071657;
+				}
+				posicao = new google.maps.LatLng(latitude,longitude);
 				var mapOptions = {
-					center: new google.maps.LatLng(-20.767954,-48.071657),
+					center: new google.maps.LatLng(posicao),
 					zoom: 3,
 					mapTypeId: google.maps.MapTypeId.ROADMAP
 				};
 				map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-				
 				
 				google.maps.event.addListener(map, 'click', function(event) {
 					placeMarker(event.latLng);
@@ -39,6 +47,8 @@
 						markersArray[i].setMap(null);
 					}
 				}
+
+				placeMarker(posicao);
 			}
 
 			function placeMarker(location) {
@@ -71,7 +81,7 @@
 				        <div id="selecionaImagem" class="imagem_bloco">
 					        <img id="imagemPrevia" class="imagem_edicao" src="<c:url value="/Viajante?acao=carregarImagem&id=${viajanteBean.viajante.idUsuario}"></c:url>" onclick="$('#imagem').click()"/>
 						</div>
-				        <input id="imagem" type="file" name="imagem" accept="image/x-png, image/jpeg" onchange="trocaImagem($('#imagemPrevia'), $('#novaImagem'), $('#imagem'), $(this.form).attr('action'), 'previrImagem')"/>
+				        <input id="imagem" type="file" name="imagem" accept="image/x-png, image/jpeg" onchange="trocaImagem($('#imagemPrevia'), $('imagem'), $(this.form).attr('action'), 'previrImagem')"/>
 				        <span id="imagemErro" class="atencao"></span>
 					</div>
 			        <div class="block">
@@ -102,8 +112,8 @@
 					<div class="block">
 						<label>Localização:</label>
 						<div id="map-canvas"></div>
-						<input id="latitude" type="hidden" name="latitude" value=""/>
-						<input id="longitude" type="hidden" name="longitude" value=""/>
+						<input id="latitude" type="hidden" name="latitude" value="${viajanteBean.viajante.latitude}"/>
+						<input id="longitude" type="hidden" name="longitude" value="${viajanteBean.viajante.longitude}"/>
     				</div>
 			        <div class="block">
 			        	<button type="submit" name="acao" value="alterar" >Alterar</button>

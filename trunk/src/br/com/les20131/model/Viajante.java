@@ -26,6 +26,20 @@ public class Viajante extends Usuario {
 	private Date dataNascimento;
 
 	/**
+	 * Armazena a latitude do viajante
+	 * @access private
+	 * @var double
+	 */
+	private double latitude;
+	
+	/**
+	 * Armazena a longitude do viajante
+	 * @access private
+	 * @var double
+	 */
+	private double longitude;
+	
+	/**
 	 * Armazena imagem do viajante
 	 * @access private
 	 * @var InputStream
@@ -56,12 +70,16 @@ public class Viajante extends Usuario {
 	 * @param String senha
 	 * @param String sexo
 	 * @param Date dataNascimento
+	 * @param double latitude
+	 * @param double longitude
 	 * @param InputStream imagem
 	 */
-	public Viajante(int idUsuario, String email, String nome, String senha, int excluido, int bloqueado, String sexo, Date dataNascimento, InputStream imagem) {
+	public Viajante(int idUsuario, String email, String nome, String senha, int excluido, int bloqueado, String sexo, Date dataNascimento, double latitude, double longitude, InputStream imagem) {
 		super(idUsuario, email, nome, senha, excluido, bloqueado);
 		this.sexo = sexo;
 		this.dataNascimento = dataNascimento;
+		this.latitude = latitude;
+		this.longitude = longitude;
 		this.imagem = imagem;
 	}
 	
@@ -103,6 +121,44 @@ public class Viajante extends Usuario {
 	}
 
 	/**
+	 * Retorna a latitude do viajante
+	 * @access public
+	 * @return double
+	 */
+	public double getLatitude() {
+		return latitude;
+	}
+
+	/**
+	 * Define a latitude do viajante
+	 * @access public
+	 * @param double latitude
+	 * @return void
+	 */
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+	/**
+	 * Retorna a latitude do viajante
+	 * @access public
+	 * @return double
+	 */
+	public double getLongitude() {
+		return longitude;
+	}
+
+	/**
+	 * Define a longitude do viajante
+	 * @access public
+	 * @param double longitude
+	 * @return void
+	 */
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+
+	/**
 	 * Retorna a imagem do viajante
 	 * @access public
 	 * @return InputStream
@@ -120,7 +176,5 @@ public class Viajante extends Usuario {
 	public void setImagem(InputStream imagem) {
 		this.imagem = imagem;
 	}
-	
-	
 	
 }

@@ -32,7 +32,7 @@ public class ViajanteDAO extends DAOBase<Viajante> {
         ResultSet resultSet = null;
 
         String sql = "SELECT u.id_usuario, u.email, u.nome, u.senha, u.excluido, u.bloqueado"
-        			+ "\n, v.sexo, v.data_nascimento, v.imagem"
+        			+ "\n, v.sexo, v.data_nascimento, v.latitude, v.longitude, v.imagem"
                     + "\n FROM usuario u, viajante v"
                     + "\n WHERE u.id_usuario = ?"
                     + "\n AND u.id_usuario = v.id_usuario";
@@ -52,6 +52,8 @@ public class ViajanteDAO extends DAOBase<Viajante> {
                                 , resultSet.getInt("bloqueado")
                                 , resultSet.getString("sexo")
                                 , resultSet.getDate("data_nascimento")
+                                , resultSet.getDouble("latitude")
+                                , resultSet.getDouble("longitude")
                                 , resultSet.getBinaryStream("imagem"));
             }
             return viajante;
@@ -107,12 +109,16 @@ public class ViajanteDAO extends DAOBase<Viajante> {
             String sql = "UPDATE viajante SET"
                         + "\n sexo = ?"
                         + "\n, data_nascimento = ?"
+                        + "\n, latitude = ?"
+                        + "\n, longitude = ?"
                         + "\n, imagem = ?"
                         + "\n WHERE id_usuario = ?";
 
             stmt = this.conexao.prepareStatement(sql);
             stmt.setString(++indice, obj.getSexo());
             stmt.setDate(++indice, new java.sql.Date(obj.getDataNascimento().getTime()));
+            stmt.setDouble(++indice, obj.getLatitude());
+            stmt.setDouble(++indice, obj.getLongitude());
             stmt.setBlob(++indice, obj.getImagem());
             stmt.setInt(++indice, obj.getIdUsuario());
             stmt.executeUpdate();

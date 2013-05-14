@@ -104,11 +104,13 @@ public class ViajanteBean extends UsuarioBean {
      * @param String nome
      * @param String sexo
      * @param String dataNascimento
+     * @param String latitude
+     * @param String longitude
      * @param InputStream imagem
      * @return void
      * @throws Exception
      */
-    public void alterar(int idUsuario, String nome, String sexo, String dataNascimento, InputStream imagem) throws Exception {
+    public void alterar(int idUsuario, String nome, String sexo, String dataNascimento, String latitude, String longitude, InputStream imagem) throws Exception {
     	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     	this.usuarioDAO = new UsuarioDAO();
     	this.viajanteDAO = new ViajanteDAO();
@@ -116,6 +118,12 @@ public class ViajanteBean extends UsuarioBean {
       	this.viajante.setNome(nome);
       	this.viajante.setSexo(sexo);
       	this.viajante.setDataNascimento(dateFormat.parse(dataNascimento));
+      	if (latitude != null) {
+      		this.viajante.setLatitude(Double.parseDouble(latitude));
+      	}
+      	if (longitude != null) {
+      		this.viajante.setLongitude(Double.parseDouble(longitude));
+      	}
       	if (imagem != null) {
       		this.viajante.setImagem(imagem);
       	}
