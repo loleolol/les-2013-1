@@ -72,12 +72,12 @@
 	                    <input id="dataFinal" type="hidden" name="dataFinal" value="${dataFinal}"/>
 						
 						<input id="idViagem" type="hidden" name="idViagem" value="${viagemBean.viagem.idViagem}"/>
+	 					<c:forEach items="${imagemViagemBean.listaImagemViagem}" var="imagemViagem" varStatus="chave">
+	 						<input id="idImagemViagem${chave.count}" type="hidden" name="idImagemViagem${chave.count}" value="${imagemViagem.idImagemViagem}"/>
+						</c:forEach>
 					</div>
 			        <div class="block">
 			        	<button type="submit" name="acao" value="alterar">Alterar</button>
-	 					<c:forEach items="${imagemViagemBean.listaImagemViagem}" var="imagemViagem" varStatus="chave">
-	 						<input id="idImagemViagem${chave.count}"type="hidden" name="idImagemViagem${chave.count}" value="${imagemViagem.idImagemViagem}"/>
-						</c:forEach>
 			        </div>
 				</form>
 			</fieldset>

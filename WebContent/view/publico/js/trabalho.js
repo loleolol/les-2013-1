@@ -149,13 +149,12 @@ function confirmaExclusao(form) {
     }
 }
 
-function removerImagem(campo1, campo2, id, quantidade) {
+function removerImagem(campo1, campo2, quantidade, id, imagem, indice) {
+	if (id != undefined) {
+		$(quantidade).before("<input id=\""+id+indice+"\" type=\"hidden\" name=\""+id+indice+"\" value=\""+$('#'+imagem+indice).attr("alt")+"\"/>");
+	}
 	$(campo1).remove();
 	$(campo2).remove();
-	$(quantidade).val($(quantidade).val()-1);
-	if (id != undefined) {
-		$(id).remove();
-	}
 }
 
 
@@ -170,6 +169,8 @@ function carregarImagens(campo, quantidade, acao, seleciona, imagem, remove, inp
 		urlCampo = url+"?acao="+acaoCarregar+"&id="+$(t).val();
 		adicionaCampoImagem(campo, quantidade, acao, seleciona, imagem, remove, input, id);
 		$('#imagemPrevia'+indice).attr("src", "/les20131/view/publico/imagens/carregando.gif");
+		$('#imagemPrevia'+indice).attr("alt", $(t).val());
+		$(t).remove();
 		(function(index, link) {
 	        setTimeout(function() { carregarImagem($('#imagemPrevia'+index), link); }, ((index-1)*1000));
 	    })(indice, urlCampo);
@@ -187,16 +188,18 @@ function adicionaCampoImagem(campo, quantidade, acao, seleciona, imagem, remove,
 	var indice = $(quantidade).val();
 	var str = "<div id=\""+seleciona+indice+"\" class=\"imagem_bloco\">"
 	 	+ "<img id=\""+imagem+indice+"\" class=\"imagem_edicao\" src=\"/les20131/view/publico/imagens/semimagem.png\" onclick=\"$('#"+input+indice+"').click()\"/>"
-	 	+ "<span id=\""+remove+indice+"\" class=\"remover sobrepoe\" onclick=\"removerImagem($('#"+seleciona+indice+"'), $('#"+input+indice+"')";
+	 	+ "<span id=\""+remove+indice+"\" class=\"remover sobrepoe\" onclick=\"removerImagem($('#"+seleciona+indice+"'), $('#"+input+indice+"'), $('#"+$(quantidade).attr("id")+"')";
 	if (id != undefined) {
-		str += ", $('#"+id+indice+"')";
+		str += ", '"+id+"', '"+imagem+"', "+indice;
 	}
-	str += ", $('#"+$(quantidade).attr("id")+"'))\"></span></div>"
+	str += ")\"></span></div>"
 		+ "<input id=\""+input+indice+"\" type=\"file\" name=\""+input+indice+"\" accept=\"image/x-png, image/jpeg\""
 		+ " onchange=\"trocaImagem($('#"+imagem+indice+"'), $('#"+input+indice+"'), $(this.form).attr('action'), '"+acao+"')\"/>";
 
 	$(campo).before(str);
-	$("#"+input+indice).click();
+	if (id == undefined) {
+		$("#"+input+indice).click();
+	}
 }
 
 /**

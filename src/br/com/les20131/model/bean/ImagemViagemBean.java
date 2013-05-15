@@ -2,6 +2,7 @@ package br.com.les20131.model.bean;
 
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
@@ -40,10 +41,12 @@ public class ImagemViagemBean {
 
     /**
      * Construtor da classe
+     * @throws Exception 
      * @access public
      */
-    public ImagemViagemBean() {
-
+    public ImagemViagemBean() throws Exception {
+    	this.listaImagemViagem = new ArrayList<ImagemViagem>();
+    	this.imagemViagemDAO = new ImagemViagemDAO();
     }
 
     /**
@@ -82,7 +85,6 @@ public class ImagemViagemBean {
      * @throws Exception
      */
     public void consultarPorViagem(int idViagem) throws Exception {
-        this.imagemViagemDAO = new ImagemViagemDAO();
         this.listaImagemViagem = this.imagemViagemDAO.consultarPorViagem(idViagem);
     }    
     
@@ -94,10 +96,21 @@ public class ImagemViagemBean {
      * @throws Exception
      */
     public void consultar(int idImagemViagem) throws Exception {
-    	this.imagemViagemDAO = new ImagemViagemDAO();
         this.imagemViagem = this.imagemViagemDAO.consultar(idImagemViagem);
     }
 
+    /**
+     * Consulta uma imagem de viagem e a adiciona à lista
+     * @access public
+     * @param int idImagemViagem
+     * @return void
+     * @throws Exception
+     */
+    public void adicionarLista(int idImagemViagem) throws Exception {
+    	this.imagemViagem = this.imagemViagemDAO.consultar(idImagemViagem);
+    	this.listaImagemViagem.add(this.imagemViagem);
+    }    
+    
     /**
      * Insere um viagem
      * @access public
@@ -107,7 +120,6 @@ public class ImagemViagemBean {
      * @throws Exception
      */
     public void incluir(int idViagem, InputStream imagem) throws Exception {
-    	this.imagemViagemDAO = new ImagemViagemDAO();
     	ViagemDAO viagemDAO = new ViagemDAO();
     	Viagem viagem = viagemDAO.consultar(idViagem);
     	this.imagemViagem = new ImagemViagem(viagem, imagem);
@@ -124,7 +136,6 @@ public class ImagemViagemBean {
      * @throws Exception
      */
     public void alterar(int idImagemViagem, int idViagem, InputStream imagem) throws Exception {
-    	this.imagemViagemDAO = new ImagemViagemDAO();
     	ViagemDAO viagemDAO = new ViagemDAO();
     	this.imagemViagem = imagemViagemDAO.consultar(idImagemViagem);
       	this.imagemViagem.setViagem(viagemDAO.consultar(idViagem));
@@ -140,9 +151,22 @@ public class ImagemViagemBean {
      * @throws Exception
      */
     public void excluir(int idImagemViagem) throws Exception {
-    	this.imagemViagemDAO = new ImagemViagemDAO();
     	this.imagemViagem = imagemViagemDAO.consultar(idImagemViagem);
     	this.imagemViagemDAO.excluir(this.imagemViagem);
-    }	
+    }
+    
+    /**
+     * Exclui uma lista de imagem de viagem
+     * @access public
+     * @param List<ImagemViagem> lista
+     * @return void
+     * @throws Exception
+     */
+    public void excluirLista(List<ImagemViagem> lista) throws Exception {
+    	int indice = 0;
+    	for (indice = 0; indice < lista.size(); indice++) {
+    		this.imagemViagemDAO.excluir(lista.get(indice));
+    	}
+    }
 	
 }
