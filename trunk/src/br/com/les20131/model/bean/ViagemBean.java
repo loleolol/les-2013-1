@@ -1,6 +1,7 @@
 package br.com.les20131.model.bean;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -42,10 +43,12 @@ public class ViagemBean {
 
     /**
      * Construtor da classe
+     * @throws Exception 
      * @access public
      */
-    public ViagemBean() {
-
+    public ViagemBean() throws Exception {
+    	this.listaViagem = new ArrayList<Viagem>();
+    	this.viagemDAO = new ViagemDAO();
     }
 
     /**
@@ -84,7 +87,6 @@ public class ViagemBean {
      * @throws Exception
      */
     public void consultarPorViajante(int idUsuario) throws Exception {
-        this.viagemDAO = new ViagemDAO();
         this.listaViagem = this.viagemDAO.consultarPorViajante(idUsuario);
     }    
     
@@ -96,10 +98,9 @@ public class ViagemBean {
      * @throws Exception
      */
     public void consultar(int idViagem) throws Exception {
-    	this.viagemDAO = new ViagemDAO();
         this.viagem = this.viagemDAO.consultar(idViagem);
     }
-
+    
     /**
      * Insere um viagem
      * @access public
@@ -113,7 +114,6 @@ public class ViagemBean {
      */
     public void incluir(int idUsuario, String titulo, String descricao, String dataInicial, String dataFinal) throws Exception {
     	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    	this.viagemDAO = new ViagemDAO();
     	ViajanteDAO viajanteDAO = new ViajanteDAO();
     	Viajante viajante = viajanteDAO.consultar(idUsuario);
     	this.viagem = new Viagem(viajante, titulo, descricao, dateFormat.parse(dataInicial), dateFormat.parse(dataFinal));
@@ -134,7 +134,6 @@ public class ViagemBean {
      */
     public void alterar(int idViagem, String titulo, String descricao, String dataInicial, String dataFinal) throws Exception {
     	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    	this.viagemDAO = new ViagemDAO();
       	this.viagem = this.viagemDAO.consultar(idViagem);
       	this.viagem.setTitulo(titulo);
       	this.viagem.setDescricao(descricao);
@@ -151,7 +150,6 @@ public class ViagemBean {
      * @throws Exception
      */
     public void excluir(int idViagem) throws Exception {
-    	this.viagemDAO = new ViagemDAO();
       	this.viagem = this.viagemDAO.consultar(idViagem);
     	this.viagemDAO.excluir(this.viagem);
     }

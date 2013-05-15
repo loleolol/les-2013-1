@@ -153,8 +153,30 @@ public class ImagemViagemDAO extends DAOBase<ImagemViagem> {
         }
     }
 
+    /**
+     * Excluir uma imagem de viagem
+     * @access public
+     * @param ImagemViagem obj
+     * @return void
+     * @throws DAOException
+     */
     public void excluir(ImagemViagem obj) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (obj == null) {
+            throw new DAOException("Imagem de viagem inválida para excluir.");
+        }
+        int indice = 0;
+        PreparedStatement stmt = null;
+
+        String sql = "DELETE FROM imagem_viagem"
+                    + "\n WHERE id_imagem_viagem = ?";
+
+        try {
+            stmt = this.conexao.prepareStatement(sql);
+            stmt.setInt(++indice, obj.getIdImagemViagem());
+            stmt.executeUpdate();
+        } catch (Exception excecao) {
+            throw new DAOException(excecao);
+        }
     }
 
     public List<ImagemViagem> consultarTodos() throws DAOException {

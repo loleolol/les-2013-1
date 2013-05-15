@@ -3,7 +3,9 @@ package br.com.les20131.model.bean;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.Part;
 
@@ -35,13 +37,23 @@ public class ViajanteBean extends UsuarioBean {
      * @var Viajante
      */
     private Viajante viajante;
-
+    
+    /**
+     * Armazena uma lista de viajante
+     * @access private
+     * @var List<Viajante>
+     */
+    private List<Viajante> listaViajante;
+    
     /**
      * Construtor da classe
+     * @throws Exception 
      * @access public
      */
-    public ViajanteBean() {
-
+    public ViajanteBean() throws Exception {
+    	this.listaViajante = new ArrayList<Viajante>();
+    	this.viajanteDAO = new ViajanteDAO();
+    	this.usuarioDAO = new UsuarioDAO();
     }
 
     /**
@@ -72,7 +84,6 @@ public class ViajanteBean extends UsuarioBean {
      * @throws Exception
      */
     public void consultar(int idUsuario) throws Exception {
-    	this.viajanteDAO = new ViajanteDAO();
         this.viajante = this.viajanteDAO.consultar(idUsuario);
     }
 
@@ -89,11 +100,9 @@ public class ViajanteBean extends UsuarioBean {
      */
     public void incluir(String email, String nome, String senha, String sexo, String dataNascimento) throws Exception {
     	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    	this.usuarioDAO = new UsuarioDAO();
     	this.viajante = new Viajante(email, nome, senha, sexo, dateFormat.parse(dataNascimento));
     	this.usuarioDAO.incluir((Usuario)this.viajante);
     	this.viajante.setIdUsuario(((Usuario)this.usuarioDAO.consultar(email, senha)).getIdUsuario());
-      	this.viajanteDAO = new ViajanteDAO();
       	this.viajanteDAO.incluir(this.viajante);
     }
 
@@ -112,8 +121,6 @@ public class ViajanteBean extends UsuarioBean {
      */
     public void alterar(int idUsuario, String nome, String sexo, String dataNascimento, String latitude, String longitude, InputStream imagem) throws Exception {
     	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    	this.usuarioDAO = new UsuarioDAO();
-    	this.viajanteDAO = new ViajanteDAO();
       	this.viajante = this.viajanteDAO.consultar(idUsuario);
       	this.viajante.setNome(nome);
       	this.viajante.setSexo(sexo);

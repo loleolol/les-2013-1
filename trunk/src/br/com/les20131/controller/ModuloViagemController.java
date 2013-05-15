@@ -191,7 +191,6 @@ public class ModuloViagemController extends BaseController {
     private void incluirViagem() throws Exception {
     	HttpSession sessao = this.requisicao.getSession();
         ViagemBean viagemBean = new ViagemBean();
-        ImagemViagemBean imagemViagemBean = new ImagemViagemBean();
         String dataInicial = this.requisicao.getParameter("dataInicialAno") 
         		+ '-' + this.requisicao.getParameter("dataInicialMes")
         		+ '-' + this.requisicao.getParameter("dataInicialDia");
@@ -202,16 +201,28 @@ public class ModuloViagemController extends BaseController {
         viagemBean.incluir(((Usuario)sessao.getAttribute("usuario")).getIdUsuario()
         		, this.requisicao.getParameter("titulo"), this.requisicao.getParameter("descricao"), dataInicial, dataFinal);
         
-        int quantidade = Integer.parseInt(this.requisicao.getParameter("quantidadeImagem"));
+        this.incluirImagemViagem(viagemBean.getViagem().getIdViagem());
+        //this.requisicao.setAttribute("mensagemBean", new MensagemBean("Viagem inserida com sucesso!"));
+    }
+    
+    /**
+     * Incluir imagens de viagem
+     * @access private
+     * @param int idViagem
+     * @return void
+     * @throws Exception
+     */
+    private void incluirImagemViagem(int idViagem) throws Exception {
+    	ImagemViagemBean imagemViagemBean = new ImagemViagemBean();
+    	int quantidade = Integer.parseInt(this.requisicao.getParameter("quantidadeImagem"));
        	for (int i = 1; i <= quantidade; i++) {
             Part imagemParte = this.requisicao.getPart("imagem"+i);
            	if (imagemParte != null){
            		if (imagemParte.getSize() > 0) {
-           			imagemViagemBean.incluir(viagemBean.getViagem().getIdViagem(), imagemParte.getInputStream());
+           			imagemViagemBean.incluir(idViagem, imagemParte.getInputStream());
            		}
             }
        	}
-        //this.requisicao.setAttribute("mensagemBean", new MensagemBean("Viagem inserida com sucesso!"));
     }
     
     /**
@@ -233,18 +244,40 @@ public class ModuloViagemController extends BaseController {
         viagemBean.alterar(Integer.parseInt(this.requisicao.getParameter("idViagem"))
         		, this.requisicao.getParameter("titulo"), this.requisicao.getParameter("descricao"), dataInicial, dataFinal);
         
+        this.alterarImagemViagem(viagemBean.getViagem().getIdViagem());
+       	
+       	imagemViagemBean.consultarPorViagem(Integer.parseInt(this.requisicao.getParameter("idViagem")));
+       	this.requisicao.setAttribute("viagemBean", viagemBean);
+    	this.requisicao.setAttribute("imagemViagemBean", imagemViagemBean);
+    }    
+    
+    /**
+     * Alterar uma imagem de viagem
+     * @access private
+     * @param int idViagem
+     * @return void
+     * @throws Exception
+     */
+    private void alterarImagemViagem(int idViagem) throws Exception {
+        ImagemViagemBean imagemViagemBean = new ImagemViagemBean();
         int quantidade = Integer.parseInt(this.requisicao.getParameter("quantidadeImagem"));
        	for (int i = 1; i <= quantidade; i++) {
             Part imagemParte = this.requisicao.getPart("imagem"+i);
            	if (imagemParte != null) {
            		if (imagemParte.getSize() > 0) {
-           			imagemViagemBean.incluir(viagemBean.getViagem().getIdViagem(), imagemParte.getInputStream());
+           			imagemViagemBean.incluir(idViagem, imagemParte.getInputStream());
            		}
             }
-       	}        
-        
-        this.requisicao.setAttribute("viagemBean", viagemBean);
-    }    
+       		String idImagemViagem = this.requisicao.getParameter("idImagemViagem"+i);
+           	if (idImagemViagem != null) {
+           		try {
+	           		this.validarIdImagemViagem(idImagemViagem);
+	           		imagemViagemBean.excluir(Integer.parseInt(idImagemViagem));
+           		} catch (Exception excecao) {
+           		}
+           	}
+       	}     	
+    }
     
     /**
      * Carrega informações da viagem
