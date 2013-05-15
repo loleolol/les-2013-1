@@ -15,5 +15,12 @@
     </head>
 	<body> 
 		<%@include file="usuario/login.jsp"%>
+		<div class="barra_esquerda">
+		</div>
+		<div class="corpo">
+		</div>
+		<div class="barra_direita">
+			<%@include file="viajante/incluir.jsp" %>
+		</div>
 	</body>
 </html>

@@ -77,8 +77,8 @@ public class ViajanteDAO extends DAOBase<Viajante> {
         PreparedStatement stmt = null;
 
         String sql = "INSERT INTO viajante"
-                    + "\n(id_usuario, sexo, data_nascimento)"
-                    + "\n VALUES (?, ?, ?)";
+                    + "\n(id_usuario, sexo, data_nascimento, latitude, longitude)"
+                    + "\n VALUES (?, ?, ?, -9999, -9999)";
 
         try {
             stmt = this.conexao.prepareStatement(sql);
