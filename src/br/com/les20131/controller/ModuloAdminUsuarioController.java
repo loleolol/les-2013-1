@@ -78,8 +78,8 @@ public class ModuloAdminUsuarioController extends BaseController {
      * @throws Exception
      */
     private void acaoBloquear() throws Exception {
-		this.listarUsuarios();
-		this.despachar("/view/admin/listar-usuario.jsp");
+    	this.bloquearUsuarios();
+    	this.despachar("/view/admin/listar-usuario.jsp");
     }
     
     /**
@@ -100,10 +100,27 @@ public class ModuloAdminUsuarioController extends BaseController {
      * @throws Exception
      */
     private void listarUsuarios() throws Exception {
-    	HttpSession sessao = this.requisicao.getSession();
         UsuarioBean usuarioBeanLista = new UsuarioBean();
         usuarioBeanLista.listarUsuarios();
         this.requisicao.setAttribute("usuarioBeanLista", usuarioBeanLista);
+    }
+    
+    /**
+     * Bloqueia os usuários
+     * @access private
+     * @return void
+     * @throws Exception
+     */
+    private void bloquearUsuarios() throws Exception {
+    	UsuarioBean usuarioBean = new UsuarioBean();
+    	for (int i = 0; i < Integer.parseInt(this.requisicao.getParameter("quantidade")); i++) {
+    		String teste = this.requisicao.getParameter("bloqueado"+i);
+    		if (teste != null){
+    			usuarioBean.adicionarLista(Integer.parseInt(teste));
+    		}
+    		//Implementar duas listas para separar marcados de não marcados
+    		//Depois iterar sobre cada lista comparando o valor atual e o valor antigo no banco, para saber se vai mudar ou não
+		}
     }
     
     /**
