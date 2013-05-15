@@ -42,9 +42,13 @@
 								onclick="$('#acao${viagem.idViagem}').val('Excluir'); confirmaExclusao($('#viagem${viagem.idViagem}'))">
 							</a>
 							<div class="galeria">
+								<img id="imagem" src/>
 							</div>
 		                	<form id="viagem${viagem.idViagem}" class="formulario_padrao" 
 								action="<c:url value="/Viagem"></c:url>" method="post">
+			 					<c:forEach items="${imagemViagemBean.listaImagemViagem}" var="imagemViagem" varStatus="chave">
+			 						<input id="imagemUrl${chave.count}" type="hidden" value="+"<c:url value="/Viagem?acao=carregarImagem&id=${imagemViagem.idImagemViagem}"></c:url>/>
+								</c:forEach>
 								<textarea readonly rows=8 cols=55>${viagem.descricao}</textarea>
 								<br/>
 								<span>
