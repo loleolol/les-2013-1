@@ -14,9 +14,6 @@
         <script type="text/javascript" src="/les20131/view/publico/js/jquery-ui.js"></script>
     </head>
 	<body class="perfil" onload="mostraMensagem('${mensagemBean.mensagem}')"> 
-		<%@include file="../usuario/login.jsp"%>
-		<%@include file="menu.jsp" %>
-		<%@include file="adicional.jsp"%>
 		<fieldset>
 		<legend>Cadastre-se</legend>
 			<form id="cadastro_viajante" class="formulario_padrao" action="<c:url value="/Viajante"></c:url>"

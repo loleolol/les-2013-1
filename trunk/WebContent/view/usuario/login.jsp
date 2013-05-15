@@ -17,7 +17,6 @@
 					<input id="loginSenha" type="password" name="loginSenha" value="" maxlength="50"/>
 					<span id="loginSenhaErro"></span>
 					<button type="submit" name="acao" value="login">Login</button>
-					<button type="button" onclick="enviarSemValidacao($('#login'))">Cadastre-se</button>
 					<input type="hidden" name="acao" value="novo"/>
 			    </c:when>
 			    <c:otherwise>

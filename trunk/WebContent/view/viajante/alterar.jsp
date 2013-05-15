@@ -112,7 +112,7 @@
                     	<input id="sexoF" type="radio" name="sexo" value="F" ${viajanteBean.viajante.sexo == 'F' ? 'checked' : ''}/><label class="label_radio" for="sexoF">Feminino</label>
 	                    <span id="sexoErro" class="atencao"></span>
 					</div>
-					<div class="block mapa">
+					<div class="block container">
 						<label for="map-canvas">Localização:</label>
 						<a class="remover" href="javascript:void(0)" 
 							onclick="map.clearOverlays();">
