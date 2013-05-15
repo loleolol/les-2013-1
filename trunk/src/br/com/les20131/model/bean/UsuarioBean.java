@@ -1,5 +1,6 @@
 package br.com.les20131.model.bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.les20131.model.Usuario;
@@ -40,8 +41,9 @@ public class UsuarioBean {
      * Construtor da classe
      * @access public
      */
-    public UsuarioBean() {
-
+    public UsuarioBean() throws Exception{
+    	this.listaUsuario = new ArrayList<Usuario>();
+    	this.usuarioDAO = new UsuarioDAO();
     }
 
     /**
@@ -71,15 +73,6 @@ public class UsuarioBean {
      */
     public List<Usuario> getListaUsuario() {
         return this.listaUsuario;
-    }
-    
-    /**
-     * Retorna a lista de viagens
-     * @access public
-     * @return List<Viagem>
-     */
-    public int getTamanhoListaUsuario() {
-        return this.listaUsuario.size();
     }
     //ADMIN
 
@@ -141,6 +134,28 @@ public class UsuarioBean {
     public void listarUsuarios() throws Exception {
         this.usuarioDAO = new UsuarioDAO();
         this.listaUsuario = this.usuarioDAO.listarUsuarios();
+    }
+    
+    /**
+     * Adiciona usuários selecionados na lista
+     * @access public
+     * @return void
+     * @throws Exception
+     */
+    public void adicionarLista(int id) throws Exception {
+        //this.usuarioDAO = new UsuarioDAO();
+    	usuario = usuarioDAO.consultar(id);
+        this.listaUsuario.add(usuario);
+    }
+    
+    /**
+     * Adiciona usuários selecionados na lista
+     * @access public
+     * @return void
+     * @throws Exception
+     */
+    public void bloquearUsuarios(ArrayList<Usuario> lista) throws Exception {
+        
     }
     //ADMIN
     

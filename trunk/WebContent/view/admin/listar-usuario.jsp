@@ -22,18 +22,24 @@
 		<div class="corpo">
 			<fieldset>
 				<legend>Usuários</legend>
-				<form id="lista_usuarios" class="formulario_invisivel" 
+				<form id="listaUsuarios" class="formulario_invisivel" 
 							action="<c:url value="/AdminUsuario"></c:url>" method="post">
-				<input id="quantidade" name="quantidade" type="hidden" value="${usuarioBeanLista.tamanhoListaUsuario}" />
+				<input id="quantidade" name="quantidade" type="hidden" value="${fn:length(usuarioBeanLista.listaUsuario)}" />
 				<table>
-					<c:forEach items="${usuarioBeanLista.listaUsuario}" var="usuario">
-						<tr>
-							<td>																	
-							<input name="usuario${usuario.idUsuario}" type="checkbox" id="usuario${usuario.idUsuario}" 
-								value="${usuario.idUsuario}" />
-							</td>	
+					<c:forEach items="${usuarioBeanLista.listaUsuario}" var="usuario" varStatus="chave">
+						<c:set scope="request" var="marcadoBloqueado" value="${usuario.bloqueado==1 ? 'checked' : ''}"/>
+						<c:set scope="request" var="marcadoExcluido" value="${usuario.excluido==1 ? 'checked' : ''}"/>
+						<tr>								
 							<td>${usuario.nome}</td>
 							<td>${usuario.email}</td>
+							<td>																	
+							<input name="bloqueado${chave.count}" type="checkbox" id="bloqueado${chave.count}" 
+								value="${usuario.idUsuario}" <c:out value="${marcadoBloqueado}" /> />
+							</td>
+							<td>																	
+							<input name="excluido${chave.count}" type="checkbox" id="excluido${chave.count}" 
+								value="${usuario.idUsuario}" <c:out value="${marcadoExcluido}" />/>
+							</td>
 						</tr>
 					</c:forEach>
 				</table>
