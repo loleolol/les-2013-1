@@ -301,8 +301,12 @@ public class ModuloViagemController extends BaseController {
      * @throws Exception
      */
     private void excluirViagem() throws Exception {
+        int idViagem = Integer.parseInt(this.requisicao.getParameter("idViagem"));
+        ImagemViagemBean imagemViagemBean = new ImagemViagemBean();
+        imagemViagemBean.consultarPorViagem(idViagem);
+        imagemViagemBean.excluirLista(imagemViagemBean.getListaImagemViagem());
         ViagemBean viagemBean = new ViagemBean();
-        viagemBean.excluir(Integer.parseInt(this.requisicao.getParameter("idViagem")));
+        viagemBean.excluir(idViagem);
     }
     
     /**
