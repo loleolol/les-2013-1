@@ -65,8 +65,26 @@ body {
 /* #PÁGINA
    --------------------------------------------*/
    
+#inicial_esquerda {
+	float: left;
+	width: 25%;
+	height: 100%;
+	display: inline-block;
+	padding: 0px;
+	margin: 0px;
+}
+   
+#inicial_centro {
+	float: center;
+	width: 45%;
+	height: 100%;
+	display: inline-block;
+	padding: 0px;
+	margin: 0px;
+}
+
 #barra_esquerda {
-	paddign: 0px;
+	padding: 0px;
 	float: left;
 	text-align: right;
 	display: inline-block;

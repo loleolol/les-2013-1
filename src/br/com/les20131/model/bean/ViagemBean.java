@@ -82,12 +82,16 @@ public class ViagemBean {
     /**
      * Consulta as viagens cadastradas por viajante
      * @access public
-     * @param String idUsuario
+     * @param int idUsuario
      * @return void
      * @throws Exception
      */
     public void consultarPorViajante(int idUsuario) throws Exception {
         this.listaViagem = this.viagemDAO.consultarPorViajante(idUsuario);
+        int indice = 0;
+        for (indice = 0; indice < this.listaViagem.size(); indice++) {
+        	
+        }
     }    
     
     /**
