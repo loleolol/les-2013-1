@@ -65,6 +65,7 @@
             </fieldset>
 			<script type="text/javascript">
 				$(document).ready(function() { 
+					$('#imagem').attr("src", $('imagemUrl1').val());
 				});
 			</script>			
 		</div>			

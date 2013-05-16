@@ -15,11 +15,13 @@
     </head>
 	<body> 
 		<%@include file="usuario/login.jsp"%>
-		<div class="barra_esquerda">
+		<div id="inicial_esquerda">
+			<br/>
 		</div>
-		<div class="corpo">
+		<div id="inicial_centro">
+			<h1>Compartilhe suas experiências e<br/>conheça novas pessoas e lugares</h1>
 		</div>
-		<div class="barra_direita">
+		<div id="barra_direita">
 			<%@include file="viajante/incluir.jsp" %>
 		</div>
 	</body>
