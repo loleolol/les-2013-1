@@ -63,11 +63,11 @@ public class ImagemViagemDAO extends DAOBase<ImagemViagem> {
     /**
      * Consulta as imagens de viagem pela viagem
      * @access public
-     * @param int idViagem
+     * @param Viagem viagem
      * @return List<ImagemViagem>
      * @throws Exception
      */
-    public List<ImagemViagem> consultarPorViagem(int idViagem) throws DAOException {
+    public List<ImagemViagem> consultar(Viagem viagem) throws DAOException {
         PreparedStatement stmt = null;
         ResultSet resultSet = null;
         int indice = 0;
@@ -77,7 +77,7 @@ public class ImagemViagemDAO extends DAOBase<ImagemViagem> {
 
         try {
             stmt = this.conexao.prepareStatement(sql);
-            stmt.setInt(++indice, idViagem);
+            stmt.setInt(++indice, viagem.getIdViagem());
             resultSet = stmt.executeQuery();
 
             List<ImagemViagem> listaImagemViagem = new ArrayList<ImagemViagem>();

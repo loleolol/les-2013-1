@@ -1,6 +1,7 @@
 package br.com.les20131.model;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Classe de viagem
@@ -62,7 +63,14 @@ public class Viagem {
      * @access private
      * @var int
      */
-    private int bloqueado;	
+    private int bloqueado;
+    
+    /**
+     * Armazena a lista de imagem de viagem
+     * @access private
+     * @var List<ImagemViagem>
+     */
+    private List<ImagemViagem> imagemViagem;
 	
 	/**
 	 * Construtor da classe
@@ -242,12 +250,31 @@ public class Viagem {
 	}
 
 	/**
-	 * Define o títuli
+	 * Define o título
 	 * @access public
 	 * @param String titulo
 	 * @return void
 	 */
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
+	}
+	
+	/**
+	 * Define a lista de imagens de viagem
+	 * @access public
+	 * @param ImagemViagem imagemViagem
+	 * @return void
+	 */
+	public void setImagemViagem(List<ImagemViagem> imagemViagem) {
+		this.imagemViagem = imagemViagem;
+	}
+	
+	/**
+	 * Retorna a lista de imagens de viagem
+	 * @access public
+	 * @return List<ImagemViagem>
+	 */
+	public List<ImagemViagem> getImagemViagem() {
+		return this.imagemViagem;
 	}
 }

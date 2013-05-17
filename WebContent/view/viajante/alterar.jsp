@@ -78,11 +78,11 @@
 			<fieldset>
 			<legend>Perfil</legend>
 				<form id="cadastro_viajante" class="formulario_padrao" enctype="multipart/form-data" action="<c:url value="/Viajante"></c:url>" method="post" onsubmit="return validaFormulario(new Array('nome;String;1', 'dataNascimentoDia;int;1', 'dataNascimentoMes;int;1', 'dataNascimentoAno;int;1', 'sexo;String;1'))">
-			        <div class="block edicao_galeria">
+			        <div class="block galeria">
 				        <label for="imagem">Imagem:</label>
 				        <br/>
 				        <div id="selecionaImagem" class="imagem_bloco">
-					        <img id="imagemPrevia" class="imagem_edicao" src="<c:url value="/Viajante?acao=carregarImagem&id=${viajanteBean.viajante.idUsuario}"></c:url>" onclick="$('#imagem').click()"/>
+					        <img id="imagemPrevia" class="imagem" src="<c:url value="/Viajante?acao=carregarImagem&id=${viajanteBean.viajante.idUsuario}"></c:url>" onclick="$('#imagem').click()"/>
 						</div>
 				        <input id="imagem" type="file" name="imagem" accept="image/x-png, image/jpeg" onchange="trocaImagem($('#imagemPrevia'), $('#imagem'), $(this.form).attr('action'), 'previrImagem')"/>
 				        <span id="imagemErro" class="atencao"></span>

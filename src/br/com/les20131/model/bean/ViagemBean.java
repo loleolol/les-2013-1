@@ -10,6 +10,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import br.com.les20131.model.Usuario;
 import br.com.les20131.model.Viagem;
 import br.com.les20131.model.Viajante;
+import br.com.les20131.model.dao.ImagemViagemDAO;
 import br.com.les20131.model.dao.UsuarioDAO;
 import br.com.les20131.model.dao.ViagemDAO;
 import br.com.les20131.model.dao.ViajanteDAO;
@@ -82,17 +83,55 @@ public class ViagemBean {
     /**
      * Consulta as viagens cadastradas por viajante
      * @access public
-     * @param int idUsuario
+     * @param Viajante viajante
      * @return void
      * @throws Exception
      */
-    public void consultarPorViajante(int idUsuario) throws Exception {
-        this.listaViagem = this.viagemDAO.consultarPorViajante(idUsuario);
-        int indice = 0;
-        for (indice = 0; indice < this.listaViagem.size(); indice++) {
-        	
-        }
+    public void consultar(Viajante viajante) throws Exception {
+    	this.consultar((Usuario)viajante, false);
     }    
+    
+    /**
+     * Consulta as viagens cadastradas por usuário
+     * @access public
+     * @param Usuario viajante
+     * @return void
+     * @throws Exception
+     */
+    public void consultar(Usuario viajante) throws Exception {
+    	this.consultar(viajante, false);
+    }
+ 
+    /**
+     * Consulta as viagens cadastradas por usuário
+     * @access public
+     * @param Viajante viajante
+     * @param boolean carregarImagemViagem
+     * @return void
+     * @throws Exception
+     */
+    public void consultar(Viajante viajante, boolean carregarImagemViagem) throws Exception {
+    	this.consultar((Usuario)viajante, carregarImagemViagem);
+    }
+    
+    /**
+     * Consulta as viagens cadastras por viajante
+     * @access public
+     * @param Usuario viajante
+     * @param boolean carregarImagemViagem
+	 * @return void
+     * @throws Exception
+     */
+    public void consultar(Usuario viajante, boolean carregarImagemViagem) throws Exception {
+    	ImagemViagemDAO imagemViagemDAO = new ImagemViagemDAO();
+        this.listaViagem = this.viagemDAO.consultar(viajante);
+        if (carregarImagemViagem == true) {
+	        int indice = 0;
+	        for (indice = 0; indice < this.listaViagem.size(); indice++) {
+	        	this.listaViagem.get(indice).setImagemViagem(imagemViagemDAO.consultar(this.listaViagem.get(indice)));
+	        }
+        }
+    }
     
     /**
      * Consulta um viagem com o código passado por parâmetro
@@ -149,13 +188,12 @@ public class ViagemBean {
     /**
      * Exclui um viagem
      * @access public
-     * @param int idViagem
+     * @param Viagem viagem
      * @return void
      * @throws Exception
      */
-    public void excluir(int idViagem) throws Exception {
-      	this.viagem = this.viagemDAO.consultar(idViagem);
-    	this.viagemDAO.excluir(this.viagem);
+    public void excluir(Viagem viagem) throws Exception {
+    	this.viagemDAO.excluir(viagem);
     }
        
 }

@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.les20131.model.Usuario;
 import br.com.les20131.model.Viagem;
 import br.com.les20131.model.Viajante;
 
@@ -170,11 +171,11 @@ public class ViagemDAO extends DAOBase<Viagem> {
     /**
      * Consulta as viagens pelo viajante
      * @access public
-     * @param int idUsuario
+     * @param Usuario viajante
      * @return List<Viajante>
      * @throws Exception
      */
-    public List<Viagem> consultarPorViajante(int idUsuario) throws DAOException {
+    public List<Viagem> consultar(Usuario viajante) throws DAOException {
         PreparedStatement stmt = null;
         ResultSet resultSet = null;
         int indice = 0;
@@ -184,7 +185,7 @@ public class ViagemDAO extends DAOBase<Viagem> {
 
         try {
             stmt = this.conexao.prepareStatement(sql);
-            stmt.setInt(++indice, idUsuario);
+            stmt.setInt(++indice, viajante.getIdUsuario());
             resultSet = stmt.executeQuery();
 
             List<Viagem> listaViagem = new ArrayList<Viagem>();
