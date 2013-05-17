@@ -178,7 +178,7 @@ public class ModuloViagemController extends BaseController {
     private void listarMinhaViagem() throws Exception {
     	HttpSession sessao = this.requisicao.getSession();
         ViagemBean viagemBean = new ViagemBean();
-        viagemBean.consultarPorViajante(((Usuario)sessao.getAttribute("usuario")).getIdUsuario());
+        viagemBean.consultar(((Usuario)sessao.getAttribute("usuario")), true);
         this.requisicao.setAttribute("viagemBean", viagemBean);
     }	
 	
@@ -246,7 +246,7 @@ public class ModuloViagemController extends BaseController {
         
         this.alterarImagemViagem(viagemBean.getViagem().getIdViagem());
        	
-       	imagemViagemBean.consultarPorViagem(Integer.parseInt(this.requisicao.getParameter("idViagem")));
+       	imagemViagemBean.consultar(viagemBean.getViagem());
        	this.requisicao.setAttribute("viagemBean", viagemBean);
     	this.requisicao.setAttribute("imagemViagemBean", imagemViagemBean);
     }    
@@ -290,7 +290,7 @@ public class ModuloViagemController extends BaseController {
     	viagemBean.consultar(Integer.parseInt(this.requisicao.getParameter("idViagem")));
     	this.requisicao.setAttribute("viagemBean", viagemBean);
     	ImagemViagemBean imagemViagemBean = new ImagemViagemBean();
-    	imagemViagemBean.consultarPorViagem(Integer.parseInt(this.requisicao.getParameter("idViagem")));
+    	imagemViagemBean.consultar(viagemBean.getViagem());
     	this.requisicao.setAttribute("imagemViagemBean", imagemViagemBean);
     }    
     
@@ -301,12 +301,12 @@ public class ModuloViagemController extends BaseController {
      * @throws Exception
      */
     private void excluirViagem() throws Exception {
-        int idViagem = Integer.parseInt(this.requisicao.getParameter("idViagem"));
-        ImagemViagemBean imagemViagemBean = new ImagemViagemBean();
-        imagemViagemBean.consultarPorViagem(idViagem);
-        imagemViagemBean.excluirLista(imagemViagemBean.getListaImagemViagem());
         ViagemBean viagemBean = new ViagemBean();
-        viagemBean.excluir(idViagem);
+        viagemBean.consultar(Integer.parseInt(this.requisicao.getParameter("idViagem")));
+        ImagemViagemBean imagemViagemBean = new ImagemViagemBean();
+        imagemViagemBean.consultar(viagemBean.getViagem());
+        imagemViagemBean.excluirLista(imagemViagemBean.getListaImagemViagem());
+        viagemBean.excluir(viagemBean.getViagem());
     }
     
     /**

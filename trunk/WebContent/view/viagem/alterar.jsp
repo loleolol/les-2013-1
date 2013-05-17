@@ -30,11 +30,11 @@
 				        <input id="titulo" type="text" name="titulo" value="${viagemBean.viagem.titulo}" maxlength="100"/>
 				        <span id="tituloErro" class="atencao"></span>
 					</div>
-			        <div class="block edicao_galeria">
+			        <div class="block galeria">
 				        <label for="previrImagem">Imagens:</label>
 				        <br/>
 				        <input id="quantidadeImagem" type="hidden" name="quantidadeImagem" value="${fn:length(imagemViagemBean.listaImagemViagem)}"/>
-				        <div id="adicionaImagem" class="imagem_edicao adiciona_imagem" onclick="adicionaCampoImagem($('#adicionaImagem'), $('#quantidadeImagem'), 'previrImagem', 'selecionaImagem', 'imagemPrevia', 'removerImagem', 'imagem')">
+				        <div id="adicionaImagem" class="imagem adiciona_imagem" onclick="adicionaCampoImagem($('#adicionaImagem'), $('#quantidadeImagem'), 'previrImagem', 'selecionaImagem', 'imagemPrevia', 'removerImagem', 'imagem')">
 						</div>
 					</div>
 			        <div class="block">

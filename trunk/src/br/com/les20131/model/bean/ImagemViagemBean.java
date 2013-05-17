@@ -80,12 +80,12 @@ public class ImagemViagemBean {
     /**
      * Consulta as imagens de viagens cadastradas por viagem
      * @access public
-     * @param int idViagem
+     * @param Viagem viagem
      * @return void
      * @throws Exception
      */
-    public void consultarPorViagem(int idViagem) throws Exception {
-        this.listaImagemViagem = this.imagemViagemDAO.consultarPorViagem(idViagem);
+    public void consultar(Viagem viagem) throws Exception {
+        this.listaImagemViagem = this.imagemViagemDAO.consultar(viagem);
     }    
     
     /**

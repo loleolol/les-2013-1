@@ -183,11 +183,70 @@ function carregarImagem(imagem, url) {
 	}
 }
 
+function carregarGaleria(id, imagem, url, form) {
+	jQuery.each($('[name='+id+']'), function(i, element) {
+		var d = i*1000;
+		var e = $('#'+form+$(element).val());
+		$('#'+form+$(element).val()).before("<a class=\"proximo\" href=\"javascript:void(0)\""
+				+ " onclick=\"navegarGaleria($('#"+imagem+$(element).val()+"'), '"+url+$(element).val()+"', false)\"></a>");
+		$('#'+form+$(element).val()).before("<a class=\"anterior\" href=\"javascript:void(0)\""
+				+ " onclick=\"navegarGaleria($('#"+imagem+$(element).val()+"'), '"+url+$(element).val()+"', true)\"></a>");
+		setTimeout(function() {
+			var a = '#'+imagem+$(element).val();
+			var b = '#'+url+$(element).val()+'1';
+			var c = $(b).val();
+			$(a).attr("src", c);
+		}, d);						
+	});
+}
+
+function navegarGaleria(imagem, url, reverso) {
+	var achou = false;
+	var mudou = false;
+	var i = 0;
+	var elemento;
+	var quantidade = $('[name='+url+']').length;
+	if (reverso == false) {
+		for(i = 0; i < quantidade; i++) {
+			elemento = $('[name='+url+']')[i];
+			if (achou == true) {
+				$(imagem).attr("src", $(elemento).val());
+				mudou = true;
+			} else if ($(elemento).val() == $(imagem).attr("src")) {
+				achou = true;
+			}
+		}
+		if (mudou == false) {
+			if (quantidade > 0) {
+				elemento = $('[name='+url+']')[0];
+				$(imagem).attr("src", $(elemento).val());
+			}
+		}
+	} else {
+		for(i = (quantidade-1); i >= 0; i--) {
+			elemento = $('[name='+url+']')[i];
+			if (achou == true) {
+				$(imagem).attr("src", $(elemento).val());
+				mudou = true;
+			} else if ($(elemento).val() == $(imagem).attr("src")) {
+				achou = true;
+			}
+		}		
+		if (mudou == false) {
+			if (quantidade > 0) {
+				elemento = $('[name='+url+']')[(quantidade-1)];
+				$(imagem).attr("src", $(elemento).val());
+			}
+		}
+	}
+	
+}
+
 function adicionaCampoImagem(campo, quantidade, acao, seleciona, imagem, remove, input, id) {
 	$(quantidade).val(parseInt($(quantidade).val())+1);
 	var indice = $(quantidade).val();
 	var str = "<div id=\""+seleciona+indice+"\" class=\"imagem_bloco\">"
-	 	+ "<img id=\""+imagem+indice+"\" class=\"imagem_edicao\" src=\"/les20131/view/publico/imagens/semimagem.png\" onclick=\"$('#"+input+indice+"').click()\"/>"
+	 	+ "<img id=\""+imagem+indice+"\" class=\"imagem\" src=\"/les20131/view/publico/imagens/semimagem.png\" onclick=\"$('#"+input+indice+"').click()\"/>"
 	 	+ "<span id=\""+remove+indice+"\" class=\"remover sobrepoe\" onclick=\"removerImagem($('#"+seleciona+indice+"'), $('#"+input+indice+"'), $('#"+$(quantidade).attr("id")+"')";
 	if (id != undefined) {
 		str += ", '"+id+"', '"+imagem+"', "+indice;
