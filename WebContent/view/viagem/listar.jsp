@@ -22,45 +22,43 @@
     </head>
     <body class="perfil" onload="mostraMensagem('${mensagemBean.mensagem}')">
 		<%@include file="../usuario/login.jsp"%>
-		<%@include file="../viajante/menu.jsp" %>
-		<%@include file="../viajante/adicional.jsp"%>
-        <jsp:useBean id="ViagemBean" class="br.com.les20131.model.bean.ViagemBean" scope="request"/>
+		<%@include file="../menu.jsp" %>
+		<%@include file="../adicional.jsp"%>
+        <jsp:useBean id="viagemBean" class="br.com.les20131.model.bean.ViagemBean" scope="request"/>
         <div class="corpo">
-            <fieldset>
-                <legend>Minhas viagens</legend>
-                <form id="lista_viagem" class="formulario_padrao" action="<c:url value="/Viagem"></c:url>" method="post">
-	                <button type="submit" name="acao" value="">Registrar viagem</button>
-	            </form>
-	            <c:forEach items="${viagemBean.listaViagem}" var="viagem">
-		            <fieldset class="formulario_postagem">
-	                <legend>${viagem.titulo}</legend>
-	                	<div class="container">
-		                	<a class="editar" href="javascript:void(0)" 
-								onclick="$('#acao${viagem.idViagem}').val('Selecionar'); $('#viagem${viagem.idViagem}').submit()">
-							</a>
-							<a class="remover" href="javascript:void(0)" 
-								onclick="$('#acao${viagem.idViagem}').val('Excluir'); confirmaExclusao($('#viagem${viagem.idViagem}'))">
-							</a>
-		                	<form id="viagem${viagem.idViagem}" 
-								action="<c:url value="/Viagem"></c:url>" method="post">
-								<c:if test="${fn:length(viagem.imagemViagem) > 0}">
-									<div class="block">
-										<div id="galeria${viagem.idViagem}" class="galeria">
-											<img id="imagem${viagem.idViagem}" class="imagem"/>
-										</div>
+        	<%@include file="viagem.jsp"%>
+            <c:forEach items="${viagemBean.listaViagem}" var="viagem">
+            	<div class="formulario_postagem">
+	            	<div class="previa_perfil postador">
+			    		<img id="imagemBarra" class="imagem_barra" src="<c:url value="/Viajante?acao=carregarImagem&id=${usuarioBean.usuario.idUsuario}"></c:url>"/>
+			    		<span class="texto_alto">${usuarioBean.usuario.nome} compartilhou ${viagem.titulo}</span>               	
+			    	</div>
+	               	<div class="container">
+	                	<a class="editar" href="javascript:void(0)" 
+							onclick="$('#acao${viagem.idViagem}').val('Selecionar'); $('#viagem${viagem.idViagem}').submit()">
+						</a>
+						<a class="remover" href="javascript:void(0)" 
+							onclick="$('#acao${viagem.idViagem}').val('Excluir'); confirmaExclusao($('#viagem${viagem.idViagem}'))">
+						</a>
+	                	<form id="viagem${viagem.idViagem}" 
+							action="<c:url value="/Viagem"></c:url>" method="post">
+							<c:if test="${fn:length(viagem.imagemViagem) > 0}">
+								<div class="block">
+									<div id="galeria${viagem.idViagem}" class="galeria">
+										<img id="imagem${viagem.idViagem}" class="imagem"/>
 									</div>
-								</c:if>
-			 					<c:forEach items="${viagem.imagemViagem}" var="imagemViagem" varStatus="chave">
-			 						<input id="imagemUrl${viagem.idViagem}${chave.count}" name="imagemUrl${viagem.idViagem}" type="hidden" value="<c:url value="/Viagem?acao=carregarImagem&id=${imagemViagem.idImagemViagem}"></c:url>"/>
-								</c:forEach>
-								<div class="block texto">${viagem.descricao}</div>
-								<input id="acao${viagem.idViagem}" type="hidden" name="acao" value=""/>
-								<input type="hidden" name="idViagem" value="${viagem.idViagem}"/>
-						    </form>
-						 </div>
-				    </fieldset>
-	            </c:forEach>
-            </fieldset>
+								</div>
+							</c:if>
+		 					<c:forEach items="${viagem.imagemViagem}" var="imagemViagem" varStatus="chave">
+		 						<input id="imagemUrl${viagem.idViagem}${chave.count}" name="imagemUrl${viagem.idViagem}" type="hidden" value="<c:url value="/Viagem?acao=carregarImagem&id=${imagemViagem.idImagemViagem}"></c:url>"/>
+							</c:forEach>
+							<div class="block texto">${viagem.descricao}</div>
+							<input id="acao${viagem.idViagem}" type="hidden" name="acao" value=""/>
+							<input type="hidden" name="idViagem" value="${viagem.idViagem}"/>
+					    </form>
+				 	</div>
+				 </div>
+            </c:forEach>
 			<script type="text/javascript">
 				$(document).ready(function() { 
 					carregarGaleria('idViagem', 'imagem', 'imagemUrl', 'viagem');

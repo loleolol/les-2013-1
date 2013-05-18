@@ -14,10 +14,10 @@
         <script type="text/javascript" src="/les20131/view/publico/js/jquery-ui.js"></script>
     </head>
 	<body class="perfil">
-		<%@include file="../usuario/login.jsp"%>
+		<%@include file="usuario/login.jsp"%>
 		<%@include file="menu.jsp" %>
 		<div id="corpo">
-			<%@include file="../viagem/incluir.jsp"%>
+			<%@include file="viagem/viagem.jsp" %>
 		</div>
 		<%@include file="adicional.jsp" %>
 	</body>

@@ -17,8 +17,8 @@
     </head>
 	<body class="perfil" onload="mostraMensagem('${mensagemBean.mensagem}')"> 
 		<%@include file="../usuario/login.jsp"%>
-		<%@include file="../viajante/menu.jsp"%>
-		<%@include file="../viajante/adicional.jsp"%>
+		<%@include file="../menu.jsp"%>
+		<%@include file="../adicional.jsp"%>
 		<jsp:useBean id="imagemViagemBean" class="br.com.les20131.model.bean.ImagemViagemBean" scope="request"/>
         <jsp:useBean id="viagemBean" class="br.com.les20131.model.bean.ViagemBean" scope="request"/>
 		<div id="corpo">

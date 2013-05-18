@@ -20,8 +20,6 @@
 					<input type="hidden" name="acao" value="novo"/>
 			    </c:when>
 			    <c:otherwise>
-			    	<img id="imagemBarra" class="imagem_barra" src="<c:url value="/Viajante?acao=carregarImagem&id=${usuarioBean.usuario.idUsuario}"></c:url>"/>
-			    	<label>${usuarioBean.usuario.nome}</label>
 					<button type="button" onclick="enviarSemValidacao($('#login'))">Logoff</button>
 					<input type="hidden" name="acao" value="logoff"/>
 			    </c:otherwise>

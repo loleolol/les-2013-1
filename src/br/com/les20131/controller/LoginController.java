@@ -86,7 +86,7 @@ public class LoginController extends BaseController {
         HttpSession sessao = this.requisicao.getSession(true);
         sessao.setAttribute("usuario", usuarioBean.getUsuario());
         this.verificarSessao();
-        this.despachar("/view/viajante/inicio.jsp");
+        this.despachar("/view/inicio.jsp");
     }
     
     /**

@@ -82,7 +82,7 @@ public class ModuloViajanteController extends BaseController {
      */
     private void acaoPadrao() throws Exception {
 		this.verificarSessao();
-		this.despachar("/view/viajante/inicio.jsp");
+		this.despachar("/view/inicio.jsp");
     }
     
     /**

@@ -92,7 +92,7 @@ public class ModuloViagemController extends BaseController {
 	 * @throws IOException
 	 */
 	private void acaoPadrao() throws Exception {
-		this.despachar("/view/viajante/inicio.jsp");
+		this.despachar("/view/viagem/incluir.jsp");
 	}
 	
 	/**

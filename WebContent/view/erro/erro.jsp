@@ -18,8 +18,8 @@
     </head>
     <body class="perfil">
 		<%@include file="../usuario/login.jsp"%>
-		<%@include file="../viajante/menu.jsp"%>
-		<%@include file="../viajante/adicional.jsp"%>
+		<%@include file="../menu.jsp"%>
+		<%@include file="../adicional.jsp"%>
         <div class="corpo">
             <fieldset>
                 <legend>Erro</legend>
