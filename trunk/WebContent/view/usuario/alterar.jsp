@@ -16,8 +16,8 @@
     </head>
 	<body class="perfil" onload="mostraMensagem('${mensagemBean.mensagem}')"> 
 		<%@include file="../usuario/login.jsp"%>
-		<%@include file="../viajante/menu.jsp"%>
-		<%@include file="../viajante/adicional.jsp"%>
+		<%@include file="../menu.jsp"%>
+		<%@include file="../adicional.jsp"%>
 		<div id="corpo">
 			<fieldset>
 			<legend>Conta</legend>

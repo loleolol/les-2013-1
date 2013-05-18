@@ -268,7 +268,7 @@ th{
 
 .formulario_postagem {
 	position: relative;
-	width: 99%;
+	width: 40%;
 	height: 30%;
 	margin: 0px;
 	padding: 0px;
@@ -323,11 +323,52 @@ th{
 	background: #090;
 }
 
-
+.menu_perfil {
+	border-bottom: solid 1px #CCC;
+	width: 200px;
+}
+.previa_perfil,
+.formulario_menu .previa_perfil {
+	inherit: none;
+    display: inline-block;
+    position: relative;
+	background: #FFF;
+	border: 0px;
+    padding: 0px;
+    margin: 0px;
+}
+.previa_perfil img,
+.formulario_menu .previa_perfil img {
+	width: 50px;
+	height: 50px;
+}
+.previa_perfil :hover,
+.formulario_menu .previa_perfil :hover {
+	inherit: none;
+	cursor: pointer;
+ 	background: #FFF; /* para browsers sem suporte a CSS 3 */
+ 	color: #000; /* para browsers sem suporte a CSS 3 */
+	opacity: 0.6; 
+	filter: alpha(opacity=60); 	
+}
+.postador {
+	position: relative;
+	width: 39%;
+	height: 10%;
+}
 .atencao {
 	color: #F00;
 }
-
+.texto_alto {
+	vertical-align: 250%;
+}
+.texto_centro {
+	vertical-align: 150%;
+}
+.titulo {
+	color: #060;
+	padding: 5px;
+}
 fieldset{
     padding: 0px;
     border:solid 1px #CCC;
