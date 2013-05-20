@@ -333,7 +333,6 @@ th{
     display: inline-block;
     position: relative;
 	background: #FFF;
-	border: 0px;
     padding: 0px;
     margin: 0px;
 }
@@ -402,6 +401,9 @@ legend{
 	position: absolute;
 	z-index: 2;
 }
+.invisivel {
+	display: none;
+}
 .remover {
 	top: 2%;
 	left: 88%;
@@ -456,7 +458,5 @@ legend{
 legend + .block{
     border-top:none;
 }
-label{
-    display: inline-block;
-}
+
 /*  Perfil */

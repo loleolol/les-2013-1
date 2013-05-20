@@ -67,6 +67,15 @@ public class ViajanteBean extends UsuarioBean {
    
     
     /**
+     * Retorna a lista de viajante
+     * @access public
+     * @return List<Viajante>
+     */
+    public List<Viajante> getListaViajante() {
+    	return this.listaViajante;
+    }
+    
+    /**
      * Consulta as viajantes cadastrados
      * @access public
      * @return void
@@ -85,6 +94,17 @@ public class ViajanteBean extends UsuarioBean {
      */
     public void consultar(int idUsuario) throws Exception {
         this.viajante = this.viajanteDAO.consultar(idUsuario);
+    }
+    
+    /**
+     * Consulta viajantes pelo nome
+     * @access public
+     * @param String nome
+     * @return void
+     * @throws Exception
+     */
+    public void consultar(String nome) throws Exception {
+    	this.listaViajante = this.viajanteDAO.consultar(nome);
     }
 
     /**
