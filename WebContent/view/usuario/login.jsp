@@ -3,6 +3,13 @@
 		#Partiu
 	</span>
 	<span class="barra_intervalo">
+		<c:choose>
+			<c:when test="${usuarioBean.usuario != null}">	
+    			<input id="pesquisa" type="text" name="pesquisa" size="30" onchange="pesquisar(this)"/>
+    			<div class="invisivel">
+    			</div>
+    		</c:when>
+    	</c:choose>
 	</span>
 	<span id="barra_login" class="barra_login">
 		<form id="login" class="formulario_padrao" action="<c:url value="/Login"></c:url>" method="post" onsubmit="return validaFormulario(new Array('loginEmail;String;1', 'loginSenha;String;1'))">

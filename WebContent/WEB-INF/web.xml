@@ -72,4 +72,13 @@
     <servlet-name>ModuloAdminViajanteController</servlet-name>
     <url-pattern>/AdminViajante</url-pattern>
   </servlet-mapping>
+  <display-name>PesquisaController</display-name>
+  <servlet>
+    <servlet-name>PesquisaController</servlet-name>
+    <servlet-class>br.com.les20131.controller.PesquisaControllerController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PesquisaController</servlet-name>
+    <url-pattern>/Pesquisa</url-pattern>
+  </servlet-mapping>  
 </web-app>

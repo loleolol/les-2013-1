@@ -3,6 +3,7 @@ package br.com.les20131.model.dao;
 import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.les20131.model.Usuario;
@@ -23,6 +24,13 @@ public class ViajanteDAO extends DAOBase<Viajante> {
         super();
     }
 
+    /**
+     * Consulta um viajante pelo id
+     * @access public
+     * @param int id
+     * @return viajante
+     * @throws DAOException
+     */
     public Viajante consultar(int id) throws DAOException {
     	if (id <= 0) {
             throw new DAOException("Viajante inválido.");
@@ -61,7 +69,50 @@ public class ViajanteDAO extends DAOBase<Viajante> {
             throw new DAOException(excecao);
         }
     }
+    
+    /**
+     * Consulta viajantes pelo nome
+     * @access public
+     * @param String nome
+     * @return List<Viajante>
+     * @throws DAOException
+     */
+    public List<Viajante> consultar(String nome) throws DAOException {
+        int indice = 0;
+        PreparedStatement stmt = null;
+        ResultSet resultSet = null;
 
+        String sql = "SELECT u.id_usuario, u.email, u.nome, u.senha, u.excluido, u.bloqueado"
+        			+ "\n, v.sexo, v.data_nascimento, v.latitude, v.longitude, v.imagem"
+                    + "\n FROM usuario u, viajante v"
+                    + "\n WHERE u.nome LIKE '%?%'"
+                    + "\n AND u.id_usuario = v.id_usuario";
+
+        try {
+            stmt = this.conexao.prepareStatement(sql);
+            stmt.setString(++indice, nome);
+            resultSet = stmt.executeQuery();
+            
+            List<Viajante> lista = new ArrayList<Viajante>();
+            while (resultSet.next()) {
+            	lista.add(new Viajante(resultSet.getInt("id_usuario")
+	                , resultSet.getString("email")
+	                , resultSet.getString("nome")
+	                , resultSet.getString("senha")
+	                , resultSet.getInt("excluido")
+	                , resultSet.getInt("bloqueado")
+	                , resultSet.getString("sexo")
+	                , resultSet.getDate("data_nascimento")
+	                , resultSet.getDouble("latitude")
+	                , resultSet.getDouble("longitude")
+	                , resultSet.getBinaryStream("imagem")));
+            }
+            return lista;
+        } catch (Exception excecao) {
+            throw new DAOException(excecao);
+        }    	
+    }
+    
     /**
      * Incluir um viajante no banco de dados
      * @access public
