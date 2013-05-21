@@ -1,15 +1,9 @@
-function pesquisar(campo) {
-	var data = new FormData();
-	data.append("acao", "pesquisar");
-	data.append("criterio", $(campo).val());
+function pesquisar(campo, retorno) {
 	$.ajax({
 	    url: '/les20131/Pesquisa',
-	    data: data,
-	    cache: false,
-	    contentType: false,
-	    processData: false,
+	    data: {acao: "pesquisar", criterio: $(campo).val()},
 	    type: 'POST',
-	    success: function(data){
+	    success: function(data) {
 	    	alert('teste');
 	    }
 	});

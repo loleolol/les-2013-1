@@ -105,7 +105,7 @@ public class ModuloViajanteController extends BaseController {
      */
     private void acaoInserir() throws Exception {
     	this.incluirViajante();
-    	this.despachar("/view/viajante/inicio.jsp");
+    	this.despachar("/view/inicio.jsp");
     }
     
     /**
