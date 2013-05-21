@@ -8,7 +8,16 @@ package br.com.les20131.model.bean;
 public class ItemPesquisadoBean {
 
 	/**
+	 * Armazena o id do item pesquisado
+	 * @access private
+	 * @var int
+	 */
+	private int id;
+	
+	/**
 	 * Armazena a identificacao do item pesquisado
+	 * @access private
+	 * @var String
 	 */
 	private String identificacao;
 	
@@ -22,13 +31,45 @@ public class ItemPesquisadoBean {
 	//private IMAGEM
 	
 	/**
-	 * Construtor da class
+	 * Construtor da classe
 	 * @access public
 	 */
 	public ItemPesquisadoBean() {
 		
 	}
 	
+	/**
+	 * Construtor da classe
+	 * @access public
+	 * @param int id
+	 * @param String identificacao
+	 * @param String previa
+	 */
+	public ItemPesquisadoBean(int id, String identificacao, String previa) {
+		this.id = id;
+		this.identificacao = identificacao;
+		this.previa = previa;
+	}
+	
+	/**
+	 * Retorna o id do item pesquisado
+	 * @access public
+	 * @return int
+	 */
+	public int getId() {
+		return id;
+	}
+	
+	/**
+	 * Define o id do item pesquisado
+	 * @access public
+	 * @param int id
+	 * @return void
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	/**
 	 * Retorna a identificação do item pesquisado
 	 * @access public

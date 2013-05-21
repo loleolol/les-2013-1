@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import br.com.les20131.model.bean.PesquisaBean;
 
 /**
@@ -38,6 +40,8 @@ public class PesquisaController extends BaseController {
 		try {
 			this.configurarController(request, response);
 			this.verificarSessao();
+			String b = request.getParameter("acao");
+			String e = request.getParameter("pesquisar");
 			if (this.acao.equalsIgnoreCase("pesquisar")) {
 				this.acaoPesquisar();
 			}
@@ -55,6 +59,9 @@ public class PesquisaController extends BaseController {
 	private void acaoPesquisar() throws Exception {
 		PesquisaBean pesquisaBean = new PesquisaBean();
 		pesquisaBean.pesquisar(this.requisicao.getParameter("pesquisar"));
+		Gson gson = new Gson();
+		String json = gson.toJson(pesquisaBean.getListaResultado());
+		this.resposta.getWriter().write(json);
 		
 	}
 

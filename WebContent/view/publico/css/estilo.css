@@ -313,7 +313,8 @@ th{
     background: #FFF; /* para browsers sem suporte a CSS 3 */
     width: 200px;
 	border: 0px;
-    padding: 0px;
+	padding: 0px;
+    text-align: left;
 }
 .formulario_menu button:hover {
     background: #060; /* para browsers sem suporte a CSS 3 */
@@ -363,6 +364,8 @@ th{
 }
 .texto_centro {
 	vertical-align: 150%;
+	padding: 0px;
+	margin: 0px;
 }
 .titulo {
 	color: #060;
