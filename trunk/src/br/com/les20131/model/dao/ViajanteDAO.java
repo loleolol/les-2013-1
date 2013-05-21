@@ -79,13 +79,14 @@ public class ViajanteDAO extends DAOBase<Viajante> {
      */
     public List<Viajante> consultar(String nome) throws DAOException {
         int indice = 0;
+        nome = "%" + nome + "%";
         PreparedStatement stmt = null;
         ResultSet resultSet = null;
 
         String sql = "SELECT u.id_usuario, u.email, u.nome, u.senha, u.excluido, u.bloqueado"
         			+ "\n, v.sexo, v.data_nascimento, v.latitude, v.longitude, v.imagem"
                     + "\n FROM usuario u, viajante v"
-                    + "\n WHERE u.nome LIKE '%?%'"
+                    + "\n WHERE u.nome LIKE ?"
                     + "\n AND u.id_usuario = v.id_usuario";
 
         try {

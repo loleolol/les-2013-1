@@ -5,8 +5,8 @@
 	<span class="barra_intervalo">
 		<c:choose>
 			<c:when test="${usuarioBean.usuario != null}">	
-    			<input id="pesquisa" type="text" name="pesquisa" size="30" onchange="pesquisar(this)"/>
-    			<div class="invisivel">
+    			<input id="pesquisa" type="text" name="pesquisa" size="30" onchange="pesquisar(this, $('#retornoPesquisa'))"/>
+    			<div id="retornoPesquisa" class="invisivel">
     			</div>
     		</c:when>
     	</c:choose>

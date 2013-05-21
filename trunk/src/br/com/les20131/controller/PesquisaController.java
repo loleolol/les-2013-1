@@ -40,8 +40,6 @@ public class PesquisaController extends BaseController {
 		try {
 			this.configurarController(request, response);
 			this.verificarSessao();
-			String b = request.getParameter("acao");
-			String e = request.getParameter("pesquisar");
 			if (this.acao.equalsIgnoreCase("pesquisar")) {
 				this.acaoPesquisar();
 			}
@@ -58,11 +56,13 @@ public class PesquisaController extends BaseController {
 	 */
 	private void acaoPesquisar() throws Exception {
 		PesquisaBean pesquisaBean = new PesquisaBean();
-		pesquisaBean.pesquisar(this.requisicao.getParameter("pesquisar"));
-		Gson gson = new Gson();
-		String json = gson.toJson(pesquisaBean.getListaResultado());
-		this.resposta.getWriter().write(json);
-		
+		String criterio = this.requisicao.getParameter("criterio");
+		if (criterio != null && criterio.length() > 0) {
+			pesquisaBean.pesquisar(criterio);
+			this.resposta.setContentType("application/json");
+			this.resposta.setCharacterEncoding("UTF-8");
+			this.resposta.getWriter().write(new Gson().toJson(pesquisaBean.getListaResultado()));		
+		}
 	}
 
 }
