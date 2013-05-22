@@ -422,6 +422,7 @@ legend{
 	box-shadow: 0 0 10px rgba(0,0,0,0.8);
 }
 .item_retorno_pesquisa {
+	cursor: pointer;
 	position: relative;
 	color: #000;
 	border-bottom: 1px solid #CCC;
@@ -430,7 +431,6 @@ legend{
 .item_retorno_pesquisa:hover {
 	color: #FFF;
 	background: rgb(57, 130, 53);
-    background: rgba(57, 130, 53);
 }
 .item_retorno_pesquisa img {
 	width: 40px;
