@@ -9,17 +9,25 @@ function pesquisar(campo, retorno) {
 	    		$(retorno).attr("class", "retorno_pesquisa");
 		    	$(retorno).width($(campo).width());
 		    	var i = 0;
-		    	for (i = 0; i < data.length; i++) {
+		    	var quantidade = (data.length < 3 ? data.length : 3);
+		    	var aux = 15;
+		    	for (i = 0; i < quantidade; i++) {
 			    	var string = "<div id=\"itemRetornoPesquisaPrevia\" class=\"item_retorno_pesquisa\">"
-			    		+"<img id=\"imagemPreviaPesquisa"+i+"\" class=\"imagem_barra\"/>"
+			    		+"<img id=\"imagemPreviaPesquisa"+i+"\" class=\"imagem_barra\" src=\"/les20131/view/publico/imagens/carregando.gif\"/>"
 			    		+"<span class=\"texto_centro\">"+data[i].identificacao+"</span>"
 			    		+"<span class=\"texto_baixo\">"+data[i].previa+"</span>"
 			    		+"</div>";
-			    	link = "/les20131/Viajante?acao=carregarImagem&id="+data[i].id;
-			    	$(retorno).append(string)
-			    	setTimeout((function(indice) { carregarImagem($('#imagemPreviaPesquisa'+indice), link); }(i)), ((i-1)*1000));
+			    	if (i == 2 && data.length > 2) {
+			    		string += "<div class=\"item_retorno_pesquisa\">Para mais resultados, clique aqui</div>";
+			    		aux = 19;
+			    	}
+			    	$(retorno).append(string);
+			    	urlCampo = "/les20131/Viajante?acao=carregarImagem&id="+data[i].id;
+			    	(function(index, link) {
+				        setTimeout(function() { carregarImagem($('#imagemPreviaPesquisa'+index), link); }, (index*1000));
+				    })(i, urlCampo);			    	
 		    	}
-		    	$(retorno).height(($('#itemRetornoPesquisaPrevia').height()*data.length)+(15*data.length));
+		    	$(retorno).height(($('#itemRetornoPesquisaPrevia').height()*i)+(aux*i));
 	    	} else {
 	    		$(retorno).attr("class", "retorno_pesquisa invisivel");
 	    	}
