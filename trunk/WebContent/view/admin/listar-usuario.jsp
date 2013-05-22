@@ -35,10 +35,18 @@
 							<td>																	
 							<input name="bloqueado${chave.count}" type="checkbox" id="bloqueado${chave.count}" 
 								value="${usuario.idUsuario}" <c:out value="${marcadoBloqueado}" /> />
+							<c:if test="${usuario.bloqueado==1}">
+								<input type="hidden" name="hbloqueado${chave.count}" id="hbloqueado${chave.count}"
+								value="${usuario.idUsuario}"/>
+							</c:if>							
 							</td>
 							<td>																	
 							<input name="excluido${chave.count}" type="checkbox" id="excluido${chave.count}" 
 								value="${usuario.idUsuario}" <c:out value="${marcadoExcluido}" />/>
+							<c:if test="${usuario.bloqueado==1}">
+								<input type="hidden" name="hexcluido${chave.count}" id="hexcluido${chave.count}"
+								value="${usuario.idUsuario}"/>
+							</c:if>	
 							</td>
 						</tr>
 					</c:forEach>

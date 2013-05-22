@@ -5,6 +5,9 @@ import br.com.les20131.model.bean.UsuarioBean;
 import br.com.les20131.util.InvalidPageException;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -106,21 +109,56 @@ public class ModuloAdminUsuarioController extends BaseController {
     }
     
     /**
-     * Bloqueia os usuários
+     * Bloqueia/Desbloqueia os usuários
      * @access private
      * @return void
      * @throws Exception
      */
     private void bloquearUsuarios() throws Exception {
     	UsuarioBean usuarioBean = new UsuarioBean();
-    	for (int i = 0; i < Integer.parseInt(this.requisicao.getParameter("quantidade")); i++) {
-    		String teste = this.requisicao.getParameter("bloqueado"+i);
-    		if (teste != null){
-    			usuarioBean.adicionarLista(Integer.parseInt(teste));
+    	usuarioBean.iniciaListasBloquear();
+    	for (int i = 1; i <= Integer.parseInt(this.requisicao.getParameter("quantidade")); i++) {
+    		String bloqueado = this.requisicao.getParameter("bloqueado"+i);
+    		String hbloqueado = this.requisicao.getParameter("hbloqueado"+i);
+    		if (bloqueado != null){    			
+    			if(hbloqueado == null){
+    				usuarioBean.adicionarListaBloquear(Integer.parseInt(bloqueado));
+    			}    			
     		}
-    		//Implementar duas listas para separar marcados de não marcados
-    		//Depois iterar sobre cada lista comparando o valor atual e o valor antigo no banco, para saber se vai mudar ou não
+    		else{
+    			if(hbloqueado != null){
+    				usuarioBean.adicionarListaDesbloquear(Integer.parseInt(hbloqueado));
+    			}    			
+    		}
 		}
+    	usuarioBean.bloquearDesbloquear();
+    }
+    
+    /**
+     * Exclui/Adiciona os usuários
+     * @access private
+     * @return void
+     * @throws Exception
+     */
+    private void excluirUsuarios() throws Exception {
+    	//ALTERAR MÉTODOS PARA EXCLUIR
+    	UsuarioBean usuarioBean = new UsuarioBean();
+    	usuarioBean.iniciaListasBloquear();
+    	for (int i = 1; i <= Integer.parseInt(this.requisicao.getParameter("quantidade")); i++) {
+    		String bloqueado = this.requisicao.getParameter("bloqueado"+i);
+    		String hbloqueado = this.requisicao.getParameter("hbloqueado"+i);
+    		if (bloqueado != null){    			
+    			if(hbloqueado == null){
+    				usuarioBean.adicionarListaBloquear(Integer.parseInt(bloqueado));
+    			}    			
+    		}
+    		else{
+    			if(hbloqueado != null){
+    				usuarioBean.adicionarListaDesbloquear(Integer.parseInt(hbloqueado));
+    			}    			
+    		}
+		}
+    	usuarioBean.bloquearDesbloquear();
     }
     
     /**
