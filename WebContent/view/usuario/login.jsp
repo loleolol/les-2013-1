@@ -4,10 +4,13 @@
 	</span>
 	<span class="barra_intervalo">
 		<c:choose>
-			<c:when test="${usuarioBean.usuario != null}">	
-    			<input id="pesquisa" type="text" name="pesquisa" size="30" onchange="pesquisar(this, $('#retornoPesquisa'))"/>
-    			<div id="retornoPesquisa" class="invisivel">
-    			</div>
+			<c:when test="${usuarioBean.usuario != null}">
+				<form id="formularioPesquisa" class="formulario_padrao" action="<c:url value="/Pesquisa"></c:url>">
+	    			<input id="pesquisa" type="text" name="pesquisa" size="50" onkeyup="pesquisar(this, $('#retornoPesquisa'))"/>
+	    			<button name="acao" value="pesquisar">Pesquisar</button>
+	    			<div id="retornoPesquisa" class="retorno_pesquisa invisivel">
+	    			</div>
+	    		</form>
     		</c:when>
     	</c:choose>
 	</span>
