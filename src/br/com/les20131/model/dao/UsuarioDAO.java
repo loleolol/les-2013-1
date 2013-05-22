@@ -244,6 +244,34 @@ public class UsuarioDAO extends DAOBase<Usuario> {
             throw new DAOException(excecao);
         }
     }
+    
+    /**
+     * Bloquear um usuário
+     * @access public
+     * @param Usuario obj
+     * @return void
+     */
+    public void bloquear(Usuario obj, int bloqueado) throws DAOException {
+        if (obj == null) {
+            throw new DAOException("Usuário inválido para bloquear.");
+        }
+    	int indice = 0;
+    	obj.setBloqueado(bloqueado);
+    	PreparedStatement stmt = null;
+
+        try {
+            String sql = "UPDATE usuario SET"
+                        + "\n bloqueado = ?"
+                        + "\n WHERE id_usuario = ?";
+
+            stmt = this.conexao.prepareStatement(sql);
+            stmt.setInt(++indice, obj.getBloqueado());
+            stmt.setInt(++indice, obj.getIdUsuario());
+            stmt.executeUpdate();
+        } catch (Exception excecao) {
+            throw new DAOException(excecao);
+        }    	
+    }
     //ADMIN
 
 }
