@@ -1,10 +1,28 @@
 function pesquisar(campo, retorno) {
 	$.ajax({
 	    url: '/les20131/Pesquisa',
-	    data: {acao: "pesquisar", criterio: $(campo).val()},
+	    data: {acao: "pesquisarPrevia", criterio: $(campo).val()},
 	    type: 'POST',
 	    success: function(data) {
-	    	alert('teste');
+    		$(retorno).empty();
+	    	if (data != "") {
+	    		$(retorno).attr("class", "retorno_pesquisa");
+		    	$(retorno).width($(campo).width());
+		    	var i = 0;
+		    	for (i = 0; i < data.length; i++) {
+			    	var string = "<div id=\"itemRetornoPesquisaPrevia\" class=\"item_retorno_pesquisa\">"
+			    		+"<img id=\"imagemPreviaPesquisa"+i+"\" class=\"imagem_barra\"/>"
+			    		+"<span class=\"texto_centro\">"+data[i].identificacao+"</span>"
+			    		+"<span class=\"texto_baixo\">"+data[i].previa+"</span>"
+			    		+"</div>";
+			    	link = "/les20131/Viajante?acao=carregarImagem&id="+data[i].id;
+			    	$(retorno).append(string)
+			    	setTimeout((function(indice) { carregarImagem($('#imagemPreviaPesquisa'+indice), link); }(i)), ((i-1)*1000));
+		    	}
+		    	$(retorno).height(($('#itemRetornoPesquisaPrevia').height()*data.length)+(15*data.length));
+	    	} else {
+	    		$(retorno).attr("class", "retorno_pesquisa invisivel");
+	    	}
 	    }
 	});
 }

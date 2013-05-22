@@ -40,8 +40,8 @@ public class PesquisaController extends BaseController {
 		try {
 			this.configurarController(request, response);
 			this.verificarSessao();
-			if (this.acao.equalsIgnoreCase("pesquisar")) {
-				this.acaoPesquisar();
+			if (this.acao.equalsIgnoreCase("pesquisarPrevia")) {
+				this.acaoPesquisarPrevia();
 			}
 		} catch (Exception excecao) {
 		    this.tratarExcecao(excecao);
@@ -49,12 +49,12 @@ public class PesquisaController extends BaseController {
 	}
 	
 	/**
-	 * Ação de pesquisa
+	 * Ação de pesquisa prévia
 	 * @access private
 	 * @return void
 	 * @throws Exception
 	 */
-	private void acaoPesquisar() throws Exception {
+	private void acaoPesquisarPrevia() throws Exception {
 		PesquisaBean pesquisaBean = new PesquisaBean();
 		String criterio = this.requisicao.getParameter("criterio");
 		if (criterio != null && criterio.length() > 0) {
