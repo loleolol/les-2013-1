@@ -115,7 +115,7 @@
 					<div class="block container">
 						<label for="map-canvas">Localização:</label>
 						<a class="remover" href="javascript:void(0)" 
-							onclick="map.clearOverlays();">
+							onclick="map.clearOverlays();" title="Remover localização"> 
 						</a>
 						<div id="map-canvas"></div>
 						<input id="latitude" type="hidden" name="latitude" value="${viajanteBean.viajante.latitude}"/>
