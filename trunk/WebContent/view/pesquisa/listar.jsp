@@ -26,12 +26,20 @@
 		<%@include file="../adicional.jsp"%>
         <jsp:useBean id="pesquisaBean" class="br.com.les20131.model.bean.PesquisaBean" scope="request"/>
         <div class="corpo">
+        	<div class="block">
+        		<span>Pesquisa por "<c:out value="${pesquisaBean.criterio}"></c:out>"</span>
+        	</div>
             <c:forEach items="${pesquisaBean.listaResultado}" var="itemResultado">
             	<div class="formulario_postagem">
 	               	<div class="container">
 	                	<form id="resultado${itemResultado.id}" 
-							action="<c:url value="/Viagem"></c:url>" method="post">
-							<div class="block texto">${itemResultado.identificacao}</div>
+							action="<c:url value="/${itemResultado.tipo}"></c:url>" method="post">
+			    			<div id="itemRetornoPesquisaPrevia${itemResultado.id}" class="item_retorno_pesquisa">
+			    				<img id="imagemPreviaPesquisa${itemResultado.id}" class="imagem_barra" 
+			    				src="/les20131/view/publico/imagens/carregando.gif"/>
+			    				<span class="texto_centro">${itemResultado.identificacao}</span>
+			    				<span class="texto_baixo">${itemResultado.previa}</span>
+							</div>
 							<input id="acao${itemResultado.id}" type="hidden" name="acao" value=""/>
 							<input type="hidden" name="id" value="${itemResultado.id}"/>
 					    </form>

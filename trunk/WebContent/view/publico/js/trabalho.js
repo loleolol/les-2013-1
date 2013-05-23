@@ -1,4 +1,4 @@
-function pesquisar(campo, retorno) {
+function pesquisar(campo, retorno, botao) {
 	$.ajax({
 	    url: '/les20131/Pesquisa',
 	    data: {acao: "pesquisarPrevia", criterio: $(campo).val()},
@@ -12,13 +12,15 @@ function pesquisar(campo, retorno) {
 		    	var quantidade = (data.length < 3 ? data.length : 3);
 		    	var aux = 15;
 		    	for (i = 0; i < quantidade; i++) {
-			    	var string = "<div id=\"itemRetornoPesquisaPrevia\" class=\"item_retorno_pesquisa\">"
+			    	var string = "<div id=\"itemRetornoPesquisaPrevia"+i+"\" class=\"item_retorno_pesquisa\">"
 			    		+"<img id=\"imagemPreviaPesquisa"+i+"\" class=\"imagem_barra\" src=\"/les20131/view/publico/imagens/carregando.gif\"/>"
 			    		+"<span class=\"texto_centro\">"+data[i].identificacao+"</span>"
 			    		+"<span class=\"texto_baixo\">"+data[i].previa+"</span>"
 			    		+"</div>";
 			    	if (i == 2 && data.length > 2) {
-			    		string += "<div class=\"item_retorno_pesquisa\">Para mais resultados, clique aqui</div>";
+			    		string += "<div class=\"item_retorno_pesquisa\" onclick=\""
+			    			+"$('#"+$(botao).attr("id")+"').click()"
+			    			+"\">Para mais resultados, clique aqui</div>";
 			    		aux = 19;
 			    	}
 			    	$(retorno).append(string);
@@ -27,8 +29,10 @@ function pesquisar(campo, retorno) {
 				        setTimeout(function() { carregarImagem($('#imagemPreviaPesquisa'+index), link); }, (index*1000));
 				    })(i, urlCampo);			    	
 		    	}
-		    	$(retorno).height(($('#itemRetornoPesquisaPrevia').height()*i)+(aux*i));
-	    	} else {
+		    	if (quantidade > 0) {
+		    		$(retorno).height(($('#itemRetornoPesquisaPrevia0').height()*i)+(aux*i));
+		    	}
+		    } else {
 	    		$(retorno).attr("class", "retorno_pesquisa invisivel");
 	    	}
 	    }
@@ -224,9 +228,9 @@ function carregarGaleria(id, imagem, url, form) {
 	jQuery.each($('[name='+id+']'), function(i, element) {
 		var d = i*1000;
 		var e = $('#'+form+$(element).val());
-		$('#'+form+$(element).val()).before("<a class=\"proximo\" href=\"javascript:void(0)\""
+		$('#'+form+$(element).val()).before("<a class=\"proximo\" href=\"javascript:void(0)\" title=\"Próximo\""
 				+ " onclick=\"navegarGaleria($('#"+imagem+$(element).val()+"'), '"+url+$(element).val()+"', false)\"></a>");
-		$('#'+form+$(element).val()).before("<a class=\"anterior\" href=\"javascript:void(0)\""
+		$('#'+form+$(element).val()).before("<a class=\"anterior\" href=\"javascript:void(0)\" title=\"Anterior\""
 				+ " onclick=\"navegarGaleria($('#"+imagem+$(element).val()+"'), '"+url+$(element).val()+"', true)\"></a>");
 		setTimeout(function() {
 			var a = '#'+imagem+$(element).val();
@@ -284,7 +288,7 @@ function adicionaCampoImagem(campo, quantidade, acao, seleciona, imagem, remove,
 	var indice = $(quantidade).val();
 	var str = "<div id=\""+seleciona+indice+"\" class=\"imagem_bloco\">"
 	 	+ "<img id=\""+imagem+indice+"\" class=\"imagem\" src=\"/les20131/view/publico/imagens/semimagem.png\" onclick=\"$('#"+input+indice+"').click()\"/>"
-	 	+ "<span id=\""+remove+indice+"\" class=\"remover sobrepoe\" onclick=\"removerImagem($('#"+seleciona+indice+"'), $('#"+input+indice+"'), $('#"+$(quantidade).attr("id")+"')";
+	 	+ "<span id=\""+remove+indice+"\" class=\"remover sobrepoe\" title=\"Remover\" onclick=\"removerImagem($('#"+seleciona+indice+"'), $('#"+input+indice+"'), $('#"+$(quantidade).attr("id")+"')";
 	if (id != undefined) {
 		str += ", '"+id+"', '"+imagem+"', "+indice;
 	}
