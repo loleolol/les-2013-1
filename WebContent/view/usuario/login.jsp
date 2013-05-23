@@ -5,9 +5,9 @@
 	<span class="barra_intervalo">
 		<c:choose>
 			<c:when test="${usuarioBean.usuario != null}">
-				<form id="formularioPesquisa" class="formulario_padrao" action="<c:url value="/Pesquisa"></c:url>">
-	    			<input id="pesquisa" type="text" name="pesquisa" size="50" onkeyup="pesquisar(this, $('#retornoPesquisa'))"/>
-	    			<button name="acao" value="pesquisar">Pesquisar</button>
+				<form id="formularioPesquisa" class="formulario_padrao" action="<c:url value="/Pesquisa"></c:url>" method="post">
+	    			<input id="criterio" type="text" name="criterio" size="50" onkeyup="pesquisar(this, $('#retornoPesquisa'), $('#pesquisa'))"/>
+	    			<button id="pesquisa" type="submit" name="acao" value="pesquisar">Pesquisar</button>
 	    			<div id="retornoPesquisa" class="retorno_pesquisa invisivel">
 	    			</div>
 	    		</form>

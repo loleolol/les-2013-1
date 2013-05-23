@@ -34,10 +34,10 @@
 			    		<span class="texto_alto">${usuarioBean.usuario.nome} compartilhou ${viagem.titulo}</span>               	
 			    	</div>
 	               	<div class="container">
-	                	<a class="editar" href="javascript:void(0)" 
+	                	<a class="editar" href="javascript:void(0)" title="Editar"
 							onclick="$('#acao${viagem.idViagem}').val('Selecionar'); $('#viagem${viagem.idViagem}').submit()">
 						</a>
-						<a class="remover" href="javascript:void(0)" 
+						<a class="remover" href="javascript:void(0)" title="Remover"
 							onclick="$('#acao${viagem.idViagem}').val('Excluir'); confirmaExclusao($('#viagem${viagem.idViagem}'))">
 						</a>
 	                	<form id="viagem${viagem.idViagem}" 

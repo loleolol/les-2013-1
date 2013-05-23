@@ -27,13 +27,6 @@ public class PesquisaController extends BaseController {
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	}
-
-	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -42,10 +35,28 @@ public class PesquisaController extends BaseController {
 			this.verificarSessao();
 			if (this.acao.equalsIgnoreCase("pesquisarPrevia")) {
 				this.acaoPesquisarPrevia();
+			} else if (this.acao.equalsIgnoreCase("pesquisar")) {
+				this.acaoPesquisar();
 			}
 		} catch (Exception excecao) {
 		    this.tratarExcecao(excecao);
 		}
+	}
+	
+	/**
+	 * Ação de pesquisa
+	 * @access private
+	 * @return void
+	 * @throws Exception
+	 */
+	private void acaoPesquisar() throws Exception {
+		PesquisaBean pesquisaBean = new PesquisaBean();
+		String criterio = this.requisicao.getParameter("criterio");
+		if (criterio != null && criterio.length() > 0) {
+			pesquisaBean.pesquisar(criterio);
+			this.requisicao.setAttribute("pesquisaBean", pesquisaBean);
+		}
+		this.despachar("/view/pesquisa/listar.jsp");
 	}
 	
 	/**
@@ -64,5 +75,4 @@ public class PesquisaController extends BaseController {
 			this.resposta.getWriter().write(new Gson().toJson(pesquisaBean.getListaResultado()));		
 		}
 	}
-
 }

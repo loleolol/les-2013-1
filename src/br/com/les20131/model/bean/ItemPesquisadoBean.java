@@ -28,7 +28,12 @@ public class ItemPesquisadoBean {
 	 */
 	private String previa;
 	
-	//private IMAGEM
+	/**
+	 * Tipo de item de pesquisa
+	 * @access private
+	 * @var String
+	 */
+	private String tipo;
 	
 	/**
 	 * Construtor da classe
@@ -45,10 +50,11 @@ public class ItemPesquisadoBean {
 	 * @param String identificacao
 	 * @param String previa
 	 */
-	public ItemPesquisadoBean(int id, String identificacao, String previa) {
+	public ItemPesquisadoBean(int id, String identificacao, String previa, String tipo) {
 		this.id = id;
 		this.identificacao = identificacao;
 		this.previa = previa;
+		this.tipo = tipo;
 	}
 	
 	/**
@@ -106,6 +112,25 @@ public class ItemPesquisadoBean {
 	 */
 	public void setPrevia(String previa) {
 		this.previa = previa;
+	}
+
+	/**
+	 * Retorna o tipo do item pesquisado
+	 * @access public
+	 * @return String
+	 */
+	public String getTipo() {
+		return tipo;
+	}
+
+	/**
+	 * Define o tipo do item pesquisado
+	 * @access public
+	 * @param String tipo
+	 * @return void
+	 */
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 	
 }
