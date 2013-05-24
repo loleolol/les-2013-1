@@ -16,7 +16,6 @@
 	<body class="perfil" onload="mostraMensagem('${mensagemBean.mensagem}')"> 
 		<%@include file="../usuario/login.jsp"%>
 		<%@include file="../menu.jsp"%>
-		<%@include file="../adicional.jsp"%>
 		<div id="corpo">
 			<fieldset>
 			<legend>Conta</legend>
@@ -48,5 +47,6 @@
 				</form>
 			</fieldset>
 		</div>
+		<%@include file="../adicional.jsp"%>
 	</body>
 </html>

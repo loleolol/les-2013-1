@@ -72,7 +72,6 @@
 	<body class="perfil" onload="initialize(); mostraMensagem('${mensagemBean.mensagem}')"> 
 		<%@include file="../usuario/login.jsp"%>
 		<%@include file="../menu.jsp" %>
-		<%@include file="../adicional.jsp"%>
         <jsp:useBean id="viajanteBean" class="br.com.les20131.model.bean.ViajanteBean" scope="request"/>
 		<div id="corpo">
 			<fieldset>
@@ -137,5 +136,6 @@
 				});
 			</script>			
 		</div>
+		<%@include file="../adicional.jsp"%>
 	</body>
 </html>

@@ -169,7 +169,22 @@ public class ModuloViajanteController extends BaseController {
     private void carregarViajante() throws Exception {
     	HttpSession sessao = this.requisicao.getSession();
     	ViajanteBean viajanteBean = new ViajanteBean();
-    	viajanteBean.consultar(((Usuario)sessao.getAttribute("usuario")).getIdUsuario());
+    	int id;
+    	if (this.requisicao.getParameter("id") != null) {
+    		/**
+    		 * Acessar o perfil de outro/próprio como outro
+    		 */
+    		this.validarIdUsuario(this.requisicao.getParameter("id"));
+    		id = Integer.parseInt(this.requisicao.getParameter("id"));
+    		viajanteBean.setProprio(false);
+    	} else {
+    		/**
+    		 * Acessar o próprio perfil como proprietario
+    		 */
+    		viajanteBean.setProprio(true);
+    		id = ((Usuario)sessao.getAttribute("usuario")).getIdUsuario();
+    	}
+    	viajanteBean.consultar(id);
     	this.requisicao.setAttribute("viajanteBean", viajanteBean);
     }
     

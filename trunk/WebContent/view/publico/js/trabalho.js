@@ -12,15 +12,18 @@ function pesquisar(campo, retorno, botao) {
 		    	var quantidade = (data.length < 3 ? data.length : 3);
 		    	var aux = 15;
 		    	for (i = 0; i < quantidade; i++) {
-			    	var string = "<div id=\"itemRetornoPesquisaPrevia"+i+"\" class=\"item_retorno_pesquisa\">"
+			    	var string = "<form id=\"resultado"+i+"\" method=\"post\" action=\"/les20131/"+data[i].tipo+"\">"
+			    		+"<div id=\"itemRetornoPesquisaPrevia"+i+"\" class=\"item_retorno_pesquisa\" onclick=\"$('#resultado"+i+"').submit()\">"
 			    		+"<img id=\"imagemPreviaPesquisa"+i+"\" class=\"imagem_barra\" src=\"/les20131/view/publico/imagens/carregando.gif\"/>"
 			    		+"<span class=\"texto_centro\">"+data[i].identificacao+"</span>"
 			    		+"<span class=\"texto_baixo\">"+data[i].previa+"</span>"
+			    		+"<input type=\"hidden\" name=\"acao\" value=\"selecionar\"/>"
+						+"<input type=\"hidden\" name=\"id\" value=\""+data[i].id+"\"/>"
 			    		+"</div>";
 			    	if (i == 2 && data.length > 2) {
 			    		string += "<div class=\"item_retorno_pesquisa\" onclick=\""
 			    			+"$('#"+$(botao).attr("id")+"').click()"
-			    			+"\">Para mais resultados, clique aqui</div>";
+			    			+"\">Para mais resultados, clique aqui</div></form>";
 			    		aux = 19;
 			    	}
 			    	$(retorno).append(string);
@@ -204,15 +207,11 @@ function carregarImagemPerfis(img, quantidade, form, acao) {
 		$('#'+img+i).attr("src", "/les20131/view/publico/imagens/carregando.gif");
 		var imagem = '#'+img+i;
 		var formulario = '#'+form+i;
-		setTimeout(function(pImagem, pFormulario) {
-			var url = $(pFormulario).attr("action")+"?acao="+acao+"&id="+$(pImagem).attr("alt");
-			$(pImagem).attr("src", url);
-			$(pImagem).attr("alt", "");
-		}(imagem, formulario), (i*1000));		
+		$(imagem).attr("alt", $(formulario).attr("action")+"?acao="+acao+"&id="+$(imagem).attr("alt"));
 	}
 }
 
-function carregarImagens(campo, quantidade, acao, seleciona, imagem, remove, input, url, id, acaoCarregar) {
+function carregarGaleriaEdicao(campo, quantidade, acao, seleciona, imagem, remove, input, url, id, acaoCarregar) {
 	var quant = $(quantidade).val();
 	$(quantidade).val(0);
 	var indice;
@@ -223,34 +222,34 @@ function carregarImagens(campo, quantidade, acao, seleciona, imagem, remove, inp
 		urlCampo = url+"?acao="+acaoCarregar+"&id="+$(t).val();
 		adicionaCampoImagem(campo, quantidade, acao, seleciona, imagem, remove, input, id);
 		$('#imagemPrevia'+indice).attr("src", "/les20131/view/publico/imagens/carregando.gif");
-		$('#imagemPrevia'+indice).attr("alt", $(t).val());
+		$('#imagemPrevia'+indice).attr("alt", urlCampo);
 		$(t).remove();
-		(function(index, link) {
-	        setTimeout(function() { carregarImagem($('#imagemPrevia'+index), link); }, ((index-1)*1000));
-	    })(indice, urlCampo);
 	}
 }
 
 function carregarImagem(imagem, url) {
 	if ($(imagem) != undefined) {
 		$(imagem).attr("src", url);
+		$(imagem).attr("alt", "");
 	}
+}
+
+function carregarImagens() {
+	jQuery.each($('img'), function(i, element) {
+		setTimeout(function() { carregarImagem($(element), $(element).attr("alt")); }, (i*1000));
+	});
 }
 
 function carregarGaleria(id, imagem, url, form) {
 	jQuery.each($('[name='+id+']'), function(i, element) {
-		var d = i*1000;
-		var e = $('#'+form+$(element).val());
-		$('#'+form+$(element).val()).before("<a class=\"proximo\" href=\"javascript:void(0)\" title=\"Próximo\""
-				+ " onclick=\"navegarGaleria($('#"+imagem+$(element).val()+"'), '"+url+$(element).val()+"', false)\"></a>");
-		$('#'+form+$(element).val()).before("<a class=\"anterior\" href=\"javascript:void(0)\" title=\"Anterior\""
-				+ " onclick=\"navegarGaleria($('#"+imagem+$(element).val()+"'), '"+url+$(element).val()+"', true)\"></a>");
-		setTimeout(function() {
-			var a = '#'+imagem+$(element).val();
-			var b = '#'+url+$(element).val()+'1';
-			var c = $(b).val();
-			$(a).attr("src", c);
-		}, d);						
+		var img = '#'+imagem+$(element).val();
+		if ($(img) != undefined) {
+			$('#'+form+$(element).val()).before("<a class=\"proximo\" href=\"javascript:void(0)\" title=\"Próximo\""
+					+ " onclick=\"navegarGaleria($('#"+imagem+$(element).val()+"'), '"+url+$(element).val()+"', false)\"></a>");
+			$('#'+form+$(element).val()).before("<a class=\"anterior\" href=\"javascript:void(0)\" title=\"Anterior\""
+					+ " onclick=\"navegarGaleria($('#"+imagem+$(element).val()+"'), '"+url+$(element).val()+"', true)\"></a>");
+			$(img).attr("alt", $('#'+url+$(element).val()+'1').val());
+		}
 	});
 }
 
