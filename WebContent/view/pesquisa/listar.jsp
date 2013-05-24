@@ -25,27 +25,32 @@
 		<%@include file="../menu.jsp" %>
 		<%@include file="../adicional.jsp"%>
         <jsp:useBean id="pesquisaBean" class="br.com.les20131.model.bean.PesquisaBean" scope="request"/>
-        <div class="corpo">
+        <div id="corpo">
         	<div class="block">
         		<span>Pesquisa por "<c:out value="${pesquisaBean.criterio}"></c:out>"</span>
         	</div>
-            <c:forEach items="${pesquisaBean.listaResultado}" var="itemResultado">
-            	<div class="formulario_postagem">
+            <c:forEach items="${pesquisaBean.listaResultado}" var="itemResultado" varStatus="chave">
+            	<div>
 	               	<div class="container">
-	                	<form id="resultado${itemResultado.id}" 
+	                	<form id="resultado${chave.count}" 
 							action="<c:url value="/${itemResultado.tipo}"></c:url>" method="post">
-			    			<div id="itemRetornoPesquisaPrevia${itemResultado.id}" class="item_retorno_pesquisa">
-			    				<img id="imagemPreviaPesquisa${itemResultado.id}" class="imagem_barra" 
-			    				src="/les20131/view/publico/imagens/carregando.gif"/>
-			    				<span class="texto_centro">${itemResultado.identificacao}</span>
+			    			<div id="itemRetornoPesquisaPrevia${chave.count}" class="item_retorno_pesquisa">
+			    				<img id="imagemPreviaPesquisa${chave.count}" class="imagem_barra" 
+			    					alt="${itemResultado.id}"/>
+			    				<span class="texto_centro titulo">${itemResultado.identificacao}</span>
 			    				<span class="texto_baixo">${itemResultado.previa}</span>
 							</div>
-							<input id="acao${itemResultado.id}" type="hidden" name="acao" value=""/>
+							<input id="acao${chave.count}" type="hidden" name="acao" value=""/>
 							<input type="hidden" name="id" value="${itemResultado.id}"/>
 					    </form>
 				 	</div>
 				 </div>
-            </c:forEach>	
+            </c:forEach>
+   			<script type="text/javascript">
+				$(document).ready(function() {
+					carregarImagemPerfis('imagemPreviaPesquisa', $('.item_retorno_pesquisa').length, 'resultado', 'carregarImagem');
+				})
+			</script>
 		</div>			
     </body>
 </html>

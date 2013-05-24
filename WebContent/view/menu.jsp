@@ -5,7 +5,7 @@
 				<div class="previa_perfil menu_perfil">
 					<button type="submit" name="acao" value="selecionar">
 			    		<img id="imagemBarra" class="imagem_barra" src="<c:url value="/Viajante?acao=carregarImagem&id=${usuarioBean.usuario.idUsuario}"></c:url>"/>
-			    		<span class="texto_alto">${usuarioBean.usuario.nome}</span>
+			    		<span class="texto_alto titulo">${usuarioBean.usuario.nome}</span>
 			    		<span class="texto_centro">Editar perfil</span>
 					</button>
 				</div>

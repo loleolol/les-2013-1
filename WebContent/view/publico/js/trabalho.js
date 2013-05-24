@@ -198,6 +198,19 @@ function removerImagem(campo1, campo2, quantidade, id, imagem, indice) {
 	$(campo2).remove();
 }
 
+function carregarImagemPerfis(img, quantidade, form, acao) {
+	var i = 1;
+	for (i = 1; i <= quantidade; i++) {
+		$('#'+img+i).attr("src", "/les20131/view/publico/imagens/carregando.gif");
+		var imagem = '#'+img+i;
+		var formulario = '#'+form+i;
+		setTimeout(function(pImagem, pFormulario) {
+			var url = $(pFormulario).attr("action")+"?acao="+acao+"&id="+$(pImagem).attr("alt");
+			$(pImagem).attr("src", url);
+			$(pImagem).attr("alt", "");
+		}(imagem, formulario), (i*1000));		
+	}
+}
 
 function carregarImagens(campo, quantidade, acao, seleciona, imagem, remove, input, url, id, acaoCarregar) {
 	var quant = $(quantidade).val();
