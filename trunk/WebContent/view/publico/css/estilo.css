@@ -399,6 +399,9 @@ legend{
 .container {
 	position: relative;
 }
+.titulo {
+	font-size: 14px;
+}
 .imagem_barra {
 	width: 20px;
 	height: 20px;
