@@ -18,69 +18,72 @@
 	<body class="perfil" onload="mostraMensagem('${mensagemBean.mensagem}')"> 
 		<%@include file="../usuario/login.jsp"%>
 		<%@include file="../menu.jsp"%>
-		<%@include file="../adicional.jsp"%>
 		<jsp:useBean id="imagemViagemBean" class="br.com.les20131.model.bean.ImagemViagemBean" scope="request"/>
         <jsp:useBean id="viagemBean" class="br.com.les20131.model.bean.ViagemBean" scope="request"/>
-		<fieldset>
-		<legend>Registro de viagem</legend>
-			<form id="cadastro_viagem" class="formulario_padrao" enctype="multipart/form-data" action="<c:url value="/Viagem"></c:url>" method="post" onsubmit="return validaFormulario(new Array('titulo;String;1', 'descricao;String;1', 'dataInicialDia;int;0', 'dataInicialMes;int;0', 'dataInicialAno;int;0', 'dataFinalDia;int;0', 'dataFinalMes;int;0', 'dataFinalAno;int;0'))">
-		        <div class="block">
-			        <label for="titulo">Título<span class="atencao">*</span>:</label>
-			        <input id="titulo" type="text" name="titulo" value="" maxlength="100"/>
-			        <span id="tituloErro" class="atencao"></span>
-				</div>
-		        <div class="block galeria">
-			        <label for="previrImagem">Imagens:</label>
-			        <br/>
-			        <input id="quantidadeImagem" type="hidden" name="quantidadeImagem" value=""/>
-			        <div id="adicionaImagem" class="imagem adiciona_imagem" title="Adicionar imagem" onclick="adicionaCampoImagem($('#adicionaImagem'), $('#quantidadeImagem'), 'previrImagem', 'selecionaImagem', 'imagemPrevia', 'removerImagem', 'imagem')">
+        <div id="corpo">
+			<fieldset>
+			<legend>Registro de viagem</legend>
+				<form id="cadastro_viagem" class="formulario_padrao" enctype="multipart/form-data" action="<c:url value="/Viagem"></c:url>" method="post" onsubmit="return validaFormulario(new Array('titulo;String;1', 'descricao;String;1', 'dataInicialDia;int;0', 'dataInicialMes;int;0', 'dataInicialAno;int;0', 'dataFinalDia;int;0', 'dataFinalMes;int;0', 'dataFinalAno;int;0'))">
+			        <div class="block">
+				        <label for="titulo">Título<span class="atencao">*</span>:</label>
+				        <input id="titulo" type="text" name="titulo" value="" maxlength="100"/>
+				        <span id="tituloErro" class="atencao"></span>
 					</div>
-				</div>
-		        <div class="block">
-			        <label for="descricao">Descricao<span class="atencao">*</span>:</label>
-			        <textarea id="descricao" name="descricao" rows="8" cols="56"></textarea>
-			        <span id="descricaoErro" class="atencao"></span>
-				</div>
-		        <div class="block">
-		        	<label for="dataInicialDia">Período da viagem:</label>
-		        	<br/>
-					<label for="dataInicialDia">De<span class="atencao">*</span>:</label>
-					<select id="dataInicialDia" name="dataInicialDia">
-					</select>
-					<span id="dataInicialDiaErro" class="atencao"></span>
-					<select id="dataInicialMes" name="dataInicialMes" onchange="populaDropDownDia($('#dataInicialDia'), $(this).val());">
-					</select>
-					<span id="dataInicialMesErro" class="atencao"></span>
-					<select id="dataInicialAno" name="dataInicialAno">
-					</select>
-					<span id="dataInicialAnoErro" class="atencao"></span>
-					<br/>
-			        <label for="dataFinalDia">à</label>
-					<select id="dataFinalDia" name="dataFinalDia">
-					</select>
-					<span id="dataFinalDiaErro" class="atencao"></span>
-					<select id="dataFinalMes" name="dataFinalMes" onchange="populaDropDownDia($('#dataFinalDia'), $(this).val());">
-					</select>
-					<span id="dataFinalMesErro" class="atencao"></span>
-					<select id="dataFinalAno" name="dataFinalAno">
-					</select>
-					<span id="dataFinalAnoErro" class="atencao"></span>
-				</div>
-		        <div class="block">
-		        	<button type="submit" name="acao" value="incluir">Registrar</button>
-		        </div>
-			</form>
-		</fieldset>
-		<script type="text/javascript">
-			$(document).ready(function() { 
-				populaDropDownAno($('#dataInicialAno'));
-				populaDropDownMes($('#dataInicialMes')); 
-				populaDropDownDia($('#dataInicialDia'), $('#dataInicialMes').val());
-				populaDropDownAno($('#dataFinalAno'));
-				populaDropDownMes($('#dataFinalMes'));
-				populaDropDownDia($('#dataFinalDia'), $('#dataFinalMes').val());
-				$('#quantidadeImagem').val($('.adiciona_imagem').length-1);
-			});
-		</script>			
+			        <div class="block galeria">
+				        <label for="previrImagem">Imagens:</label>
+				        <br/>
+				        <input id="quantidadeImagem" type="hidden" name="quantidadeImagem" value=""/>
+				        <div id="adicionaImagem" class="imagem adiciona_imagem" title="Adicionar imagem" onclick="adicionaCampoImagem($('#adicionaImagem'), $('#quantidadeImagem'), 'previrImagem', 'selecionaImagem', 'imagemPrevia', 'removerImagem', 'imagem')">
+						</div>
+					</div>
+			        <div class="block">
+				        <label for="descricao">Descricao<span class="atencao">*</span>:</label>
+				        <br/>
+				        <textarea id="descricao" name="descricao" rows="8" cols="56"></textarea>
+				        <span id="descricaoErro" class="atencao"></span>
+					</div>
+			        <div class="block">
+			        	<label for="dataInicialDia">Período da viagem:</label>
+			        	<br/>
+						<label for="dataInicialDia">De<span class="atencao">*</span>:</label>
+						<select id="dataInicialDia" name="dataInicialDia">
+						</select>
+						<span id="dataInicialDiaErro" class="atencao"></span>
+						<select id="dataInicialMes" name="dataInicialMes" onchange="populaDropDownDia($('#dataInicialDia'), $(this).val());">
+						</select>
+						<span id="dataInicialMesErro" class="atencao"></span>
+						<select id="dataInicialAno" name="dataInicialAno">
+						</select>
+						<span id="dataInicialAnoErro" class="atencao"></span>
+						<br/>
+				        <label for="dataFinalDia">à</label>
+						<select id="dataFinalDia" name="dataFinalDia">
+						</select>
+						<span id="dataFinalDiaErro" class="atencao"></span>
+						<select id="dataFinalMes" name="dataFinalMes" onchange="populaDropDownDia($('#dataFinalDia'), $(this).val());">
+						</select>
+						<span id="dataFinalMesErro" class="atencao"></span>
+						<select id="dataFinalAno" name="dataFinalAno">
+						</select>
+						<span id="dataFinalAnoErro" class="atencao"></span>
+					</div>
+			        <div class="block">
+			        	<button type="submit" name="acao" value="incluir">Registrar</button>
+			        </div>
+				</form>
+			</fieldset>
+			<script type="text/javascript">
+				$(document).ready(function() { 
+					populaDropDownAno($('#dataInicialAno'));
+					populaDropDownMes($('#dataInicialMes')); 
+					populaDropDownDia($('#dataInicialDia'), $('#dataInicialMes').val());
+					populaDropDownAno($('#dataFinalAno'));
+					populaDropDownMes($('#dataFinalMes'));
+					populaDropDownDia($('#dataFinalDia'), $('#dataFinalMes').val());
+					$('#quantidadeImagem').val($('.adiciona_imagem').length-1);
+				});
+			</script>
+		</div>
+		<%@include file="../adicional.jsp"%>
 	</body>
 </html>		

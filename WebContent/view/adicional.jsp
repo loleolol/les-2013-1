@@ -12,4 +12,9 @@
 			<br/>
 		</c:otherwise>
 	</c:choose>
+	<script type="text/javascript">
+		$(document).ready(function() { 
+			carregarImagens();
+		});
+	</script>
 </div>

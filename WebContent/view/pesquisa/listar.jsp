@@ -34,13 +34,14 @@
 	               	<div class="container">
 	                	<form id="resultado${chave.count}" 
 							action="<c:url value="/${itemResultado.tipo}"></c:url>" method="post">
-			    			<div id="itemRetornoPesquisaPrevia${chave.count}" class="item_retorno_pesquisa">
+			    			<div id="itemRetornoPesquisaPrevia${chave.count}" class="item_retorno_pesquisa"
+			    				onclick="$('#resultado${chave.count}').submit()">
 			    				<img id="imagemPreviaPesquisa${chave.count}" class="imagem_barra" 
 			    					alt="${itemResultado.id}"/>
 			    				<span class="texto_centro titulo">${itemResultado.identificacao}</span>
 			    				<span class="texto_baixo">${itemResultado.previa}</span>
 							</div>
-							<input id="acao${chave.count}" type="hidden" name="acao" value=""/>
+							<input id="acao${chave.count}" type="hidden" name="acao" value="selecionar"/>
 							<input type="hidden" name="id" value="${itemResultado.id}"/>
 					    </form>
 				 	</div>
@@ -49,7 +50,7 @@
    			<script type="text/javascript">
 				$(document).ready(function() {
 					carregarImagemPerfis('imagemPreviaPesquisa', $('.item_retorno_pesquisa').length, 'resultado', 'carregarImagem');
-				})
+				});
 			</script>
 		</div>			
     </body>

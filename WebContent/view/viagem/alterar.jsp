@@ -39,6 +39,7 @@
 					</div>
 			        <div class="block">
 				        <label for="descricao">Descricao<span class="atencao">*</span>:</label>
+				        <br/>
 				        <textarea id="descricao" name="descricao" rows="8" cols="56"><c:out value="${viagemBean.viagem.descricao}"></c:out></textarea>
 				        <span id="descricaoErro" class="atencao"></span>
 					</div>
@@ -95,9 +96,10 @@
 					$('#dataFinalAno').val($('#dataFinal').val().split("-")[0]);
 					$('#dataFinalMes').val($('#dataFinal').val().split("-")[1]);
 					$('#dataFinalDia').val($('#dataFinal').val().split("-")[2]);
-					carregarImagens($('#adicionaImagem'), $('#quantidadeImagem'), 'previrImagem', 'selecionaImagem', 'imagemPrevia', 'removerImagem', 'imagem', $('#cadastro_viagem').attr('action'), 'idImagemViagem', 'carregarImagem');
+					carregarGaleriaEdicao($('#adicionaImagem'), $('#quantidadeImagem'), 'previrImagem', 'selecionaImagem', 'imagemPrevia', 'removerImagem', 'imagem', $('#cadastro_viagem').attr('action'), 'idImagemViagem', 'carregarImagem');
 				});
 			</script>			
 		</div>
+		<%@include file="../adicional.jsp"%>
 	</body>
 </html>

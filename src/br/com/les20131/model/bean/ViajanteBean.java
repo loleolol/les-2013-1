@@ -46,6 +46,13 @@ public class ViajanteBean extends UsuarioBean {
     private List<Viajante> listaViajante;
     
     /**
+     * Armazena flag indicando se é o próprio perfil
+     * @access private
+     * @var boolean
+     */
+    private boolean proprio;
+    
+    /**
      * Construtor da classe
      * @throws Exception 
      * @access public
@@ -76,6 +83,25 @@ public class ViajanteBean extends UsuarioBean {
     }
     
     /**
+     * Retorna a flag que indica se o perfil é do próprio usuário
+     * @access public
+     * @return boolean
+     */
+    public boolean getProprio() {
+		return proprio;
+	}
+
+    /**
+     * Armazena a flag que indica se o perfil é do próprio usuário
+     * @access public
+     * @param boolean proprio
+     * @return void
+     */    
+	public void setProprio(boolean proprio) {
+		this.proprio = proprio;
+	}
+
+	/**
      * Consulta as viajantes cadastrados
      * @access public
      * @return void

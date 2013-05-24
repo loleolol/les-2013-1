@@ -269,8 +269,9 @@ th{
 
 .formulario_postagem {
 	position: relative;
-	width: 40%;
-	height: 30%;
+	width: 100%;
+	min-height: 40%;
+	max-height: 50%;
 	margin: 0px;
 	padding: 0px;
 	overflow: hidden;
@@ -373,6 +374,7 @@ th{
 }
 .titulo {
 	color: #060;
+	font-size: 14px;	
 	padding: 5px;
 }
 fieldset{
@@ -398,9 +400,6 @@ legend{
 }
 .container {
 	position: relative;
-}
-.titulo {
-	font-size: 14px;
 }
 .imagem_barra {
 	width: 20px;

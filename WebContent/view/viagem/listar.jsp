@@ -23,15 +23,14 @@
     <body class="perfil" onload="mostraMensagem('${mensagemBean.mensagem}')">
 		<%@include file="../usuario/login.jsp"%>
 		<%@include file="../menu.jsp" %>
-		<%@include file="../adicional.jsp"%>
         <jsp:useBean id="viagemBean" class="br.com.les20131.model.bean.ViagemBean" scope="request"/>
-        <div class="corpo">
+        <div id="corpo">
         	<%@include file="viagem.jsp"%>
             <c:forEach items="${viagemBean.listaViagem}" var="viagem">
             	<div class="formulario_postagem">
 	            	<div class="previa_perfil postador">
 			    		<img id="imagemBarra" class="imagem_barra" src="<c:url value="/Viajante?acao=carregarImagem&id=${usuarioBean.usuario.idUsuario}"></c:url>"/>
-			    		<span class="texto_alto">${usuarioBean.usuario.nome} compartilhou ${viagem.titulo}</span>               	
+			    		<span class="texto_centro">${usuarioBean.usuario.nome} compartilhou ${viagem.titulo}</span>               	
 			    	</div>
 	               	<div class="container">
 	                	<a class="editar" href="javascript:void(0)" title="Editar"
@@ -64,6 +63,7 @@
 					carregarGaleria('idViagem', 'imagem', 'imagemUrl', 'viagem');
 				});
 			</script>			
-		</div>			
+		</div>
+		<%@include file="../adicional.jsp"%>		
     </body>
 </html>
