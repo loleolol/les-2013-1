@@ -27,6 +27,13 @@ public class ItemPesquisadoBean {
 	 * @var String
 	 */
 	private String previa;
+
+	/**
+	 * Armazena uma flag extra
+	 * @access private
+	 * @var boolean
+	 */
+	private boolean flag;
 	
 	/**
 	 * Tipo de item de pesquisa
@@ -50,10 +57,11 @@ public class ItemPesquisadoBean {
 	 * @param String identificacao
 	 * @param String previa
 	 */
-	public ItemPesquisadoBean(int id, String identificacao, String previa, String tipo) {
+	public ItemPesquisadoBean(int id, String identificacao, String previa, boolean flag, String tipo) {
 		this.id = id;
 		this.identificacao = identificacao;
 		this.previa = previa;
+		this.flag = flag;
 		this.tipo = tipo;
 	}
 	
@@ -114,6 +122,25 @@ public class ItemPesquisadoBean {
 		this.previa = previa;
 	}
 
+	/**
+	 * Retorna a flag do item pesquisado
+	 * @access public
+	 * @return boolean
+	 */
+	public boolean getFlag() {
+		return flag;
+	}
+
+	/**
+	 * Define a flag do item pesquisado
+	 * @access public
+	 * @param boolean flag
+	 * @return void
+	 */
+	public void setFlag(boolean flag) {
+		this.flag = flag;
+	}
+	
 	/**
 	 * Retorna o tipo do item pesquisado
 	 * @access public

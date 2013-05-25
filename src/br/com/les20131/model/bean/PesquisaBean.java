@@ -65,17 +65,22 @@ public class PesquisaBean {
 	 * Realiza a pesquisa
 	 * @access public
 	 * @param String criterio
+	 * @param int idUsuario
 	 * @throws Exception
 	 */
-	public void pesquisar(String criterio) throws Exception {
+	public void pesquisar(String criterio, int idUsuario) throws Exception {
 		this.criterio = criterio;
 		ViajanteBean viajanteBean = new ViajanteBean();
 		viajanteBean.consultar(criterio);
 		int indice;
 		List<Viajante> lista = viajanteBean.getListaViajante();
 		for (indice = 0; indice < viajanteBean.getListaViajante().size(); indice++) {
+			ContatoBean contatoBean = new ContatoBean();
+			contatoBean.consultar(idUsuario, lista.get(indice).getIdUsuario());
+			boolean flag = (contatoBean.getContato() != null ? true : false);
 			this.listaResultado.add(new ItemPesquisadoBean(lista.get(indice).getIdUsuario()
-					, lista.get(indice).getNome(), lista.get(indice).getEmail(), "Viajante"));
+					, lista.get(indice).getNome(), lista.get(indice).getEmail()
+					, flag,"Viajante"));
 		}
 	}
 	

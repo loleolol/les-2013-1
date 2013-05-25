@@ -13,15 +13,26 @@ function pesquisar(campo, retorno, botao) {
 		    	var aux = 15;
 		    	for (i = 0; i < quantidade; i++) {
 			    	var string = "<form id=\"resultado"+i+"\" method=\"post\" action=\"/les20131/"+data[i].tipo+"\">"
-			    		+"<div id=\"itemRetornoPesquisaPrevia"+i+"\" class=\"item_retorno_pesquisa\" onclick=\"$('#resultado"+i+"').submit()\">"
-			    		+"<div class=\"parte_bloco\">"
+			    		+"<div id=\"itemRetornoPesquisaPrevia"+i+"\" class=\"item_retorno_pesquisa\">"
+			    		+"<div class=\"parte_bloco\" onclick=\"$('#resultado"+i+"').submit()\">"
 			    		+"<img id=\"imagemPreviaPesquisa"+i+"\" class=\"imagem_barra\"/>"
-			    		+"</div><div class=\"parte_bloco\">"
+			    		+"</div><div class=\"parte_bloco informacao\" onclick=\"$('#resultado"+i+"').submit()\">"
 			    		+"<span class=\"titulo\">"+data[i].identificacao+"</span><br/>"
 			    		+"<span>"+data[i].previa+"</span><br/>"
 			    		+"<input type=\"hidden\" name=\"acao\" value=\"selecionar\"/>"
 						+"<input type=\"hidden\" name=\"id\" value=\""+data[i].id+"\"/>"
-			    		+"</div></div>";
+			    		+"</div>"
+		    			+"<div class=\"parte_bloco\">";
+			    	if (data[i].flag) {
+			    		string += "<button type=\"button\" onclick=\"removerContato($(this), "+data[i].id+")\">"
+		    				+"<span class=\"excluir\"></span>";
+			    	} else {
+			    		string += "<button type=\"button\" onclick=\"adicionarContato($(this), "+data[i].id+")\">"
+			    			+"<span class=\"incluir\"></span>";
+			    	}
+		    		string += "<span>Contato</span>"
+	    				+"</button>"
+	    				+"</div></div>";
 			    	if (i == 2 && data.length > 2) {
 			    		string += "<div class=\"item_retorno_pesquisa titulo\" onclick=\""
 			    			+"$('#"+$(botao).attr("id")+"').click()"
@@ -44,12 +55,41 @@ function pesquisar(campo, retorno, botao) {
 	});
 }
 
+function adicionarContato(campo, id) {
+	$(campo).attr("class", "carregando");
+	$.ajax({
+	    url: '/les20131/Contato',
+	    data: {acao: "incluir", idUsuario: id},
+	    type: 'POST',
+	    success: function(data) {
+	    	$(campo).attr("class", "");
+	    	$(campo).html("<span class=\"excluir\"></span><span>Contato</span>");
+    		$(campo).attr("onclick", "removerContato($(this), "+id+")");
+	    }
+	});
+}
+
+function removerContato(campo, id) {
+	$(campo).attr("class", "carregando");
+	$.ajax({
+	    url: '/les20131/Contato',
+	    data: {acao: "excluir", idUsuario: id},
+	    type: 'POST',
+	    success: function(data) {
+	    	$(campo).attr("class", "");
+    		$(campo).html("<span class=\"incluir\"></span><span>Contato</span>");
+    		$(campo).attr("onclick", "adicionarContato($(this), "+id+")");
+	    }
+	});
+}
+
 /**
  * "Troca" a imagem
  * @param imagem
  * @param campo
  */
 function trocaImagem(imagem, campo, url, acao) {
+	$(imagem).attr("src", "/les20131/view/publico/imagens/carregando.gif");
 	urlImagem = url+"?acao="+acao+"&nome="+$(campo).attr("id");
 	var data = new FormData();
 	jQuery.each($(campo)[0].files, function(i, file) {
@@ -70,6 +110,8 @@ function trocaImagem(imagem, campo, url, acao) {
 	});
 	
 }
+
+
 
 function removerValidacao(form) {
 	$(form).attr("onsubmit", "");

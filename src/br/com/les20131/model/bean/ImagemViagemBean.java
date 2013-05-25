@@ -146,12 +146,12 @@ public class ImagemViagemBean {
     /**
      * Exclui um viagem
      * @access public
-     * @param int idImagemViagem
+     * @param ImagemViagem imagemViagem
      * @return void
      * @throws Exception
      */
     public void excluir(int idImagemViagem) throws Exception {
-    	this.imagemViagem = imagemViagemDAO.consultar(idImagemViagem);
+    	this.imagemViagem = this.imagemViagemDAO.consultar(idImagemViagem);
     	this.imagemViagemDAO.excluir(this.imagemViagem);
     }
     

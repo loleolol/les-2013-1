@@ -32,17 +32,32 @@
 	               	<div class="container">
 	                	<form id="resultado${chave.count}" 
 							action="<c:url value="/${itemResultado.tipo}"></c:url>" method="post">
-			    			<div id="itemRetornoPesquisaPrevia${chave.count}" class="item_retorno_pesquisa"
-			    				onclick="$('#resultado${chave.count}').submit()">
-			    				<div class="parte_bloco">
+			    			<div id="itemRetornoPesquisaPrevia${chave.count}" class="item_retorno_pesquisa">
+			    				<div class="parte_bloco" onclick="$('#resultado${chave.count}').submit()">
 				    				<img id="imagemPreviaPesquisa${chave.count}" class="imagem_barra" 
 				    					alt="${itemResultado.id}"/>
 				    			</div>
-				    			<div class="parte_bloco">
+				    			<div class="parte_bloco informacao" onclick="$('#resultado${chave.count}').submit()">
 				    				<span class="titulo">${itemResultado.identificacao}</span>
 				    				<br/>
 				    				<span>${itemResultado.previa}</span>
 				    				<br/>
+				    			</div>
+				    			<div class="parte_bloco">
+				    				<c:choose>
+				    					<c:when test="${itemResultado.flag}">
+						    				<button type="button" onclick="removerContato($(this), ${itemResultado.id})">
+						    					<span class="excluir"></span>
+						    					<span>Contato</span>
+						    				</button>
+						    			</c:when>
+						    			<c:otherwise>
+						    				<button type="button" onclick="adicionarContato($(this), ${itemResultado.id})">
+						    					<span class="incluir"></span>
+						    					<span>Contato</span>
+						    				</button>
+						    			</c:otherwise>
+						    		</c:choose>
 				    			</div>
 							</div>
 							<input id="acao${chave.count}" type="hidden" name="acao" value="selecionar"/>
