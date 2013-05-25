@@ -177,6 +177,23 @@ th{
 
 /*  #FORMULÁRIO
     -------------------------------------------*/
+.link,
+.formulario_padrao .link {
+	cursor: pointer;
+    background: #FFF; /* para browsers sem suporte a CSS 3 */
+    width: 200px;
+	border: 0px;
+	padding: 0px;
+    text-align: left;
+}
+
+.link:hover, 
+.formulario_padrao .link:hover {
+	border: 0px;
+	padding: 0px;
+	text-decoration: underline;
+}    
+    
 .formulario_padrao input[type=text],
 .formulario_padrao input[type=password],
 .formulario_padrao textarea,
@@ -184,7 +201,7 @@ th{
     padding: 4px;
     border:solid 1px #CCC;
 }
-.formulario_padrao input[type=submit],
+.item_retorno_pesquisa button,
 .formulario_padrao input[type=submit],
 .formulario_padrao input[type=button],
 .formulario_padrao input[type=reset],
@@ -200,6 +217,7 @@ th{
     border-radius: 5px;
 
 }
+.item_retorno_pesquisa button:pressed,
 .formulario_padrao input[type=submit]:pressed,
 .formulario_padrao input[type=button]:pressed,
 .formulario_padrao input[type=reset]:pressed,
@@ -208,6 +226,8 @@ th{
     top: 1px;
     left: 1px;
 }
+
+.item_retorno_pesquisa button:hover,
 .formulario_padrao input[type=text]:hover,
 .formulario_padrao input[type=password]:hover,
 .formulario_padrao input[type=submit]:hover,
@@ -336,6 +356,7 @@ th{
 	background: #FFF;
     padding: 0px;
     margin: 0px;
+    height: 60px;
 }
 .previa_perfil img,
 .formulario_menu .previa_perfil img {
@@ -361,26 +382,10 @@ th{
 .atencao {
 	color: #F00;
 }
-.centralizar {
+.compartilhar {
 	text-align: center;
+	height: 30px;	
 }
-.link,
-.formulario_padrao .link {
-	cursor: pointer;
-    background: #FFF; /* para browsers sem suporte a CSS 3 */
-    width: 200px;
-	border: 0px;
-	padding: 0px;
-    text-align: left;
-}
-
-.link :hover, 
-.formulario_padrao .link button :hover {
-	border: 0px;
-	padding: 0px;
-	text-decoration: underline;
-}
-
 .titulo {
 	color: #060;
 	font-size: 14px;	
@@ -445,9 +450,16 @@ legend{
 	color: #FFF;
 	background: rgb(57, 130, 53);
 }
+.item_retorno_pesquisa .informacao {
+	position: relative;
+	width: 60%;
+}
 .item_retorno_pesquisa img {
 	width: 40px;
 	height: 40px;
+}
+.item_retorno_pesquisa button {
+	width: 80px;
 }
 .remover {
 	top: 2%;
@@ -493,6 +505,19 @@ legend{
 	width: 16px;
 	height: 16px;
 }
+.incluir {
+	background: url(../imagens/incluir.png) no-repeat left center;
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+}
+.excluir {
+	background: url(../imagens/excluir.png) no-repeat left center;
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+}
+.carregando,
 .remover:hover,
 .editar:hover,
 .proximo:hover,

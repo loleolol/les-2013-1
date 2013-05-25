@@ -6,9 +6,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
+import br.com.les20131.model.Usuario;
 import br.com.les20131.model.bean.PesquisaBean;
 
 /**
@@ -50,10 +52,11 @@ public class PesquisaController extends BaseController {
 	 * @throws Exception
 	 */
 	private void acaoPesquisar() throws Exception {
+		HttpSession sessao = this.requisicao.getSession();
 		PesquisaBean pesquisaBean = new PesquisaBean();
 		String criterio = this.requisicao.getParameter("criterio");
 		if (criterio != null && criterio.length() > 0) {
-			pesquisaBean.pesquisar(criterio);
+			pesquisaBean.pesquisar(criterio, ((Usuario)sessao.getAttribute("usuario")).getIdUsuario());
 			this.requisicao.setAttribute("pesquisaBean", pesquisaBean);
 		}
 		this.despachar("/view/pesquisa/listar.jsp");
@@ -66,10 +69,11 @@ public class PesquisaController extends BaseController {
 	 * @throws Exception
 	 */
 	private void acaoPesquisarPrevia() throws Exception {
+		HttpSession sessao = this.requisicao.getSession();
 		PesquisaBean pesquisaBean = new PesquisaBean();
 		String criterio = this.requisicao.getParameter("criterio");
 		if (criterio != null && criterio.length() > 0) {
-			pesquisaBean.pesquisar(criterio);
+			pesquisaBean.pesquisar(criterio, ((Usuario)sessao.getAttribute("usuario")).getIdUsuario());
 			this.resposta.setContentType("application/json");
 			this.resposta.setCharacterEncoding("UTF-8");
 			this.resposta.getWriter().write(new Gson().toJson(pesquisaBean.getListaResultado()));		

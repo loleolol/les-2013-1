@@ -54,6 +54,15 @@
     <servlet-name>ModuloViagemController</servlet-name>
     <url-pattern>/Viagem</url-pattern>
   </servlet-mapping>
+  <display-name>ModuloContato</display-name>
+  <servlet>
+    <servlet-name>ModuloContatoController</servlet-name>
+    <servlet-class>br.com.les20131.controller.ModuloContatoController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModuloContatoController</servlet-name>
+    <url-pattern>/Contato</url-pattern>
+  </servlet-mapping>  
   <display-name>ModuloAdminUsuario</display-name>
   <servlet>
     <servlet-name>ModuloAdminUsuarioController</servlet-name>
@@ -75,10 +84,10 @@
   <display-name>PesquisaController</display-name>
   <servlet>
     <servlet-name>PesquisaController</servlet-name>
-    <servlet-class>br.com.les20131.controller.PesquisaControllerController</servlet-class>
+    <servlet-class>br.com.les20131.controller.PesquisaController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>PesquisaController</servlet-name>
     <url-pattern>/Pesquisa</url-pattern>
-  </servlet-mapping>  
+  </servlet-mapping>
 </web-app>
