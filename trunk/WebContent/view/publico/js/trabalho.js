@@ -14,14 +14,16 @@ function pesquisar(campo, retorno, botao) {
 		    	for (i = 0; i < quantidade; i++) {
 			    	var string = "<form id=\"resultado"+i+"\" method=\"post\" action=\"/les20131/"+data[i].tipo+"\">"
 			    		+"<div id=\"itemRetornoPesquisaPrevia"+i+"\" class=\"item_retorno_pesquisa\" onclick=\"$('#resultado"+i+"').submit()\">"
-			    		+"<img id=\"imagemPreviaPesquisa"+i+"\" class=\"imagem_barra\" src=\"/les20131/view/publico/imagens/carregando.gif\"/>"
-			    		+"<span class=\"texto_centro\">"+data[i].identificacao+"</span>"
-			    		+"<span class=\"texto_baixo\">"+data[i].previa+"</span>"
+			    		+"<div class=\"parte_bloco\">"
+			    		+"<img id=\"imagemPreviaPesquisa"+i+"\" class=\"imagem_barra\"/>"
+			    		+"</div><div class=\"parte_bloco\">"
+			    		+"<span class=\"titulo\">"+data[i].identificacao+"</span><br/>"
+			    		+"<span>"+data[i].previa+"</span><br/>"
 			    		+"<input type=\"hidden\" name=\"acao\" value=\"selecionar\"/>"
 						+"<input type=\"hidden\" name=\"id\" value=\""+data[i].id+"\"/>"
-			    		+"</div>";
+			    		+"</div></div>";
 			    	if (i == 2 && data.length > 2) {
-			    		string += "<div class=\"item_retorno_pesquisa\" onclick=\""
+			    		string += "<div class=\"item_retorno_pesquisa titulo\" onclick=\""
 			    			+"$('#"+$(botao).attr("id")+"').click()"
 			    			+"\">Para mais resultados, clique aqui</div></form>";
 			    		aux = 19;
@@ -103,16 +105,22 @@ function verificarValorIgualCampos(campo) {
  * Popula o ano de uma dropdown de ano
  * @param dropDown
  */
-function populaDropDownAno(dropDown) { 
-	var data = new Date();
-	var i = 0;
-	var opcao;
-	for (i = (data.getFullYear()-100); i <= (data.getFullYear()+20); i++) {
-		opcao = new Option(i, i);
-		$(opcao).html(i);
-		$(dropDown).append(opcao);	
+function populaDropDownAno(dropDown, campoData) { 
+	if ($(dropDown) != undefined) {
+		var data = new Date();
+		var i = 0;
+		var opcao;
+		for (i = (data.getFullYear()-100); i <= (data.getFullYear()+20); i++) {
+			opcao = new Option(i, i);
+			$(opcao).html(i);
+			$(dropDown).append(opcao);	
+		}
+		if ($(campoData) != undefined) {
+			$(dropDown).val(data.getFullYear());
+		} else {
+			$(dropDown).val($(campoData).val().split("-")[0]);
+		}
 	}
-	$(dropDown).val(data.getFullYear());
 }
 
 /**
@@ -120,67 +128,80 @@ function populaDropDownAno(dropDown) {
  * @param dropDown
  * @param mes
  */
-function populaDropDownDia(dropDown, mes) {
-	var data = new Date();
-	var diaAtual = data.getDay();
-	data = new Date(data.getFullYear(), mes, 0);
-	var opcao;
-	$(dropDown).html("");
-	var i = 0;
-	var s;
-	for (i = 1; i <= data.getDate(); i++) {
-		s = i.toString();
-		opcao = new Option(pad(s,2), pad(s,2));
-		$(opcao).html(pad(s,2));
-		$(dropDown).append(opcao);
-	}
-	$(dropDown).val(pad(diaAtual,2));
+function populaDropDownDia(dropDown, mes, campoData) {
+	if ($(dropDown) != undefined) {
+		var data = new Date();
+		var diaAtual = data.getDay();
+		data = new Date(data.getFullYear(), mes, 0);
+		var opcao;
+		$(dropDown).html("");
+		var i = 0;
+		var s;
+		for (i = 1; i <= data.getDate(); i++) {
+			s = i.toString();
+			opcao = new Option(pad(s,2), pad(s,2));
+			$(opcao).html(pad(s,2));
+			$(dropDown).append(opcao);
+		}
+		
+		if ($(campoData) != undefined) {
+			$(dropDown).val(pad(diaAtual,2));
+		} else {
+			$(dropDown).val($(campoData).val().split("-")[2]);
+		}
+	}		
 }
 
 /**
  * Popula o mes de uma dropdown de mes
  * @param dropDown
  */
-function populaDropDownMes(dropDown) { 
-	var data = new Date();
-	var opcao;
-	opcao = new Option("Janeiro", "01");
-	$(opcao).html("Janeiro");
-	$(dropDown).append(opcao);	
-	opcao = new Option("Fevereiro", "02");
-	$(opcao).html("Fevereiro");
-	$(dropDown).append(opcao);	
-	opcao = new Option("Março", "03");
-	$(opcao).html("Março");
-	$(dropDown).append(opcao);	
-	opcao = new Option("Abril", "04");
-	$(opcao).html("Abril");
-	$(dropDown).append(opcao);	
-	opcao = new Option("Maio", "05");
-	$(opcao).html("Maio");
-	$(dropDown).append(opcao);	
-	opcao = new Option("Junho", "06");
-	$(opcao).html("Junho");
-	$(dropDown).append(opcao);	
-	opcao = new Option("Julho", "07");
-	$(opcao).html("Julho");
-	$(dropDown).append(opcao);	
-	opcao = new Option("Agosto", "08");
-	$(opcao).html("Agosto");
-	$(dropDown).append(opcao);	
-	opcao = new Option("Setembro", "09");
-	$(opcao).html("Setembro");
-	$(dropDown).append(opcao);	
-	opcao = new Option("Outubro", "10");
-	$(opcao).html("Outubro");
-	$(dropDown).append(opcao);	
-	opcao = new Option("Novembro", "11");
-	$(opcao).html("Novembro");
-	$(dropDown).append(opcao);	
-	opcao = new Option("Dezembro", "12");
-	$(opcao).html("Dezembro");
-	$(dropDown).append(opcao);	
-	$(dropDown).val(pad(data.getMonth(),2));
+function populaDropDownMes(dropDown, campoData) {
+	if ($(dropDown) != undefined) {
+		var data = new Date();
+		var opcao;
+		opcao = new Option("Janeiro", "01");
+		$(opcao).html("Janeiro");
+		$(dropDown).append(opcao);	
+		opcao = new Option("Fevereiro", "02");
+		$(opcao).html("Fevereiro");
+		$(dropDown).append(opcao);	
+		opcao = new Option("Março", "03");
+		$(opcao).html("Março");
+		$(dropDown).append(opcao);	
+		opcao = new Option("Abril", "04");
+		$(opcao).html("Abril");
+		$(dropDown).append(opcao);	
+		opcao = new Option("Maio", "05");
+		$(opcao).html("Maio");
+		$(dropDown).append(opcao);	
+		opcao = new Option("Junho", "06");
+		$(opcao).html("Junho");
+		$(dropDown).append(opcao);	
+		opcao = new Option("Julho", "07");
+		$(opcao).html("Julho");
+		$(dropDown).append(opcao);	
+		opcao = new Option("Agosto", "08");
+		$(opcao).html("Agosto");
+		$(dropDown).append(opcao);	
+		opcao = new Option("Setembro", "09");
+		$(opcao).html("Setembro");
+		$(dropDown).append(opcao);	
+		opcao = new Option("Outubro", "10");
+		$(opcao).html("Outubro");
+		$(dropDown).append(opcao);	
+		opcao = new Option("Novembro", "11");
+		$(opcao).html("Novembro");
+		$(dropDown).append(opcao);	
+		opcao = new Option("Dezembro", "12");
+		$(opcao).html("Dezembro");
+		$(dropDown).append(opcao);	
+		if ($(campoData) != undefined) {
+			$(dropDown).val(pad(data.getMonth(),2));
+		} else {
+			$(dropDown).val($(campoData).val().split("-")[1]);
+		}
+	}			
 }
 
 
@@ -204,7 +225,6 @@ function removerImagem(campo1, campo2, quantidade, id, imagem, indice) {
 function carregarImagemPerfis(img, quantidade, form, acao) {
 	var i = 1;
 	for (i = 1; i <= quantidade; i++) {
-		$('#'+img+i).attr("src", "/les20131/view/publico/imagens/carregando.gif");
 		var imagem = '#'+img+i;
 		var formulario = '#'+form+i;
 		$(imagem).attr("alt", $(formulario).attr("action")+"?acao="+acao+"&id="+$(imagem).attr("alt"));
@@ -221,14 +241,13 @@ function carregarGaleriaEdicao(campo, quantidade, acao, seleciona, imagem, remov
 		t = '#'+id+indice;
 		urlCampo = url+"?acao="+acaoCarregar+"&id="+$(t).val();
 		adicionaCampoImagem(campo, quantidade, acao, seleciona, imagem, remove, input, id);
-		$('#imagemPrevia'+indice).attr("src", "/les20131/view/publico/imagens/carregando.gif");
 		$('#imagemPrevia'+indice).attr("alt", urlCampo);
 		$(t).remove();
 	}
 }
 
 function carregarImagem(imagem, url) {
-	if ($(imagem) != undefined) {
+	if ($(imagem).length > 0) {
 		$(imagem).attr("src", url);
 		$(imagem).attr("alt", "");
 	}
@@ -236,6 +255,7 @@ function carregarImagem(imagem, url) {
 
 function carregarImagens() {
 	jQuery.each($('img'), function(i, element) {
+		$(element).attr("src", "/les20131/view/publico/imagens/carregando.gif");
 		setTimeout(function() { carregarImagem($(element), $(element).attr("alt")); }, (i*1000));
 	});
 }
@@ -314,14 +334,19 @@ function adicionaCampoImagem(campo, quantidade, acao, seleciona, imagem, remove,
 	}
 }
 
+function calculaIdade(campo) {
+	var vData = ($(campo).text()).split("-");
+	var data = new Date();
+	data.setFullYear(parseInt(vData[0]), parseInt(vData[1])-1, parseInt(vData[2]))
+	var s = ~~((Date.now() - data) / (31557600000));
+	$(campo).text(s);	
+}
+
 /**
  * Mostra mensagem na tela
  */
 function mostraMensagem(mensagem) {
     if (mensagem != "") {
-    	$(document.body).append("<div id=\"dialog\"title=\"Dialog Title\">I'm a dialog</div>");
-    	$("#dialog").dialog({ autoOpen: false });
-   		$("#dialog").dialog("open");
         //alert(mensagem);
     }
 }

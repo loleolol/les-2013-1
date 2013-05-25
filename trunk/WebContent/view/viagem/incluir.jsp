@@ -10,9 +10,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <title>#Partiu</title>
         <link type="text/css" rel="stylesheet" href="/les20131/view/publico/css/estilo.css"/>
-        <link type="text/css" rel="stylesheet" href="/les20131/view/publico/css/jquery-ui.css"/>
         <script type="text/javascript" src="/les20131/view/publico/js/jquery-1.9.1.min.js" charset="ISO-8859-1"></script>
-        <script type="text/javascript" src="/les20131/view/publico/js/jquery-ui.js"></script>        
         <script type="text/javascript" src="/les20131/view/publico/js/trabalho.js" charset="ISO-8859-1"></script>
     </head>
 	<body class="perfil" onload="mostraMensagem('${mensagemBean.mensagem}')"> 
@@ -24,25 +22,25 @@
 			<fieldset>
 			<legend>Registro de viagem</legend>
 				<form id="cadastro_viagem" class="formulario_padrao" enctype="multipart/form-data" action="<c:url value="/Viagem"></c:url>" method="post" onsubmit="return validaFormulario(new Array('titulo;String;1', 'descricao;String;1', 'dataInicialDia;int;0', 'dataInicialMes;int;0', 'dataInicialAno;int;0', 'dataFinalDia;int;0', 'dataFinalMes;int;0', 'dataFinalAno;int;0'))">
-			        <div class="block">
+			        <div class="bloco">
 				        <label for="titulo">Título<span class="atencao">*</span>:</label>
 				        <input id="titulo" type="text" name="titulo" value="" maxlength="100"/>
 				        <span id="tituloErro" class="atencao"></span>
 					</div>
-			        <div class="block galeria">
+			        <div class="bloco galeria">
 				        <label for="previrImagem">Imagens:</label>
 				        <br/>
 				        <input id="quantidadeImagem" type="hidden" name="quantidadeImagem" value=""/>
 				        <div id="adicionaImagem" class="imagem adiciona_imagem" title="Adicionar imagem" onclick="adicionaCampoImagem($('#adicionaImagem'), $('#quantidadeImagem'), 'previrImagem', 'selecionaImagem', 'imagemPrevia', 'removerImagem', 'imagem')">
 						</div>
 					</div>
-			        <div class="block">
+			        <div class="bloco">
 				        <label for="descricao">Descricao<span class="atencao">*</span>:</label>
 				        <br/>
 				        <textarea id="descricao" name="descricao" rows="8" cols="56"></textarea>
 				        <span id="descricaoErro" class="atencao"></span>
 					</div>
-			        <div class="block">
+			        <div class="bloco">
 			        	<label for="dataInicialDia">Período da viagem:</label>
 			        	<br/>
 						<label for="dataInicialDia">De<span class="atencao">*</span>:</label>
@@ -67,7 +65,7 @@
 						</select>
 						<span id="dataFinalAnoErro" class="atencao"></span>
 					</div>
-			        <div class="block">
+			        <div class="bloco">
 			        	<button type="submit" name="acao" value="incluir">Registrar</button>
 			        </div>
 				</form>

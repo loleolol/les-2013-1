@@ -304,7 +304,6 @@ th{
 }
 
 .formulario_invisivel {
-	inherit: none;
     display: inline-block;
     position: relative;
     margin: 0;
@@ -332,7 +331,6 @@ th{
 }
 .previa_perfil,
 .formulario_menu .previa_perfil {
-	inherit: none;
     display: inline-block;
     position: relative;
 	background: #FFF;
@@ -346,12 +344,14 @@ th{
 }
 .previa_perfil :hover,
 .formulario_menu .previa_perfil :hover {
-	inherit: none;
 	cursor: pointer;
  	background: #FFF; /* para browsers sem suporte a CSS 3 */
  	color: #000; /* para browsers sem suporte a CSS 3 */
 	opacity: 0.6; 
 	filter: alpha(opacity=60); 	
+}
+.parte_bloco {
+	display: inline-block;
 }
 .postador {
 	position: relative;
@@ -361,21 +361,32 @@ th{
 .atencao {
 	color: #F00;
 }
-.texto_alto {
-	vertical-align: 250%;
+.centralizar {
+	text-align: center;
 }
-.texto_centro {
-	vertical-align: 150%;
+.link,
+.formulario_padrao .link {
+	cursor: pointer;
+    background: #FFF; /* para browsers sem suporte a CSS 3 */
+    width: 200px;
+	border: 0px;
 	padding: 0px;
-	margin: 0px;
+    text-align: left;
 }
-.texto_baixo {
-	vertical-align: 90%;
+
+.link :hover, 
+.formulario_padrao .link button :hover {
+	border: 0px;
+	padding: 0px;
+	text-decoration: underline;
 }
+
 .titulo {
 	color: #060;
 	font-size: 14px;	
-	padding: 5px;
+	padding-left: 5px;
+	padding-bottom: 0px;
+	margin: 0px;
 }
 fieldset{
     padding: 0px;
@@ -391,10 +402,10 @@ legend{
 }
 #map-canvas {
 	width: 99,8%;
-	height: 400px;
+	height: 350px;
 	border: solid 1px #CCC;
 }
-.block{
+.bloco{
 	border-bottom: 1px solid #CCC;
     padding: 15px;
 }
@@ -489,7 +500,7 @@ legend{
 	opacity: 0.8;
 	filter: alpha(opacity=80);    
 }
-legend + .block{
+legend + .bloco{
     border-top:none;
 }
 

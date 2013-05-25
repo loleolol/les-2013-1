@@ -23,7 +23,7 @@
         <div class="corpo">
             <fieldset>
                 <legend>Erro</legend>
-                <div class="block">
+                <div class="bloco">
                     <label>Erro ocorrido: </label>
                     <div>${mensagemBean.mensagem}</div>
                 </div>

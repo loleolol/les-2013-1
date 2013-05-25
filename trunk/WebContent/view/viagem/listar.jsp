@@ -15,9 +15,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <title>#Partiu</title>
         <link type="text/css" rel="stylesheet" href="/les20131/view/publico/css/estilo.css"/>
-        <link type="text/css" rel="stylesheet" href="/les20131/view/publico/css/jquery-ui.css"/>
         <script type="text/javascript" src="/les20131/view/publico/js/jquery-1.9.1.min.js" charset="ISO-8859-1"></script>
-        <script type="text/javascript" src="/les20131/view/publico/js/jquery-ui.js"></script>
         <script type="text/javascript" src="/les20131/view/publico/js/trabalho.js" charset="ISO-8859-1"></script>
     </head>
     <body class="perfil" onload="mostraMensagem('${mensagemBean.mensagem}')">
@@ -29,7 +27,7 @@
             <c:forEach items="${viagemBean.listaViagem}" var="viagem">
             	<div class="formulario_postagem">
 	            	<div class="previa_perfil postador">
-			    		<img id="imagemBarra" class="imagem_barra" src="<c:url value="/Viajante?acao=carregarImagem&id=${usuarioBean.usuario.idUsuario}"></c:url>"/>
+			    		<img id="imagemBarra" class="imagem_barra" alt="<c:url value="/Viajante?acao=carregarImagem&id=${usuarioBean.usuario.idUsuario}"></c:url>"/>
 			    		<span class="texto_centro">${usuarioBean.usuario.nome} compartilhou ${viagem.titulo}</span>               	
 			    	</div>
 	               	<div class="container">
@@ -42,7 +40,7 @@
 	                	<form id="viagem${viagem.idViagem}" 
 							action="<c:url value="/Viagem"></c:url>" method="post">
 							<c:if test="${fn:length(viagem.imagemViagem) > 0}">
-								<div class="block">
+								<div class="bloco">
 									<div id="galeria${viagem.idViagem}" class="galeria">
 										<img id="imagem${viagem.idViagem}" class="imagem"/>
 									</div>
@@ -51,7 +49,7 @@
 		 					<c:forEach items="${viagem.imagemViagem}" var="imagemViagem" varStatus="chave">
 		 						<input id="imagemUrl${viagem.idViagem}${chave.count}" name="imagemUrl${viagem.idViagem}" type="hidden" value="<c:url value="/Viagem?acao=carregarImagem&id=${imagemViagem.idImagemViagem}"></c:url>"/>
 							</c:forEach>
-							<div class="block texto">${viagem.descricao}</div>
+							<div class="bloco texto">${viagem.descricao}</div>
 							<input id="acao${viagem.idViagem}" type="hidden" name="acao" value=""/>
 							<input type="hidden" name="idViagem" value="${viagem.idViagem}"/>
 					    </form>

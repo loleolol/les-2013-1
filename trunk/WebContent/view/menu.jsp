@@ -4,9 +4,16 @@
 			<form id="menu1" class="formulario_menu" action="<c:url value="/Viajante"></c:url>" method="post">
 				<div class="previa_perfil menu_perfil">
 					<button type="submit" name="acao" value="selecionar">
-			    		<img id="imagemBarra" class="imagem_barra" src="<c:url value="/Viajante?acao=carregarImagem&id=${usuarioBean.usuario.idUsuario}"></c:url>"/>
-			    		<span class="texto_alto titulo">${usuarioBean.usuario.nome}</span>
-			    		<span class="texto_centro">Editar perfil</span>
+			    		<div class="parte_bloco">
+				    		<img id="imagemBarra" class="imagem_barra" alt="<c:url value="/Viajante?acao=carregarImagem&id=${usuarioBean.usuario.idUsuario}"></c:url>"/>
+			    		</div>
+			    		<div class="parte_bloco">
+			    			<span class="titulo">${usuarioBean.usuario.nome}</span>
+			    			<br/>
+			    			<span>Editar perfil</span>
+			    			<br/>
+			    			<br/>
+						</div>
 					</button>
 				</div>
 			</form>
