@@ -51,6 +51,13 @@ public class Viagem {
 	 */
 	private Date dataFinal;
 
+	/**
+	 * Armazena a data de inclusão
+	 * @access private
+	 * @var Date
+	 */
+	private Date dataInclusao;
+	
     /**
      * Armazena se o registro foi excluido
      * @access private
@@ -78,15 +85,17 @@ public class Viagem {
 	 * @param Viajante viajante
 	 * @param String titulo
 	 * @param String descricao
-	 * @param String dataInicial
-	 * @param String dataFinal
+	 * @param Date dataInicial
+	 * @param Date dataFinal
+	 * @param Date dataInclusao
 	 */
-	public Viagem(Viajante viajante, String titulo, String descricao, Date dataInicial, Date dataFinal) {
+	public Viagem(Viajante viajante, String titulo, String descricao, Date dataInicial, Date dataFinal, Date dataInclusao) {
 		this.setViajante(viajante);
 		this.setTitulo(titulo);
 		this.setDescricao(descricao);
 		this.setDataInicial(dataInicial);
 		this.setDataFinal(dataFinal);
+		this.setDataInclusao(dataInclusao);
 	}
 
 	/**
@@ -96,16 +105,18 @@ public class Viagem {
 	 * @param Viajante viajante
 	 * @param String titulo
 	 * @param String descricao
-	 * @param String dataInicial
-	 * @param String dataFinal
+	 * @param Date dataInicial
+	 * @param Date dataFinal
+	 * @param Date dataInclusao
 	 */
-	public Viagem(int idViagem, Viajante viajante, String titulo, String descricao, Date dataInicial, Date dataFinal) {
+	public Viagem(int idViagem, Viajante viajante, String titulo, String descricao, Date dataInicial, Date dataFinal, Date dataInclusao) {
 		this.idViagem = idViagem;
 		this.setViajante(viajante);
 		this.setTitulo(titulo);
 		this.setDescricao(descricao);
 		this.setDataInicial(dataInicial);
 		this.setDataFinal(dataFinal);
+		this.setDataInclusao(dataInclusao);
 	}
 
 	/**
@@ -185,6 +196,25 @@ public class Viagem {
 	}
 	
 	/**
+	 * Retorna o título
+	 * @access public
+	 * @return String
+	 */
+	public String getTitulo() {
+		return titulo;
+	}
+
+	/**
+	 * Define o título
+	 * @access public
+	 * @param String titulo
+	 * @return void
+	 */
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+	
+	/**
 	 * Retorna a descrição
 	 * @access public
 	 * @return void
@@ -241,24 +271,24 @@ public class Viagem {
 	}
 
 	/**
-	 * Retorna o título
-	 * @access public
-	 * @return String
+	 * Retorna a data de inclusão
+	 * @access public	
+	 * @return Date
 	 */
-	public String getTitulo() {
-		return titulo;
+	public Date getDataInclusao() {
+		return dataInclusao;
 	}
 
 	/**
-	 * Define o título
+	 * Define a data de inclusão
 	 * @access public
-	 * @param String titulo
+	 * @param Date dataInclusao
 	 * @return void
 	 */
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
+	public void setDataInclusao(Date dataInclusao) {
+		this.dataInclusao = dataInclusao;
 	}
-	
+
 	/**
 	 * Define a lista de imagens de viagem
 	 * @access public

@@ -78,7 +78,7 @@
 			<fieldset>
 			<legend>Perfil</legend>
 				<form id="cadastro_viajante" class="formulario_padrao" enctype="multipart/form-data" action="<c:url value="/Viajante"></c:url>" method="post" onsubmit="return validaFormulario(new Array('nome;String;1', 'dataNascimentoDia;int;1', 'dataNascimentoMes;int;1', 'dataNascimentoAno;int;1', 'sexo;String;1'))">
-			        <div class="bloco">
+			        <div class="bloco container">
 				        <div class="parte_bloco">
 					        <label for="imagem">Imagem:</label>
 					        <br/>
@@ -149,6 +149,24 @@
 							</div>
 							<br/>
 						</div>
+						<c:if test="${!viajanteBean.proprio}">
+							<div class="inferior_direito">
+								<c:choose>
+									<c:when test="${contato}">
+					    				<button type="button" onclick="removerContato($(this), ${viajanteBean.viajante.idUsuario})">
+					    					<span class="excluir"></span>
+					    					<span>Contato</span>
+					    				</button>
+					    			</c:when>
+					    			<c:otherwise>
+					    				<button type="button" onclick="adicionarContato($(this), ${viajanteBean.viajante.idUsuario})">
+					    					<span class="incluir"></span>
+					    					<span>Contato</span>
+					    				</button>
+					    			</c:otherwise>
+								</c:choose>
+							</div>
+						</c:if>	
 					</div>
 					<div class="bloco container">
 						<label for="map-canvas">Localização:</label>
@@ -168,6 +186,10 @@
 				    </c:if>
 				</form>
 			</fieldset>
+			<c:if test="${!viajanteBean.proprio}">
+				<br/>
+				<%@include file="../atualizacao/atualizacao.jsp"%>
+			</c:if>
 			<script type="text/javascript">
 				$(document).ready(function() { 
 					populaDropDownAno($('#dataNascimentoAno'), $('#dataNascimento'));

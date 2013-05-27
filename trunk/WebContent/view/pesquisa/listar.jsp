@@ -21,12 +21,18 @@
     <body class="perfil" onload="mostraMensagem('${mensagemBean.mensagem}')">
 		<%@include file="../usuario/login.jsp"%>
 		<%@include file="../menu.jsp" %>
-		<%@include file="../adicional.jsp"%>
         <jsp:useBean id="pesquisaBean" class="br.com.les20131.model.bean.PesquisaBean" scope="request"/>
         <div id="corpo">
-        	<div class="bloco">
-        		<span>Pesquisa por "<c:out value="${pesquisaBean.criterio}"></c:out>"</span>
-        	</div>
+        	<c:choose>
+	        	<c:when test="${pesquisaBean.criterio != null}">
+		        	<div class="bloco barra_central">
+			        	<span>Pesquisa por "<c:out value="${pesquisaBean.criterio}"></c:out>"</span>
+		        	</div>
+	        	</c:when>
+	        	<c:otherwise>
+	        		<%@include file="../viagem/viagem.jsp" %>
+	        	</c:otherwise>
+	        </c:choose>
             <c:forEach items="${pesquisaBean.listaResultado}" var="itemResultado" varStatus="chave">
             	<div>
 	               	<div class="container">
@@ -44,7 +50,10 @@
 				    				<br/>
 				    			</div>
 				    			<div class="parte_bloco">
+				    				<c:set var="idUsuario">${usuarioBean.usuario.idUsuario}</c:set>
 				    				<c:choose>
+				    					<c:when test="${itemResultado.id == idUsuario}">
+				    					</c:when>
 				    					<c:when test="${itemResultado.flag}">
 						    				<button type="button" onclick="removerContato($(this), ${itemResultado.id})">
 						    					<span class="excluir"></span>
@@ -71,6 +80,7 @@
 					carregarImagemPerfis('imagemPreviaPesquisa', $('.item_retorno_pesquisa').length, 'resultado', 'carregarImagem');
 				});
 			</script>
-		</div>			
+		</div>
+		<%@include file="../adicional.jsp"%>
     </body>
 </html>

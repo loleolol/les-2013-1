@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import br.com.les20131.model.Usuario;
 import br.com.les20131.model.bean.UsuarioBean;
 import br.com.les20131.util.InvalidPageException;
 
@@ -86,6 +87,9 @@ public class LoginController extends BaseController {
         HttpSession sessao = this.requisicao.getSession(true);
         sessao.setAttribute("usuario", usuarioBean.getUsuario());
         this.verificarSessao();
+    	AtualizacaoController atualizacaoController = new AtualizacaoController();
+    	atualizacaoController.requisicao = this.requisicao;
+    	atualizacaoController.listarTodasAtualizacoes();    	
         this.despachar("/view/inicio.jsp");
     }
     

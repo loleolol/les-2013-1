@@ -62,7 +62,7 @@
   <servlet-mapping>
     <servlet-name>ModuloContatoController</servlet-name>
     <url-pattern>/Contato</url-pattern>
-  </servlet-mapping>  
+  </servlet-mapping>
   <display-name>ModuloAdminUsuario</display-name>
   <servlet>
     <servlet-name>ModuloAdminUsuarioController</servlet-name>
@@ -90,4 +90,13 @@
     <servlet-name>PesquisaController</servlet-name>
     <url-pattern>/Pesquisa</url-pattern>
   </servlet-mapping>
+  <display-name>AtualizacaoController</display-name>
+  <servlet>
+    <servlet-name>AtualizacaoController</servlet-name>
+    <servlet-class>br.com.les20131.controller.AtualizacaoController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AtualizacaoController</servlet-name>
+    <url-pattern>/Atualizacao</url-pattern>
+  </servlet-mapping>  
 </web-app>

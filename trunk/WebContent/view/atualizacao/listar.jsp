@@ -1,3 +1,9 @@
+<%--
+    Document   : listaLocacao
+    Created on : 03/04/2013, 20:02:15
+    Author     : 200920183
+--%>
+
 <%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -11,13 +17,13 @@
         <script type="text/javascript" src="/les20131/view/publico/js/jquery-1.9.1.min.js" charset="ISO-8859-1"></script>
         <script type="text/javascript" src="/les20131/view/publico/js/trabalho.js" charset="ISO-8859-1"></script>
     </head>
-	<body class="perfil">
-		<%@include file="usuario/login.jsp"%>
-		<%@include file="menu.jsp" %>
-		<div id="corpo">
-			<%@include file="viagem/viagem.jsp" %>
-			<%@include file="atualizacao/atualizacao.jsp" %>
+    <body class="perfil" onload="mostraMensagem('${mensagemBean.mensagem}')">
+		<%@include file="../usuario/login.jsp"%>
+		<%@include file="../menu.jsp" %>
+        <div id="corpo">
+        	<%@include file="../viagem/viagem.jsp"%>
+        	<%@include file="atualizacao.jsp" %>
 		</div>
-		<%@include file="adicional.jsp" %>
-	</body>
+		<%@include file="../adicional.jsp"%>		
+    </body>
 </html>

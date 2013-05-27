@@ -31,23 +31,23 @@ public class Contato {
 	private Viajante viajante2;
 	
 	/**
-	 * Armazena a data de início do contato
+	 * Armazena a data de inclusão do contato
 	 * @access private
 	 * @var Date
 	 */
-	private Date dataInicio;
+	private Date dataInclusao;
 	
 	/**
 	 * Construtor da classe
 	 * @access public
 	 * @param Viajante viajante1
 	 * @param Viajante viajante2
-	 * @param Date dataInicio
+	 * @param Date dataInclusao
 	 */
-	public Contato(Viajante viajante1, Viajante viajante2, Date dataInicio) {
+	public Contato(Viajante viajante1, Viajante viajante2, Date dataInclusao) {
 		this.viajante1 = viajante1;
 		this.viajante2 = viajante2;
-		this.dataInicio = dataInicio;
+		this.dataInclusao = dataInclusao;
 	}
 	
 	/**
@@ -56,13 +56,13 @@ public class Contato {
 	 * @param int idContato
 	 * @param Viajante viajante1
 	 * @param Viajante viajante2
-	 * @param Date dataInicio
+	 * @param Date dataInclusao
 	 */
-	public Contato(int idContato, Viajante viajante1, Viajante viajante2, Date dataInicio) {
+	public Contato(int idContato, Viajante viajante1, Viajante viajante2, Date dataInclusao) {
 		this.idContato = idContato;
 		this.viajante1 = viajante1;
 		this.viajante2 = viajante2;
-		this.dataInicio = dataInicio;
+		this.dataInclusao = dataInclusao;
 	}
 
 	/**
@@ -123,22 +123,22 @@ public class Contato {
 	}
 
 	/**
-	 * Retorna a data de início
+	 * Retorna a data de inclusao
 	 * @access public
 	 * @return Date
 	 */
-	public Date getDataInicio() {
-		return dataInicio;
+	public Date getDataInclusao() {
+		return dataInclusao;
 	}
 
 	/**
-	 * Define a data de início
+	 * Define a data de inclusao
 	 * @access public
-	 * @param Date dataInicio
+	 * @param Date dataInclusao
 	 * @return void
 	 */
-	public void setDataInicio(Date dataInicio) {
-		this.dataInicio = dataInicio;
+	public void setDataInclusao(Date dataInclusao) {
+		this.dataInclusao = dataInclusao;
 	}
 		
 }

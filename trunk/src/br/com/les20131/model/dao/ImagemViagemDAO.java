@@ -179,9 +179,4 @@ public class ImagemViagemDAO extends DAOBase<ImagemViagem> {
         }
     }
 
-    public List<ImagemViagem> consultarTodos() throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }	
-	
-
 }
