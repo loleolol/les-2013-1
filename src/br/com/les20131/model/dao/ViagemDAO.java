@@ -34,7 +34,7 @@ public class ViagemDAO extends DAOBase<Viagem> {
         PreparedStatement stmt = null;
         ResultSet resultSet = null;
         int indice = 0;
-        String sql = "SELECT v.id_viagem, v.id_usuario, v.titulo, v.descricao, v.data_inicial, v.data_final"
+        String sql = "SELECT v.id_viagem, v.id_usuario, v.titulo, v.descricao, v.data_inicial, v.data_final, v.data_inclusao"
                     + "\n FROM viagem v"
                     + "\n WHERE v.id_viagem = ?";
 
@@ -51,7 +51,8 @@ public class ViagemDAO extends DAOBase<Viagem> {
                 , resultSet.getString("titulo")
                 , resultSet.getString("descricao")
                 , resultSet.getDate("data_inicial")
-                , resultSet.getDate("data_final"));
+                , resultSet.getDate("data_final")
+                , resultSet.getTimestamp("data_inclusao"));
             }
 
             return viagem;
@@ -75,8 +76,8 @@ public class ViagemDAO extends DAOBase<Viagem> {
         PreparedStatement stmt = null;
 
         String sql = "INSERT INTO viagem"
-                    + "\n(id_usuario, titulo, descricao, data_inicial, data_final, excluido, bloqueado)"
-                    + "\n VALUES (?, ?, ?, ?, ?, ?, ?)";
+                    + "\n(id_usuario, titulo, descricao, data_inicial, data_final, data_inclusao, excluido, bloqueado)"
+                    + "\n VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             stmt = this.conexao.prepareStatement(sql);
@@ -85,6 +86,7 @@ public class ViagemDAO extends DAOBase<Viagem> {
             stmt.setString(++indice, obj.getDescricao());
             stmt.setDate(++indice, new java.sql.Date(obj.getDataInicial().getTime()));
             stmt.setDate(++indice, new java.sql.Date(obj.getDataFinal().getTime()));
+            stmt.setTimestamp(++indice, new java.sql.Timestamp(obj.getDataInclusao().getTime()));
             stmt.setInt(++indice, obj.getExcluido());
             stmt.setInt(++indice, obj.getBloqueado());
             stmt.executeUpdate();
@@ -160,14 +162,7 @@ public class ViagemDAO extends DAOBase<Viagem> {
             throw new DAOException(excecao);
         }
     }
-	
-	
-	@Override
-	public List<Viagem> consultarTodos() throws DAOException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
+		
     /**
      * Consulta as viagens pelo viajante
      * @access public
@@ -179,7 +174,7 @@ public class ViagemDAO extends DAOBase<Viagem> {
         PreparedStatement stmt = null;
         ResultSet resultSet = null;
         int indice = 0;
-        String sql = "SELECT v.id_viagem, v.id_usuario, v.titulo, v.descricao, v.data_inicial, v.data_final"
+        String sql = "SELECT v.id_viagem, v.id_usuario, v.titulo, v.descricao, v.data_inicial, v.data_final, v.data_inclusao"
                     + "\n FROM viagem v"
                     + "\n WHERE v.id_usuario = ?";
 
@@ -197,7 +192,8 @@ public class ViagemDAO extends DAOBase<Viagem> {
                 , resultSet.getString("titulo")
                 , resultSet.getString("descricao")
                 , resultSet.getDate("data_inicial")
-                , resultSet.getDate("data_final")));
+                , resultSet.getDate("data_final")
+                , resultSet.getTimestamp("data_inclusao")));
             }
 
             return listaViagem;

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import br.com.les20131.model.Usuario;
+import br.com.les20131.model.bean.AtualizacaoBean;
 import br.com.les20131.model.bean.ImagemViagemBean;
 import br.com.les20131.model.bean.MensagemBean;
 import br.com.les20131.model.bean.ViagemBean;
@@ -65,8 +66,6 @@ public class ModuloViagemController extends BaseController {
 				this.acaoPadrao();
 			} else if (this.acao.equalsIgnoreCase("incluir")) {
 				this.acaoIncluir();
-			} else if (this.acao.equalsIgnoreCase("listar")) {
-				this.acaoListar();
 			} else if (this.acao.equalsIgnoreCase("selecionar")) {
 				this.acaoSelecionar();
 			} else if (this.acao.equalsIgnoreCase("alterar")) {
@@ -103,19 +102,10 @@ public class ModuloViagemController extends BaseController {
 	 */
 	private void acaoIncluir() throws Exception {
 		this.incluirViagem();
-		this.listarMinhaViagem();
-		this.despachar("/view/viagem/listar.jsp");
-	}
-	
-	/**
-	 * Ação de listagem de viagem
-	 * @access private
-	 * @return void
-	 * @throws Exception
-	 */
-	private void acaoListar() throws Exception {
-		this.listarMinhaViagem();
-		this.despachar("/view/viagem/listar.jsp");
+    	AtualizacaoController atualizacaoController = new AtualizacaoController();
+    	atualizacaoController.requisicao = this.requisicao;
+    	atualizacaoController.listarTodasAtualizacoes(); 		
+		this.despachar("/view/inicio.jsp");
 	}
 	
 	/**
@@ -148,8 +138,10 @@ public class ModuloViagemController extends BaseController {
 	 */
 	private void acaoExcluir() throws Exception {
 		this.excluirViagem();
-		this.listarMinhaViagem();
-		this.despachar("/view/viagem/listar.jsp");
+    	AtualizacaoController atualizacaoController = new AtualizacaoController();
+    	atualizacaoController.requisicao = this.requisicao;
+    	atualizacaoController.listarTodasAtualizacoes(); 		
+		this.despachar("/view/inicio.jsp");
 	}
 	
     /**
@@ -168,20 +160,7 @@ public class ModuloViagemController extends BaseController {
         	this.acaoCarregarImagem(null);
     	}
     }	
-	
-    /**
-     * Lista as viagens cadastradas
-     * @access private
-     * @return void
-     * @throws Exception
-     */
-    private void listarMinhaViagem() throws Exception {
-    	HttpSession sessao = this.requisicao.getSession();
-        ViagemBean viagemBean = new ViagemBean();
-        viagemBean.consultar(((Usuario)sessao.getAttribute("usuario")), true);
-        this.requisicao.setAttribute("viagemBean", viagemBean);
-    }	
-	
+
     /**
      * Efetua a inclusão de novo registro
      * @access private
@@ -301,12 +280,9 @@ public class ModuloViagemController extends BaseController {
      * @throws Exception
      */
     private void excluirViagem() throws Exception {
+        this.validarIdViagem(this.requisicao.getParameter("idViagem"));
         ViagemBean viagemBean = new ViagemBean();
-        viagemBean.consultar(Integer.parseInt(this.requisicao.getParameter("idViagem")));
-        ImagemViagemBean imagemViagemBean = new ImagemViagemBean();
-        imagemViagemBean.consultar(viagemBean.getViagem());
-        imagemViagemBean.excluirLista(imagemViagemBean.getListaImagemViagem());
-        viagemBean.excluir(viagemBean.getViagem());
+        viagemBean.excluir(Integer.parseInt(this.requisicao.getParameter("idViagem")));
     }
     
     /**

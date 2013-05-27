@@ -9,38 +9,40 @@ function pesquisar(campo, retorno, botao) {
 	    		$(retorno).attr("class", "retorno_pesquisa");
 		    	$(retorno).width($(campo).width());
 		    	var i = 0;
-		    	var quantidade = (data.length < 3 ? data.length : 3);
+		    	var quantidade = (data.lista.length < 3 ? data.lista.length : 3);
 		    	var aux = 15;
 		    	for (i = 0; i < quantidade; i++) {
-			    	var string = "<form id=\"resultado"+i+"\" method=\"post\" action=\"/les20131/"+data[i].tipo+"\">"
+			    	var string = "<form id=\"resultado"+i+"\" method=\"post\" action=\"/les20131/"+data.lista[i].tipo+"\">"
 			    		+"<div id=\"itemRetornoPesquisaPrevia"+i+"\" class=\"item_retorno_pesquisa\">"
 			    		+"<div class=\"parte_bloco\" onclick=\"$('#resultado"+i+"').submit()\">"
 			    		+"<img id=\"imagemPreviaPesquisa"+i+"\" class=\"imagem_barra\"/>"
 			    		+"</div><div class=\"parte_bloco informacao\" onclick=\"$('#resultado"+i+"').submit()\">"
-			    		+"<span class=\"titulo\">"+data[i].identificacao+"</span><br/>"
-			    		+"<span>"+data[i].previa+"</span><br/>"
+			    		+"<span class=\"titulo\">"+data.lista[i].identificacao+"</span><br/>"
+			    		+"<span>"+data.lista[i].previa+"</span><br/>"
 			    		+"<input type=\"hidden\" name=\"acao\" value=\"selecionar\"/>"
-						+"<input type=\"hidden\" name=\"id\" value=\""+data[i].id+"\"/>"
+						+"<input type=\"hidden\" name=\"id\" value=\""+data.lista[i].id+"\"/>"
 			    		+"</div>"
 		    			+"<div class=\"parte_bloco\">";
-			    	if (data[i].flag) {
-			    		string += "<button type=\"button\" onclick=\"removerContato($(this), "+data[i].id+")\">"
-		    				+"<span class=\"excluir\"></span>";
-			    	} else {
-			    		string += "<button type=\"button\" onclick=\"adicionarContato($(this), "+data[i].id+")\">"
-			    			+"<span class=\"incluir\"></span>";
+			    	if (data.idUsuario != data.lista[i].id) {
+				    	if (data.lista[i].flag) {
+				    		string += "<button type=\"button\" onclick=\"removerContato($(this), "+data.lista[i].id+")\">"
+			    				+"<span class=\"excluir\"></span>";
+				    	} else {
+				    		string += "<button type=\"button\" onclick=\"adicionarContato($(this), "+data.lista[i].id+")\">"
+				    			+"<span class=\"incluir\"></span>";
+				    	}
+			    		string += "<span>Contato</span>"
+		    				+"</button>";
 			    	}
-		    		string += "<span>Contato</span>"
-	    				+"</button>"
-	    				+"</div></div>";
-			    	if (i == 2 && data.length > 2) {
+			    	string += "</div></div>";
+			    	if (i == 2 && data.lista.length > 3) {
 			    		string += "<div class=\"item_retorno_pesquisa titulo\" onclick=\""
 			    			+"$('#"+$(botao).attr("id")+"').click()"
 			    			+"\">Para mais resultados, clique aqui</div></form>";
 			    		aux = 19;
 			    	}
 			    	$(retorno).append(string);
-			    	urlCampo = "/les20131/Viajante?acao=carregarImagem&id="+data[i].id;
+			    	urlCampo = "/les20131/Viajante?acao=carregarImagem&id="+data.lista[i].id;
 			    	(function(index, link) {
 				        setTimeout(function() { carregarImagem($('#imagemPreviaPesquisa'+index), link); }, (index*1000));
 				    })(i, urlCampo);			    	
@@ -304,13 +306,16 @@ function carregarImagens() {
 
 function carregarGaleria(id, imagem, url, form) {
 	jQuery.each($('[name='+id+']'), function(i, element) {
-		var img = '#'+imagem+$(element).val();
-		if ($(img) != undefined) {
-			$('#'+form+$(element).val()).before("<a class=\"proximo\" href=\"javascript:void(0)\" title=\"Próximo\""
-					+ " onclick=\"navegarGaleria($('#"+imagem+$(element).val()+"'), '"+url+$(element).val()+"', false)\"></a>");
-			$('#'+form+$(element).val()).before("<a class=\"anterior\" href=\"javascript:void(0)\" title=\"Anterior\""
-					+ " onclick=\"navegarGaleria($('#"+imagem+$(element).val()+"'), '"+url+$(element).val()+"', true)\"></a>");
-			$(img).attr("alt", $('#'+url+$(element).val()+'1').val());
+		var indice = (i+1);
+		var img = '#'+imagem+indice;
+		if ($(img) != undefined && $(img).length > 0) {
+			if ($('#'+url+indice+'2').length > 0) {
+				$('#'+form+indice).before("<a class=\"proximo\" href=\"javascript:void(0)\" title=\"Próximo\""
+						+ " onclick=\"navegarGaleria($('#"+imagem+indice+"'), '"+url+indice+"', false)\"></a>");
+				$('#'+form+indice).before("<a class=\"anterior\" href=\"javascript:void(0)\" title=\"Anterior\""
+						+ " onclick=\"navegarGaleria($('#"+imagem+indice+"'), '"+url+indice+"', true)\"></a>");
+			}
+			$(img).attr("alt", $('#'+url+indice+'1').val());
 		}
 	});
 }

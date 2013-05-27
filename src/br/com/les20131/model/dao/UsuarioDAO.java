@@ -173,10 +173,6 @@ public class UsuarioDAO extends DAOBase<Usuario> {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public List<Usuario> consultarTodos() throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
     /**
      * Retorna o hash da senha
      * @access public

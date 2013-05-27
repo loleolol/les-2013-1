@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 
 import br.com.les20131.model.Usuario;
 import br.com.les20131.model.bean.PesquisaBean;
@@ -39,6 +40,8 @@ public class PesquisaController extends BaseController {
 				this.acaoPesquisarPrevia();
 			} else if (this.acao.equalsIgnoreCase("pesquisar")) {
 				this.acaoPesquisar();
+			} else if (this.acao.equalsIgnoreCase("contatos")) {
+				this.acaoPesquisarContatos();
 			}
 		} catch (Exception excecao) {
 		    this.tratarExcecao(excecao);
@@ -73,10 +76,28 @@ public class PesquisaController extends BaseController {
 		PesquisaBean pesquisaBean = new PesquisaBean();
 		String criterio = this.requisicao.getParameter("criterio");
 		if (criterio != null && criterio.length() > 0) {
-			pesquisaBean.pesquisar(criterio, ((Usuario)sessao.getAttribute("usuario")).getIdUsuario());
+			int idUsuario = ((Usuario)sessao.getAttribute("usuario")).getIdUsuario();
+			pesquisaBean.pesquisar(criterio, idUsuario);
 			this.resposta.setContentType("application/json");
 			this.resposta.setCharacterEncoding("UTF-8");
-			this.resposta.getWriter().write(new Gson().toJson(pesquisaBean.getListaResultado()));		
+			Gson gson = new Gson();
+			String json = gson.toJson(pesquisaBean.getListaResultado());
+			json = "{ \"idUsuario\":\""+idUsuario+"\", \"lista\":"+json+" }";
+			this.resposta.getWriter().write(json);			
 		}
+	}
+	
+	/**
+	 * Ação de pesquisa de contatos
+	 * @access private
+	 * @return void
+	 * @throws Exception
+	 */
+	private void acaoPesquisarContatos() throws Exception {
+		HttpSession sessao = this.requisicao.getSession();
+		PesquisaBean pesquisaBean = new PesquisaBean();
+		pesquisaBean.pesquisarContatos(((Usuario)sessao.getAttribute("usuario")).getIdUsuario());
+		this.requisicao.setAttribute("pesquisaBean", pesquisaBean);
+		this.despachar("/view/pesquisa/listar.jsp");		
 	}
 }

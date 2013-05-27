@@ -295,6 +295,7 @@ th{
 	margin: 0px;
 	padding: 0px;
 	overflow: hidden;
+	border-bottom: 1px solid #CCC;
 }
 .formulario_postagem .texto {
 	padding: 5px;
@@ -376,13 +377,19 @@ th{
 }
 .postador {
 	position: relative;
-	width: 39%;
-	height: 10%;
+	padding-left: 5px;
+	padding-top: 5px;
+	width: 50px;
+	height: 50px;
+}
+.postador img {
+	width: 50px;
+	height: 50px;
 }
 .atencao {
 	color: #F00;
 }
-.compartilhar {
+.barra_central {
 	text-align: center;
 	height: 30px;	
 }
@@ -397,7 +404,7 @@ fieldset{
     padding: 0px;
     border:solid 1px #CCC;
     position: relative;
-    width: 99,8%;
+    width: 99.4%;
 }
 legend{
     background-color: #060;
@@ -406,7 +413,7 @@ legend{
     text-transform: uppercase;
 }
 #map-canvas {
-	width: 99,8%;
+	width: 99.4%;
 	height: 350px;
 	border: solid 1px #CCC;
 }
@@ -460,6 +467,11 @@ legend{
 }
 .item_retorno_pesquisa button {
 	width: 80px;
+}
+.inferior_direito {
+	top: 80%;
+	left: 80%;
+	position: absolute;
 }
 .remover {
 	top: 2%;

@@ -84,4 +84,22 @@ public class PesquisaBean {
 		}
 	}
 	
+	/**
+	 * Realiza a pesquisa por contatos
+	 * @access public
+	 * @param int idUsuario
+	 * @throws Exception
+	 */
+	public void pesquisarContatos(int idUsuario) throws Exception {
+		ViajanteBean viajanteBean = new ViajanteBean();
+		viajanteBean.consultarContatos(idUsuario);
+		int indice;
+		List<Viajante> lista = viajanteBean.getListaViajante();
+		for (indice = 0; indice < viajanteBean.getListaViajante().size(); indice++) {
+			this.listaResultado.add(new ItemPesquisadoBean(lista.get(indice).getIdUsuario()
+					, lista.get(indice).getNome(), lista.get(indice).getEmail()
+					, true,"Viajante"));
+		}		
+	}
+	
 }

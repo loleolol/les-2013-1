@@ -1,8 +1,11 @@
 package br.com.les20131.model.bean;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import br.com.les20131.model.Contato;
+import br.com.les20131.model.Usuario;
 import br.com.les20131.model.Viajante;
 import br.com.les20131.model.dao.ContatoDAO;
 import br.com.les20131.model.dao.ViajanteDAO;
@@ -29,12 +32,20 @@ public class ContatoBean {
     protected Contato contato;
     
     /**
+     * Armazena a lista de contatos
+     * @access protected
+     * @var List<Contato>
+     */
+    protected List<Contato> listaContato;
+    
+    /**
      * Construtor da classe
      * @access public
      * @throws Exception 
      */
     public ContatoBean() throws Exception {
     	this.contatoDAO = new ContatoDAO();
+    	this.listaContato = new ArrayList<Contato>();
     }
 
     /**
@@ -82,7 +93,7 @@ public class ContatoBean {
      * @throws Exception
      */
     public void excluir(int idUsuario1, int idUsuario2) throws Exception {
-    	this.contato = this.contatoDAO.consultar(idUsuario1, idUsuario2);
+    	this.consultar(idUsuario1, idUsuario2);
     	this.contatoDAO.excluir(this.contato);
     }    
     
@@ -108,6 +119,9 @@ public class ContatoBean {
      */
     public void consultar(int idUsuario1, int idUsuario2) throws Exception {
         this.contato = this.contatoDAO.consultar(idUsuario1, idUsuario2);
-    }    
-    
+        if (this.contato == null) {
+        	this.contato = this.contatoDAO.consultar(idUsuario2, idUsuario1);
+        }
+    }
+        
 }

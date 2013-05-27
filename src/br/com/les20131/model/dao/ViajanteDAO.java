@@ -71,6 +71,53 @@ public class ViajanteDAO extends DAOBase<Viajante> {
     }
     
     /**
+     * Consulta contatos de viajante
+     * @access public
+     * @param int idUsuario
+     * @return List<Viajante>
+     * @throws DAOException
+     */
+    public List<Viajante> consultarContatos(int idUsuario) throws DAOException {
+        int indice = 0;
+        PreparedStatement stmt = null;
+        ResultSet resultSet = null;
+
+        String sql = "SELECT u.id_usuario, u.email, u.nome, u.senha, u.excluido, u.bloqueado"
+        			+ "\n, v2.sexo, v2.data_nascimento, v2.latitude, v2.longitude, v2.imagem"
+                    + "\n FROM usuario u, viajante v2, contato c, viajante v1"
+                    + "\n WHERE v1.id_usuario = ?"
+                    + "\n AND u.id_usuario = v2.id_usuario"
+                    + "\n AND ((v2.id_usuario = c.id_usuario2"
+                    + "\n AND c.id_usuario1 = v1.id_usuario)"
+                    + "\n OR (v2.id_usuario = c.id_usuario1"
+                    + "\n AND c.id_usuario2 = v1.id_usuario))";
+
+        try {
+            stmt = this.conexao.prepareStatement(sql);
+            stmt.setInt(++indice, idUsuario);
+            resultSet = stmt.executeQuery();
+            
+            List<Viajante> lista = new ArrayList<Viajante>();
+            while (resultSet.next()) {
+            	lista.add(new Viajante(resultSet.getInt("id_usuario")
+	                , resultSet.getString("email")
+	                , resultSet.getString("nome")
+	                , resultSet.getString("senha")
+	                , resultSet.getInt("excluido")
+	                , resultSet.getInt("bloqueado")
+	                , resultSet.getString("sexo")
+	                , resultSet.getDate("data_nascimento")
+	                , resultSet.getDouble("latitude")
+	                , resultSet.getDouble("longitude")
+	                , resultSet.getBinaryStream("imagem")));
+            }
+            return lista;
+        } catch (Exception excecao) {
+            throw new DAOException(excecao);
+        }    	
+    }    
+    
+    /**
      * Consulta viajantes pelo nome
      * @access public
      * @param String nome
@@ -86,7 +133,7 @@ public class ViajanteDAO extends DAOBase<Viajante> {
         String sql = "SELECT u.id_usuario, u.email, u.nome, u.senha, u.excluido, u.bloqueado"
         			+ "\n, v.sexo, v.data_nascimento, v.latitude, v.longitude, v.imagem"
                     + "\n FROM usuario u, viajante v"
-                    + "\n WHERE u.nome LIKE ?"
+                    + "\n WHERE UPPER(u.nome) LIKE UPPER(?)"
                     + "\n AND u.id_usuario = v.id_usuario";
 
         try {
@@ -113,6 +160,7 @@ public class ViajanteDAO extends DAOBase<Viajante> {
             throw new DAOException(excecao);
         }    	
     }
+ 
     
     /**
      * Incluir um viajante no banco de dados
@@ -180,10 +228,6 @@ public class ViajanteDAO extends DAOBase<Viajante> {
     }
 
     public void excluir(Viajante obj) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public List<Viajante> consultarTodos() throws DAOException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

@@ -101,16 +101,6 @@ public class ViajanteBean extends UsuarioBean {
 		this.proprio = proprio;
 	}
 
-	/**
-     * Consulta as viajantes cadastrados
-     * @access public
-     * @return void
-     * @throws Exception
-     */
-    public void consultarViajantes() throws Exception {
-        throw new NotImplementedException();
-    }
-
     /**
      * Consulta um viajante com o código passado por parâmetro
      * @access public
@@ -132,7 +122,17 @@ public class ViajanteBean extends UsuarioBean {
     public void consultar(String nome) throws Exception {
     	this.listaViajante = this.viajanteDAO.consultar(nome);
     }
-
+    
+    /**
+     * Consultar contatos
+     * @access public
+     * @param int idUsuario
+     * @return void
+     */
+    public void consultarContatos(int idUsuario) throws Exception {
+    	this.listaViajante = this.viajanteDAO.consultarContatos(idUsuario);
+    }
+    
     /**
      * Insere um viajante
      * @access public

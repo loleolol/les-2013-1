@@ -1,6 +1,7 @@
 package br.com.les20131.controller;
 
 import br.com.les20131.model.Usuario;
+import br.com.les20131.model.bean.ContatoBean;
 import br.com.les20131.model.bean.UsuarioBean;
 import br.com.les20131.model.bean.ViagemBean;
 import br.com.les20131.model.bean.ViajanteBean;
@@ -82,6 +83,9 @@ public class ModuloViajanteController extends BaseController {
      */
     private void acaoPadrao() throws Exception {
 		this.verificarSessao();
+    	AtualizacaoController atualizacaoController = new AtualizacaoController();
+    	atualizacaoController.requisicao = this.requisicao;
+    	atualizacaoController.listarTodasAtualizacoes();    	
 		this.despachar("/view/inicio.jsp");
     }
     
@@ -105,6 +109,9 @@ public class ModuloViajanteController extends BaseController {
      */
     private void acaoInserir() throws Exception {
     	this.incluirViajante();
+    	AtualizacaoController atualizacaoController = new AtualizacaoController();
+    	atualizacaoController.requisicao = this.requisicao;
+    	atualizacaoController.listarTodasAtualizacoes();    	
     	this.despachar("/view/inicio.jsp");
     }
     
@@ -169,22 +176,39 @@ public class ModuloViajanteController extends BaseController {
     private void carregarViajante() throws Exception {
     	HttpSession sessao = this.requisicao.getSession();
     	ViajanteBean viajanteBean = new ViajanteBean();
-    	int id;
+    	int id = ((Usuario)sessao.getAttribute("usuario")).getIdUsuario();
+    	
+		/**
+		 * Por default, acessar o próprio perfil como proprietario
+		 */
+		viajanteBean.setProprio(true);
+		this.requisicao.setAttribute("contato", false);        		
+
     	if (this.requisicao.getParameter("id") != null) {
-    		/**
-    		 * Acessar o perfil de outro/próprio como outro
-    		 */
     		this.validarIdUsuario(this.requisicao.getParameter("id"));
-    		id = Integer.parseInt(this.requisicao.getParameter("id"));
-    		viajanteBean.setProprio(false);
+    		if (id != Integer.parseInt(this.requisicao.getParameter("id"))) {
+	    		/**
+	    		 * Acessar o perfil de outro/próprio como outro
+	    		 */
+	    		id = Integer.parseInt(this.requisicao.getParameter("id"));
+	    		viajanteBean.setProprio(false);
+	        	ContatoBean contatoBean = new ContatoBean();
+	        	contatoBean.consultar(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), id);
+	        	if (contatoBean.getContato() != null) {
+	        		this.requisicao.setAttribute("contato", true);
+	        	}
+	        	
+	        	viajanteBean.consultar(id);
+	        	AtualizacaoController atualizacaoController = new AtualizacaoController();
+	        	atualizacaoController.requisicao = this.requisicao;
+	        	atualizacaoController.listarAtualizacoes((Usuario)viajanteBean.getViajante());
+    		} else {
+    			viajanteBean.consultar(id);
+    		}
     	} else {
-    		/**
-    		 * Acessar o próprio perfil como proprietario
-    		 */
-    		viajanteBean.setProprio(true);
-    		id = ((Usuario)sessao.getAttribute("usuario")).getIdUsuario();
+    		viajanteBean.consultar(id);
     	}
-    	viajanteBean.consultar(id);
+    	
     	this.requisicao.setAttribute("viajanteBean", viajanteBean);
     }
     
@@ -208,6 +232,7 @@ public class ModuloViajanteController extends BaseController {
         this.validarViajante(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), this.requisicao.getParameter("nome"), this.requisicao.getParameter("sexo"), dataNascimento, this.requisicao.getParameter("latitude"), this.requisicao.getParameter("longitude"));
         viajanteBean.alterar(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), this.requisicao.getParameter("nome"), this.requisicao.getParameter("sexo"), dataNascimento, this.requisicao.getParameter("latitude"), this.requisicao.getParameter("longitude"), imagem);
         this.requisicao.setAttribute("viajanteBean", viajanteBean);
+    	this.requisicao.setAttribute("contato", false);        		
     }
     
     
@@ -249,8 +274,8 @@ public class ModuloViajanteController extends BaseController {
      * @throws Exception
      */
     private void validarViajante(int idUsuario, String nome, String sexo, String dataNascimento, String latitude, String longitude) throws Exception {
-    	this.validarIdUsuario(idUsuario);
-        this.validarNome(nome);
+        this.validarIdUsuario(idUsuario);
+    	this.validarNome(nome);
         this.validarSexo(sexo);
         this.validarDataNascimento(dataNascimento);
         this.validarLatitude(latitude);

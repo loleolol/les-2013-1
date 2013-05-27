@@ -71,16 +71,6 @@ public class ViagemBean {
     }
 
     /**
-     * Consulta as viagens cadastradas
-     * @access public
-     * @return void
-     * @throws Exception
-     */
-    public void consultarViagens() throws Exception {
-        throw new NotImplementedException();
-    }
-
-    /**
      * Consulta as viagens cadastradas por viajante
      * @access public
      * @param Viajante viajante
@@ -145,6 +135,20 @@ public class ViagemBean {
     }
     
     /**
+     * Consulta um viagem com o código passado por parâmetro
+     * @access public
+     * @param int idUsuario
+     * @return void
+     * @throws Exception
+     */
+    public void consultar(int idUsuario, boolean carregarImagemViagem) throws Exception {
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+    	Usuario viajante = usuarioDAO.consultar(idUsuario);
+    	this.consultar(viajante, carregarImagemViagem);
+    }
+    
+    
+    /**
      * Insere um viagem
      * @access public
      * @param int idUsuario
@@ -159,7 +163,7 @@ public class ViagemBean {
     	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     	ViajanteDAO viajanteDAO = new ViajanteDAO();
     	Viajante viajante = viajanteDAO.consultar(idUsuario);
-    	this.viagem = new Viagem(viajante, titulo, descricao, dateFormat.parse(dataInicial), dateFormat.parse(dataFinal));
+    	this.viagem = new Viagem(viajante, titulo, descricao, dateFormat.parse(dataInicial), dateFormat.parse(dataFinal), new Date());
     	this.viagemDAO.incluir(this.viagem);
     	this.viagem.setIdViagem(this.viagemDAO.retornarUltimoId());
     }
@@ -188,12 +192,16 @@ public class ViagemBean {
     /**
      * Exclui um viagem
      * @access public
-     * @param Viagem viagem
+     * @param int idViagem
      * @return void
      * @throws Exception
      */
-    public void excluir(Viagem viagem) throws Exception {
-    	this.viagemDAO.excluir(viagem);
+    public void excluir(int idViagem) throws Exception {
+    	this.viagem = this.viagemDAO.consultar(idViagem);
+        ImagemViagemBean imagemViagemBean = new ImagemViagemBean();
+        imagemViagemBean.consultar(this.viagem);
+        imagemViagemBean.excluirLista(imagemViagemBean.getListaImagemViagem());
+    	this.viagemDAO.excluir(this.viagem);
     }
        
 }

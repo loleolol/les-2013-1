@@ -2,14 +2,8 @@ package br.com.les20131.model.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.List;
-
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import br.com.les20131.model.Contato;
-import br.com.les20131.model.ImagemViagem;
-import br.com.les20131.model.Viagem;
-import br.com.les20131.model.Viajante;
 
 public class ContatoDAO extends DAOBase<Contato> {
 	
@@ -31,7 +25,7 @@ public class ContatoDAO extends DAOBase<Contato> {
         PreparedStatement stmt = null;
         ResultSet resultSet = null;
 
-        String sql = "SELECT c.id_contato, c.id_usuario1, c.id_usuario2, c.data_inicio"
+        String sql = "SELECT c.id_contato, c.id_usuario1, c.id_usuario2, c.data_inclusao"
         		    + "\n FROM contato c"
                     + "\n WHERE c.id_contato = ?";
         
@@ -46,7 +40,7 @@ public class ContatoDAO extends DAOBase<Contato> {
             	contato = new Contato(resultSet.getInt("id_contato")
                                 , viajanteDAO.consultar(resultSet.getInt("id_usuario1"))
                                 , viajanteDAO.consultar(resultSet.getInt("id_usuario2"))
-                                , resultSet.getDate("data_inicio"));
+                                , resultSet.getTimestamp("data_inclusao"));
             }
             return contato;
         } catch (Exception excecao) {
@@ -69,7 +63,7 @@ public class ContatoDAO extends DAOBase<Contato> {
         PreparedStatement stmt = null;
         ResultSet resultSet = null;
 
-        String sql = "SELECT c.id_contato, c.id_usuario1, c.id_usuario2, c.data_inicio"
+        String sql = "SELECT c.id_contato, c.id_usuario1, c.id_usuario2, c.data_inclusao"
         		    + "\n FROM contato c"
                     + "\n WHERE c.id_usuario1 = ?"
         		    + "\n AND c.id_usuario2 = ?";
@@ -86,14 +80,14 @@ public class ContatoDAO extends DAOBase<Contato> {
             	contato = new Contato(resultSet.getInt("id_contato")
                                 , viajanteDAO.consultar(resultSet.getInt("id_usuario1"))
                                 , viajanteDAO.consultar(resultSet.getInt("id_usuario2"))
-                                , resultSet.getDate("data_inicio"));
+                                , resultSet.getTimestamp("data_inclusao"));
             }
             return contato;
         } catch (Exception excecao) {
             throw new DAOException(excecao);
         }
     }    
-    
+        
     /**
      * Incluir um contato no banco de dados
      * @access public
@@ -110,7 +104,7 @@ public class ContatoDAO extends DAOBase<Contato> {
         PreparedStatement stmt = null;
 
         String sql = "INSERT INTO contato"
-                    + "\n(id_contato, id_usuario1, id_usuario2, data_inicio)"
+                    + "\n(id_contato, id_usuario1, id_usuario2, data_inclusao)"
                     + "\n VALUES (?, ?, ?, ?)";
 
         try {
@@ -118,7 +112,7 @@ public class ContatoDAO extends DAOBase<Contato> {
             stmt.setInt(++indice, obj.getIdContato());
             stmt.setInt(++indice, obj.getViajante1().getIdUsuario());
             stmt.setInt(++indice, obj.getViajante2().getIdUsuario());
-            stmt.setDate(++indice, new java.sql.Date(obj.getDataInicio().getTime()));
+            stmt.setTimestamp(++indice, new java.sql.Timestamp(obj.getDataInclusao().getTime()));
             stmt.executeUpdate();
         } catch (Exception excecao) {
             throw new DAOException(excecao);
@@ -156,13 +150,5 @@ public class ContatoDAO extends DAOBase<Contato> {
     public void alterar(Contato obj) throws DAOException {
     	throw new UnsupportedOperationException("Inválido.");
     }
-
-	@Override
-	public List<Contato> consultarTodos() throws DAOException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-    
-    
 	
 }

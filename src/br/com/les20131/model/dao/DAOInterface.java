@@ -17,6 +17,4 @@ public interface DAOInterface<classe> {
 
     public classe consultar(int intId) throws DAOException;
 
-    public List<classe> consultarTodos() throws DAOException;
-
 }
