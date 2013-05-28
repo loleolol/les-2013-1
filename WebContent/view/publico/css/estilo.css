@@ -393,18 +393,6 @@ th{
 	padding-bottom: 0px;
 	margin: 0px;
 }
-fieldset{
-    padding: 0px;
-    border:solid 1px #CCC;
-    position: relative;
-    width: 99%;
-}
-legend{
-    background-color: #060;
-    color: #FFF;
-    padding: 5px;
-    text-transform: uppercase;
-}
 #map-canvas {
 	width: 99%;
 	height: 350px;
@@ -462,7 +450,7 @@ legend{
 	width: 80px;
 }
 .inferior_direito {
-	top: 80%;
+	top: 70%;
 	left: 80%;
 	position: absolute;
 }
@@ -530,8 +518,3 @@ legend{
 	opacity: 0.8;
 	filter: alpha(opacity=80);    
 }
-legend + .bloco{
-    border-top:none;
-}
-
-/*  Perfil */
