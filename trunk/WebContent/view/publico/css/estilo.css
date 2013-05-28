@@ -32,7 +32,7 @@ body {
 	-webkit-box-shadow: 0 0 5px rgba(0,0,0,0.8);
 	-moz-box-shadow: 0 0 5px rgba(0,0,0,0.8);
 	box-shadow: 0 0 5px rgba(0,0,0,0.8);
-	background: #358b10 url(/les20131/view/publico/css/images/ui-bg_gloss-wave_35_358b10_500x100.png) 50% 50% repeat-x;
+	background: #358b10 url(../css/images/ui-bg_gloss-wave_35_358b10_500x100.png) 50% 50% repeat-x;
 }
 
 .barra_login {
@@ -52,8 +52,11 @@ body {
 .logo {
 	display: inline-block;
 	width: 27%;
+	height: 35px;
 	text-align: right;
 	float: left;
+	background: url(../imagens/logo.png) 90% 90% no-repeat;
+	background-size: 85px 40px;
 }
 
 /* #PÁGINA

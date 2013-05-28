@@ -1,6 +1,5 @@
 <div class="barra">
 	<span class="logo">
-		#Partiu
 	</span>
 	<span class="barra_intervalo">
 		<c:choose>
