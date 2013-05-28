@@ -1,3 +1,11 @@
+$(function() {
+	if ($(".aba").length > 0) {
+		jQuery.each($(".aba"), function(i, aba) {
+		    $(aba).tabs();
+		});			
+	}
+});
+
 function pesquisar(campo, retorno, botao) {
 	$.ajax({
 	    url: '/les20131/Pesquisa',
@@ -73,16 +81,34 @@ function adicionarContato(campo, id) {
 
 function removerContato(campo, id) {
 	$(campo).attr("class", "carregando");
-	$.ajax({
-	    url: '/les20131/Contato',
-	    data: {acao: "excluir", idUsuario: id},
-	    type: 'POST',
-	    success: function(data) {
-	    	$(campo).attr("class", "");
-    		$(campo).html("<span class=\"incluir\"></span><span>Contato</span>");
-    		$(campo).attr("onclick", "adicionarContato($(this), "+id+")");
+	
+	$(campo).before("<div id=\""+$(campo).attr("id")+"dialog-confirm\" title=\"Confirma remoção?\">"
+			+"<p><span class=\"ui-icon ui-icon-alert\" style=\"float: left; margin: 0 7px 20px 0;\"></span>"
+			+"Deseja realmente remover este contato?</p>"
+			+"</div>");
+	$("#"+$(campo).attr("id")+"dialog-confirm").dialog({
+		resizable: false,
+		height: 140,
+		modal: true,
+		buttons: {
+	  "Sim": function() {
+	    $(this).dialog("close");
+		$.ajax({
+		    url: '/les20131/Contato',
+		    data: {acao: "excluir", idUsuario: id},
+		    type: 'POST',
+		    success: function(data) {
+		    	$(campo).attr("class", "");
+	    		$(campo).html("<span class=\"incluir\"></span><span>Contato</span>");
+	    		$(campo).attr("onclick", "adicionarContato($(this), "+id+")");
+		    }
+		});
+	  },
+	  "Não": function() {
+	    $(this).dialog( "close" );
+	      }
 	    }
-	});
+	  });	
 }
 
 /**
@@ -112,8 +138,6 @@ function trocaImagem(imagem, campo, url, acao) {
 	});
 	
 }
-
-
 
 function removerValidacao(form) {
 	$(form).attr("onsubmit", "");
@@ -250,12 +274,27 @@ function populaDropDownMes(dropDown, campoData) {
 
 
 /**
- * Confirma a exclusào de um registro
+ * Confirma a exclusão de um registro
  */
-function confirmaExclusao(form) {
-    if (confirm("Deseja realmente excluir este registro?")) {
-        $(form).submit();
-    }
+function confirmaExclusao(form, msg) {
+	$(form).before("<div id=\""+$(form).attr("id")+"dialog-confirm\" title=\"Confirma exclusão?\">"
+			+"<p><span class=\"ui-icon ui-icon-alert\" style=\"float: left; margin: 0 7px 20px 0;\"></span>"
+			+msg+"</p>"
+			+"</div>");
+	$("#"+$(form).attr("id")+"dialog-confirm").dialog({
+		resizable: false,
+		height: 140,
+		modal: true,
+		buttons: {
+	  "Sim": function() {
+	    $(this).dialog("close");
+	    $(form).submit();
+	  },
+	  "Não": function() {
+	    $(this).dialog("close");
+	      }
+	    }
+	  });
 }
 
 function removerImagem(campo1, campo2, quantidade, id, imagem, indice) {
