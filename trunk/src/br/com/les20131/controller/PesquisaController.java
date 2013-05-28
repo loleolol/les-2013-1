@@ -96,7 +96,12 @@ public class PesquisaController extends BaseController {
 	private void acaoPesquisarContatos() throws Exception {
 		HttpSession sessao = this.requisicao.getSession();
 		PesquisaBean pesquisaBean = new PesquisaBean();
-		pesquisaBean.pesquisarContatos(((Usuario)sessao.getAttribute("usuario")).getIdUsuario());
+		String criterio = this.requisicao.getParameter("criterio");
+		int id = ((Usuario)sessao.getAttribute("usuario")).getIdUsuario();
+		if (criterio != null && criterio.length() > 0) {
+			id = Integer.parseInt(criterio);
+		}
+		pesquisaBean.pesquisarContatos(id);
 		this.requisicao.setAttribute("pesquisaBean", pesquisaBean);
 		this.despachar("/view/pesquisa/listar.jsp");		
 	}

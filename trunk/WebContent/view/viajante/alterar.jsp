@@ -156,6 +156,9 @@
 							</div>
 							<c:if test="${viajanteBean.viajante.idUsuario != usuarioBean.usuario.idUsuario}">
 								<div class="inferior_direito">
+				    				<button type="button" onclick="$('#contato').submit()">
+				    					<span>Ver contatos</span>
+				    				</button>
 									<c:choose>
 										<c:when test="${contato}">
 						    				<button type="button" onclick="removerContato($(this), ${viajanteBean.viajante.idUsuario})">
@@ -189,6 +192,10 @@
 					        	<button type="submit" name="acao" value="alterar" >Alterar</button>
 					        </div>
 					    </c:if>
+					</form>
+					<form id="contato" class="formulario_invisivel" action="<c:url value="/Pesquisa"></c:url>" method="post">
+						<input type="hidden" name="acao" value="contatos"/>
+						<input type="hidden" name="criterio" value="${viajanteBean.viajante.idUsuario}"/>
 					</form>
 				</div>
 				<script type="text/javascript">
