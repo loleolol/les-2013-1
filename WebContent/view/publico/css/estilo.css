@@ -457,6 +457,9 @@ th{
 	left: 80%;
 	position: absolute;
 }
+.inferior_direito button {
+	margin-bottom: 2px;
+}
 .remover {
 	top: 2%;
 	left: 88%;
