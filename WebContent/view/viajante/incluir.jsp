@@ -11,19 +11,14 @@
         <link type="text/css" rel="stylesheet" href="/les20131/view/publico/css/estilo.css"/>
         <script type="text/javascript" src="/les20131/view/publico/js/jquery-1.9.1.min.js" charset="ISO-8859-1"></script>
         <script type="text/javascript" src="/les20131/view/publico/js/jquery-ui-1.10.3.custom.js" charset="ISO-8859-1"></script>
-        <script type="text/javascript" src="/les20131/view/publico/js/trabalho.js" charset="ISO-8859-1"></script>
-		<script>
-		$(function() {
-		  $( "#tabs" ).tabs();
-		});
-		</script>        
+        <script type="text/javascript" src="/les20131/view/publico/js/trabalho.js" charset="ISO-8859-1"></script>    
     </head>
 	<body class="perfil" onload="mostraMensagem('${mensagemBean.mensagem}')"> 
-		<div id="tabs">
+		<div class="aba">
 			<ul>
-				<li><a href="#tabs-1">Cadastre-se</a></li>
+				<li><a href="#abaViajante">Cadastre-se</a></li>
 			</ul>
-			<div id="tabs-1">
+			<div id="abaViajante">
 				<form id="cadastro_viajante" class="formulario_padrao" action="<c:url value="/Viajante"></c:url>"
 				method="post" onsubmit="return (verificarValorIgualCampos('email') && verificarValorIgualCampos('senha') && validaFormulario(new Array('nome;String;1', 'email;String;1;validaEmail', 'emailConfirma;String;1;validaEmail', 'senha;String;1', 'senhaConfirma;String;1', 'dataNascimentoDia;int;1', 'dataNascimentoMes;int;1', 'dataNascimentoAno;int;1', 'sexo;String;1')))">
 			        <div class="bloco">

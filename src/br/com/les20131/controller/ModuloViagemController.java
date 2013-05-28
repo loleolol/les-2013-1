@@ -266,7 +266,7 @@ public class ModuloViagemController extends BaseController {
      */
     private void carregarViagem() throws Exception {
     	ViagemBean viagemBean = new ViagemBean();
-    	viagemBean.consultar(Integer.parseInt(this.requisicao.getParameter("idViagem")));
+    	viagemBean.consultar(Integer.parseInt(this.requisicao.getParameter("id")));
     	this.requisicao.setAttribute("viagemBean", viagemBean);
     	ImagemViagemBean imagemViagemBean = new ImagemViagemBean();
     	imagemViagemBean.consultar(viagemBean.getViagem());
@@ -280,9 +280,9 @@ public class ModuloViagemController extends BaseController {
      * @throws Exception
      */
     private void excluirViagem() throws Exception {
-        this.validarIdViagem(this.requisicao.getParameter("idViagem"));
+        this.validarIdViagem(this.requisicao.getParameter("id"));
         ViagemBean viagemBean = new ViagemBean();
-        viagemBean.excluir(Integer.parseInt(this.requisicao.getParameter("idViagem")));
+        viagemBean.excluir(Integer.parseInt(this.requisicao.getParameter("id")));
     }
     
     /**
