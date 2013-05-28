@@ -176,17 +176,23 @@
 								</div>
 							</c:if>	
 						</div>
-						<div class="bloco container">
-							<label for="map-canvas">Localização:</label>
-					        <c:if test="${viajanteBean.viajante.idUsuario == usuarioBean.usuario.idUsuario}">		
-									<a class="remover" href="javascript:void(0)" 
-										onclick="map.clearOverlays();" title="Remover localização"> 
-									</a>
-							</c:if>				
-							<div id="map-canvas"></div>
-							<input id="latitude" type="hidden" name="latitude" value="${viajanteBean.viajante.latitude}"/>
-							<input id="longitude" type="hidden" name="longitude" value="${viajanteBean.viajante.longitude}"/>
-	    				</div>
+						<c:choose>
+					        <c:when test="${viajanteBean.viajante.idUsuario != usuarioBean.usuario.idUsuario && viajanteBean.viajante.latitude == -9999}">		
+			    			</c:when>
+			    			<c:otherwise>
+								<div class="bloco container">
+									<label for="map-canvas">Localização:</label>
+							        <c:if test="${viajanteBean.viajante.idUsuario == usuarioBean.usuario.idUsuario}">		
+											<a class="remover" href="javascript:void(0)" 
+												onclick="map.clearOverlays();" title="Remover localização"> 
+											</a>
+									</c:if>				
+									<div id="map-canvas"></div>
+									<input id="latitude" type="hidden" name="latitude" value="${viajanteBean.viajante.latitude}"/>
+									<input id="longitude" type="hidden" name="longitude" value="${viajanteBean.viajante.longitude}"/>
+			    				</div>
+			    			</c:otherwise>
+			    		</c:choose>
 	    				<c:if test="${viajanteBean.viajante.idUsuario == usuarioBean.usuario.idUsuario}">	
 					        <div class="bloco">
 					        	<button type="submit" name="acao" value="alterar" >Alterar</button>
