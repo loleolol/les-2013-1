@@ -32,14 +32,7 @@ body {
 	-webkit-box-shadow: 0 0 5px rgba(0,0,0,0.8);
 	-moz-box-shadow: 0 0 5px rgba(0,0,0,0.8);
 	box-shadow: 0 0 5px rgba(0,0,0,0.8);
-	background: #c9de96; /* Old browsers */
-	background: -moz-linear-gradient(top, #c9de96 0%, #8ab66b 44%, #398235 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c9de96), color-stop(44%,#8ab66b), color-stop(100%,#398235)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top, #c9de96 0%,#8ab66b 44%,#398235 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top, #c9de96 0%,#8ab66b 44%,#398235 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top, #c9de96 0%,#8ab66b 44%,#398235 100%); /* IE10+ */
-	background: linear-gradient(to bottom, #c9de96 0%,#8ab66b 44%,#398235 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c9de96', endColorstr='#398235',GradientType=0 ); /* IE6-9 */	
+	background: #358b10 url(/les20131/view/publico/css/images/ui-bg_gloss-wave_35_358b10_500x100.png) 50% 50% repeat-x;
 }
 
 .barra_login {
@@ -58,7 +51,7 @@ body {
 
 .logo {
 	display: inline-block;
-	width: 30%;
+	width: 27%;
 	text-align: right;
 	float: left;
 }
@@ -89,7 +82,7 @@ body {
 	float: left;
 	text-align: right;
 	display: inline-block;
-	width: 30%;
+	width: 27%;
 	height: 100%;
 	overflow: hidden;
 	border-right: 1px solid #CCC
@@ -109,7 +102,7 @@ body {
 #corpo {
 	float: center;
 	display: inline-block;
-	width: 40%;
+	width: 43%;
 	height: 100%;
 	overflow: auto;
 }
@@ -404,7 +397,7 @@ fieldset{
     padding: 0px;
     border:solid 1px #CCC;
     position: relative;
-    width: 99.4%;
+    width: 99%;
 }
 legend{
     background-color: #060;
@@ -413,7 +406,7 @@ legend{
     text-transform: uppercase;
 }
 #map-canvas {
-	width: 99.4%;
+	width: 99%;
 	height: 350px;
 	border: solid 1px #CCC;
 }
