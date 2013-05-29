@@ -138,9 +138,12 @@ public class ModuloViagemController extends BaseController {
 	 */
 	private void acaoExcluir() throws Exception {
 		this.excluirViagem();
-    	AtualizacaoController atualizacaoController = new AtualizacaoController();
-    	atualizacaoController.requisicao = this.requisicao;
-    	atualizacaoController.listarTodasAtualizacoes(); 		
+		HttpSession sessao = this.requisicao.getSession();
+		if(sessao.getAttribute("administrador") == null){
+	    	AtualizacaoController atualizacaoController = new AtualizacaoController();
+	    	atualizacaoController.requisicao = this.requisicao;
+	    	atualizacaoController.listarTodasAtualizacoes(); 
+		}		
 		this.despachar("/view/inicio.jsp");
 	}
 	
