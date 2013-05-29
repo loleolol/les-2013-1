@@ -17,6 +17,7 @@
 		<div class="aba">
 			<ul>
 				<li><a href="#abaViajante">Cadastre-se</a></li>
+				<li><a href="#abaEmpresa">Acesso como empresa</a></li>
 			</ul>
 			<div id="abaViajante">
 				<form id="cadastro_viajante" class="formulario_padrao" action="<c:url value="/Viajante"></c:url>"
@@ -68,6 +69,8 @@
 			        	<button type="submit" name="acao" value="incluir">Cadastrar</button>
 			        </div>
 				</form>
+			</div>
+			<div id="abaEmpresa">
 			</div>
 		</div>
 		<script type="text/javascript">
