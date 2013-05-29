@@ -39,7 +39,8 @@ public class UsuarioDAO extends DAOBase<Usuario> {
 
         String sql = "SELECT u.id_usuario, u.email, u.nome, u.senha, u.excluido, u.bloqueado"
                     + "\n FROM usuario u"
-                    + "\n WHERE u.id_usuario = ?";
+                    + "\n WHERE u.id_usuario = ?"
+                    + "\n AND u.excluido = 0";
 
         try {
             stmt = this.conexao.prepareStatement(sql);
@@ -80,7 +81,9 @@ public class UsuarioDAO extends DAOBase<Usuario> {
         String sql = "SELECT u.id_usuario, u.email, u.nome, u.senha, u.excluido, u.bloqueado"
                     + "\n FROM usuario u"
                     + "\n WHERE u.email = ?"
-                    + "\n AND u.senha = SHA1(?)";
+                    + "\n AND u.senha = SHA1(?)"
+                    + "\n AND u.excluido = 0"
+                    + "\n AND u.bloqueado = 0";
 
         try {
             stmt = this.conexao.prepareStatement(sql);

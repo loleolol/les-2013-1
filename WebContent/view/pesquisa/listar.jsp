@@ -44,7 +44,7 @@
 					<c:choose>
 						<c:when test="${fn:length(pesquisaBean.listaResultado) > 0}">
 				            <c:forEach items="${pesquisaBean.listaResultado}" var="itemResultado" varStatus="chave">
-				            	<div>
+				            	<div id="container${chave.count}">
 					               	<div class="container">
 					                	<form id="resultado${chave.count}" 
 											action="<c:url value="/${itemResultado.tipo}"></c:url>" method="post">
@@ -62,6 +62,25 @@
 								    			<div class="parte_bloco">
 								    				<c:set var="idUsuario">${usuarioBean.usuario.idUsuario}</c:set>
 								    				<c:choose>
+								    					<c:when test="${administradorBean != null}">
+															<c:choose>
+																<c:when test="${usuarioBean.usuario.bloqueado == 0}">
+																	<button type="button"
+																		onclick="bloquearUsuario($(this), ${itemResultado.id})">
+																		<span>Bloquear</span>
+																	</button>
+																</c:when>
+																<c:otherwise>
+																	<button type="button"
+																		onclick="desbloquearUsuario($(this), ${itemResultado.id})">
+																		<span>Desbloquear</span>
+																	</button>
+																</c:otherwise>
+															</c:choose>
+															<button type="button" onclick="excluirUsuario($('#container${chave.count}'), $(this), ${itemResultado.id})">
+										    					<span>Excluir</span>
+										    				</button>
+								    					</c:when>								    					
 								    					<c:when test="${itemResultado.id == idUsuario}">
 								    					</c:when>
 								    					<c:when test="${itemResultado.flag}">

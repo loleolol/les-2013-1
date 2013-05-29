@@ -156,23 +156,43 @@
 							</div>
 							<c:if test="${viajanteBean.viajante.idUsuario != usuarioBean.usuario.idUsuario}">
 								<div class="inferior_direito">
-				    				<button type="button" onclick="$('#contato').submit()">
-				    					<span>Ver contatos</span>
-				    				</button>
 									<c:choose>
-										<c:when test="${contato}">
-						    				<button type="button" onclick="removerContato($(this), ${viajanteBean.viajante.idUsuario})">
-						    					<span class="excluir"></span>
-						    					<span>Contato</span>
-						    				</button>
-						    			</c:when>
-						    			<c:otherwise>
-						    				<button type="button" onclick="adicionarContato($(this), ${viajanteBean.viajante.idUsuario})">
-						    					<span class="incluir"></span>
-						    					<span>Contato</span>
-						    				</button>
-						    			</c:otherwise>
-									</c:choose>
+										<c:when test="${administradorBean != null }">
+											<c:choose>
+												<c:when test="${usuarioBean.usuario.bloqueado == 0}">
+													<button type="button"
+														onclick="bloquearUsuario($(this), ${itemResultado.id})">
+														<span>Bloquear</span>
+													</button>
+												</c:when>
+												<c:otherwise>
+													<button type="button"
+														onclick="desbloquearUsuario($(this), ${itemResultado.id})">
+														<span>Desbloquear</span>
+													</button>
+												</c:otherwise>
+											</c:choose>
+										</c:when>
+										<c:otherwise>
+											<button type="button" onclick="$('#contato').submit()">
+				    							<span>Ver contatos</span>
+				    						</button>
+											<c:choose>
+												<c:when test="${contato}">
+													<button type="button"
+														onclick="removerContato($(this), ${viajanteBean.viajante.idUsuario})">
+														<span class="excluir"></span> <span>Contato</span>
+													</button>
+												</c:when>
+												<c:otherwise>
+													<button type="button"
+														onclick="adicionarContato($(this), ${viajanteBean.viajante.idUsuario})">
+														<span class="incluir"></span> <span>Contato</span>
+													</button>
+												</c:otherwise>
+											</c:choose>
+										</c:otherwise>
+									</c:choose>				    				
 								</div>
 							</c:if>	
 						</div>

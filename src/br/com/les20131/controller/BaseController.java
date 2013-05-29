@@ -20,6 +20,7 @@ import javax.servlet.http.Part;
 import javax.servlet.http.HttpSession;
 
 import br.com.les20131.model.Usuario;
+import br.com.les20131.model.bean.AdministradorBean;
 import br.com.les20131.model.bean.UsuarioBean;
 import br.com.les20131.model.bean.ViajanteBean;
 import br.com.les20131.util.InvalidPageException;
@@ -134,6 +135,10 @@ public abstract class BaseController extends HttpServlet {
         	UsuarioBean usuarioBean = new UsuarioBean();
         	usuarioBean.setUsuario((Usuario)sessao.getAttribute("usuario"));
         	this.requisicao.setAttribute("usuarioBean", usuarioBean);
+        	AdministradorBean administradorBean = new AdministradorBean();
+            administradorBean.consultar(usuarioBean.getUsuario().getIdUsuario());
+        	sessao.setAttribute("administrador", administradorBean.getAdministrador());
+			this.requisicao.setAttribute("administradorBean", administradorBean);
         }
     }
     

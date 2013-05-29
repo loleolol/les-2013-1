@@ -43,7 +43,8 @@ public class ViajanteDAO extends DAOBase<Viajante> {
         			+ "\n, v.sexo, v.data_nascimento, v.latitude, v.longitude, v.imagem"
                     + "\n FROM usuario u, viajante v"
                     + "\n WHERE u.id_usuario = ?"
-                    + "\n AND u.id_usuario = v.id_usuario";
+                    + "\n AND u.id_usuario = v.id_usuario"
+                    + "\n AND u.excluido = 0";
 
         try {
             stmt = this.conexao.prepareStatement(sql);
@@ -90,7 +91,8 @@ public class ViajanteDAO extends DAOBase<Viajante> {
                     + "\n AND ((v2.id_usuario = c.id_usuario2"
                     + "\n AND c.id_usuario1 = v1.id_usuario)"
                     + "\n OR (v2.id_usuario = c.id_usuario1"
-                    + "\n AND c.id_usuario2 = v1.id_usuario))";
+                    + "\n AND c.id_usuario2 = v1.id_usuario))"
+                    + "\n AND u.excluido = 0";
 
         try {
             stmt = this.conexao.prepareStatement(sql);
@@ -134,7 +136,8 @@ public class ViajanteDAO extends DAOBase<Viajante> {
         			+ "\n, v.sexo, v.data_nascimento, v.latitude, v.longitude, v.imagem"
                     + "\n FROM usuario u, viajante v"
                     + "\n WHERE UPPER(u.nome) LIKE UPPER(?)"
-                    + "\n AND u.id_usuario = v.id_usuario";
+                    + "\n AND u.id_usuario = v.id_usuario"
+                    + "\n AND u.excluido = 0";
 
         try {
             stmt = this.conexao.prepareStatement(sql);
