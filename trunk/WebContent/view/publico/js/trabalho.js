@@ -370,7 +370,7 @@ function populaDropDownMes(dropDown, campoData) {
 /**
  * Confirma a exclusão de um registro
  */
-function confirmaExclusao(form, msg) {
+function confirmaExclusao(form, msg, campo, acao) {
 	$(form).before("<div id=\""+$(form).attr("id")+"dialog-confirm\" title=\"Confirma exclusão?\">"
 			+"<p><span class=\"ui-icon ui-icon-alert\" style=\"float: left; margin: 0 7px 20px 0;\"></span>"
 			+msg+"</p>"
@@ -382,6 +382,7 @@ function confirmaExclusao(form, msg) {
 		buttons: {
 	  "Sim": function() {
 	    $(this).dialog("close");
+	    $(campo).val(acao);
 	    $(form).submit();
 	  },
 	  "Não": function() {

@@ -10,14 +10,22 @@
 			<c:when test="${fn:length(atualizacaoBean.listaAtualizacao) > 0}">
 				<c:forEach items="${atualizacaoBean.listaAtualizacao}" var="atualizacao" varStatus="chave">
 					<div class="formulario_postagem">
-						<c:if test="${atualizacao.idAutor == usuarioBean.usuario.idUsuario}">
-					        <a class="editar" href="javascript:void(0)" title="Editar"
-								onclick="$('#acao${chave.count}').val('Selecionar'); $('#atualizacao${chave.count}').submit()">
-							</a>
-							<a class="remover" href="javascript:void(0)" title="Remover"
-								onclick="$('#acao${chave.count}').val('Excluir'); confirmaExclusao($('#atualizacao${chave.count}'), 'Deseja realmente excluir esta viagem?')">
-							</a>
-						</c:if>
+						<c:choose>
+							<c:when test="${administradorBean != null}">
+								<a class="remover" href="javascript:void(0)" title="Remover"
+									onclick="confirmaExclusao($('#atualizacao${chave.count}'), 'Deseja realmente excluir esta viagem?', '#acao${chave.count}', 'Excluir')">
+								</a>
+							</c:when>
+							<c:when test="${atualizacao.idAutor == usuarioBean.usuario.idUsuario}">
+						        <a class="editar" href="javascript:void(0)" title="Editar"
+									onclick="$('#acao${chave.count}').val('Selecionar'); $('#atualizacao${chave.count}').submit()">
+								</a>
+								<a class="remover" href="javascript:void(0)" title="Remover"
+									onclick="confirmaExclusao($('#atualizacao${chave.count}'), 'Deseja realmente excluir esta viagem?', '#acao${chave.count}', 'Excluir')">
+								</a>
+							</c:when>
+							<c:otherwise></c:otherwise>
+						</c:choose>						
 						<div class="parte_bloco postador">
 							<img id="imagemBarra" class="imagem_barra" alt="<c:url value="/Viajante?acao=carregarImagem&id=${atualizacao.idAutor}"></c:url>"/>
 						</div>
@@ -56,7 +64,7 @@
 									<div class="texto">${atualizacao.texto}</div>
 								</c:if>
 								<input type="hidden" name="id" value="${atualizacao.id}"/>
-								<c:if test="${atualizacao.idAutor == usuarioBean.usuario.idUsuario}">
+								<c:if test="${atualizacao.idAutor == usuarioBean.usuario.idUsuario || administradorBean != null}">
 									<input id="acao${chave.count}" type="hidden" name="acao" value=""/>
 								</c:if>
 							</form>
