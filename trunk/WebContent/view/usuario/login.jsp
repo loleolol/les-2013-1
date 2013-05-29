@@ -5,8 +5,16 @@
 		<c:choose>
 			<c:when test="${usuarioBean.usuario != null}">
 				<form id="formularioPesquisa" class="formulario_padrao" action="<c:url value="/Pesquisa"></c:url>" method="post">
-	    			<input id="criterio" type="text" name="criterio" size="50" onkeyup="pesquisar(this, $('#retornoPesquisa'), $('#pesquisa'))"/>
-	    			<button id="pesquisa" type="submit" name="acao" value="pesquisar">Pesquisar</button>
+					<c:choose>
+						<c:when test="${administradorBean == null}">
+							<input id="criterio" type="text" name="criterio" size="50"
+								onkeyup="pesquisar(this, $('#retornoPesquisa'), $('#pesquisa'))" />
+						</c:when>
+						<c:otherwise>
+							<input id="criterio" type="text" name="criterio" size="50" />
+						</c:otherwise>
+					</c:choose>
+					<button id="pesquisa" type="submit" name="acao" value="pesquisar">Pesquisar</button>
 	    			<div id="retornoPesquisa" class="retorno_pesquisa invisivel">
 	    			</div>
 	    		</form>

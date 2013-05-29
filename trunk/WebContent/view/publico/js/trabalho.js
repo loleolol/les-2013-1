@@ -111,6 +111,100 @@ function removerContato(campo, id) {
 	  });	
 }
 
+function bloquearUsuario(campo, id) {
+	$(campo).attr("class", "carregando");
+	
+	$(campo).before("<div id=\""+$(campo).attr("id")+"dialog-confirm\" title=\"Confirma bloqueio?\">"
+			+"<p><span class=\"ui-icon ui-icon-alert\" style=\"float: left; margin: 0 7px 20px 0;\"></span>"
+			+"Deseja realmente bloquear este usuário?</p>"
+			+"</div>");
+	$("#"+$(campo).attr("id")+"dialog-confirm").dialog({
+		resizable: false,
+		height: 140,
+		modal: true,
+		buttons: {
+	  "Sim": function() {
+	    $(this).dialog("close");
+		$.ajax({
+		    url: '/les20131/Usuario',
+		    data: {acao: "bloquear", idUsuario: id},
+		    type: 'POST',
+		    success: function(data) {
+		    	$(campo).attr("class", "");
+	    		$(campo).html("<span>Desbloquear</span>");
+	    		$(campo).attr("onclick", "desbloquearUsuario($(this), "+id+")");
+		    }
+		});
+	  },
+	  "Não": function() {
+	    $(this).dialog( "close" );
+	      }
+	    }
+	  });	
+}
+
+function desbloquearUsuario(campo, id) {
+	$(campo).attr("class", "carregando");
+	
+	$(campo).before("<div id=\""+$(campo).attr("id")+"dialog-confirm\" title=\"Confirma desbloqueio?\">"
+			+"<p><span class=\"ui-icon ui-icon-alert\" style=\"float: left; margin: 0 7px 20px 0;\"></span>"
+			+"Deseja realmente desbloquear este usuário?</p>"
+			+"</div>");
+	$("#"+$(campo).attr("id")+"dialog-confirm").dialog({
+		resizable: false,
+		height: 140,
+		modal: true,
+		buttons: {
+	  "Sim": function() {
+	    $(this).dialog("close");
+		$.ajax({
+		    url: '/les20131/Usuario',
+		    data: {acao: "desbloquear", idUsuario: id},
+		    type: 'POST',
+		    success: function(data) {
+		    	$(campo).attr("class", "");
+	    		$(campo).html("<span>Bloquear</span>");
+	    		$(campo).attr("onclick", "bloquearUsuario($(this), "+id+")");
+		    }
+		});
+	  },
+	  "Não": function() {
+	    $(this).dialog( "close" );
+	      }
+	    }
+	  });	
+}
+
+function excluirUsuario(container, campo, id) {
+	$(campo).attr("class", "carregando");
+	
+	$(campo).before("<div id=\""+$(campo).attr("id")+"dialog-confirm\" title=\"Confirma exclusão?\">"
+			+"<p><span class=\"ui-icon ui-icon-alert\" style=\"float: left; margin: 0 7px 20px 0;\"></span>"
+			+"Deseja realmente excluir este usuário?</p>"
+			+"</div>");
+	$("#"+$(campo).attr("id")+"dialog-confirm").dialog({
+		resizable: false,
+		height: 140,
+		modal: true,
+		buttons: {
+	  "Sim": function() {
+	    $(this).dialog("close");
+		$.ajax({
+		    url: '/les20131/Usuario',
+		    data: {acao: "excluir", idUsuario: id},
+		    type: 'POST',
+		    success: function(data) {
+	    		$(container).remove();
+		    }
+		});
+	  },
+	  "Não": function() {
+	    $(this).dialog( "close" );
+	      }
+	    }
+	  });	
+}
+
 /**
  * "Troca" a imagem
  * @param imagem

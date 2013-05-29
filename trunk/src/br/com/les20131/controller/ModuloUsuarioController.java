@@ -39,6 +39,12 @@ public class ModuloUsuarioController extends BaseController {
             	this.acaoSelecionar();
             } else if (this.acao.equalsIgnoreCase("alterar")) {
             	this.acaoAlterar();
+            } else if (this.acao.equalsIgnoreCase("bloquear")) {
+            	this.acaoBloquear();
+            } else if (this.acao.equalsIgnoreCase("desbloquear")) {
+            	this.acaoDesbloquear();
+            } else if (this.acao.equalsIgnoreCase("excluir")) {
+            	this.acaoExcluir();
             } else {
                	throw new InvalidPageException();
             }
@@ -81,6 +87,36 @@ public class ModuloUsuarioController extends BaseController {
     }
     
     /**
+     * Ação de bloqueio de usuário
+     * @access private
+     * @return void
+     * @throws Exception
+     */
+    private void acaoBloquear() throws Exception {
+		this.gerenciarBloqueioUsuario(1);
+    }
+    
+    /**
+     * Ação de desbloqueio de usuário
+     * @access private
+     * @return void
+     * @throws Exception
+     */
+    private void acaoDesbloquear() throws Exception {
+		this.gerenciarBloqueioUsuario(0);
+    }
+    
+    /**
+     * Ação de exclusão de usuário
+     * @access private
+     * @return void
+     * @throws Exception
+     */
+    private void acaoExcluir() throws Exception {
+		this.excluirUsuario();
+    }
+    
+    /**
      * Altera um usuário
      * @access private
      * @return void
@@ -90,9 +126,35 @@ public class ModuloUsuarioController extends BaseController {
     	HttpSession sessao = this.requisicao.getSession();
         UsuarioBean usuarioBean = new UsuarioBean();
         this.validarUsuario(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), this.requisicao.getParameter("email"), this.requisicao.getParameter("emailConfirma"), this.requisicao.getParameter("senha"), this.requisicao.getParameter("senhaConfirma"));
-        usuarioBean.alterar(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), this.requisicao.getParameter("email"), this.requisicao.getParameter("senha"));
+        usuarioBean.alterar(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), this.requisicao.getParameter("email"), this.requisicao.getParameter("senha"), null, null);
         sessao.setAttribute("usuario", usuarioBean.getUsuario());
         this.requisicao.setAttribute("usuarioBean", usuarioBean);
+    }
+    
+    /**
+     * Bloqueia um usuário
+     * @access private
+     * @return void
+     * @throws Exception
+     */
+    private void gerenciarBloqueioUsuario(int bloqueado) throws Exception {
+        UsuarioBean usuarioBean = new UsuarioBean();
+        this.validarIdUsuario(this.requisicao.getParameter("idUsuario"));
+        usuarioBean.consultar(Integer.parseInt(this.requisicao.getParameter("idUsuario")));        
+        usuarioBean.alterar(usuarioBean.getUsuario().getIdUsuario(), usuarioBean.getUsuario().getEmail(), usuarioBean.getUsuario().getSenha(), bloqueado, usuarioBean.getUsuario().getExcluido());
+    }
+    
+    /**
+     * Exclui um usuário
+     * @access private
+     * @return void
+     * @throws Exception
+     */
+    private void excluirUsuario() throws Exception {
+        UsuarioBean usuarioBean = new UsuarioBean();
+        this.validarIdUsuario(this.requisicao.getParameter("idUsuario"));
+        usuarioBean.consultar(Integer.parseInt(this.requisicao.getParameter("idUsuario")));        
+        usuarioBean.alterar(usuarioBean.getUsuario().getIdUsuario(), usuarioBean.getUsuario().getEmail(), usuarioBean.getUsuario().getSenha(), usuarioBean.getUsuario().getBloqueado(), 1);
     }
     
     /**
@@ -129,6 +191,21 @@ public class ModuloUsuarioController extends BaseController {
     		if (usuarioBean.getUsuario() == null) {
     			throw new Exception();
     		}
+    	} catch (Exception excecao) {
+    		throw new Exception("Usuário inválido.");
+    	}    	
+    }
+    
+    /**
+     * Valida o código do usuário
+     * @access private
+     * @param String idUsuario
+     * @return void
+     * @throws Exception
+     */
+    private void validarIdUsuario(String idUsuario) throws Exception {
+    	try {
+    		this.validarIdUsuario(Integer.parseInt(idUsuario));
     	} catch (Exception excecao) {
     		throw new Exception("Usuário inválido.");
     	}    	

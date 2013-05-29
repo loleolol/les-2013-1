@@ -116,12 +116,18 @@ public class UsuarioBean {
      * @return void
      * @throws Exception
      */
-    public void alterar(int idUsuario, String email, String senha) throws Exception {
+    public void alterar(int idUsuario, String email, String senha, Integer bloqueado, Integer excluido) throws Exception {
     	this.usuarioDAO = new UsuarioDAO();
       	this.usuario = this.usuarioDAO.consultar(idUsuario);
       	this.usuario.setEmail(email);
       	if (!senha.isEmpty()) {
       		this.usuario.setSenha(this.usuarioDAO.retornarHashSenha(senha));
+      	}
+      	if(bloqueado != null){
+      		this.usuario.setBloqueado(bloqueado);
+      	}
+      	if(excluido != null){
+      		this.usuario.setExcluido(excluido);
       	}
       	this.usuarioDAO.alterar(this.usuario);
     }
