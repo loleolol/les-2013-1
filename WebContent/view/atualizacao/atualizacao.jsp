@@ -35,16 +35,16 @@
 							<img id="imagemBarra" class="imagem_barra" alt="<c:url value="/Viajante?acao=carregarImagem&id=${atualizacao.idAutor}"></c:url>"/>
 						</div>
 						<div class="parte_bloco">
-							<span class="titulo">${atualizacao.autor}</span>
+							<button class="link titulo"  type="button" value="${atualizacao.idAutor}" onclick="atalhoPerfil(this)">${atualizacao.autor}</button>
 							<c:choose>
 				   				<c:when test="${atualizacao.acao == 'Viagem'}">
-									<span> compartilhou </span>
+									<span>compartilhou</span>
 									<span class="titulo">${atualizacao.nome}</span>
 								</c:when>
 								<c:otherwise>
-									<span> adicionou </span>
-									<span class="titulo">${atualizacao.nome}</span>
-									<span> como contato</span>
+									<span>adicionou</span>
+									<button class="link titulo" type="button" value="${atualizacao.id}" onclick="atalhoPerfil(this)">${atualizacao.nome}</button>
+									<span>como contato</span>
 								</c:otherwise>
 							</c:choose>
 							<br/>
@@ -79,6 +79,10 @@
 						carregarGaleria('id', 'imagem', 'imagemUrl', 'atualizacao');
 					});
 				</script>
+				<form id="atalho" action="<c:url value="/Viajante"></c:url>" method="post">
+					<input id="idAtalho" type="hidden" name="id"/>
+					<input type="hidden" name="acao" value="selecionar"/>
+				</form>								
 			</c:when>
 			<c:otherwise>
 				<div class="bloco barra_central">Nenhuma atualização no momento.</div>
