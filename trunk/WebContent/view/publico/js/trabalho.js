@@ -426,7 +426,11 @@ function carregarGaleriaEdicao(campo, quantidade, acao, seleciona, imagem, remov
 
 function carregarImagem(imagem, url) {
 	if ($(imagem).length > 0) {
-		$(imagem).attr("src", url);
+		if (url.length > 0) {
+			$(imagem).attr("src", url);
+		} else {
+			$(imagem).attr("src", "/les20131/view/publico/imagens/semimagem.png");
+		}
 		$(imagem).attr("alt", "");
 	}
 }
@@ -444,9 +448,9 @@ function carregarGaleria(id, imagem, url, form) {
 		var img = '#'+imagem+indice;
 		if ($(img) != undefined && $(img).length > 0) {
 			if ($('#'+url+indice+'2').length > 0) {
-				$('#'+form+indice).before("<a class=\"proximo\" href=\"javascript:void(0)\" title=\"Próximo\""
+				$('#barraFerramentas'+indice).append("<a class=\"proximo\" href=\"javascript:void(0)\" title=\"Próximo\""
 						+ " onclick=\"navegarGaleria($('#"+imagem+indice+"'), '"+url+indice+"', false)\"></a>");
-				$('#'+form+indice).before("<a class=\"anterior\" href=\"javascript:void(0)\" title=\"Anterior\""
+				$('#barraFerramentas'+indice).append("<a class=\"anterior\" href=\"javascript:void(0)\" title=\"Anterior\""
 						+ " onclick=\"navegarGaleria($('#"+imagem+indice+"'), '"+url+indice+"', true)\"></a>");
 			}
 			$(img).attr("alt", $('#'+url+indice+'1').val());

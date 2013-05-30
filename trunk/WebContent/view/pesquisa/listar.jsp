@@ -25,7 +25,7 @@
 		<%@include file="../menu.jsp" %>
         <jsp:useBean id="pesquisaBean" class="br.com.les20131.model.bean.PesquisaBean" scope="request"/>
         <div id="corpo">
-       		<%@include file="../viagem/viagem.jsp" %>
+       		<%@include file="../central.jsp" %>
 			<div class="aba">
 				<ul>
 					<li><a href="#abaContato">

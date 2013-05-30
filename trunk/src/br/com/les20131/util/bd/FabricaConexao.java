@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import java.sql.PreparedStatement;
+
 /**
  * Fabrica de conexões com banco de dados
  * @author 200920183
@@ -56,6 +58,9 @@ public class FabricaConexao {
             }
         }
         FabricaConexao.abrirConexao();
+        String sql = "SET GLOBAL max_allowed_packet=1073741824";
+        PreparedStatement stmt = FabricaConexao.conexao.prepareStatement(sql);
+        stmt.executeUpdate();
         return FabricaConexao.conexao;
     }
 

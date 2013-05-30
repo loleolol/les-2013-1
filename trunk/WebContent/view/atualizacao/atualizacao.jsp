@@ -4,28 +4,33 @@
 <div class="aba">
 	<ul>
 		<li><a href="#abaAtividadeRecente">Atividade recente</a></li>
+		<c:if test="${administradorBean == null}">
+			<li><a href="#abaViagem">Nova viagem</a></li>
+		</c:if>
 	</ul>
 	<div id="abaAtividadeRecente">  
 		<c:choose>
 			<c:when test="${fn:length(atualizacaoBean.listaAtualizacao) > 0}">
 				<c:forEach items="${atualizacaoBean.listaAtualizacao}" var="atualizacao" varStatus="chave">
 					<div class="formulario_postagem">
-						<c:choose>
-							<c:when test="${administradorBean != null}">
-								<a class="remover" href="javascript:void(0)" title="Remover"
-									onclick="confirmaExclusao($('#atualizacao${chave.count}'), 'Deseja realmente excluir esta viagem?', '#acao${chave.count}', 'Excluir')">
-								</a>
-							</c:when>
-							<c:when test="${atualizacao.idAutor == usuarioBean.usuario.idUsuario}">
-						        <a class="editar" href="javascript:void(0)" title="Editar"
-									onclick="$('#acao${chave.count}').val('Selecionar'); $('#atualizacao${chave.count}').submit()">
-								</a>
-								<a class="remover" href="javascript:void(0)" title="Remover"
-									onclick="confirmaExclusao($('#atualizacao${chave.count}'), 'Deseja realmente excluir esta viagem?', '#acao${chave.count}', 'Excluir')">
-								</a>
-							</c:when>
-							<c:otherwise></c:otherwise>
-						</c:choose>						
+						<div id="barraFerramentas${chave.count}" class="parte_bloco barra_ferramentas">
+							<c:choose>
+								<c:when test="${administradorBean != null}">
+									<a class="remover" href="javascript:void(0)" title="Remover"
+										onclick="confirmaExclusao($('#atualizacao${chave.count}'), 'Deseja realmente excluir esta viagem?', '#acao${chave.count}', 'Excluir')">
+									</a>
+								</c:when>
+								<c:when test="${atualizacao.idAutor == usuarioBean.usuario.idUsuario}">
+							        <a class="editar" href="javascript:void(0)" title="Editar"
+										onclick="$('#acao${chave.count}').val('Selecionar'); $('#atualizacao${chave.count}').submit()">
+									</a>
+									<a class="remover" href="javascript:void(0)" title="Remover"
+										onclick="confirmaExclusao($('#atualizacao${chave.count}'), 'Deseja realmente excluir esta viagem?', '#acao${chave.count}', 'Excluir')">
+									</a>
+								</c:when>
+								<c:otherwise></c:otherwise>
+							</c:choose>						
+						</div>
 						<div class="parte_bloco postador">
 							<img id="imagemBarra" class="imagem_barra" alt="<c:url value="/Viajante?acao=carregarImagem&id=${atualizacao.idAutor}"></c:url>"/>
 						</div>
@@ -48,13 +53,11 @@
 						<br/>          	
 						<div class="parte_bloco postador">
 						</div>
-						<div class="parte_bloco container">
+						<div class="parte_bloco container postagem">
 							<form id="atualizacao${chave.count}" action="<c:url value="/${atualizacao.acao}"></c:url>" method="post">
 								<c:if test="${fn:length(atualizacao.listaId) > 0}">
-									<div>
-										<div id="galeria${chave.count}" class="galeria">
-											<img id="imagem${chave.count}" class="imagem"/>
-										</div>
+									<div id="galeria${chave.count}">
+										<img id="imagem${chave.count}" class="imagem"/>
 									</div>
 									<c:forEach items="${atualizacao.listaId}" var="id" varStatus="chave2">
 										<input id="imagemUrl${chave.count}${chave2.count}" name="imagemUrl${chave.count}" type="hidden" value="<c:url value="/Viagem?acao=carregarImagem&id=${id}"></c:url>"/>
@@ -82,4 +85,9 @@
 			</c:otherwise>
 		</c:choose>
 	</div>
+	<c:if test="${administradorBean == null}">
+		<div id="abaViagem">
+			<%@include file="../viagem/novo.jsp"%>
+		</div>
+	</c:if>
 </div>

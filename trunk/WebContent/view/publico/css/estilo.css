@@ -382,6 +382,15 @@ th{
 	width: 50px;
 	height: 50px;
 }
+.postagem {
+	width: 80%;
+	height: 30%;
+	max-height: 30%;
+	max-width: 80%;
+}
+.postagem img {
+	border: solid 1px #CCC;
+}
 .atencao {
 	color: #F00;
 }
@@ -460,11 +469,18 @@ th{
 .inferior_direito button {
 	margin-bottom: 2px;
 }
-.remover {
+.barra_ferramentas {
 	top: 2%;
 	left: 88%;
 	position: absolute;
+	width: 16px;
+	height: 64px;
+}
+.remover {
+	top: 2%;
+	left: 88%;
 	cursor: pointer;
+	position: absolute;	
 	background: url(../imagens/remover.png) no-repeat center center;
 	opacity: 0.5;
 	filter: alpha(opacity=50);
@@ -472,10 +488,10 @@ th{
 	height: 16px;
 }
 .editar {
-	top: 15%;
+	top: 35%;
 	left: 88%;
-	position: absolute;
 	cursor: pointer;
+	position: absolute;	
 	background: url(../imagens/editar.png) no-repeat center center;
 	opacity: 0.5;
 	filter: alpha(opacity=50);
@@ -483,7 +499,7 @@ th{
 	height: 16px;
 }
 .proximo {
-	top: 28%;
+	top: 68%;
 	left: 88%;
 	position: absolute;
 	cursor: pointer;
@@ -494,7 +510,7 @@ th{
 	height: 16px;
 }
 .anterior {
-	top: 41%;
+	top: 101%;
 	left: 88%;
 	position: absolute;
 	cursor: pointer;
