@@ -242,6 +242,15 @@ function enviarSemValidacao(form) {
 	$(form).submit();
 }
 
+function atalhoPerfil(botao) {
+	$('#idAtalho').val($(botao).val());
+	$('#atalho').submit();
+}
+
+function enviarFormulario(form) {
+	$('#'+form).submit();
+}
+
 function pad(str, max) {
 	  return str.length < max ? pad("0" + str, max) : str;
 }

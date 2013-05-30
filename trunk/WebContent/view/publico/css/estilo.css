@@ -176,17 +176,18 @@ th{
 .link,
 .formulario_padrao .link {
 	cursor: pointer;
-    background: #FFF; /* para browsers sem suporte a CSS 3 */
-    width: 200px;
+    background: none;
 	border: 0px;
-	padding: 0px;
+	height: 20px;
     text-align: left;
 }
 
 .link:hover, 
 .formulario_padrao .link:hover {
+    background: none;
 	border: 0px;
-	padding: 0px;
+    text-align: left;
+	height: 20px;
 	text-decoration: underline;
 }    
     
@@ -296,8 +297,9 @@ th{
 .formulario_postagem .texto {
 	padding: 5px;
 	margin: 0px;
-	width: 100%;
+	width: 90%;
 	height: 30%;
+	background: #FFF;
 	overflow: hidden;
 }
 .formulario_postagem .galeria {
@@ -312,7 +314,7 @@ th{
 }
 .formulario_postagem .imagem {
 	max-width: 90%;
-	max-height: 60%;
+	max-height: 40%;
 	margin-left: auto;
     margin-right: auto;
 	display: inline-block;
