@@ -17,8 +17,10 @@
 		<%@include file="usuario/login.jsp"%>
 		<%@include file="menu.jsp" %>
 		<div id="corpo">
-			<%@include file="viagem/viagem.jsp" %>
-			<%@include file="atualizacao/atualizacao.jsp" %>
+			<%@include file="central.jsp" %>
+			<c:if test="${administradorBean == null}">
+				<%@include file="atualizacao/atualizacao.jsp" %>
+			</c:if>
 		</div>
 		<%@include file="adicional.jsp" %>
 	</body>

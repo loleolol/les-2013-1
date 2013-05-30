@@ -59,20 +59,6 @@ public class Viagem {
 	private Date dataInclusao;
 	
     /**
-     * Armazena se o registro foi excluido
-     * @access private
-     * @var int
-     */
-    private int excluido;
-
-    /**
-     * Armazena se o registro foi bloqueado
-     * @access private
-     * @var int
-     */
-    private int bloqueado;
-    
-    /**
      * Armazena a lista de imagem de viagem
      * @access private
      * @var List<ImagemViagem>
@@ -118,44 +104,6 @@ public class Viagem {
 		this.setDataFinal(dataFinal);
 		this.setDataInclusao(dataInclusao);
 	}
-
-	/**
-	 * Retorna se o registro foi excluido
-	 * @access public
-	 * @return int
-	 */
-	public int getExcluido() {
-		return excluido;
-	}
-
-	/**
-	 * Define se o registro foi excluido
-	 * @access public
-	 * @param int excluido
-	 * @return void
-	 */
-	public void setExcluido(int excluido) {
-		this.excluido = excluido;
-	}
-
-	/**
-	 * Retorna se o registro foi bloqueado
-	 * @access public
-	 * @return int bloqueado
-	 */
-	public int getBloqueado() {
-		return bloqueado;
-	}
-
-	/**
-	 * Define se o registro foi bloqueado
-	 * @access public
-	 * @param int bloqueado
-	 * @return void
-	 */
-	public void setBloqueado(int bloqueado) {
-		this.bloqueado = bloqueado;
-	}	
 	
 	/**
 	 * Retorna o código da viagem

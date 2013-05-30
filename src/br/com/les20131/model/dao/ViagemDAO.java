@@ -76,8 +76,8 @@ public class ViagemDAO extends DAOBase<Viagem> {
         PreparedStatement stmt = null;
 
         String sql = "INSERT INTO viagem"
-                    + "\n(id_usuario, titulo, descricao, data_inicial, data_final, data_inclusao, excluido, bloqueado)"
-                    + "\n VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                    + "\n(id_usuario, titulo, descricao, data_inicial, data_final, data_inclusao)"
+                    + "\n VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
             stmt = this.conexao.prepareStatement(sql);
@@ -87,8 +87,6 @@ public class ViagemDAO extends DAOBase<Viagem> {
             stmt.setDate(++indice, new java.sql.Date(obj.getDataInicial().getTime()));
             stmt.setDate(++indice, new java.sql.Date(obj.getDataFinal().getTime()));
             stmt.setTimestamp(++indice, new java.sql.Timestamp(obj.getDataInclusao().getTime()));
-            stmt.setInt(++indice, obj.getExcluido());
-            stmt.setInt(++indice, obj.getBloqueado());
             stmt.executeUpdate();
         } catch (Exception excecao) {
             throw new DAOException(excecao);
@@ -116,8 +114,6 @@ public class ViagemDAO extends DAOBase<Viagem> {
                 + "\n, descricao = ?"
         		+ "\n, data_inicial = ?"
                 + "\n, data_final = ?"
-        		+ "\n, excluido = ?"
-                + "\n, bloqueado = ?"
                 + "\n WHERE id_viagem = ?";
 
         try {
@@ -127,8 +123,6 @@ public class ViagemDAO extends DAOBase<Viagem> {
 	        stmt.setString(++indice, obj.getDescricao());
 	        stmt.setDate(++indice, new java.sql.Date(obj.getDataInicial().getTime()));
 	        stmt.setDate(++indice, new java.sql.Date(obj.getDataFinal().getTime()));
-	        stmt.setInt(++indice, obj.getExcluido());
-	        stmt.setInt(++indice, obj.getBloqueado());
 	        stmt.setInt(++indice, obj.getIdViagem());
             stmt.executeUpdate();
         } catch (Exception excecao) {
@@ -137,9 +131,9 @@ public class ViagemDAO extends DAOBase<Viagem> {
 	}
 
     /**
-     * Exclui uma locacao no banco de dados
+     * Exclui uma viagem no banco de dados
      * @access public
-     * @param Locacao locacao
+     * @param Viagem viagem
      * @return void
      * @throws Exception
      */	

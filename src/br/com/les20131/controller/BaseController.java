@@ -137,8 +137,10 @@ public abstract class BaseController extends HttpServlet {
         	this.requisicao.setAttribute("usuarioBean", usuarioBean);
         	AdministradorBean administradorBean = new AdministradorBean();
             administradorBean.consultar(usuarioBean.getUsuario().getIdUsuario());
-        	sessao.setAttribute("administrador", administradorBean.getAdministrador());
-			this.requisicao.setAttribute("administradorBean", administradorBean);
+            if (administradorBean.getAdministrador() != null) {
+	        	sessao.setAttribute("administrador", administradorBean.getAdministrador());
+				this.requisicao.setAttribute("administradorBean", administradorBean);
+            }
         }
     }
     

@@ -23,7 +23,7 @@
 		<%@include file="../usuario/login.jsp"%>
 		<%@include file="../menu.jsp" %>
         <div id="corpo">
-        	<%@include file="../viagem/viagem.jsp"%>
+        	<%@include file="../central.jsp"%>
         	<%@include file="atualizacao.jsp" %>
 		</div>
 		<%@include file="../adicional.jsp"%>		
