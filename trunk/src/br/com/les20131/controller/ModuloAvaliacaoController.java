@@ -141,7 +141,7 @@ public class ModuloAvaliacaoController extends BaseController {
     /**
      * Altera uma avaliação
 	 * @access private
-	 * @retrun void
+	 * @return void
      * @throws Exception
      */
     private void alterarAvaliacao() throws Exception {

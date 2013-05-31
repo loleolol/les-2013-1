@@ -556,3 +556,34 @@ th{
 	opacity: 0.8;
 	filter: alpha(opacity=80);    
 }
+.estrela {
+	cursor: pointer;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+}
+.estrela_menor {
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+}
+.estrela_afetar {
+	opacity: 0.6;
+	filter: alpha(opacity=60);  	
+}
+.estrela_nao_marcada {
+	background: url(../imagens/estrelan.png) no-repeat left center;
+	background-size: 20px 20px;
+}
+.estrela_menor_nao_marcada {
+	background: url(../imagens/estrelan.png) no-repeat left center;
+	background-size: 12px 12px;
+}
+.estrela_marcada {
+	background: url(../imagens/estrelam.png) no-repeat left center;
+	background-size: 20px 20px;
+}
+.estrela_menor_marcada {
+	background: url(../imagens/estrelam.png) no-repeat left center;
+	background-size: 12px 12px;
+}

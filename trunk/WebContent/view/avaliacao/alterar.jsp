@@ -27,7 +27,12 @@
 					 method="post" onsubmit="return validaFormulario(new Array('avaliacao;int;1', 'descricao;String;1'))">
 				        <div class="bloco">
 					        <label for="avaliacao">Avaliação<span class="atencao">*</span>:</label>
-					        <input id="avaliacao" type="text" name="avaliacao" maxlength="1" value="${avaliacaoBean.avaliacao.avaliacao}"/>
+					        <div class="estrela estrela_nao_marcada" title="1" onclick="avaliarEmpresa(this, $('#avaliacao'))"></div>
+					        <div class="estrela estrela_nao_marcada" title="2" onclick="avaliarEmpresa(this, $('#avaliacao'))"></div>
+					        <div class="estrela estrela_nao_marcada" title="3" onclick="avaliarEmpresa(this, $('#avaliacao'))"></div>
+					        <div class="estrela estrela_nao_marcada" title="4" onclick="avaliarEmpresa(this, $('#avaliacao'))"></div>
+					        <div class="estrela estrela_nao_marcada" title="5" onclick="avaliarEmpresa(this, $('#avaliacao'))"></div>
+					        <input id="avaliacao" type="hidden" name="avaliacao" value="${avaliacaoBean.avaliacao.avaliacao}"/>
 					        <span id="avaliacaoErro" class="atencao"></span>
 						</div>
 				        <div class="bloco">
@@ -41,6 +46,11 @@
 				           	<button type="submit" name="acao" value="alterar">Alterar</button>
 				        </div>
 					</form>
+					<script type="text/javascript">
+						$(document).ready(function() { 
+							carregarAvaliacaoEmpresa($('#avaliacao'));
+						});
+					</script>					
 				</div>
 			</div>
 		</div>

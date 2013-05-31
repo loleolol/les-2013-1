@@ -173,11 +173,16 @@ public class AtualizacaoBean {
 			avaliacaoBean.consultar(empresaBean.getEmpresa());
 		}
         List<Avaliacao> lista = avaliacaoBean.getListaAvaliacao();
+        List<Integer> listaId = new ArrayList<Integer>();
         int indice;
+        int indice2;
         for (indice = 0; indice < lista.size(); indice++) {
+        	for (indice2 = 1; indice2 <= lista.get(indice).getAvaliacao(); indice2++) {
+        		listaId.add(indice2);
+        	}
         	this.listaAtualizacao.add(new ItemAtualizacaoBean(lista.get(indice).getIdAvaliacao()
         			, "Avaliacao", usuario.getNome(), usuario.getIdUsuario()
-        			, lista.get(indice).getEmpresa().getNome(), null, lista.get(indice).getDescricao()
+        			, lista.get(indice).getEmpresa().getNome(), listaId, lista.get(indice).getDescricao()
         			, lista.get(indice).getDataInclusao()));
         }
 	}	
