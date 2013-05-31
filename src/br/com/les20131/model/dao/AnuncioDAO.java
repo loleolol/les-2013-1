@@ -83,7 +83,7 @@ public class AnuncioDAO extends DAOBase<Anuncio> {
             resultSet = stmt.executeQuery();
             EmpresaDAO empresaDAO = new EmpresaDAO();
             List<Anuncio> listaAnuncio = new ArrayList<Anuncio>();
-            if (resultSet.next()) {
+            while (resultSet.next()) {
             	listaAnuncio.add(new Anuncio(resultSet.getInt("id_anuncio")
             			, empresaDAO.consultar(resultSet.getInt("id_usuario"))
             			, resultSet.getString("anuncio")

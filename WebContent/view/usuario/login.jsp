@@ -14,7 +14,9 @@
 							<input id="criterio" type="text" name="criterio" size="50" />
 						</c:otherwise>
 					</c:choose>
-					<button id="pesquisa" type="submit" name="acao" value="pesquisar">Pesquisar</button>
+					<button id="pesquisa" type="submit" name="acao" value="pesquisar">
+						<span class="pesquisar"></span>
+					</button>
 	    			<div id="retornoPesquisa" class="retorno_pesquisa invisivel">
 	    			</div>
 	    		</form>
