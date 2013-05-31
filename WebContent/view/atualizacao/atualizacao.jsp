@@ -61,6 +61,8 @@
 				   				<c:when test="${atualizacao.acao == 'Avaliacao'}">
 									<span>avaliou</span>
 									<span class="titulo">${atualizacao.nome}</span>
+									<span>em</span>
+							        <input id="avaliacao${chave.count}" type="hidden" name="avaliacao" value="${fn:length(atualizacao.listaId)}"/>
 								</c:when>
 								<c:otherwise>
 									<span>adicionou</span>
@@ -80,7 +82,7 @@
 								</div>
 								<div class="parte_bloco container postagem">
 									<form id="atualizacao${chave.count}" action="<c:url value="/${atualizacao.acao}"></c:url>" method="post">
-										<c:if test="${fn:length(atualizacao.listaId) > 0}">
+										<c:if test="${atualizacao.acao == 'Viagem' && fn:length(atualizacao.listaId) > 0}">
 											<div id="galeria${chave.count}">
 												<img id="imagem${chave.count}" class="imagem"/>
 											</div>
@@ -104,6 +106,7 @@
 				<script type="text/javascript">
 					$(document).ready(function() { 
 						carregarGaleria('id', 'imagem', 'imagemUrl', 'atualizacao');
+						carregarAvaliacoes('avaliacao');
 					});
 				</script>
 				<form id="atalho" action="<c:url value="/Viajante"></c:url>" method="post">

@@ -52,7 +52,7 @@ function pesquisar(campo, retorno, botao) {
 			    	$(retorno).append(string);
 			    	urlCampo = "/les20131/Viajante?acao=carregarImagem&id="+data.lista[i].id;
 			    	(function(index, link) {
-				        setTimeout(function() { carregarImagem($('#imagemPreviaPesquisa'+index), link); }, (index*1000));
+				        setTimeout(function() { carregarImagem($('#imagemPreviaPesquisa'+index), link); }, (index*200));
 				    })(i, urlCampo);			    	
 		    	}
 		    	if (quantidade > 0) {
@@ -63,6 +63,42 @@ function pesquisar(campo, retorno, botao) {
 	    	}
 	    }
 	});
+}
+
+function avaliarEmpresa(estrela, campo) {
+	jQuery.each($('.estrela'), function(i, element) {
+		var valor = $(estrela).attr("title");
+		if (i < valor) {
+			$(element).attr("class", "estrela estrela_marcada");
+		} else {
+			$(element).attr("class", "estrela estrela_nao_marcada");
+		}
+	});
+	$(campo).val($(estrela).attr("title"));
+}
+
+function carregarAvaliacaoEmpresa(campo) {
+	jQuery.each($('.estrela'), function(i, element) {
+		var valor =	$(campo).val();
+		if (i < valor) {
+			$(element).attr("class", "estrela estrela_marcada");
+		} else {
+			$(element).attr("class", "estrela estrela_nao_marcada");
+		}
+	});
+}
+
+function carregarAvaliacoes(campos) {
+	jQuery.each($('[name='+campos+']'), function(i, element) {
+		var valor = $(element).val();
+		var indice;
+		for (indice = 1; indice <= valor; indice++) {
+			$(element).before("<div class=\"estrela_menor estrela_menor_marcada\"></div>");
+		}
+		for (indice = valor; indice < 5; indice++) {
+			$(element).before("<div class=\"estrela_menor estrela_menor_nao_marcada\"></div>");
+		}
+	});	
 }
 
 function adicionarContato(campo, id) {
@@ -447,7 +483,7 @@ function carregarImagem(imagem, url) {
 function carregarImagens() {
 	jQuery.each($('img'), function(i, element) {
 		$(element).attr("src", "/les20131/view/publico/imagens/carregando.gif");
-		setTimeout(function() { carregarImagem($(element), $(element).attr("alt")); }, (i*1000));
+		setTimeout(function() { carregarImagem($(element), $(element).attr("alt")); }, (i*200));
 	});
 }
 
