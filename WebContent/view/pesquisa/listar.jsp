@@ -44,6 +44,15 @@
 					<c:choose>
 						<c:when test="${fn:length(pesquisaBean.listaResultado) > 0}">
 				            <c:forEach items="${pesquisaBean.listaResultado}" var="itemResultado" varStatus="chave">
+				            	<c:choose>
+				            		<c:when test="${itemResultado.tipo != tipo && itemResultado.tipo == 'Viajante'}">
+										<div class="titulo">Pessoas</div>
+									</c:when>
+									<c:when test="${itemResultado.tipo != tipo && itemResultado.tipo == 'Empresa'}">
+										<div class="titulo">Empresas</div>
+									</c:when>
+								</c:choose>
+				            	<c:set var="tipo" value="${itemResultado.tipo}"/>
 				            	<div id="container${chave.count}">
 					               	<div class="container">
 					                	<form id="resultado${chave.count}" 
@@ -81,7 +90,7 @@
 										    					<span>Excluir</span>
 										    				</button>
 								    					</c:when>								    					
-								    					<c:when test="${itemResultado.id == idUsuario}">
+								    					<c:when test="${itemResultado.id == idUsuario || itemResultado.tipo == 'Empresa'}">
 								    					</c:when>
 								    					<c:when test="${itemResultado.flag}">
 										    				<button type="button" onclick="removerContato($(this), ${itemResultado.id})">

@@ -31,7 +31,7 @@ function pesquisar(campo, retorno, botao) {
 						+"<input type=\"hidden\" name=\"id\" value=\""+data.lista[i].id+"\"/>"
 			    		+"</div>"
 		    			+"<div class=\"parte_bloco\">";
-			    	if (data.idUsuario != data.lista[i].id) {
+			    	if (data.idUsuario != data.lista[i].id && data.lista[i].tipo == 'Viajante') {
 				    	if (data.lista[i].flag) {
 				    		string += "<button type=\"button\" onclick=\"removerContato($(this), "+data.lista[i].id+")\">"
 			    				+"<span class=\"excluir\"></span>";

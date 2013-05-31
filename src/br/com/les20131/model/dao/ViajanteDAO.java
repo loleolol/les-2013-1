@@ -230,7 +230,12 @@ public class ViajanteDAO extends DAOBase<Viajante> {
         }
     }
 
+    /**
+     * Exclui o viajante
+     * @access public
+     * @return void
+     */
     public void excluir(Viajante obj) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        throw new DAOException("Não implementado ainda!");
     }
 }

@@ -120,13 +120,6 @@ body {
 	border-left: 1px solid #CCC
 }
 
-.anuncio {
-	-webkit-box-shadow: 0px 0px 2px rgba(0,0,0,0.8);
-	-moz-box-shadow: 0px 0px 2px rgba(0,0,0,0.8);
-	box-shadow: 0px 0px 2px rgba(0,0,0,0.8);	
-	padding: 15px;
-}
-
 #login label {
 	width: auto;
 }
@@ -331,6 +324,7 @@ th{
 }
 
 .formulario_menu button {
+	cursor: pointer;
     background: #FFF; /* para browsers sem suporte a CSS 3 */
     width: 200px;
 	border: 0px;
@@ -343,6 +337,22 @@ th{
 }
 .formulario_menu_selecionado {
 	background: #090;
+}
+
+.formulario_anuncio {
+	cursor: pointer;
+    background: #FFF; /* para browsers sem suporte a CSS 3 */
+	border: 0px;
+	-webkit-box-shadow: 0px 0px 2px rgba(0,0,0,0.8);
+	-moz-box-shadow: 0px 0px 2px rgba(0,0,0,0.8);
+	box-shadow: 0px 0px 2px rgba(0,0,0,0.8);	
+	padding: 15px;
+    text-align: left;	
+}
+
+.formulario_anuncio:hover {
+	opacity: 0.8; 
+	filter: alpha(opacity=80);
 }
 
 .menu_perfil {
