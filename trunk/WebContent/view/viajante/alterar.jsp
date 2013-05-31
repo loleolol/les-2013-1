@@ -77,6 +77,7 @@
 		<%@include file="../menu.jsp" %>
         <jsp:useBean id="viajanteBean" class="br.com.les20131.model.bean.ViajanteBean" scope="request"/>
 		<div id="corpo">
+			<%@include file="../central.jsp" %>
 			<div class="aba">
 				<ul>
 					<li><a href="#abaViajante">Perfil</a></li>

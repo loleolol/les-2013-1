@@ -11,13 +11,13 @@
         <div id="adicionaImagem" class="imagem adiciona_imagem" title="Adicionar imagem" onclick="adicionaCampoImagem($('#adicionaImagem'), $('#quantidadeImagem'), 'previrImagem', 'selecionaImagem', 'imagemPrevia', 'removerImagem', 'imagem')">
 		</div>
 	</div>
-       <div class="bloco">
-        <label for="descricao">Descricao<span class="atencao">*</span>:</label>
+    <div class="bloco">
+        <label for="descricao">Descrição<span class="atencao">*</span>:</label>
         <br/>
-        <textarea id="descricao" name="descricao" rows="8" cols="56"></textarea>
+        <textarea id="descricao" name="descricao" rows="8" cols="70"></textarea>
         <span id="descricaoErro" class="atencao"></span>
 	</div>
-       <div class="bloco">
+    <div class="bloco">
        	<label for="dataInicialDia">Período da viagem:</label>
        	<br/>
 		<label for="dataInicialDia">De<span class="atencao">*</span>:</label>
@@ -42,9 +42,9 @@
 		</select>
 		<span id="dataFinalAnoErro" class="atencao"></span>
 	</div>
-       <div class="bloco">
+    <div class="bloco">
        	<button type="submit" name="acao" value="incluir">Registrar</button>
-       </div>
+    </div>
 </form>
 <script type="text/javascript">
 	$(document).ready(function() { 
