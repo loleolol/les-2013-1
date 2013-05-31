@@ -46,7 +46,7 @@ body {
 	display: inline-block;
 	width: 36%;
 	float: center;
-	padding-top: 5px;
+	padding-top: 2px;
 }
 
 .logo {
@@ -166,6 +166,11 @@ th{
 
 /*  #FORMULÁRIO
     -------------------------------------------*/
+
+button {
+	cursor: pointer;
+}
+
 .link,
 .formulario_padrao .link {
 	cursor: pointer;
@@ -370,6 +375,7 @@ th{
 }
 .previa_perfil img,
 .formulario_menu .previa_perfil img {
+	background: #eee;
 	width: 50px;
 	height: 50px;
 }
@@ -392,6 +398,7 @@ th{
 	height: 50px;
 }
 .postador img {
+	background: #eee;
 	width: 50px;
 	height: 50px;
 }
@@ -415,6 +422,7 @@ th{
 	max-width: 80%;
 }
 .postagem img {
+	background: #eee;
 	border: solid 1px #CCC;
 }
 .atencao {
@@ -481,6 +489,7 @@ th{
 	width: 60%;
 }
 .item_retorno_pesquisa img {
+	background: #eee;
 	width: 40px;
 	height: 40px;
 }
@@ -545,6 +554,12 @@ th{
 	filter: alpha(opacity=50);
 	width: 16px;
 	height: 16px;
+}
+.pesquisar {
+	background: url(../imagens/buscar.png) no-repeat left center;
+	display: inline-block;
+	width: 16px;
+	height: 16px;	
 }
 .incluir {
 	background: url(../imagens/incluir.png) no-repeat left center;
