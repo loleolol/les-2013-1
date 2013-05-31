@@ -72,6 +72,15 @@
     <servlet-name>ModuloAvaliacaoController</servlet-name>
     <url-pattern>/Avaliacao</url-pattern>
   </servlet-mapping>
+  <display-name>ModuloAnuncio</display-name>
+  <servlet>
+    <servlet-name>ModuloAnuncioController</servlet-name>
+    <servlet-class>br.com.les20131.controller.ModuloAnuncioController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModuloAnuncioController</servlet-name>
+    <url-pattern>/Anuncio</url-pattern>
+  </servlet-mapping>
   <display-name>PesquisaController</display-name>
   <servlet>
     <servlet-name>PesquisaController</servlet-name>

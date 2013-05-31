@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.les20131.model.Empresa;
+import br.com.les20131.model.Viajante;
 
 /**
  * Classe DAO de avaliação
@@ -61,6 +62,49 @@ public class EmpresaDAO extends DAOBase<Empresa> {
         } catch (Exception excecao) {
             throw new DAOException(excecao);
         }
+    }
+    
+    /**
+     * Consulta empresas pelo nome
+     * @access public
+     * @param String nome
+     * @return List<Empresa>
+     * @throws DAOException
+     */
+    public List<Empresa> consultar(String nome) throws DAOException {
+        int indice = 0;
+        nome = "%" + nome + "%";
+        PreparedStatement stmt = null;
+        ResultSet resultSet = null;
+
+        String sql = "SELECT u.id_usuario, u.email, u.nome, u.senha, u.excluido, u.bloqueado"
+        			+ "\n, e.url, e.definicao, e.imagem"
+                    + "\n FROM usuario u, empresa e"
+                    + "\n WHERE UPPER(u.nome) LIKE UPPER(?)"
+                    + "\n AND u.id_usuario = e.id_usuario"
+                    + "\n AND u.excluido = 0";
+
+        try {
+            stmt = this.conexao.prepareStatement(sql);
+            stmt.setString(++indice, nome);
+            resultSet = stmt.executeQuery();
+            
+            List<Empresa> lista = new ArrayList<Empresa>();
+            while (resultSet.next()) {
+            	lista.add(new Empresa(resultSet.getInt("id_usuario")
+	                , resultSet.getString("email")
+	                , resultSet.getString("nome")
+	                , resultSet.getString("senha")
+	                , resultSet.getString("url")
+	                , resultSet.getString("definicao")
+	                , resultSet.getBinaryStream("imagem")	                
+	                , resultSet.getInt("excluido")
+	                , resultSet.getInt("bloqueado")));
+            }
+            return lista;
+        } catch (Exception excecao) {
+            throw new DAOException(excecao);
+        } 
     }
    
     /**
@@ -125,7 +169,7 @@ public class EmpresaDAO extends DAOBase<Empresa> {
 	}
 
     /**
-     * Exclui uma avaliação no banco de dados
+     * Exclui uma empresa no banco de dados
      * @access public
      * @param Viagem Empresa
      * @return void
@@ -133,22 +177,7 @@ public class EmpresaDAO extends DAOBase<Empresa> {
      */	
 	@Override
 	public void excluir(Empresa obj) throws DAOException {
-        if (obj == null) {
-            throw new DAOException("Empresa inválida para excluir.");
-        }
-        int indice = 0;
-        PreparedStatement stmt = null;
-
-        String sql = "DELETE FROM empresa"
-                    + "\n WHERE id_usuario = ?";
-
-        try {
-            stmt = this.conexao.prepareStatement(sql);
-            stmt.setInt(++indice, obj.getIdUsuario());
-            stmt.executeUpdate();
-        } catch (Exception excecao) {
-            throw new DAOException(excecao);
-        }
+        throw new DAOException("Não implementado ainda!");
     }
 	
 }

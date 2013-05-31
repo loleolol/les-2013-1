@@ -1,12 +1,18 @@
+<jsp:useBean id="anuncioBean" class="br.com.les20131.model.bean.AnuncioBean" scope="request"/>
 <div id="barra_direita">
 	<c:choose>
 		<c:when test="${usuarioBean.usuario != null}">
-			<form id="menu_usuario" class="formulario_menu" action="<c:url value="/Viajante"></c:url>" method="post">
-        		<div class="anuncio">
-        			Anúncios
-        			<br/>
-        		</div>
-			</form>
+			<c:forEach items="${anuncioBean.listaAnuncio}" var="anuncio" varStatus="chave">
+				<form id="menuUsuario${chave.count}" class="formulario_anuncio" action="<c:url value="/Anuncio"></c:url>" method="post">
+					<div class="anuncio">
+	        			<span class="titulo"><c:out value="${anuncio.empresa.nome}"/></span>
+	        			<br/>
+	        			<c:out value="${anuncio.anuncio}"/>
+	        			<br/>
+	        			<input name="idAnuncio" type="hidden" value="${anuncio.idAnuncio}"/>
+	        		</div>
+				</form>
+			</c:forEach>
 		</c:when>
 		<c:otherwise>
 			<br/>

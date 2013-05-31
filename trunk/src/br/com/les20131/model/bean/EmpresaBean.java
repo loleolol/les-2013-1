@@ -3,6 +3,7 @@ package br.com.les20131.model.bean;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.les20131.model.Contato;
 import br.com.les20131.model.Empresa;
 import br.com.les20131.model.Usuario;
 import br.com.les20131.model.bean.UsuarioBean;
@@ -31,6 +32,12 @@ public class EmpresaBean extends UsuarioBean {
      */
     private Empresa empresa;
     
+    /**
+     * Armazena a lista de empresas
+     * @access protected
+     * @var List<Empresa>
+     */
+    protected List<Empresa> listaEmpresa;    
        
     /**
      * Construtor da classe
@@ -52,6 +59,35 @@ public class EmpresaBean extends UsuarioBean {
     } 
     
     /**
+     * Define a empresa
+     * @access public
+     * @param Empresaempresa
+     * @return void
+     */ 
+    public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
+    
+    /**
+     * Retorna a lista de empresas
+     * @access public
+     * @return List<Empresa>
+     */
+    public List<Empresa> getListaEmpresa() {
+		return listaEmpresa;
+	}
+
+    /**
+     * Define a lista de empresas
+     * @access public
+     * @param List<Empresa> listaEmpresa
+     * @return void
+     */
+	public void setListaEmpresa(List<Empresa> listaEmpresa) {
+		this.listaEmpresa = listaEmpresa;
+	}
+    
+	/**
      * Consulta uma empresa com o código passado por parâmetro
      * @access public
      * @param int idUsuario
@@ -60,5 +96,16 @@ public class EmpresaBean extends UsuarioBean {
      */
     public void consultar(int idUsuario) throws Exception {
         this.empresa = this.empresaDAO.consultar(idUsuario);
-    }             
+    } 
+    
+    /**
+     * Consulta empresas pelo nome
+     * @access public
+     * @param String nome
+     * @return void
+     * @throws Exception
+     */
+    public void consultar(String nome) throws Exception {
+    	this.listaEmpresa = this.empresaDAO.consultar(nome);
+    }    
 }

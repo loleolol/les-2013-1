@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
 
 import br.com.les20131.model.Usuario;
 import br.com.les20131.model.bean.AdministradorBean;
+import br.com.les20131.model.bean.AnuncioBean;
 import br.com.les20131.model.bean.UsuarioBean;
 import br.com.les20131.model.bean.ViajanteBean;
 import br.com.les20131.util.InvalidPageException;
@@ -141,6 +142,9 @@ public abstract class BaseController extends HttpServlet {
 	        	sessao.setAttribute("administrador", administradorBean.getAdministrador());
 				this.requisicao.setAttribute("administradorBean", administradorBean);
             }
+            AnuncioBean anuncioBean = new AnuncioBean();
+            anuncioBean.consultarAtivos();
+            this.requisicao.setAttribute("anuncioBean", anuncioBean);
         }
     }
     
