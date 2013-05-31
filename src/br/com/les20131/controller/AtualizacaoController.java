@@ -40,12 +40,21 @@ public class AtualizacaoController extends BaseController {
 				this.acaoListarAtualizacoes();
 			} else if (this.acao.equalsIgnoreCase("viagens")) {
 				this.acaoListarViagens();
+			} else if (this.acao.equalsIgnoreCase("avaliacoes")) {
+				this.acaoListarAvaliacoes();
 			}
 		} catch (Exception excecao) {
 		    this.tratarExcecao(excecao);
 		}
 	}
 	
+	
+	/**
+	 * Lista todas as atualizações
+	 * @access private
+	 * @return void
+	 * @throws Exception
+	 */
 	private void acaoListarTodasAtualizacoes() throws Exception {
 		HttpSession sessao = this.requisicao.getSession();
 		this.listarTodasAtualizacoes();
@@ -73,8 +82,23 @@ public class AtualizacaoController extends BaseController {
 	private void acaoListarViagens() throws Exception {
 		HttpSession sessao = this.requisicao.getSession();
 		this.listarViagens((Usuario)sessao.getAttribute("usuario"));
+		this.requisicao.setAttribute("criterio", "Viagem");
         this.despachar("/view/atualizacao/listar.jsp");
 	}
+	
+	/**
+	 * Ação para listar avaliações
+	 * @access private
+	 * @return void
+	 * @throws Exception
+	 */
+	private void acaoListarAvaliacoes() throws Exception {
+		HttpSession sessao = this.requisicao.getSession();
+		this.listarAvaliacoes((Usuario)sessao.getAttribute("usuario"));
+		this.requisicao.setAttribute("criterio", "Avaliacao");
+        this.despachar("/view/atualizacao/listar.jsp");
+	}
+	
 	
 	/**
 	 * Lista as atualizações de todos os usuários
@@ -115,4 +139,17 @@ public class AtualizacaoController extends BaseController {
         this.requisicao.setAttribute("atualizacaoBean", atualizacaoBean);		
 	}
 
+	/**
+	 * Lista as avaliações do usuário passado por parâmetro
+	 * @access public
+	 * @param Usuario usuario
+	 * @return void
+	 * @throws Exception
+	 */
+	public void listarAvaliacoes(Usuario usuario) throws Exception {
+        AtualizacaoBean atualizacaoBean = new AtualizacaoBean();
+        atualizacaoBean.listarAvaliacoes(usuario);
+        this.requisicao.setAttribute("atualizacaoBean", atualizacaoBean);		
+	}
+	
 }

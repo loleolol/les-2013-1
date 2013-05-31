@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import br.com.les20131.model.Avaliacao;
+import br.com.les20131.model.Empresa;
 import br.com.les20131.model.ImagemViagem;
 import br.com.les20131.model.Usuario;
 import br.com.les20131.model.Viagem;
@@ -61,10 +63,12 @@ public class AtualizacaoBean {
 		ViajanteBean viajanteBean = new ViajanteBean();
 		viajanteBean.consultarContatos(usuario.getIdUsuario());
 		this.listarViagens(usuario);
+		this.listarAvaliacoes(usuario);
 		int indice;
 		for (indice = 0; indice < viajanteBean.getListaViajante().size(); indice++) {
 			this.listarViagens(viajanteBean.getListaViajante().get(indice));
-			this.listarContatos(viajanteBean.getListaViajante().get(indice));			
+			this.listarContatos(viajanteBean.getListaViajante().get(indice));
+			this.listarAvaliacoes(viajanteBean.getListaViajante().get(indice));
 		}
 		this.ordernarAtualizacoes();
 	}
@@ -92,6 +96,7 @@ public class AtualizacaoBean {
 	public void listarAtualizacoes(Usuario usuario) throws Exception {
 		this.listarViagens(usuario);
 		this.listarContatos(usuario);
+		this.listarAvaliacoes(usuario);
 		this.ordernarAtualizacoes();
 	}
 	
@@ -146,6 +151,34 @@ public class AtualizacaoBean {
         			, "Viagem", usuario.getNome(), usuario.getIdUsuario()
         			, lista.get(indice1).getTitulo(), listaItem, lista.get(indice1).getDescricao()
         			, lista.get(indice1).getDataInclusao()));
+        }
+	}
+	
+	/**
+	 * Lista as avaliações do usuário
+	 * @access public
+	 * @param Usuario usuario
+	 * @return void
+	 * @throws Exception
+	 */
+	public void listarAvaliacoes(Usuario usuario) throws Exception {
+		AvaliacaoBean avaliacaoBean = new AvaliacaoBean();
+		ViajanteBean viajanteBean = new ViajanteBean();
+		viajanteBean.consultar(usuario.getIdUsuario());
+		if (viajanteBean.getViajante() != null) {
+			avaliacaoBean.consultar(viajanteBean.getViajante());
+		} else {
+			EmpresaBean empresaBean = new EmpresaBean();
+			empresaBean.consultar(usuario.getIdUsuario());
+			avaliacaoBean.consultar(empresaBean.getEmpresa());
+		}
+        List<Avaliacao> lista = avaliacaoBean.getListaAvaliacao();
+        int indice;
+        for (indice = 0; indice < lista.size(); indice++) {
+        	this.listaAtualizacao.add(new ItemAtualizacaoBean(lista.get(indice).getIdAvaliacao()
+        			, "Avaliacao", usuario.getNome(), usuario.getIdUsuario()
+        			, lista.get(indice).getEmpresa().getNome(), null, lista.get(indice).getDescricao()
+        			, lista.get(indice).getDataInclusao()));
         }
 	}	
 			

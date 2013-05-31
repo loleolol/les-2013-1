@@ -21,6 +21,7 @@
 		<jsp:useBean id="imagemViagemBean" class="br.com.les20131.model.bean.ImagemViagemBean" scope="request"/>
         <jsp:useBean id="viagemBean" class="br.com.les20131.model.bean.ViagemBean" scope="request"/>
         <div id="corpo">
+			<%@include file="../central.jsp" %>
 			<div class="aba">
 				<ul>
 					<li><a href="#abaViagem">Registro de viagem</a></li>

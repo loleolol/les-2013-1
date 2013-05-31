@@ -88,7 +88,7 @@ function removerContato(campo, id) {
 			+"</div>");
 	$("#"+$(campo).attr("id")+"dialog-confirm").dialog({
 		resizable: false,
-		height: 140,
+		height: 160,
 		modal: true,
 		buttons: {
 	  "Sim": function() {
@@ -120,7 +120,7 @@ function bloquearUsuario(campo, id) {
 			+"</div>");
 	$("#"+$(campo).attr("id")+"dialog-confirm").dialog({
 		resizable: false,
-		height: 140,
+		height: 160,
 		modal: true,
 		buttons: {
 	  "Sim": function() {
@@ -152,7 +152,7 @@ function desbloquearUsuario(campo, id) {
 			+"</div>");
 	$("#"+$(campo).attr("id")+"dialog-confirm").dialog({
 		resizable: false,
-		height: 140,
+		height: 160,
 		modal: true,
 		buttons: {
 	  "Sim": function() {
@@ -184,7 +184,7 @@ function excluirUsuario(container, campo, id) {
 			+"</div>");
 	$("#"+$(campo).attr("id")+"dialog-confirm").dialog({
 		resizable: false,
-		height: 140,
+		height: 160,
 		modal: true,
 		buttons: {
 	  "Sim": function() {
@@ -386,7 +386,7 @@ function confirmaExclusao(form, msg, campo, acao) {
 			+"</div>");
 	$("#"+$(form).attr("id")+"dialog-confirm").dialog({
 		resizable: false,
-		height: 140,
+		height: 160,
 		modal: true,
 		buttons: {
 	  "Sim": function() {

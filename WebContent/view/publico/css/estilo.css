@@ -178,6 +178,7 @@ th{
 	cursor: pointer;
     background: none;
 	border: 0px;
+	padding: 0px;
 	height: 20px;
     text-align: left;
 }
@@ -186,7 +187,7 @@ th{
 .formulario_padrao .link:hover {
     background: none;
 	border: 0px;
-    text-align: left;
+	text-align: left;
 	height: 20px;
 	text-decoration: underline;
 }    
@@ -300,7 +301,7 @@ th{
 	width: 90%;
 	height: 30%;
 	background: #FFF;
-	overflow: hidden;
+	overflow: auto;
 }
 .formulario_postagem .galeria {
 	width: 85%;
@@ -383,6 +384,19 @@ th{
 .postador img {
 	width: 50px;
 	height: 50px;
+}
+.data_atualizacao {
+	font-size: 10px;
+	padding-left: 5px;
+	opacity: 0.6; 
+	filter: alpha(opacity=60);	
+}
+.intervalo_postagem {
+	position: relative;
+	padding-left: 5px;
+	padding-top: 5px;
+	width: 50px;
+	height: 10px;
 }
 .postagem {
 	width: 80%;

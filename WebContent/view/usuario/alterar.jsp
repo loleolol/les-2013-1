@@ -17,6 +17,7 @@
 		<%@include file="../usuario/login.jsp"%>
 		<%@include file="../menu.jsp"%>
 		<div id="corpo">
+			<%@include file="../central.jsp" %>
 			<div class="aba">
 				<ul>
 					<li><a href="#abaConta">Conta</a></li>

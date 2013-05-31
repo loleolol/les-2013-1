@@ -21,6 +21,7 @@
 		<jsp:useBean id="imagemViagemBean" class="br.com.les20131.model.bean.ImagemViagemBean" scope="request"/>
         <jsp:useBean id="viagemBean" class="br.com.les20131.model.bean.ViagemBean" scope="request"/>
 		<div id="corpo">
+			<%@include file="../central.jsp" %>
 			<div class="aba">
 				<ul>
 					<li><a href="#abaViagem">Registro de viagem</a></li>
@@ -40,9 +41,9 @@
 							</div>
 						</div>
 				        <div class="bloco">
-					        <label for="descricao">Descricao<span class="atencao">*</span>:</label>
+					        <label for="descricao">Descrição<span class="atencao">*</span>:</label>
 					        <br/>
-					        <textarea id="descricao" name="descricao" rows="8" cols="56"><c:out value="${viagemBean.viagem.descricao}"></c:out></textarea>
+					        <textarea id="descricao" name="descricao" rows="8" cols="70"><c:out value="${viagemBean.viagem.descricao}"></c:out></textarea>
 					        <span id="descricaoErro" class="atencao"></span>
 						</div>
 				        <div class="bloco">
