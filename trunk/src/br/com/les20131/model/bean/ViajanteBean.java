@@ -161,6 +161,19 @@ public class ViajanteBean extends UsuarioBean {
     	this.usuarioDAO.alterar((Usuario)this.viajante);
     	this.viajanteDAO.alterar(this.viajante);
     }
+    
+    /**
+     * Exclui um viajante
+     * @access public
+     * @param int idUsuario
+     * @return void
+     * @throws Exception
+     */
+    public void alterar(int idUsuario) throws Exception {
+    	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+      	this.viajante = this.viajanteDAO.consultar(idUsuario);
+    	this.usuarioDAO.excluir((Usuario)this.viajante);
+    }
 
     /**
      * Exclui um viajante
@@ -168,8 +181,10 @@ public class ViajanteBean extends UsuarioBean {
      * @return void
      * @throws Exception
      */
-    public void excluir() throws Exception {
-        throw new NotImplementedException();
+    public void excluir(int idUsuario) throws Exception {
+    	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+      	this.viajante = this.viajanteDAO.consultar(idUsuario);
+    	this.usuarioDAO.excluir((Usuario)this.viajante);
     }
        
 }

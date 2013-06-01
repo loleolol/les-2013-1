@@ -65,6 +65,8 @@ public class ModuloViajanteController extends BaseController {
 				this.acaoSelecionar();
 			} else if (this.acao.equalsIgnoreCase("alterar")) {
 				this.acaoAlterar();
+			} else if (this.acao.equalsIgnoreCase("excluir")) {
+				this.acaoExcluir();
 			} else if (this.acao.equalsIgnoreCase("previrImagem")) {
 				this.acaoCarregarPreviaImagem();
 			} else {
@@ -125,6 +127,19 @@ public class ModuloViajanteController extends BaseController {
     	this.verificarSessao();
 		this.alterarViajante();
 		this.despachar("/view/viajante/alterar.jsp");
+    }
+    
+    /**
+     * Ação de exclusão do registro
+     * @access private
+     * @return void
+     * @throws Exception
+     */
+    private void acaoExcluir() throws Exception {
+    	this.verificarSessao();
+		this.excluirViajante();
+		this.requisicao.getSession().invalidate();
+       	this.despachar("/view/index.jsp");
     }
     
     /**
@@ -222,6 +237,25 @@ public class ModuloViajanteController extends BaseController {
         this.validarViajante(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), this.requisicao.getParameter("nome"), this.requisicao.getParameter("sexo"), dataNascimento, this.requisicao.getParameter("latitude"), this.requisicao.getParameter("longitude"));
         viajanteBean.alterar(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), this.requisicao.getParameter("nome"), this.requisicao.getParameter("sexo"), dataNascimento, this.requisicao.getParameter("latitude"), this.requisicao.getParameter("longitude"), imagem);
         this.requisicao.setAttribute("viajanteBean", viajanteBean);
+    	this.requisicao.setAttribute("contato", false);        		
+    }
+    
+    /**
+     * Exclui um viajante
+     * @access private
+     * @return void
+     * @throws Exception
+     */
+    private void excluirViajante() throws Exception {
+    	HttpSession sessao = this.requisicao.getSession();
+        ViajanteBean viajanteBean = new ViajanteBean();
+        String dataNascimento = this.requisicao.getParameter("dataNascimentoAno") 
+        		+ '-' + this.requisicao.getParameter("dataNascimentoMes")
+        		+ '-' + this.requisicao.getParameter("dataNascimentoDia");
+        this.validarViajante(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), this.requisicao.getParameter("nome"), this.requisicao.getParameter("sexo"), dataNascimento, this.requisicao.getParameter("latitude"), this.requisicao.getParameter("longitude"));
+        viajanteBean.excluir(((Usuario)sessao.getAttribute("usuario")).getIdUsuario());
+        this.requisicao.setAttribute("viajanteBean", null);
+        this.requisicao.setAttribute("usuarioBean", null);
     	this.requisicao.setAttribute("contato", false);        		
     }
     

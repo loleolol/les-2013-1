@@ -173,7 +173,24 @@ public class UsuarioDAO extends DAOBase<Usuario> {
     }
 
     public void excluir(Usuario obj) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet.");
+    	if (obj == null) {
+            throw new DAOException("Usuário inválido para excluir.");
+        }
+    	int indice = 0;
+    	PreparedStatement stmt = null;
+
+        try {
+            String sql = "UPDATE usuario SET"
+                        + "\n excluido = ?"
+                        + "\n WHERE id_usuario = ?";
+
+            stmt = this.conexao.prepareStatement(sql);
+            stmt.setInt(++indice, 1);
+            stmt.setInt(++indice, obj.getIdUsuario());
+            stmt.executeUpdate();
+        } catch (Exception excecao) {
+            throw new DAOException(excecao);
+        }
     }
 
     /**
