@@ -163,7 +163,7 @@ public class ViajanteBean extends UsuarioBean {
     }
     
     /**
-     * Exclui um viajante
+     * Altera um viajante
      * @access public
      * @param int idUsuario
      * @return void
