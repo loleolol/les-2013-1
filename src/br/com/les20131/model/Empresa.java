@@ -1,6 +1,7 @@
 package br.com.les20131.model;
 
 import java.io.InputStream;
+import java.util.Date;
 
 /**
  * Classe de empresa
@@ -29,6 +30,21 @@ public class Empresa extends Usuario {
 	 * @var imagem
 	 */
 	private InputStream imagem;
+	
+	/**
+	 * Construtor da classe
+	 * @access public
+	 * @param String email
+	 * @param String nome
+	 * @param String senha
+	 * @param String url
+	 * @param String definicao
+	 */
+	public Empresa(String email, String nome, String senha, String url, String definicao) {
+		super(email, nome, senha);
+		this.url = url;
+		this.definicao = definicao;
+	}
 	
 	/**
 	 * Construtor da classe
