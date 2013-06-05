@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.les20131.model.Avaliacao;
+import br.com.les20131.model.Empresa;
 import br.com.les20131.model.Usuario;
 import br.com.les20131.model.Anuncio;
 
@@ -38,7 +40,7 @@ public class AnuncioDAO extends DAOBase<Anuncio> {
         PreparedStatement stmt = null;
         ResultSet resultSet = null;
 
-        String sql = "SELECT a.id_anuncio, a.id_usuario, a.anuncio, a.data_inicial, a.data_final"        			
+        String sql = "SELECT a.id_anuncio, a.id_usuario, a.anuncio, a.data_inicial, a.data_final, a.data_inclusao"        			
                     + "\n FROM anuncio a"
                     + "\n WHERE a.id_anuncio = ?";
 
@@ -54,13 +56,52 @@ public class AnuncioDAO extends DAOBase<Anuncio> {
             			, empresaDAO.consultar(resultSet.getInt("id_usuario"))
             			, resultSet.getString("anuncio")
                         , resultSet.getDate("data_inicial")
-                        , resultSet.getDate("data_final"));
+                        , resultSet.getDate("data_final")
+                        , resultSet.getTimestamp("data_inclusao"));
             }
             return anuncio;
         } catch (Exception excecao) {
             throw new DAOException(excecao);
         }
     }    
+    
+    /**
+     * Consulta os anúncios pela empresa
+     * @access public
+     * @param Empresa empresa
+     * @return List<Anuncio>
+     * @throws Exception
+     */
+    public List<Anuncio> consultar(Empresa empresa) throws DAOException {
+        PreparedStatement stmt = null;
+        ResultSet resultSet = null;
+        int indice = 0;
+        String sql = "SELECT a.id_anuncio, a.id_usuario, a.anuncio, a.data_inicial, a.data_final, a.data_inclusao"
+                    + "\n FROM anuncio a"
+                    + "\n WHERE a.id_usuario = ?";
+
+        try {
+            stmt = this.conexao.prepareStatement(sql);
+            stmt.setInt(++indice, empresa.getIdUsuario());
+            resultSet = stmt.executeQuery();
+
+            List<Anuncio> listaAnuncio = new ArrayList<Anuncio>();            
+            EmpresaDAO empresaDAO = new EmpresaDAO();
+
+            while (resultSet.next()) {
+            	listaAnuncio.add( new Anuncio(resultSet.getInt("id_anuncio")
+                , empresaDAO.consultar(resultSet.getInt("id_usuario"))
+                , resultSet.getString("anuncio")
+                , resultSet.getDate("data_inicial")
+                , resultSet.getDate("data_final")
+                , resultSet.getTimestamp("data_inclusao")));
+            }
+
+            return listaAnuncio;
+        } catch (Exception excecao) {
+            throw new DAOException(excecao);
+        }
+    } 
 
     /**
      * Consulta anúncios ativos
@@ -73,7 +114,7 @@ public class AnuncioDAO extends DAOBase<Anuncio> {
         PreparedStatement stmt = null;
         ResultSet resultSet = null;
 
-        String sql = "SELECT a.id_anuncio, a.id_usuario, a.anuncio, a.data_inicial, a.data_final"        			
+        String sql = "SELECT a.id_anuncio, a.id_usuario, a.anuncio, a.data_inicial, a.data_final, a.data_inclusao"        			
                     + "\n FROM anuncio a"
                     + "\n WHERE a.data_inicial <= NOW()"
                     + "\n AND a.data_final + INTERVAL 1 DAY >= NOW()";
@@ -88,7 +129,8 @@ public class AnuncioDAO extends DAOBase<Anuncio> {
             			, empresaDAO.consultar(resultSet.getInt("id_usuario"))
             			, resultSet.getString("anuncio")
                         , resultSet.getDate("data_inicial")
-                        , resultSet.getDate("data_final")));
+                        , resultSet.getDate("data_final")
+            			, resultSet.getTimestamp("data_inclusao")));
             }
             return listaAnuncio;
         } catch (Exception excecao) {
@@ -111,15 +153,16 @@ public class AnuncioDAO extends DAOBase<Anuncio> {
         PreparedStatement stmt = null;
 
         String sql = "INSERT INTO anuncio"
-                    + "\n(id_usuario, anuncio, data_inicial, data_final)"
-                    + "\n VALUES (?, ?, ?, ?)";
+                    + "\n(id_usuario, anuncio, data_inicial, data_final, data_inclusao)"
+                    + "\n VALUES (?, ?, ?, ?, ?)";
 
         try {
             stmt = this.conexao.prepareStatement(sql);
             stmt.setInt(++indice, obj.getEmpresa().getIdUsuario());            
             stmt.setString(++indice, obj.getAnuncio());
             stmt.setDate(++indice, new java.sql.Date(obj.getDataInicial().getTime()));
-            stmt.setDate(++indice, new java.sql.Date(obj.getDataFinal().getTime()));            
+            stmt.setDate(++indice, new java.sql.Date(obj.getDataFinal().getTime())); 
+            stmt.setDate(++indice, new java.sql.Date(obj.getDataInclusao().getTime()));
             stmt.executeUpdate();
         } catch (Exception excecao) {
             throw new DAOException(excecao);
@@ -134,10 +177,55 @@ public class AnuncioDAO extends DAOBase<Anuncio> {
      * @throws Exception
      */ 
     public void alterar(Anuncio obj) throws DAOException {
-        throw new DAOException("Não implementado ainda");
+    	if (obj == null) {
+            throw new DAOException("anúncio inválido para alterar.");
+        }
+        int indice = 0;
+    	PreparedStatement stmt = null;
+
+        String sql = "UPDATE anuncio SET"
+                + "\n id_usuario = ?"
+                + "\n, anuncio = ?"
+        		+ "\n, data_inicial = ?"
+                + "\n, data_final = ?"
+                + "\n WHERE id_anuncio = ?";
+
+        try {
+	        stmt = this.conexao.prepareStatement(sql);
+	        stmt.setInt(++indice, obj.getEmpresa().getIdUsuario());
+	        stmt.setString(++indice, obj.getAnuncio());
+	        stmt.setDate(++indice, new java.sql.Date(obj.getDataInicial().getTime()));
+	        stmt.setDate(++indice, new java.sql.Date(obj.getDataFinal().getTime()));
+	        stmt.setInt(++indice, obj.getIdAnuncio());
+            stmt.executeUpdate();
+        } catch (Exception excecao) {
+            throw new DAOException(excecao);
+        }
     }
 
+    /**
+     * Exclui um anúncio no banco de dados
+     * @access public
+     * @param Anuncio anuncio
+     * @return void
+     * @throws Exception
+     */	
     public void excluir(Anuncio obj) throws DAOException {
-    	throw new DAOException("Não implementado ainda");
+    	if (obj == null) {
+            throw new DAOException("Anúncio inválido para excluir.");
+        }
+        int indice = 0;
+        PreparedStatement stmt = null;
+
+        String sql = "DELETE FROM anuncio"
+                    + "\n WHERE id_anuncio = ?";
+
+        try {
+            stmt = this.conexao.prepareStatement(sql);
+            stmt.setInt(++indice, obj.getIdAnuncio());
+            stmt.executeUpdate();
+        } catch (Exception excecao) {
+            throw new DAOException(excecao);
+        }
     }
 }

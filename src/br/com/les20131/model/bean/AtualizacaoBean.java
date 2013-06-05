@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import br.com.les20131.model.Anuncio;
 import br.com.les20131.model.Avaliacao;
 import br.com.les20131.model.Empresa;
 import br.com.les20131.model.ImagemViagem;
@@ -61,14 +62,21 @@ public class AtualizacaoBean {
 	 */
 	public void listarTodasAtualizacoes(Usuario usuario) throws Exception {
 		ViajanteBean viajanteBean = new ViajanteBean();
-		viajanteBean.consultarContatos(usuario.getIdUsuario());
-		this.listarViagens(usuario);
-		this.listarAvaliacoes(usuario);
-		int indice;
-		for (indice = 0; indice < viajanteBean.getListaViajante().size(); indice++) {
-			this.listarViagens(viajanteBean.getListaViajante().get(indice));
-			this.listarContatos(viajanteBean.getListaViajante().get(indice));
-			this.listarAvaliacoes(viajanteBean.getListaViajante().get(indice));
+		viajanteBean.consultar(usuario.getIdUsuario());
+		if(viajanteBean.getUsuario() != null){
+			viajanteBean.consultarContatos(usuario.getIdUsuario());
+			this.listarViagens(usuario);
+			this.listarAvaliacoes(usuario);
+			int indice;
+			for (indice = 0; indice < viajanteBean.getListaViajante().size(); indice++) {
+				this.listarViagens(viajanteBean.getListaViajante().get(indice));
+				this.listarContatos(viajanteBean.getListaViajante().get(indice));
+				this.listarAvaliacoes(viajanteBean.getListaViajante().get(indice));
+			}
+		}
+		else{
+			this.listarAnuncios(usuario);
+			this.listarAvaliacoes(usuario);
 		}
 		this.ordernarAtualizacoes();
 	}
@@ -183,6 +191,29 @@ public class AtualizacaoBean {
         	this.listaAtualizacao.add(new ItemAtualizacaoBean(lista.get(indice).getIdAvaliacao()
         			, "Avaliacao", usuario.getNome(), usuario.getIdUsuario()
         			, lista.get(indice).getEmpresa().getNome(), listaId, lista.get(indice).getDescricao()
+        			, lista.get(indice).getDataInclusao()));
+        }
+	}	
+	
+	/**
+	 * Lista os anúncios do usuário
+	 * @access public
+	 * @param Usuario usuario
+	 * @return void
+	 * @throws Exception
+	 */
+	public void listarAnuncios(Usuario usuario) throws Exception {
+		AnuncioBean anuncioBean = new AnuncioBean();
+		EmpresaBean empresaBean = new EmpresaBean();
+		empresaBean.consultar(usuario.getIdUsuario());
+		anuncioBean.consultar(empresaBean.getEmpresa());
+        List<Anuncio> lista = anuncioBean.getListaAnuncio();
+        List<Integer> listaId = new ArrayList<Integer>();
+        int indice;
+        for (indice = 0; indice < lista.size(); indice++) {        	
+        	this.listaAtualizacao.add(new ItemAtualizacaoBean(lista.get(indice).getIdAnuncio()
+        			, "Anuncio", usuario.getNome(), usuario.getIdUsuario()
+        			, null, null, lista.get(indice).getAnuncio()
         			, lista.get(indice).getDataInclusao()));
         }
 	}	

@@ -45,6 +45,13 @@ public class Anuncio {
 	private Date dataFinal;
 	
 	/**
+	 * Armazena a data da inclusão
+	 * @access private
+	 * @var Date
+	 */
+	private Date dataInclusao;
+	
+	/**
 	 * Construtor da classe
 	 * @access public
 	 * @param int idAnuncio
@@ -52,13 +59,15 @@ public class Anuncio {
 	 * @param String anuncio
 	 * @param Date dataInicial
 	 * @param Date dataFinal
+	 * @param Date dataInclusao
 	 */
-	public Anuncio(int idAnuncio, Empresa empresa, String anuncio, Date dataInicial, Date dataFinal) {
+	public Anuncio(int idAnuncio, Empresa empresa, String anuncio, Date dataInicial, Date dataFinal, Date dataInclusao) {
 		this.idAnuncio = idAnuncio;
 		this.empresa = empresa;
 		this.anuncio = anuncio;
 		this.dataInicial = dataInicial;
 		this.dataFinal = dataFinal;
+		this.dataInclusao = dataInclusao;
 	}
 	
 	/**
@@ -68,12 +77,14 @@ public class Anuncio {
 	 * @param String anuncio
 	 * @param Date dataInicial
 	 * @param Date dataFinal
+	 * @param Date dataInclusao
 	 */
-	public Anuncio(Empresa empresa, String anuncio, Date dataInicial, Date dataFinal) {
+	public Anuncio(Empresa empresa, String anuncio, Date dataInicial, Date dataFinal, Date dataInclusao) {
 		this.empresa = empresa;
 		this.anuncio = anuncio;
 		this.dataInicial = dataInicial;
 		this.dataFinal = dataFinal;
+		this.dataInclusao = dataInclusao;
 	}
 
 	/**
@@ -169,5 +180,24 @@ public class Anuncio {
 	 */
 	public void setDataFinal(Date dataFinal) {
 		this.dataFinal = dataFinal;
+	}
+	
+	/**
+	 * Retorna a data da inclusão
+	 * @access public
+	 * @return Date
+	 */
+	public Date getDataInclusao() {
+		return this.dataInclusao;
+	}
+
+	/**
+	 * Define a data da inclusão
+	 * @access public
+	 * @param Date dataInclusao
+	 * @return void
+	 */
+	public void setDataInclusao(Date dataInclusao) {
+		this.dataInclusao = dataInclusao;
 	}
 }

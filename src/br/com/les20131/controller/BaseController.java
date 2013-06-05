@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
 
 import br.com.les20131.model.Usuario;
 import br.com.les20131.model.bean.AdministradorBean;
+import br.com.les20131.model.bean.EmpresaBean;
 import br.com.les20131.model.bean.AnuncioBean;
 import br.com.les20131.model.bean.UsuarioBean;
 import br.com.les20131.model.bean.ViajanteBean;
@@ -141,6 +142,12 @@ public abstract class BaseController extends HttpServlet {
             if (administradorBean.getAdministrador() != null) {
 	        	sessao.setAttribute("administrador", administradorBean.getAdministrador());
 				this.requisicao.setAttribute("administradorBean", administradorBean);
+            }
+            EmpresaBean empresaBean = new EmpresaBean();
+            empresaBean.consultar(usuarioBean.getUsuario().getIdUsuario());
+            if (empresaBean.getEmpresa() != null){
+            	sessao.setAttribute("empresa", empresaBean.getEmpresa());
+				this.requisicao.setAttribute("empresaBean", empresaBean);
             }
             AnuncioBean anuncioBean = new AnuncioBean();
             anuncioBean.consultarAtivos();

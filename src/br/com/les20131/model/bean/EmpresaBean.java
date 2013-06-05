@@ -118,13 +118,11 @@ public class EmpresaBean extends UsuarioBean {
      * @param String email
      * @param String nome
      * @param String senha
-     * @param String url
-     * @param String definicao
      * @return void
      * @throws Exception
      */
-    public void incluir(String email, String nome, String senha, String url, String definicao) throws Exception {
-    	this.empresa = new Empresa(email, nome, senha, url, definicao);
+    public void incluir(String email, String nome, String senha) throws Exception {
+    	this.empresa = new Empresa(email, nome, senha);
     	this.usuarioDAO.incluir((Usuario)this.empresa);
     	this.empresa.setIdUsuario(((Usuario)this.usuarioDAO.consultar(email, senha)).getIdUsuario());
       	this.empresaDAO.incluir(this.empresa);
@@ -144,8 +142,12 @@ public class EmpresaBean extends UsuarioBean {
     public void alterar(int idUsuario, String nome, String url, String definicao, InputStream imagem) throws Exception {
       	this.empresa = this.empresaDAO.consultar(idUsuario);
       	this.empresa.setNome(nome);
-      	this.empresa.setUrl(url);
-      	this.empresa.setDefinicao(definicao);
+      	if (url != null) {
+      		this.empresa.setUrl(url);
+      	}
+      	if (definicao != null) {
+      		this.empresa.setDefinicao(definicao);
+      	}      	
       	if (imagem != null) {
       		this.empresa.setImagem(imagem);
       	}

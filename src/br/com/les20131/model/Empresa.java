@@ -37,13 +37,9 @@ public class Empresa extends Usuario {
 	 * @param String email
 	 * @param String nome
 	 * @param String senha
-	 * @param String url
-	 * @param String definicao
 	 */
-	public Empresa(String email, String nome, String senha, String url, String definicao) {
+	public Empresa(String email, String nome, String senha) {
 		super(email, nome, senha);
-		this.url = url;
-		this.definicao = definicao;
 	}
 	
 	/**
