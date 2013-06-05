@@ -97,7 +97,7 @@ public class ModuloEmpresaController extends BaseController {
     private void acaoSelecionar() throws Exception {
     	this.verificarSessao();
     	this.carregarEmpresa();
-    	this.despachar("/view/viajante/alterar.jsp");
+    	this.despachar("/view/empresa/alterar.jsp");
     }
     
     /**
@@ -123,7 +123,7 @@ public class ModuloEmpresaController extends BaseController {
     private void acaoAlterar() throws Exception {
     	this.verificarSessao();
 		this.alterarEmpresa();
-		this.despachar("/view/viajante/alterar.jsp");
+		this.despachar("/view/empresa/alterar.jsp");
     }
     
     /**
@@ -168,12 +168,11 @@ public class ModuloEmpresaController extends BaseController {
     	EmpresaBean empresaBean = new EmpresaBean();
         this.validarEmpresa(this.requisicao.getParameter("emailEmpresa"), this.requisicao.getParameter("senhaEmpresa")
         		, this.requisicao.getParameter("emailEmpresaConfirma"), this.requisicao.getParameter("senhaEmpresaConfirma")
-        		, this.requisicao.getParameter("nomeEmpresa"), this.requisicao.getParameter("url"), this.requisicao.getParameter("definicao"));
+        		, this.requisicao.getParameter("nomeEmpresa"));
         empresaBean.incluir(this.requisicao.getParameter("emailEmpresa"), this.requisicao.getParameter("nomeEmpresa")
-        		, this.requisicao.getParameter("senhaEmpresa"), this.requisicao.getParameter("url"), this.requisicao.getParameter("definicao"));
+        		, this.requisicao.getParameter("senhaEmpresa"));
         sessao.setAttribute("usuario", (Usuario)empresaBean.getEmpresa());
         this.verificarSessao();
-        //request.setAttribute("mensagemBean", new MensagemBean("Viajante inserido com sucesso!"));
     }    
     
     /**
@@ -240,12 +239,10 @@ public class ModuloEmpresaController extends BaseController {
      * @param String emailConfirma
      * @param String senhaConfirma
      * @param String nome
-     * @param String url
-     * @param String definicao
      * @return void
      * @throws Exception
      */
-    private void validarEmpresa(String email, String senha, String emailConfirma, String senhaConfirma, String nome, String url, String definicao) throws Exception {
+    private void validarEmpresa(String email, String senha, String emailConfirma, String senhaConfirma, String nome) throws Exception {
         this.validarEmail(email);
         this.validarEmail(emailConfirma);
         this.validarConfirmacaoEmail(email, emailConfirma);
@@ -253,8 +250,6 @@ public class ModuloEmpresaController extends BaseController {
         this.validarSenha(senhaConfirma);
         this.validarConfirmacaoSenha(senha, senhaConfirma);
         this.validarNome(nome);
-        this.validarUrl(url);
-        this.validarDefinicao(definicao);
     }
 
     /**
@@ -391,11 +386,11 @@ public class ModuloEmpresaController extends BaseController {
      * @throws Exception
      */
     private void validarUrl(String url) throws Exception {
-    	if (url.isEmpty()) {
-    		throw new Exception("Url em branco.");
-    	} else if (url.length() > 100) {
-    		throw new Exception("Url inválida.");
-    	}
+    	if (!url.isEmpty()) {
+        	if (url.length() > 100) {
+        		throw new Exception("Url inválida.");
+        	}
+    	} 
     }
     
     /**
@@ -406,11 +401,11 @@ public class ModuloEmpresaController extends BaseController {
      * @throws Exception
      */
     private void validarDefinicao(String definicao) throws Exception {
-    	if (definicao.isEmpty()) {
-    		throw new Exception("Definição em branco.");
-    	} else if (definicao.length() > 100) {
-    		throw new Exception("Definição inválida.");
-    	}
+    	if (!definicao.isEmpty()) {
+        	if (definicao.length() > 100) {
+        		throw new Exception("Definição inválida.");
+        	}
+    	} 
     }
  
     /**

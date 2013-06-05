@@ -152,16 +152,17 @@ public class EmpresaDAO extends DAOBase<Empresa> {
     	PreparedStatement stmt = null;
 
         String sql = "UPDATE empresa SET"
-                + "\n, url = ?"
+                + "\n url = ?"
         		+ "\n, definicao = ?"
                 + "\n, imagem = ?"
-                + "\n WHERE id_empresa = ?";
+                + "\n WHERE id_usuario = ?";
 
         try {
 	        stmt = this.conexao.prepareStatement(sql);
 	        stmt.setString(++indice, obj.getUrl());
 	        stmt.setString(++indice, obj.getDefinicao());
 	        stmt.setBlob(++indice, obj.getImagem());
+	        stmt.setInt(++indice, obj.getIdUsuario());
             stmt.executeUpdate();
         } catch (Exception excecao) {
             throw new DAOException(excecao);

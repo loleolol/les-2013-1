@@ -42,6 +42,8 @@ public class AtualizacaoController extends BaseController {
 				this.acaoListarViagens();
 			} else if (this.acao.equalsIgnoreCase("avaliacoes")) {
 				this.acaoListarAvaliacoes();
+			} else if (this.acao.equalsIgnoreCase("anuncios")) {
+				this.acaoListarAnuncios();
 			}
 		} catch (Exception excecao) {
 		    this.tratarExcecao(excecao);
@@ -99,6 +101,19 @@ public class AtualizacaoController extends BaseController {
         this.despachar("/view/atualizacao/listar.jsp");
 	}
 	
+	/**
+	 * Ação para listar anuncios
+	 * @access private
+	 * @return void
+	 * @throws Exception
+	 */
+	private void acaoListarAnuncios() throws Exception {
+		HttpSession sessao = this.requisicao.getSession();
+		this.listarAnuncios((Usuario)sessao.getAttribute("usuario"));
+		this.requisicao.setAttribute("criterio", "Anuncio");
+        this.despachar("/view/atualizacao/listar.jsp");
+	}
+	
 	
 	/**
 	 * Lista as atualizações de todos os usuários
@@ -149,6 +164,19 @@ public class AtualizacaoController extends BaseController {
 	public void listarAvaliacoes(Usuario usuario) throws Exception {
         AtualizacaoBean atualizacaoBean = new AtualizacaoBean();
         atualizacaoBean.listarAvaliacoes(usuario);
+        this.requisicao.setAttribute("atualizacaoBean", atualizacaoBean);		
+	}
+	
+	/**
+	 * Lista os anúncios do usuário passado por parâmetro
+	 * @access public
+	 * @param Usuario usuario
+	 * @return void
+	 * @throws Exception
+	 */
+	public void listarAnuncios(Usuario usuario) throws Exception {
+        AtualizacaoBean atualizacaoBean = new AtualizacaoBean();
+        atualizacaoBean.listarAnuncios(usuario);
         this.requisicao.setAttribute("atualizacaoBean", atualizacaoBean);		
 	}
 	

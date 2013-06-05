@@ -13,22 +13,31 @@
 					<c:when test="${criterio == 'Viagem'}">
 						Viagens
 					</c:when>
+					<c:when test="${criterio == 'Anuncio'}">
+						Anúncios
+					</c:when>					
 					<c:otherwise>
 						Atividade recente
 					</c:otherwise>
 				</c:choose>
 			</a>
 		</li>
-		<c:if test="${administradorBean == null}">
-			<li><a href="#abaViagem">Nova viagem</a></li>
-		</c:if>
+		<c:choose>
+			<c:when test="${empresaBean != null}">
+				<li><a href="#abaAnuncio">Novo anúncio</a></li>
+			</c:when>
+			<c:when test="${administradorBean == null}">
+				<li><a href="#abaViagem">Nova viagem</a></li>
+			</c:when>
+		</c:choose>
+
 	</ul>
 	<div id="abaAtividadeRecente">  
 		<c:choose>
 			<c:when test="${fn:length(atualizacaoBean.listaAtualizacao) > 0}">
 				<c:forEach items="${atualizacaoBean.listaAtualizacao}" var="atualizacao" varStatus="chave">
 					<div class="formulario_postagem">
-						<c:if test="${atualizacao.acao == 'Viagem' || atualizacao.acao == 'Avaliacao'}">
+						<c:if test="${atualizacao.acao == 'Viagem' || atualizacao.acao == 'Avaliacao' || atualizacao.acao == 'Anuncio'}">
 							<div id="barraFerramentas${chave.count}" class="parte_bloco barra_ferramentas">
 								<c:choose>
 									<c:when test="${administradorBean != null}">
@@ -49,7 +58,14 @@
 							</div>
 						</c:if>
 						<div class="parte_bloco postador">
-							<img id="imagemBarra" class="imagem_barra" alt="<c:url value="/Viajante?acao=carregarImagem&id=${atualizacao.idAutor}"></c:url>"/>
+							<c:choose>
+								<c:when test="${empresaBean != null }">
+									<img id="imagemBarra" class="imagem_barra" alt="<c:url value="/Empresa?acao=carregarImagem&id=${atualizacao.idAutor}"></c:url>"/>
+								</c:when>
+								<c:otherwise>
+									<img id="imagemBarra" class="imagem_barra" alt="<c:url value="/Viajante?acao=carregarImagem&id=${atualizacao.idAutor}"></c:url>"/>
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<div class="parte_bloco">
 							<button class="link titulo"  type="button" value="${atualizacao.idAutor}" onclick="atalhoPerfil(this)">${atualizacao.autor}</button>
@@ -64,6 +80,9 @@
 									<span>em</span>
 							        <input id="avaliacao${chave.count}" type="hidden" name="avaliacao" value="${fn:length(atualizacao.listaId)}"/>
 								</c:when>
+				   				<c:when test="${atualizacao.acao == 'Anuncio'}">
+									<span>anunciou:</span>
+								</c:when>
 								<c:otherwise>
 									<span>adicionou</span>
 									<button class="link titulo" type="button" value="${atualizacao.id}" onclick="atalhoPerfil(this)">${atualizacao.nome}</button>
@@ -76,7 +95,7 @@
 							<br/>
 						</div>
 						<c:choose>
-							<c:when test="${atualizacao.acao == 'Viagem' || atualizacao.acao == 'Avaliacao'}">
+							<c:when test="${atualizacao.acao == 'Viagem' || atualizacao.acao == 'Avaliacao' || atualizacao.acao == 'Anuncio'}">
 								<br/>
 								<div class="parte_bloco intervalo_postagem">
 								</div>
@@ -119,9 +138,17 @@
 			</c:otherwise>
 		</c:choose>
 	</div>
-	<c:if test="${administradorBean == null}">
-		<div id="abaViagem">
-			<%@include file="../viagem/novo.jsp"%>
-		</div>
-	</c:if>
+	<c:choose>
+		<c:when test="${empresaBean != null}">
+			<div id="abaAnuncio">
+				<%@include file="../anuncio/novo.jsp"%>
+			</div>
+		</c:when>
+		<c:when test="${administradorBean == null}">
+			<div id="abaViagem">
+				<%@include file="../viagem/novo.jsp"%>
+			</div>
+		</c:when>
+	</c:choose>
+
 </div>
