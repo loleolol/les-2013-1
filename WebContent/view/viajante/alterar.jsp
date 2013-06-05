@@ -239,6 +239,7 @@
 			</div>
 			<c:if test="${viajanteBean.viajante.idUsuario != usuarioBean.usuario.idUsuario}">
 				<br/>
+				<c:set var="perfilOutro" value="true"/>
 				<%@include file="../atualizacao/atualizacao.jsp"%>
 			</c:if>
 		</div>

@@ -147,7 +147,7 @@ public abstract class BaseController extends HttpServlet {
             empresaBean.consultar(usuarioBean.getUsuario().getIdUsuario());
             if (empresaBean.getEmpresa() != null){
             	sessao.setAttribute("empresa", empresaBean.getEmpresa());
-				this.requisicao.setAttribute("empresaBean", empresaBean);
+				this.requisicao.setAttribute("usuarioEmpresaBean", empresaBean);
             }
             AnuncioBean anuncioBean = new AnuncioBean();
             anuncioBean.consultarAtivos();

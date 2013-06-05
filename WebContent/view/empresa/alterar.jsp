@@ -86,7 +86,7 @@
 								</div>
 								<br/>
 							</div>
-							<c:if test="${empresaBean == null}">
+							<c:if test="${usuarioEmpresaBean == null}">
 								<div class="inferior_direito">
 									<button type="button"
 										onclick="">
@@ -104,10 +104,15 @@
 					        </div>
 					    </c:if>
 					</form>
+					<form id="avaliacao" class="formulario_invisivel" action="<c:url value="/Avaliacao"></c:url>" method="post">
+						<input type="hidden" name="acao" value="incluir"/>
+						<input type="hidden" name="idEmpresa" value="${empresaBean.empresa.idUsuario}"/>
+					</form>					
 				</div>						
 			</div>
 			<c:if test="${empresaBean.empresa.idUsuario != usuarioBean.usuario.idUsuario}">
 				<br/>
+				<c:set var="perfilOutro" value="true" scope="request"/>
 				<%@include file="../atualizacao/atualizacao.jsp"%>
 			</c:if>
 		</div>

@@ -23,10 +23,10 @@
 			</a>
 		</li>
 		<c:choose>
-			<c:when test="${empresaBean != null}">
+			<c:when test="${usuarioEmpresaBean != null && perfilOutro != true}">
 				<li><a href="#abaAnuncio">Novo anúncio</a></li>
 			</c:when>
-			<c:when test="${administradorBean == null}">
+			<c:when test="${administradorBean == null && perfilOutro != true}">
 				<li><a href="#abaViagem">Nova viagem</a></li>
 			</c:when>
 		</c:choose>
@@ -59,7 +59,7 @@
 						</c:if>
 						<div class="parte_bloco postador">
 							<c:choose>
-								<c:when test="${empresaBean != null }">
+								<c:when test="${usuarioEmpresaBean != null }">
 									<img id="imagemBarra" class="imagem_barra" alt="<c:url value="/Empresa?acao=carregarImagem&id=${atualizacao.idAutor}"></c:url>"/>
 								</c:when>
 								<c:otherwise>
@@ -139,12 +139,12 @@
 		</c:choose>
 	</div>
 	<c:choose>
-		<c:when test="${empresaBean != null}">
+		<c:when test="${usuarioEmpresaBean != null && perfilOutro != true}">
 			<div id="abaAnuncio">
 				<%@include file="../anuncio/novo.jsp"%>
 			</div>
 		</c:when>
-		<c:when test="${administradorBean == null}">
+		<c:when test="${administradorBean == null && perfilOutro != true}">
 			<div id="abaViagem">
 				<%@include file="../viagem/novo.jsp"%>
 			</div>

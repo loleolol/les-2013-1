@@ -188,6 +188,7 @@ public class ModuloEmpresaController extends BaseController {
 
     	if (this.requisicao.getParameter("id") != null) {
     		this.validarIdUsuario(this.requisicao.getParameter("id"));
+    		id = Integer.parseInt(this.requisicao.getParameter("id"));
     		empresaBean.consultar(id);
     	} else {
     		empresaBean.consultar(id);

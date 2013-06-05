@@ -1,4 +1,4 @@
-<form id="cadastro_viagem" class="formulario_padrao" enctype="multipart/form-data" action="<c:url value="/Viagem"></c:url>" method="post" onsubmit="return validaFormulario(new Array('titulo;String;1', 'descricao;String;1', 'dataInicialDia;int;0', 'dataInicialMes;int;0', 'dataInicialAno;int;0', 'dataFinalDia;int;0', 'dataFinalMes;int;0', 'dataFinalAno;int;0'))">
+<form id="cadastro_viagem" class="formulario_padrao" enctype="multipart/form-data" action="<c:url value="/Viagem"></c:url>" method="post" onsubmit="return validaFormulario(new Array('titulo;String;1', 'descricao;String;1', 'dataInicialDia;int;1', 'dataInicialMes;int;1', 'dataInicialAno;int;1', 'dataFinalDia;int;1', 'dataFinalMes;int;1', 'dataFinalAno;int;1'))">
        <div class="bloco">
         <label for="titulo">Título<span class="atencao">*</span>:</label>
         <input id="titulo" type="text" name="titulo" value="" maxlength="100"/>
