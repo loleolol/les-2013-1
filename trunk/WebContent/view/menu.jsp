@@ -2,7 +2,7 @@
 	<c:choose>
 		<c:when test="${usuarioBean.usuario != null}">
    			<c:choose>
-   				<c:when test="${empresaBean != null}">
+   				<c:when test="${usuarioEmpresaBean != null}">
    					<form id="menu1" class="formulario_menu" action="<c:url value="/Empresa"></c:url>" method="post">
 						<div class="previa_perfil menu_perfil">
 							<button type="submit" name="acao" value="selecionar">
@@ -55,7 +55,7 @@
 		    	</c:otherwise>
 		    </c:choose>
 			<c:choose>
-				<c:when test="${empresaBean != null}">
+				<c:when test="${usuarioEmpresaBean != null}">
 					<form id="menu2" class="formulario_menu" action="<c:url value="/Empresa"></c:url>" method="post">
 				        <div>
 				        	<button type="submit" name="acao" value="">Início</button>

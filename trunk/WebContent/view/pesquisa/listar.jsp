@@ -39,6 +39,14 @@
 				        </c:choose>					
 					
 					</a></li>
+					<c:choose>
+						<c:when test="${empresaBean != null}">
+							<li><a href="#abaAnuncio">Novo anúncio</a></li>
+						</c:when>
+						<c:when test="${administradorBean == null}">
+							<li><a href="#abaViagem">Nova viagem</a></li>
+						</c:when>
+					</c:choose>					
 				</ul>
 				<div id="abaContato">
 					<c:choose>
@@ -124,6 +132,18 @@
 						</c:otherwise>
 					</c:choose>
 				</div>
+				<c:choose>
+					<c:when test="${usuarioEmpresaBean != null}">
+						<div id="abaAnuncio">
+							<%@include file="../anuncio/novo.jsp"%>
+						</div>
+					</c:when>
+					<c:when test="${administradorBean == null}">
+						<div id="abaViagem">
+							<%@include file="../viagem/novo.jsp"%>
+						</div>
+					</c:when>
+				</c:choose>				
 			</div>
 		</div>
 		<%@include file="../adicional.jsp"%>

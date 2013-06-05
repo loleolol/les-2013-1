@@ -63,7 +63,7 @@ public class AtualizacaoBean {
 	public void listarTodasAtualizacoes(Usuario usuario) throws Exception {
 		ViajanteBean viajanteBean = new ViajanteBean();
 		viajanteBean.consultar(usuario.getIdUsuario());
-		if(viajanteBean.getUsuario() != null){
+		if(viajanteBean.getViajante() != null){
 			viajanteBean.consultarContatos(usuario.getIdUsuario());
 			this.listarViagens(usuario);
 			this.listarAvaliacoes(usuario);

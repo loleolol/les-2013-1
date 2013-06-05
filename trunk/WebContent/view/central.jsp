@@ -1,6 +1,6 @@
 <div class="bloco barra_central">
 	<c:choose>
-		<c:when test="${empresaBean != null}">
+		<c:when test="${usuarioEmpresaBean != null}">
 			<form id="iniciar_anuncio" class="formulario_padrao" action="<c:url value="/Anuncio"></c:url>" method="post">
 				<label for="compartilhar">Quer ser visto pelos usuários?</label>
 				<button id="compartilhar" class="link titulo" type="submit" name="acao" value="">Anuncie!</button>

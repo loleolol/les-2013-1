@@ -45,9 +45,9 @@ public class EmpresaDAO extends DAOBase<Empresa> {
             stmt.setInt(++indice, idEmpresa);
             resultSet = stmt.executeQuery();
             
-            Empresa Empresa = null;
+            Empresa empresa = null;
             if (resultSet.next()) {
-            	Empresa = new Empresa(resultSet.getInt("id_usuario")
+            	empresa = new Empresa(resultSet.getInt("id_usuario")
             		, resultSet.getString("email")
             		, resultSet.getString("nome")
             		, resultSet.getString("senha")
@@ -58,7 +58,7 @@ public class EmpresaDAO extends DAOBase<Empresa> {
             		, resultSet.getInt("bloqueado"));
             }
 
-            return Empresa;
+            return empresa;
         } catch (Exception excecao) {
             throw new DAOException(excecao);
         }

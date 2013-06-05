@@ -50,7 +50,7 @@ function pesquisar(campo, retorno, botao) {
 			    		aux = 19;
 			    	}
 			    	$(retorno).append(string);
-			    	urlCampo = "/les20131/Viajante?acao=carregarImagem&id="+data.lista[i].id;
+			    	urlCampo = "/les20131/"+data.lista[i].tipo+"?acao=carregarImagem&id="+data.lista[i].id;
 			    	(function(index, link) {
 				        setTimeout(function() { carregarImagem($('#imagemPreviaPesquisa'+index), link); }, (index*200));
 				    })(i, urlCampo);			    	
