@@ -140,10 +140,7 @@ public class AvaliacaoBean {
    public void incluir(int idEmpresa, int idViajante, int avaliacao, String descricao) throws Exception {
 	   EmpresaDAO empresaDAO = new EmpresaDAO();
 	   ViajanteDAO viajanteDAO = new ViajanteDAO();
-	   this.avaliacao.setEmpresa(empresaDAO.consultar(idEmpresa));
-	   this.avaliacao.setViajante(viajanteDAO.consultar(idViajante));
-	   this.avaliacao.setAvaliacao(avaliacao);
-	   this.avaliacao.setDescricao(descricao);
+	   this.avaliacao = new Avaliacao(empresaDAO.consultar(idEmpresa), viajanteDAO.consultar(idViajante), avaliacao, descricao, new Date());
 	   this.avaliacaoDAO.incluir(this.avaliacao);
    }
 
