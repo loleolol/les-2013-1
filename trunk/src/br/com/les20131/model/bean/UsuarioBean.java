@@ -28,28 +28,12 @@ public class UsuarioBean {
      */
     protected Usuario usuario;
     
-    //ADMIN
     /**
      * Armazena uma lista de usuários
      * @access private
      * @var List<Usuario>
      */
     private List<Usuario> listaUsuario;
-    private List<Usuario> listaUsuarioBloquear;
-    private List<Usuario> listaUsuarioDesbloquear;
-    private List<Usuario> listaUsuarioExcluir;
-    private List<Usuario> listaUsuarioAdicionar;
-    
-    /**
-     * Constantes para bloqueio e desbloqueio, exclusão e adição
-     * @access private
-     * @var int
-     */
-    private int BLOQUEAR = 1;
-    private int DESBLOQUEAR = 0;
-    private int EXCLUIR = 1;
-    private int ADICIONAR = 0;
-    //ADMIN
 
     /**
      * Construtor da classe
@@ -79,7 +63,6 @@ public class UsuarioBean {
     	this.usuario = usuario;
     }
     
-    //ADMIN
     /**
      * Retorna a lista de usuários
      * @access public
@@ -88,7 +71,6 @@ public class UsuarioBean {
     public List<Usuario> getListaUsuario() {
         return this.listaUsuario;
     }
-    //ADMIN
 
     /**
      * Autentica um usuario e senha
@@ -144,7 +126,6 @@ public class UsuarioBean {
       	this.usuario = this.usuarioDAO.consultar(idUsuario);
     }
     
-    //ADMIN
     /**
      * Consulta os usuários cadastrados
      * @access public
@@ -155,87 +136,5 @@ public class UsuarioBean {
         this.usuarioDAO = new UsuarioDAO();
         this.listaUsuario = this.usuarioDAO.listarUsuarios();
     }
-    
-    /**
-     * Inicia listas para bloqueio/desbloqueio
-     * @access public
-     * @return void
-     * @throws Exception
-     */
-    public void iniciaListasBloquear() throws Exception{
-    	this.listaUsuarioBloquear = new ArrayList<Usuario>();
-    	this.listaUsuarioDesbloquear = new ArrayList<Usuario>();
-    }
-    
-    /**
-     * Inicia listas para bloqueio/desbloqueio
-     * @access public
-     * @return void
-     * @throws Exception
-     */
-    public void iniciaListasExcluir() throws Exception{
-    	this.listaUsuarioExcluir = new ArrayList<Usuario>();
-    	this.listaUsuarioAdicionar = new ArrayList<Usuario>();
-    }
-    
-    /**
-     * Adiciona usuários selecionados na lista
-     * @access public
-     * @return void
-     * @throws Exception
-     */
-    public void adicionarListaBloquear(int id) throws Exception {
-    	usuario = usuarioDAO.consultar(id);
-        this.listaUsuarioBloquear.add(usuario);
-    }
-    
-    /**
-     * Adiciona usuários não selecionados na lista
-     * @access public
-     * @return void
-     * @throws Exception
-     */
-    public void adicionarListaDesbloquear(int id) throws Exception {
-    	usuario = usuarioDAO.consultar(id);
-        this.listaUsuarioDesbloquear.add(usuario);
-    }
-    
-    /**
-     * Adiciona usuários selecionados na lista
-     * @access public
-     * @return void
-     * @throws Exception
-     */
-    public void adicionarListaExcluir(int id) throws Exception {
-    	usuario = usuarioDAO.consultar(id);
-        this.listaUsuarioExcluir.add(usuario);
-    }
-    
-    /**
-     * Adiciona usuários não selecionados na lista
-     * @access public
-     * @return void
-     * @throws Exception
-     */
-    public void adicionarListaAdicionar(int id) throws Exception {
-    	usuario = usuarioDAO.consultar(id);
-        this.listaUsuarioAdicionar.add(usuario);
-    }
-    
-    /**
-     * Submete bloqueios/desbloqueios
-     * @access public
-     * @return void
-     * @throws Exception
-     */
-    public void bloquearDesbloquear() throws Exception {
-    	for(int i=0; i<this.listaUsuarioBloquear.size(); i++){
-    		this.usuarioDAO.bloquear(listaUsuarioBloquear.get(i), BLOQUEAR);
-    	}
-    	for(int i=0; i<this.listaUsuarioDesbloquear.size(); i++){
-    		this.usuarioDAO.bloquear(listaUsuarioDesbloquear.get(i), DESBLOQUEAR);
-    	}
-    }
-    //ADMIN
-    
+        
 }
