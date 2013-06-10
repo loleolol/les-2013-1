@@ -188,10 +188,10 @@ public class AtualizacaoBean {
 			avaliacaoBean.consultar(empresaBean.getEmpresa());
 		}
         List<Avaliacao> lista = avaliacaoBean.getListaAvaliacao();
-        List<Integer> listaId = new ArrayList<Integer>();
+        List<Integer> listaId;
         int indice;
-        int indice2;
         for (indice = 0; indice < lista.size(); indice++) {
+        	listaId = new ArrayList<Integer>();
         	listaId.add(lista.get(indice).getEmpresa().getIdUsuario());
     		listaId.add(lista.get(indice).getAvaliacao());
         	this.listaAtualizacao.add(new ItemAtualizacaoBean(lista.get(indice).getIdAvaliacao()
