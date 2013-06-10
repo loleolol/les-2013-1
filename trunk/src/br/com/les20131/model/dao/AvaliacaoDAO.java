@@ -192,6 +192,47 @@ public class AvaliacaoDAO extends DAOBase<Avaliacao> {
     }
     
     /**
+     * Consultar avaliação por viajante e empresa
+     * @access public
+     * @param Viajante viajante
+     * @param Empresa empresa
+     * @return Avaliacao
+     * @throws DAOException
+     */
+    public Avaliacao consultar(Viajante viajante, Empresa empresa) throws DAOException {
+        PreparedStatement stmt = null;
+        ResultSet resultSet = null;
+        int indice = 0;
+        String sql = "SELECT a.id_avaliacao, a.id_empresa, a.id_viajante, a.avaliacao, a.descricao, a.data_inclusao"
+                    + "\n FROM avaliacao a"
+                    + "\n WHERE a.id_viajante = ?"
+                    + "\n AND a.id_empresa = ?";
+
+        try {
+            stmt = this.conexao.prepareStatement(sql);
+            stmt.setInt(++indice, viajante.getIdUsuario());
+            stmt.setInt(++indice, empresa.getIdUsuario());
+            resultSet = stmt.executeQuery();
+            
+            EmpresaDAO empresaDAO = new EmpresaDAO();
+            ViajanteDAO viajanteDAO = new ViajanteDAO();
+            Avaliacao avaliacao = null;
+            if (resultSet.next()) {
+            	avaliacao = new Avaliacao(resultSet.getInt("id_avaliacao")
+            	, empresaDAO.consultar(resultSet.getInt("id_empresa"))
+                , viajanteDAO.consultar(resultSet.getInt("id_viajante"))
+                , resultSet.getInt("avaliacao")
+                , resultSet.getString("descricao")
+                , resultSet.getDate("data_inclusao"));
+            }
+
+            return avaliacao;
+        } catch (Exception excecao) {
+            throw new DAOException(excecao);
+        }    	
+    }
+    
+    /**
      * Consulta as avaliações pela empresa
      * @access public
      * @param Empresa empresa

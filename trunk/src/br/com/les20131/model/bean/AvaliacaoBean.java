@@ -104,6 +104,19 @@ public class AvaliacaoBean {
 	}
      
 	/**
+	 * Consulta uma avaliação por empresa e viajante
+	 * @access public
+	 * @param int idViajante
+	 * @param int idEmpresa
+	 * @throws Exception
+	 */
+	public void consultar(int idViajante, int idEmpresa) throws Exception {
+		EmpresaDAO empresaDAO = new EmpresaDAO();
+		ViajanteDAO viajanteDAO = new ViajanteDAO();
+		this.avaliacao = this.avaliacaoDAO.consultar(viajanteDAO.consultar(idViajante), empresaDAO.consultar(idEmpresa));
+	}
+	
+	/**
 	 * Consultar avaliações feitas pelo viajante
 	 * @access public
 	 * @param Viajante viajante
@@ -137,7 +150,7 @@ public class AvaliacaoBean {
     * @return void
     * @throws Exception
     */
-   public void incluir(int idEmpresa, int idViajante, int avaliacao, String descricao) throws Exception {
+   public void incluir(int idViajante, int idEmpresa, int avaliacao, String descricao) throws Exception {
 	   EmpresaDAO empresaDAO = new EmpresaDAO();
 	   ViajanteDAO viajanteDAO = new ViajanteDAO();
 	   this.avaliacao = new Avaliacao(empresaDAO.consultar(idEmpresa), viajanteDAO.consultar(idViajante), avaliacao, descricao, new Date());

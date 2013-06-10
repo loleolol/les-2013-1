@@ -1,5 +1,19 @@
 <div class="barra">
-	<span class="logo">
+	<span class="logo" onclick="$('#logo').submit()">
+	<c:choose>
+		<c:when test="${empresaBean == null && usuarioBean.usuario != null && administradorBean == null}">
+			<form id="logo" class="formulario_invisivel" action="<c:url value="/Viajante"></c:url>" method="post">
+		    </form>
+		</c:when>
+		<c:when test="${empresaBean != null && usuarioBean.usuario != null && administradorBean == null}">
+			<form id="logo" class="formulario_invisivel" action="<c:url value="/Empresa"></c:url>" method="post">
+		    </form>
+		</c:when>
+		<c:otherwise>
+			<form id="logo" class="formulario_invisivel" action="" onsubmit="return false" method="post">
+		    </form>
+		</c:otherwise>
+	</c:choose>
 	</span>
 	<span class="barra_intervalo">
 		<c:choose>

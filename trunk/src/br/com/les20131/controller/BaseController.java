@@ -5,6 +5,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
 import javax.servlet.RequestDispatcher;
@@ -111,6 +112,10 @@ public abstract class BaseController extends HttpServlet {
 	 * @throws ServletException 
 	 */
 	protected void despachar(String caminho) throws ServletException, IOException {
+    	this.resposta.setHeader("Cache-Control", "no-cache");  
+		this.resposta.setHeader("Cache-Control", "no-store");  
+		this.resposta.setHeader("Pragma", "no-cache");  
+		this.resposta.setDateHeader("Expires", 0);  
 		this.despachante = this.getServletContext().getRequestDispatcher(caminho);
     	this.despachante.forward(this.requisicao, this.resposta);
 	}
@@ -151,7 +156,7 @@ public abstract class BaseController extends HttpServlet {
             }
             AnuncioBean anuncioBean = new AnuncioBean();
             anuncioBean.consultarAtivos();
-            this.requisicao.setAttribute("anuncioBean", anuncioBean);
+            this.requisicao.setAttribute("anuncioEmpresaBean", anuncioBean);
         }
     }
     
@@ -204,6 +209,7 @@ public abstract class BaseController extends HttpServlet {
     	String urlSemImagem = "/les20131/view/publico/imagens/semimagem.png";
 		try {
 			if (imagem != null) {
+		    	this.resposta.setHeader("Cache-Control", "no-cache");  
 				this.resposta.setHeader("Cache-Control", "no-store");  
 				this.resposta.setHeader("Pragma", "no-cache");  
 				this.resposta.setDateHeader("Expires", 0);  

@@ -3,13 +3,14 @@
 	<c:choose>
 		<c:when test="${usuarioBean.usuario != null}">
 			<c:forEach items="${anuncioEmpresaBean.listaAnuncio}" var="anuncio" varStatus="chave">
-				<form id="menuUsuario${chave.count}" class="formulario_anuncio" action="<c:url value="/Anuncio"></c:url>" method="post">
+				<form id="menuUsuario${chave.count}" class="formulario_anuncio" action="<c:url value="/Empresa"></c:url>" method="post" onclick="$(this).submit()">
 					<div class="anuncio">
 	        			<span class="titulo"><c:out value="${anuncio.empresa.nome}"/></span>
 	        			<br/>
 	        			<c:out value="${anuncio.anuncio}"/>
 	        			<br/>
-	        			<input name="idAnuncio" type="hidden" value="${anuncio.idAnuncio}"/>
+	        			<input name="acao" type="hidden" value="selecionar"/>
+	        			<input name="id" type="hidden" value="${anuncio.empresa.idUsuario}"/>
 	        		</div>
 				</form>
 			</c:forEach>

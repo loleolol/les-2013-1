@@ -133,9 +133,9 @@ public class ModuloAvaliacaoController extends BaseController {
     private void incluirAvaliacao() throws Exception {
     	HttpSession sessao = this.requisicao.getSession();
     	AvaliacaoBean avaliacaoBean = new AvaliacaoBean();
-        this.validarAvaliacao(this.requisicao.getParameter("idUsuario"), this.requisicao.getParameter("avaliacao"), this.requisicao.getParameter("descricao"));
+        this.validarAvaliacao(this.requisicao.getParameter("idEmpresa"), this.requisicao.getParameter("avaliacao"), this.requisicao.getParameter("descricao"));
         avaliacaoBean.incluir(((Usuario)sessao.getAttribute("usuario")).getIdUsuario()
-        		, Integer.parseInt(this.requisicao.getParameter("idUsuario")), Integer.parseInt(this.requisicao.getParameter("avaliacao")), this.requisicao.getParameter("descricao"));
+        		, Integer.parseInt(this.requisicao.getParameter("idEmpresa")), Integer.parseInt(this.requisicao.getParameter("avaliacao")), this.requisicao.getParameter("descricao"));
     }
     
     /**

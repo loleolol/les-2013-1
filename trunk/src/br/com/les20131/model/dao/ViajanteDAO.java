@@ -163,7 +163,6 @@ public class ViajanteDAO extends DAOBase<Viajante> {
             throw new DAOException(excecao);
         }    	
     }
- 
     
     /**
      * Incluir um viajante no banco de dados

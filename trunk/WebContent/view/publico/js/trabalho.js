@@ -13,7 +13,7 @@ function pesquisar(campo, retorno, botao) {
 	    type: 'POST',
 	    success: function(data) {
     		$(retorno).empty();
-	    	if (data != "") {
+	    	if (data != "" && data.lista.length > 0) {
 	    		$(retorno).attr("class", "retorno_pesquisa");
 		    	$(retorno).width($(campo).width());
 		    	var i = 0;
@@ -124,7 +124,8 @@ function removerContato(campo, id) {
 			+"</div>");
 	$("#"+$(campo).attr("id")+"dialog-confirm").dialog({
 		resizable: false,
-		height: 160,
+		height: 200,
+		width: 300,
 		modal: true,
 		buttons: {
 	  "Sim": function() {
@@ -156,7 +157,8 @@ function bloquearUsuario(campo, id) {
 			+"</div>");
 	$("#"+$(campo).attr("id")+"dialog-confirm").dialog({
 		resizable: false,
-		height: 160,
+		height: 200,
+		width: 300,
 		modal: true,
 		buttons: {
 	  "Sim": function() {
@@ -188,7 +190,8 @@ function desbloquearUsuario(campo, id) {
 			+"</div>");
 	$("#"+$(campo).attr("id")+"dialog-confirm").dialog({
 		resizable: false,
-		height: 160,
+		height: 200,
+		width: 300,
 		modal: true,
 		buttons: {
 	  "Sim": function() {
@@ -220,7 +223,8 @@ function excluirUsuario(container, campo, id) {
 			+"</div>");
 	$("#"+$(campo).attr("id")+"dialog-confirm").dialog({
 		resizable: false,
-		height: 160,
+		height: 200,
+		width: 300,
 		modal: true,
 		buttons: {
 	  "Sim": function() {
@@ -278,8 +282,9 @@ function enviarSemValidacao(form) {
 	$(form).submit();
 }
 
-function atalhoPerfil(botao) {
+function atalhoPerfil(botao, tipo) {
 	$('#idAtalho').val($(botao).val());
+	$('#atalho').attr("action", $('#atalho').attr("action")+tipo);
 	$('#atalho').submit();
 }
 
@@ -322,10 +327,12 @@ function populaDropDownAno(dropDown, campoData) {
 			$(opcao).html(i);
 			$(dropDown).append(opcao);	
 		}
-		if ($(campoData) != undefined) {
+		if ($(campoData) == undefined) {
 			$(dropDown).val(data.getFullYear());
 		} else {
-			$(dropDown).val($(campoData).val().split("-")[0]);
+			if ($(campoData).val() != undefined) {
+				$(dropDown).val($(campoData).val().split("-")[0]);
+			}
 		}
 	}
 }
@@ -351,10 +358,12 @@ function populaDropDownDia(dropDown, mes, campoData) {
 			$(dropDown).append(opcao);
 		}
 		
-		if ($(campoData) != undefined) {
+		if ($(campoData) == undefined) {
 			$(dropDown).val(pad(diaAtual,2));
 		} else {
-			$(dropDown).val($(campoData).val().split("-")[2]);
+			if ($(campoData).val() != undefined) {
+				$(dropDown).val($(campoData).val().split("-")[2]);
+			}
 		}
 	}		
 }
@@ -403,10 +412,12 @@ function populaDropDownMes(dropDown, campoData) {
 		opcao = new Option("Dezembro", "12");
 		$(opcao).html("Dezembro");
 		$(dropDown).append(opcao);	
-		if ($(campoData) != undefined) {
+		if ($(campoData) == undefined) {
 			$(dropDown).val(pad(data.getMonth(),2));
 		} else {
-			$(dropDown).val($(campoData).val().split("-")[1]);
+			if ($(campoData).val() != undefined) {
+				$(dropDown).val($(campoData).val().split("-")[1]);
+			}
 		}
 	}			
 }
@@ -422,7 +433,8 @@ function confirmaExclusao(form, msg, campo, acao) {
 			+"</div>");
 	$("#"+$(form).attr("id")+"dialog-confirm").dialog({
 		resizable: false,
-		height: 160,
+		height: 200,
+		width: 300,
 		modal: true,
 		buttons: {
 	  "Sim": function() {
@@ -439,7 +451,7 @@ function confirmaExclusao(form, msg, campo, acao) {
 
 function removerImagem(campo1, campo2, quantidade, id, imagem, indice) {
 	if (id != undefined) {
-		$(quantidade).before("<input id=\""+id+indice+"\" type=\"hidden\" name=\""+id+indice+"\" value=\""+$('#'+imagem+indice).attr("alt")+"\"/>");
+		$(quantidade).before("<input id=\""+id+indice+"\" type=\"hidden\" name=\""+id+indice+"\" value=\""+$('#'+imagem+indice).attr("identif")+"\"/>");
 	}
 	$(campo1).remove();
 	$(campo2).remove();
@@ -464,7 +476,9 @@ function carregarGaleriaEdicao(campo, quantidade, acao, seleciona, imagem, remov
 		t = '#'+id+indice;
 		urlCampo = url+"?acao="+acaoCarregar+"&id="+$(t).val();
 		adicionaCampoImagem(campo, quantidade, acao, seleciona, imagem, remove, input, id);
+		$('#imagemPrevia'+indice).attr("onclick", "");
 		$('#imagemPrevia'+indice).attr("alt", urlCampo);
+		$('#imagemPrevia'+indice).attr("identif", $(t).val());
 		$(t).remove();
 	}
 }
@@ -472,7 +486,7 @@ function carregarGaleriaEdicao(campo, quantidade, acao, seleciona, imagem, remov
 function carregarImagem(imagem, url) {
 	if ($(imagem).length > 0) {
 		if (url.length > 0) {
-			$(imagem).attr("src", url);
+			$(imagem).attr("src", url+"&nan="+Math.round(new Date().getTime() / 1000));
 		} else {
 			$(imagem).attr("src", "/les20131/view/publico/imagens/semimagem.png");
 		}
@@ -483,8 +497,36 @@ function carregarImagem(imagem, url) {
 function carregarImagens() {
 	jQuery.each($('img'), function(i, element) {
 		$(element).attr("src", "/les20131/view/publico/imagens/carregando.gif");
-		setTimeout(function() { carregarImagem($(element), $(element).attr("alt")); }, (i*200));
+		setTimeout(function() { carregarImagem($(element), $(element).attr("alt")); }, (i*600));
 	});
+}
+
+function slideImagensInicio() {
+	setTimeout(function() {
+		$("#imagem_inicio").effect("fade", {}, 500, 
+				function() {
+					$("#imagem_inicio").removeAttr( "style" ).hide().fadeIn();
+					$('#imagem_inicio').attr("src", "/les20131/view/publico/imagens/paris.jpg");
+				}
+			);
+		setTimeout(function() {
+			$("#imagem_inicio").effect("fade", {}, 500,
+				function() {
+					$("#imagem_inicio").removeAttr( "style" ).hide().fadeIn();
+					$('#imagem_inicio').attr("src", "/les20131/view/publico/imagens/dawn.jpg");
+				}
+			);
+			setTimeout(function() {
+				$("#imagem_inicio").effect("fade", {}, 500,
+					function() {
+						$("#imagem_inicio").removeAttr( "style" ).hide().fadeIn();
+						$('#imagem_inicio').attr("src", "/les20131/view/publico/imagens/park.jpg");
+						slideImagensInicio();
+					}
+				);
+			}, (15000));
+		}, (10000));
+	}, (5000));
 }
 
 function carregarGaleria(id, imagem, url, form) {
@@ -575,9 +617,18 @@ function calculaIdade(campo) {
 /**
  * Mostra mensagem na tela
  */
-function mostraMensagem(mensagem) {
+function mostraMensagem(elemento, mensagem) {
     if (mensagem != "") {
-        //alert(mensagem);
+    	$('#'+elemento).append("<div id=\""+elemento+"dialog\" title=\"Aviso\">"
+    			+"<p><span class=\"ui-icon ui-icon-alert\" style=\"float: left; margin: 0 7px 20px 0;\"></span>"
+    			+mensagem+"</p>"
+    			+"</div>");
+    	$("#"+elemento+"dialog").dialog({
+    		resizable: false,
+    		height: 200,
+    		width: 400,
+    		modal: true,
+    	  });
     }
 }
 
