@@ -328,11 +328,13 @@ function populaDropDownAno(dropDown, campoData) {
 			$(dropDown).append(opcao);	
 		}
 		if ($(campoData) == undefined) {
-			$(dropDown).val(data.getFullYear());
-		} else {
 			if ($(campoData).val() != undefined) {
 				$(dropDown).val($(campoData).val().split("-")[0]);
+			} else {
+				$(dropDown).val(data.getFullYear());
 			}
+		} else {
+			$(dropDown).val(data.getFullYear());
 		}
 	}
 }
@@ -345,7 +347,7 @@ function populaDropDownAno(dropDown, campoData) {
 function populaDropDownDia(dropDown, mes, campoData) {
 	if ($(dropDown) != undefined) {
 		var data = new Date();
-		var diaAtual = data.getDay();
+		var diaAtual = data.getDate();
 		data = new Date(data.getFullYear(), mes, 0);
 		var opcao;
 		$(dropDown).html("");
@@ -358,12 +360,14 @@ function populaDropDownDia(dropDown, mes, campoData) {
 			$(dropDown).append(opcao);
 		}
 		
-		if ($(campoData) == undefined) {
-			$(dropDown).val(pad(diaAtual,2));
-		} else {
+		if ($(campoData) != undefined) {
 			if ($(campoData).val() != undefined) {
 				$(dropDown).val($(campoData).val().split("-")[2]);
+			} else {
+				$(dropDown).val(pad(diaAtual,2));
 			}
+		} else {
+			$(dropDown).val(pad(diaAtual,2));
 		}
 	}		
 }
@@ -412,12 +416,15 @@ function populaDropDownMes(dropDown, campoData) {
 		opcao = new Option("Dezembro", "12");
 		$(opcao).html("Dezembro");
 		$(dropDown).append(opcao);	
-		if ($(campoData) == undefined) {
-			$(dropDown).val(pad(data.getMonth(),2));
-		} else {
+		var mes = (data.getMonth()+1 < 10 ? "0"+(data.getMonth()+1) : (data.getMonth()+1));
+		if ($(campoData) != undefined) {
 			if ($(campoData).val() != undefined) {
 				$(dropDown).val($(campoData).val().split("-")[1]);
+			} else {
+				$(dropDown).val(mes);
 			}
+		} else {
+			$(dropDown).val(mes);
 		}
 	}			
 }
