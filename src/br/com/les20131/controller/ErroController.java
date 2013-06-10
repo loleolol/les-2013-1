@@ -62,7 +62,7 @@ public class ErroController extends HttpServlet {
 	            dispatcher = this.getServletContext().getRequestDispatcher("/view/index.jsp");
 	        } else {
 	            Exception excecao = ((Exception)request.getAttribute("excecao"));
-	            mensagemBean = new MensagemBean(excecao.toString());
+	            mensagemBean = new MensagemBean(excecao.getMessage());
 	            if (excecao instanceof UserAuthenticationException) {
 	                dispatcher = this.getServletContext().getRequestDispatcher("/view/index.jsp");
 	            } else {
@@ -70,7 +70,7 @@ public class ErroController extends HttpServlet {
 	                UsuarioBean usuarioBean = new UsuarioBean();
 	                usuarioBean.setUsuario((Usuario)sessao.getAttribute("usuario"));
 	                request.setAttribute("usuarioBean", usuarioBean);              
-	                dispatcher = this.getServletContext().getRequestDispatcher("/view/erro/erro.jsp");
+	                dispatcher = this.getServletContext().getRequestDispatcher("/view/inicio.jsp");
 	            }
 	        }
 	        request.setAttribute("mensagemBean", mensagemBean);

@@ -102,9 +102,16 @@ public class AtualizacaoBean {
 	 * @throws Exception
 	 */
 	public void listarAtualizacoes(Usuario usuario) throws Exception {
-		this.listarViagens(usuario);
-		this.listarContatos(usuario);
-		this.listarAvaliacoes(usuario);
+		ViajanteBean viajanteBean = new ViajanteBean();
+		viajanteBean.consultar(usuario.getIdUsuario());
+		if(viajanteBean.getViajante() != null){		
+			this.listarViagens(usuario);
+			this.listarContatos(usuario);
+			this.listarAvaliacoes(usuario);
+		} else {
+			this.listarAvaliacoes(usuario);
+			this.listarAnuncios(usuario);
+		}
 		this.ordernarAtualizacoes();
 	}
 	
@@ -156,7 +163,7 @@ public class AtualizacaoBean {
         		listaItem = null;
         	}
         	this.listaAtualizacao.add(new ItemAtualizacaoBean(lista.get(indice1).getIdViagem()
-        			, "Viagem", usuario.getNome(), usuario.getIdUsuario()
+        			, "Viagem", lista.get(indice1).getViajante().getNome(), lista.get(indice1).getViajante().getIdUsuario()
         			, lista.get(indice1).getTitulo(), listaItem, lista.get(indice1).getDescricao()
         			, lista.get(indice1).getDataInclusao()));
         }
@@ -185,11 +192,10 @@ public class AtualizacaoBean {
         int indice;
         int indice2;
         for (indice = 0; indice < lista.size(); indice++) {
-        	for (indice2 = 1; indice2 <= lista.get(indice).getAvaliacao(); indice2++) {
-        		listaId.add(indice2);
-        	}
+        	listaId.add(lista.get(indice).getEmpresa().getIdUsuario());
+    		listaId.add(lista.get(indice).getAvaliacao());
         	this.listaAtualizacao.add(new ItemAtualizacaoBean(lista.get(indice).getIdAvaliacao()
-        			, "Avaliacao", usuario.getNome(), usuario.getIdUsuario()
+        			, "Avaliacao", lista.get(indice).getViajante().getNome(), lista.get(indice).getViajante().getIdUsuario()
         			, lista.get(indice).getEmpresa().getNome(), listaId, lista.get(indice).getDescricao()
         			, lista.get(indice).getDataInclusao()));
         }

@@ -68,7 +68,7 @@
 									        <span id="urlErro" class="atencao"></span>
 									    </c:when>
 									    <c:otherwise>
-									    	<span class="titulo">${empresaBean.empresa.url}</span>
+									    	<a href="${empresaBean.empresa.url}"><button type="button" class="link titulo">${empresaBean.empresa.url}</button></a>
 									    </c:otherwise>
 									</c:choose>													                    
 								</div>
@@ -80,7 +80,7 @@
 									        <span id="definicaoErro" class="atencao"></span>
 									    </c:when>
 									    <c:otherwise>
-									    	<span class="titulo">${empresaBean.empresa.definicao}</span>
+									    	<span>${empresaBean.empresa.definicao}</span>
 									    </c:otherwise>
 									</c:choose>	   						                          
 								</div>
@@ -88,26 +88,41 @@
 							</div>
 							<c:if test="${usuarioEmpresaBean == null}">
 								<div class="inferior_direito">
-									<button type="button"
-										onclick="">
-										<span>Avaliar</span>
-									</button>				    				
+									<c:choose>
+										<c:when test="${idAvaliacao > 0}">
+											<button type="button"
+												onclick="$('#avaliacao').submit()">
+												<span>Editar avaliação</span>
+											</button>
+										</c:when>
+										<c:otherwise>
+											<button type="button"
+												onclick="$('#avaliacao').submit()">
+												<span>Avaliar</span>
+											</button>
+										</c:otherwise>
+									</c:choose>
 								</div>
 							</c:if>	
 						</div>						
 	    				<c:if test="${empresaBean.empresa.idUsuario == usuarioBean.usuario.idUsuario}">	
 					        <div class="bloco">
 					        	<button type="submit" name="acao" value="alterar" >Alterar</button>
-					        	<input id="hidden_excluir" type="hidden" name="acao" value=""/>
-					        	<button type="button" name="acao" value="excluir" 
-					        		onclick="confirmaExclusao($('#cadastro_empresa'), 'Deseja realmente realizar esta exclusão?', '#hidden_excluir', 'Excluir')">Excluir Cadastro</button>
 					        </div>
 					    </c:if>
 					</form>
 					<form id="avaliacao" class="formulario_invisivel" action="<c:url value="/Avaliacao"></c:url>" method="post">
-						<input type="hidden" name="acao" value="incluir"/>
+						<c:choose>
+							<c:when test="${idAvaliacao > 0}">
+								<input type="hidden" name="acao" value="selecionar"/>
+								<input type="hidden" name="id" value="${idAvaliacao}"/>
+							</c:when>
+							<c:otherwise>
+								<input type="hidden" name="acao" value=""/>
+							</c:otherwise>
+						</c:choose>
 						<input type="hidden" name="idEmpresa" value="${empresaBean.empresa.idUsuario}"/>
-					</form>					
+					</form>
 				</div>						
 			</div>
 			<c:if test="${empresaBean.empresa.idUsuario != usuarioBean.usuario.idUsuario}">

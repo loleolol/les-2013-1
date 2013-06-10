@@ -217,9 +217,6 @@
 	    				<c:if test="${viajanteBean.viajante.idUsuario == usuarioBean.usuario.idUsuario}">	
 					        <div class="bloco">
 					        	<button type="submit" name="acao" value="alterar" >Alterar</button>
-					        	<input id="hidden_excluir" type="hidden" name="acao" value=""/>
-					        	<button type="button" name="acao" value="excluir" 
-					        		onclick="confirmaExclusao($('#cadastro_viajante'), 'Deseja realmente realizar esta exclusão?', '#hidden_excluir', 'Excluir')">Excluir Cadastro</button>
 					        </div>
 					    </c:if>
 					</form>

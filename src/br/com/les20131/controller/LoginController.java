@@ -102,8 +102,12 @@ public class LoginController extends BaseController {
      * @return void
      * @throws Exception
      */
-    private void acaoLogoff() throws Exception {
-       	this.requisicao.getSession().invalidate();
+    public void acaoLogoff() throws Exception {
+    	HttpSession sessao = this.requisicao.getSession(false);
+    	if (sessao != null) {
+    		sessao.invalidate();
+    		this.requisicao.setAttribute("usuarioBean", null);
+    	}
        	this.despachar("/view/index.jsp");
     }
 

@@ -1,6 +1,8 @@
 package br.com.les20131.controller;
 
 import br.com.les20131.model.Usuario;
+import br.com.les20131.model.bean.AvaliacaoBean;
+import br.com.les20131.model.bean.ContatoBean;
 import br.com.les20131.model.bean.UsuarioBean;
 import br.com.les20131.model.bean.EmpresaBean;
 import br.com.les20131.util.InvalidPageException;
@@ -190,6 +192,15 @@ public class ModuloEmpresaController extends BaseController {
     		this.validarIdUsuario(this.requisicao.getParameter("id"));
     		id = Integer.parseInt(this.requisicao.getParameter("id"));
     		empresaBean.consultar(id);
+    		
+        	AvaliacaoBean avaliacaoBean = new AvaliacaoBean();
+        	avaliacaoBean.consultar(((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), id);
+        	if (avaliacaoBean.getAvaliacao() != null) {
+        		this.requisicao.setAttribute("idAvaliacao", avaliacaoBean.getAvaliacao().getIdAvaliacao());
+        	}
+        	AtualizacaoController atualizacaoController = new AtualizacaoController();
+        	atualizacaoController.requisicao = this.requisicao;
+        	atualizacaoController.listarAtualizacoes((Usuario)empresaBean.getEmpresa());
     	} else {
     		empresaBean.consultar(id);
     	}

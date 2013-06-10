@@ -47,6 +47,11 @@
 						</div>			
 				        <div class="bloco">
 				           	<button type="submit" name="acao" value="alterar">Alterar</button>
+				           	<c:if test="${administradorBean == null}">
+					        	<input id="hidden_excluir" type="hidden" name="acao" value=""/>
+					        	<button type="button" name="acao" value="excluir" 
+					        		onclick="confirmaExclusao($('#cadastro_usuario'), 'Deseja realmente excluir sua conta? <br/>Após a confirmação, não haverá como acessá-la e o e-mail utilizado não estará disponível novamente', '#hidden_excluir', 'Excluir')">Excluir Cadastro</button>
+					        </c:if>
 				        </div>
 					</form>
 				</div>

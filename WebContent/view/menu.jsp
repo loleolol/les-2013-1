@@ -39,19 +39,21 @@
 					</form>
 		    	</c:when>
 		    	<c:otherwise>
-		    		<div class="previa_perfil menu_perfil">
-			    		<button type="button">
-				    		<div class="parte_bloco">
-					    		<img class="imagem_barra" alt="">
-				    		</div>
-				    		<div class="parte_bloco">
-				    			<span class="titulo">${usuarioBean.usuario.nome}</span>
-				    			<br/>
-				    			<br/>
-				    			<br/>
-							</div>
-						</button>
-					</div>
+		    		<form id="menu1" class="formulario_menu" action="" method="post">
+			    		<div class="previa_perfil menu_perfil">
+				    		<button type="button">
+					    		<div class="parte_bloco">
+						    		<img class="imagem_barra" alt="">
+					    		</div>
+					    		<div class="parte_bloco">
+					    			<span class="titulo">${usuarioBean.usuario.nome}</span>
+					    			<br/>
+					    			<br/>
+					    			<br/>
+								</div>
+							</button>
+						</div>
+					</form>
 		    	</c:otherwise>
 		    </c:choose>
 			<c:choose>
@@ -78,12 +80,12 @@
 				    </form>
 				</c:when>
 				<c:otherwise>
-					<form id="menu2" class="formulario_menu" action="<c:url value="/Viajante"></c:url>" method="post">
-				        <div>
-				        	<button type="submit" name="acao" value="">Início</button>
-				        </div>
-				    </form>
 					<c:if test="${administradorBean == null}">		    
+						<form id="menu2" class="formulario_menu" action="<c:url value="/Viajante"></c:url>" method="post">
+					        <div>
+					        	<button type="submit" name="acao" value="">Início</button>
+					        </div>
+					    </form>
 						<form id="menu3" class="formulario_menu" action="<c:url value="/Pesquisa"></c:url>" method="post">
 					        <div>
 					        	<button type="submit" name="acao" value="contatos">Contatos</button>

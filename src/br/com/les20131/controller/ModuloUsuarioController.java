@@ -114,6 +114,12 @@ public class ModuloUsuarioController extends BaseController {
      */
     private void acaoExcluir() throws Exception {
 		this.excluirUsuario();
+    	HttpSession sessao = this.requisicao.getSession(false);
+    	if (sessao != null) {
+    		sessao.invalidate();
+    		this.requisicao.setAttribute("usuarioBean", null);
+    	}
+       	this.despachar("/view/index.jsp");
     }
     
     /**
@@ -151,10 +157,18 @@ public class ModuloUsuarioController extends BaseController {
      * @throws Exception
      */
     private void excluirUsuario() throws Exception {
-        UsuarioBean usuarioBean = new UsuarioBean();
-        this.validarIdUsuario(this.requisicao.getParameter("idUsuario"));
-        usuarioBean.consultar(Integer.parseInt(this.requisicao.getParameter("idUsuario")));        
-        usuarioBean.alterar(usuarioBean.getUsuario().getIdUsuario(), usuarioBean.getUsuario().getEmail(), usuarioBean.getUsuario().getSenha(), usuarioBean.getUsuario().getBloqueado(), 1);
+    	HttpSession sessao = this.requisicao.getSession();
+    	UsuarioBean usuarioBean = new UsuarioBean();
+    	Usuario usuario;
+    	if (sessao.getAttribute("administrador") != null && this.requisicao.getParameter("idUsuario") != null) {
+	        this.validarIdUsuario(this.requisicao.getParameter("idUsuario"));
+	        usuarioBean.consultar(Integer.parseInt(this.requisicao.getParameter("idUsuario")));        
+	        usuario = usuarioBean.getUsuario();
+    	} else {
+    		usuario = ((Usuario)sessao.getAttribute("usuario"));
+    	}
+    	
+    	usuarioBean.alterar(usuario.getIdUsuario(), usuario.getEmail(), null, usuario.getBloqueado(), 1);
     }
     
     /**
@@ -172,8 +186,12 @@ public class ModuloUsuarioController extends BaseController {
     	this.validarEmail(email);
     	this.validarEmail(emailConfirma);
     	this.validarConfirmacaoEmail(email, emailConfirma);
-    	this.validarSenha(senha);
-    	this.validarSenha(senhaConfirma);
+    	if (senha.isEmpty() == false) {
+    		this.validarSenha(senha);
+    	}
+    	if (senha.isEmpty() == false) {
+    		this.validarSenha(senhaConfirma);
+    	}
     	this.validarConfirmacaoSenha(senha, senhaConfirma);
     }
     

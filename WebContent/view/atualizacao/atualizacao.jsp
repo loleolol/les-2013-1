@@ -76,16 +76,16 @@
 								</c:when>
 				   				<c:when test="${atualizacao.acao == 'Avaliacao'}">
 									<span>avaliou</span>
-									<span class="titulo">${atualizacao.nome}</span>
+									<button class="link titulo" type="button" value="${atualizacao.listaId[0]}" onclick="atalhoPerfil(this, 'Empresa')">${atualizacao.nome}</button>
 									<span>em</span>
-							        <input id="avaliacao${chave.count}" type="hidden" name="avaliacao" value="${fn:length(atualizacao.listaId)}"/>
+							        <input id="avaliacao${chave.count}" type="hidden" name="avaliacao" value="${atualizacao.listaId[1]}"/>
 								</c:when>
 				   				<c:when test="${atualizacao.acao == 'Anuncio'}">
 									<span>anunciou:</span>
 								</c:when>
 								<c:otherwise>
 									<span>adicionou</span>
-									<button class="link titulo" type="button" value="${atualizacao.id}" onclick="atalhoPerfil(this)">${atualizacao.nome}</button>
+									<button class="link titulo" type="button" value="${atualizacao.id}" onclick="atalhoPerfil(this, 'Viajante')">${atualizacao.nome}</button>
 									<span>como contato</span>
 								</c:otherwise>
 							</c:choose>
@@ -118,6 +118,7 @@
 							 	</div>
 							 </c:when>
 							 <c:otherwise>
+							 	<input type="hidden" name="id" value="${atualizacao.id}"/>
 							 </c:otherwise>
 						</c:choose>
 					</div>
@@ -128,7 +129,7 @@
 						carregarAvaliacoes('avaliacao');
 					});
 				</script>
-				<form id="atalho" action="<c:url value="/Viajante"></c:url>" method="post">
+				<form id="atalho" action="<c:url value="/"></c:url>" method="post">
 					<input id="idAtalho" type="hidden" name="id"/>
 					<input type="hidden" name="acao" value="selecionar"/>
 				</form>								
