@@ -18,7 +18,7 @@
 	<span class="barra_intervalo">
 		<c:choose>
 			<c:when test="${usuarioBean.usuario != null}">
-				<form id="formularioPesquisa" class="formulario_padrao" action="<c:url value="/Pesquisa"></c:url>" method="post">
+				<form id="formularioPesquisa" class="formulario_padrao" action="<c:url value="/Pesquisa"></c:url>" method="post" onsubmit="return validaFormulario(new Array('criterio;String;1;'))">
 					<c:choose>
 						<c:when test="${administradorBean == null}">
 							<input id="criterio" type="text" name="criterio" size="50"
@@ -28,6 +28,7 @@
 							<input id="criterio" type="text" name="criterio" size="50" />
 						</c:otherwise>
 					</c:choose>
+					<span id="criterioErro"></span>
 					<button id="pesquisa" type="submit" name="acao" value="pesquisar">
 						<span class="pesquisar"></span>
 					</button>
