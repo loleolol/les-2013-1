@@ -19,4 +19,4 @@ o sistema deve funcionar como uma rede social com foco em viagens. Seus usuário
  * Criação e exposição de anúncios
 
 
-https://les-2013-1.googlecode.com/svn/wiki/img/visao_geral_do_sistema.jpg
+https://les-2013-1.googlecode.com/svn/wiki/img/usecase/visao_geral.jpg
