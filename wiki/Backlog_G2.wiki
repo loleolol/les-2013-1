@@ -1,1 +1,33 @@
 #sidebar Dashboard
+
+<p>Na G2, após a definição básica de boa parte das características do projeto, foi possível, após definir os diagramas específicos da G2 focar-se na implementação, testes e ocasional ajuste em documentação:
+ * Diagramas de caso de uso do projeto - Ajustes ocasionais quando pertinente.
+ * Diagramas de classe - Foram definidos diagramas de classe para os itens definidos na G2, aprofundando de maneira mais técnica o conhecimento destas funcionalidades, sendo necessário ocasionais ajustes.
+ * Diagramas de sequência - Os diagramas de sequência dos itens de G2 mostraram foram definidos com maior precisão, necessitando menos atualizações com o andamento da etapa de implementação.
+ 
+<p>Para G2 foram selecionadas as demais funcionalidades, inclusive as não implementadas no G1, de forma a completar a proposta elaborada das funcionalidades do sistema. É importante notar que, em vista das prioriedades de funcionalidades, caracterizadas como core do sistema, em relação à outras, os itens referentes à grupos foram deixados para posterior definição em nova etapa caso restasse tempo</p>
+
+*Itens:*
+  * Cadastro de Usuário Empresa
+  * Manter Perfil de Empresa
+  * Manter Anúncio
+  * Manter Contato
+  * Consultar Informações de Usuário
+  * Manter Avaliação de Empresa
+  * Manter Perfil de Viajante
+  * Manter Viagem
+  * Excluir Cadastro
+  * Administrar Anúncio
+  * Administrar Avaliação de Empresa
+  * Administrar Usuário Cadastrado
+  * Administrar Viagem
+
+_*Os itens marcados na cor amarela e verde são as funcionalidades a ser entregues em G2*_
+
+https://les-2013-1.googlecode.com/svn/wiki/img/usecase/visao_geral_g2.jpg
+
+<p>O desenvolvimento nesta etapa foi realizado por ambas as partes, cujos itens foram separados de maneira a tentar evitar conflitos e com o mínimo de dependência possível (Módulos de viajante para o Leonardo, Módulos de Empresa e Administração para o Gustavo). É importante notar a dificuldade encontrada na implementação do item "Manter Viagem", que possuía uma funcionalidade de galeria de imagens cujas forma de implementação não estava no domínio dos colaboradores. Durante algumas aulas, destaca-se a realização da prática "on pair" de programação, para alinhar o conhecimento de desenvolvimento de aplicações Web do colaborador Leonardo com o colaborador Gustavo</p>
+
+_*Os itens marcados na cor azul clara são as funcionalidades entregues em G2*_
+
+https://les-2013-1.googlecode.com/svn/wiki/img/usecase/visao_geral_pos_g2.jpg
