@@ -8,8 +8,8 @@ o sistema deve funcionar como uma rede social com foco em viagens. Seus usuário
 
 *Para viajantes:*
  * Compartilhamento de experiências de viagens, incluindo descrições e fotos
- * Criação de um perfil de viajante, com sua descrição, estilo e motivação para suas viagens
- * Estabelecimento de contato direto com outros viajantes da rede social
+ * Criação de um perfil de viajante, com dados como nome, idade e localização através do Google Maps
+ * Estabelecimento de relacionamento por meio de contatos com outros viajantes da rede social
  * Criação ou participação em grupos de viagens criados por outros viajantes ou empresas de turismo, cujo objetivo é reunir viajantes com interesse em um destino em comum e efetuar a viagem
  * Consulta e avaliação de empresas de turismo
 
