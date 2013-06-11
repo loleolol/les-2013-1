@@ -27,3 +27,5 @@
   * [Equipe Equipe]
     * [Integrantes Integrantes]
   * [Teste Teste]
+    * [Bugs Bugs]
+    * [Sugestoes Sugestões UI/UX]
