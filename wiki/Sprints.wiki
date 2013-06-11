@@ -1,3 +1,0 @@
-#sidebar Dashboard
-
-*As atividades dos sprints estão distribuídas na página de issues, disponível [http://code.google.com/p/les-2013-1/issues/list neste link]*
