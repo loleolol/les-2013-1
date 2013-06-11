@@ -635,6 +635,11 @@ function mostraMensagem(elemento, mensagem) {
     		height: 200,
     		width: 400,
     		modal: true,
+    		buttons: {
+    			  "Ok": function() {
+    			    $(this).dialog("close");
+    			  }
+    		}
     	  });
     }
 }

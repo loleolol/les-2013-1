@@ -1,11 +1,13 @@
 package br.com.les20131.controller;
 
 import br.com.les20131.model.Usuario;
+import br.com.les20131.model.Viajante;
 import br.com.les20131.model.bean.ContatoBean;
 import br.com.les20131.model.bean.UsuarioBean;
 import br.com.les20131.model.bean.ViagemBean;
 import br.com.les20131.model.bean.ViajanteBean;
 import br.com.les20131.util.InvalidPageException;
+import br.com.les20131.util.UserAuthenticationException;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -277,6 +279,7 @@ public class ModuloViajanteController extends BaseController {
         this.validarEmail(email);
         this.validarEmail(emailConfirma);
         this.validarConfirmacaoEmail(email, emailConfirma);
+        this.validarExisteEmail(email);
         this.validarSenha(senha);
         this.validarSenha(senhaConfirma);
         this.validarConfirmacaoSenha(senha, senhaConfirma);
@@ -356,6 +359,27 @@ public class ModuloViajanteController extends BaseController {
             throw new Exception("E-mail acima do limite de 100 caracteres.");
         }
     }
+    
+    /**
+     * Valida se o email existe
+     * @access private
+     * @param String email
+     * @return void
+     * @throws Exception
+     */
+    private void validarExisteEmail(String email) throws UserAuthenticationException {
+    	try {
+	    	ViajanteBean viajanteBean = new ViajanteBean();
+	    	viajanteBean.consultarPorEmail(email);
+	    	if (viajanteBean.getViajante() != null) {
+	            throw new UserAuthenticationException("E-mail já registrado no sistema.");
+	    	}
+    	} catch (Exception excecao) {
+    		throw new UserAuthenticationException("E-mail já registrado no sistema.");
+    	}
+    }
+
+    
     
     /**
      * Valida a senha
