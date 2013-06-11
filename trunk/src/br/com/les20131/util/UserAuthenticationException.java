@@ -13,6 +13,14 @@ public class UserAuthenticationException extends Exception {
     public UserAuthenticationException() {
         super("Usuário ou senha inválidos!");
     }
+    
+    /**
+     * Construtor da classe
+     * @param msg
+     */
+    public UserAuthenticationException(String msg) {
+    	super(msg);
+    }
 
 }
 
