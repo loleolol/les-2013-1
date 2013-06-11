@@ -2,6 +2,8 @@
 
 = `#`Partiu = 
 
+*Rede social para troca de experiências de viagens!*
+
   * [HowTo HowTo]
     * [Configurar_Ambiente Configurar Ambiente]
   * [Visao_Geral Visão Geral]
