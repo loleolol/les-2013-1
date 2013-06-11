@@ -369,9 +369,9 @@ public class ModuloViajanteController extends BaseController {
      */
     private void validarExisteEmail(String email) throws UserAuthenticationException {
     	try {
-	    	ViajanteBean viajanteBean = new ViajanteBean();
-	    	viajanteBean.consultarPorEmail(email);
-	    	if (viajanteBean.getViajante() != null) {
+	    	UsuarioBean usuarioBean = new UsuarioBean();
+	    	usuarioBean.consultarPorEmail(email);
+	    	if (usuarioBean.getUsuario() != null) {
 	            throw new UserAuthenticationException("E-mail já registrado no sistema.");
 	    	}
     	} catch (Exception excecao) {

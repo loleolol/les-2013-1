@@ -59,7 +59,7 @@ public class PesquisaController extends BaseController {
 		PesquisaBean pesquisaBean = new PesquisaBean();
 		String criterio = this.requisicao.getParameter("criterio");
 		if (criterio != null && criterio.length() > 0) {
-			pesquisaBean.pesquisar(criterio, ((Usuario)sessao.getAttribute("usuario")).getIdUsuario());
+			pesquisaBean.pesquisar(criterio, ((Usuario)sessao.getAttribute("usuario")).getIdUsuario(), sessao.getAttribute("administrador")!=null);
 			this.requisicao.setAttribute("pesquisaBean", pesquisaBean);
 		}
 		this.despachar("/view/pesquisa/listar.jsp");
@@ -77,12 +77,13 @@ public class PesquisaController extends BaseController {
 		String criterio = this.requisicao.getParameter("criterio");
 		if (criterio != null && criterio.length() > 0) {
 			int idUsuario = ((Usuario)sessao.getAttribute("usuario")).getIdUsuario();
-			pesquisaBean.pesquisar(criterio, idUsuario);
+			pesquisaBean.pesquisar(criterio, idUsuario, false);
 			this.resposta.setContentType("application/json");
 			this.resposta.setCharacterEncoding("UTF-8");
 			Gson gson = new Gson();
 			String json = gson.toJson(pesquisaBean.getListaResultado());
-			json = "{ \"idUsuario\":\""+idUsuario+"\", \"lista\":"+json+" }";
+			boolean empresa = (sessao.getAttribute("empresa") != null ? true : false);
+			json = "{ \"idUsuario\":\""+idUsuario+"\", \"empresa\":\""+empresa+"\", \"lista\":"+json+" }";
 			this.resposta.getWriter().write(json);			
 		}
 	}

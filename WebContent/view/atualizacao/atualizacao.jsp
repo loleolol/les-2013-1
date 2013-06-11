@@ -68,22 +68,25 @@
 							</c:choose>
 						</div>
 						<div class="parte_bloco">
-							<button class="link titulo"  type="button" value="${atualizacao.idAutor}" onclick="atalhoPerfil(this)">${atualizacao.autor}</button>
 							<c:choose>
 				   				<c:when test="${atualizacao.acao == 'Viagem'}">
+									<button class="link titulo"  type="button" value="${atualizacao.idAutor}" onclick="atalhoPerfil(this, 'Viajante')">${atualizacao.autor}</button>
 									<span>compartilhou</span>
 									<span class="titulo">${atualizacao.nome}</span>
 								</c:when>
 				   				<c:when test="${atualizacao.acao == 'Avaliacao'}">
+				   					<button class="link titulo"  type="button" value="${atualizacao.idAutor}" onclick="atalhoPerfil(this, 'Viajante')">${atualizacao.autor}</button>
 									<span>avaliou</span>
 									<button class="link titulo" type="button" value="${atualizacao.listaId[0]}" onclick="atalhoPerfil(this, 'Empresa')">${atualizacao.nome}</button>
 									<span>em</span>
 							        <input id="avaliacao${chave.count}" type="hidden" name="avaliacao" value="${atualizacao.listaId[1]}"/>
 								</c:when>
 				   				<c:when test="${atualizacao.acao == 'Anuncio'}">
+				   					<button class="link titulo"  type="button" value="${atualizacao.idAutor}" onclick="atalhoPerfil(this, 'Empresa')">${atualizacao.autor}</button>
 									<span>anunciou:</span>
 								</c:when>
 								<c:otherwise>
+									<button class="link titulo"  type="button" value="${atualizacao.idAutor}" onclick="atalhoPerfil(this, 'Viajante')">${atualizacao.autor}</button>
 									<span>adicionou</span>
 									<button class="link titulo" type="button" value="${atualizacao.id}" onclick="atalhoPerfil(this, 'Viajante')">${atualizacao.nome}</button>
 									<span>como contato</span>

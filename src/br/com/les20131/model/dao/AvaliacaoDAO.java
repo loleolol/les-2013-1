@@ -255,14 +255,19 @@ public class AvaliacaoDAO extends DAOBase<Avaliacao> {
             List<Avaliacao> listaAvaliacao = new ArrayList<Avaliacao>();
             ViajanteDAO viajanteDAO = new ViajanteDAO();
             EmpresaDAO empresaDAO = new EmpresaDAO();
-
+            Viajante viajante;
+            Empresa empres;
             while (resultSet.next()) {
-                listaAvaliacao.add( new Avaliacao(resultSet.getInt("id_avaliacao")
-                , empresaDAO.consultar(resultSet.getInt("id_empresa"))
-                , viajanteDAO.consultar(resultSet.getInt("id_viajante"))
-                , resultSet.getInt("avaliacao")
-                , resultSet.getString("descricao")
-                , resultSet.getTimestamp("data_inclusao")));
+            	viajante = viajanteDAO.consultar(resultSet.getInt("id_viajante"));
+            	empres = empresaDAO.consultar(resultSet.getInt("id_empresa"));
+            	if (viajante != null && empresa != null) {
+	                listaAvaliacao.add( new Avaliacao(resultSet.getInt("id_avaliacao")
+	                , empres
+	                , viajante
+	                , resultSet.getInt("avaliacao")
+	                , resultSet.getString("descricao")
+	                , resultSet.getTimestamp("data_inclusao")));
+            	}
             }
 
             return listaAvaliacao;

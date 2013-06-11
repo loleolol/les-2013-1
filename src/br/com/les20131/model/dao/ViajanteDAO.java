@@ -71,49 +71,7 @@ public class ViajanteDAO extends DAOBase<Viajante> {
         }
     }
     
-    /**
-     * Consulta um viajante por e-mail
-     * @access public
-     * @param String email
-     * @return Viajante
-     * @throws DAOException
-     */
-    public Viajante consultarEmail(String email) throws DAOException {
-        int indice = 0;
-        PreparedStatement stmt = null;
-        ResultSet resultSet = null;
-
-        String sql = "SELECT u.id_usuario, u.email, u.nome, u.senha, u.excluido, u.bloqueado"
-        			+ "\n, v.sexo, v.data_nascimento, v.latitude, v.longitude, v.imagem"
-                    + "\n FROM usuario u, viajante v"
-                    + "\n WHERE u.email = ?"
-                    + "\n AND u.id_usuario = v.id_usuario"
-                    + "\n AND u.excluido = 0";
-
-        try {
-            stmt = this.conexao.prepareStatement(sql);
-            stmt.setString(++indice, email);
-            resultSet = stmt.executeQuery();
-
-            Viajante viajante = null;
-            if (resultSet.next()) {
-            	viajante = new Viajante(resultSet.getInt("id_usuario")
-                                , resultSet.getString("email")
-                                , resultSet.getString("nome")
-                                , resultSet.getString("senha")
-                                , resultSet.getInt("excluido")
-                                , resultSet.getInt("bloqueado")
-                                , resultSet.getString("sexo")
-                                , resultSet.getDate("data_nascimento")
-                                , resultSet.getDouble("latitude")
-                                , resultSet.getDouble("longitude")
-                                , resultSet.getBinaryStream("imagem"));
-            }
-            return viajante;
-        } catch (Exception excecao) {
-            throw new DAOException(excecao);
-        }  	
-    }
+ 
     
     /**
      * Consulta contatos de viajante

@@ -162,19 +162,19 @@
 											<c:choose>
 												<c:when test="${usuarioBean.usuario.bloqueado == 0}">
 													<button type="button"
-														onclick="bloquearUsuario($(this), ${itemResultado.id})">
+														onclick="bloquearUsuario($(this), ${viajanteBean.viajante.idUsuario})">
 														<span>Bloquear</span>
 													</button>
 												</c:when>
 												<c:otherwise>
 													<button type="button"
-														onclick="desbloquearUsuario($(this), ${itemResultado.id})">
+														onclick="desbloquearUsuario($(this), ${viajanteBean.viajante.idUsuario})">
 														<span>Desbloquear</span>
 													</button>
 												</c:otherwise>
 											</c:choose>
 										</c:when>
-										<c:otherwise>
+										<c:when test="${usuarioEmpresaBean == null }">
 											<button type="button" onclick="$('#contato').submit()">
 				    							<span>Ver contatos</span>
 				    						</button>
@@ -192,13 +192,15 @@
 													</button>
 												</c:otherwise>
 											</c:choose>
-										</c:otherwise>
+										</c:when>
 									</c:choose>				    				
 								</div>
 							</c:if>	
 						</div>
 						<c:choose>
 					        <c:when test="${viajanteBean.viajante.idUsuario != usuarioBean.usuario.idUsuario && viajanteBean.viajante.latitude == -9999}">		
+								<input id="latitude" type="hidden" name="latitude" value="${viajanteBean.viajante.latitude}"/>
+								<input id="longitude" type="hidden" name="longitude" value="${viajanteBean.viajante.longitude}"/>
 			    			</c:when>
 			    			<c:otherwise>
 								<div class="bloco container">

@@ -127,6 +127,15 @@ public class UsuarioBean {
     }
     
     /**
+     * Consultar viajante por email
+     * @access public
+     * @param String email
+     * @throws Exception
+     */
+    public void consultarPorEmail(String email) throws Exception {
+    	this.usuario = this.usuarioDAO.consultarEmail(email);
+    }
+    /**
      * Consulta os usuários cadastrados
      * @access public
      * @return void
