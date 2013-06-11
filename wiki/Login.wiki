@@ -4,8 +4,6 @@
 
 Visitante efetua login como usuário do sistema para ter acesso às suas funcionalidades.
 
-https://les-2013-1.googlecode.com/svn/wiki/img/efetuar_login.png
-
 *Pré-condições:* Não há sessão ativa de usuário.
 
 *Fluxo Principal*
