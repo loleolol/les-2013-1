@@ -34,6 +34,7 @@
     * [Manter_grupo Manter Grupo]
     * [Manter_perfil_empresa Manter Perfil de empresa]
   * [Diagramas_de_classe Diagramas de classe]
+  * [Diagramas_de_sequencia Diagramas de sequência]
   * [Equipe Equipe]
     * [Integrantes Integrantes]
   * [Teste Teste]
