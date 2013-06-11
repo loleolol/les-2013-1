@@ -11,3 +11,5 @@
 *Developers:* Gustavo Refosco, Leonardo Perdomo
 <br></br>
 *Test Engineer:* Gustavo Refosco
+<br></br>
+*Web Designer:* Leonardo Perdomo
