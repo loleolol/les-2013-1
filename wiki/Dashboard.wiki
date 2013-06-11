@@ -22,6 +22,7 @@
     * [Manter_Perfil_de_Viajante Manter Perfil de Viajante]
     * [Manter_Viagem Manter Viagem]
   * [G2 G2]
+  * [Diagramas_de_classe Diagramas de classe]
   * [Equipe Equipe]
     * [Integrantes Integrantes]
   * [Teste Teste]
