@@ -22,7 +22,7 @@
     * [Manter_Perfil_de_Viajante Manter Perfil de Viajante]
     * [Manter_Viagem Manter Viagem]
     * [Administrar_viagem Administrar Viagem]
-    * [Administrar_usuário Administrar Usuário]
+    * [Administrar_usuArio Administrar Usuário]
   * [G2 G2]
     * [Administrar_anuncio Administrar Anúncio]
     * [Administrar_avaliacao Administrar Avaliação de Empresa]
