@@ -4,7 +4,7 @@
 
 Usuário viajante realiza o gerenciamento de seus contatos, mantidos em uma lista.
 
-https://les-2013-1.googlecode.com/svn/wiki/img/usecase/manter_contato.png
+https://les-2013-1.googlecode.com/svn/wiki/img/usecase/manter_contato.jpg
 
 *Pré-condições:* Há sessão ativa de usuário.
 
