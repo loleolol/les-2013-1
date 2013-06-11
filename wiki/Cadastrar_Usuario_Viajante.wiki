@@ -6,7 +6,7 @@ Visitante se cadastra como usuário do tipo viajante no sistema.
 
 
 
-https://les-2013-1.googlecode.com/svn/wiki/img/cadastrar_usuario_viajante.png
+https://les-2013-1.googlecode.com/svn/wiki/img/usecase/manter_perfil_viajante.jpg
 
 
 
