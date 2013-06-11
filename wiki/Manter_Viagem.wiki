@@ -4,7 +4,7 @@
 
 Usuário viajante realiza manutenção de seus registros de viagem.
 
-https://les-2013-1.googlecode.com/svn/wiki/img/manter_viagem.png
+https://les-2013-1.googlecode.com/svn/wiki/img/usecase/manter_viagem.jpg
 
 *Pré-condições:* Há sessão ativa de usuário. 
 
