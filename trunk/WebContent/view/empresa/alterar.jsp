@@ -86,7 +86,7 @@
 								</div>
 								<br/>
 							</div>
-							<c:if test="${usuarioEmpresaBean == null}">
+							<c:if test="${usuarioEmpresaBean == null && administradorBean == null}">
 								<div class="inferior_direito">
 									<c:choose>
 										<c:when test="${idAvaliacao > 0}">

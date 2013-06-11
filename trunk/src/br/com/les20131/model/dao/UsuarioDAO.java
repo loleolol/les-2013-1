@@ -262,6 +262,43 @@ public class UsuarioDAO extends DAOBase<Usuario> {
     }
     
     /**
+     * Consulta um usuário por e-mail
+     * @access public
+     * @param String email
+     * @return Usuario
+     * @throws DAOException
+     */
+    public Usuario consultarEmail(String email) throws DAOException {
+        int indice = 0;
+        PreparedStatement stmt = null;
+        ResultSet resultSet = null;
+
+        String sql = "SELECT u.id_usuario, u.email, u.nome, u.senha, u.excluido, u.bloqueado"
+                    + "\n FROM usuario u"
+                    + "\n WHERE u.email = ?"
+                    + "\n AND u.excluido = 0";
+
+        try {
+            stmt = this.conexao.prepareStatement(sql);
+            stmt.setString(++indice, email);
+            resultSet = stmt.executeQuery();
+
+            Usuario usuario = null;
+            if (resultSet.next()) {
+            	usuario = new Usuario(resultSet.getInt("id_usuario")
+                                , resultSet.getString("email")
+                                , resultSet.getString("nome")
+                                , resultSet.getString("senha")
+                                , resultSet.getInt("excluido")
+                                , resultSet.getInt("bloqueado"));
+            }
+            return usuario;
+        } catch (Exception excecao) {
+            throw new DAOException(excecao);
+        }  	
+    }    
+    
+    /**
      * Bloquear um usuário
      * @access public
      * @param Usuario obj

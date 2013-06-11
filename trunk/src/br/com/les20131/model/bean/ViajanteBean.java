@@ -108,16 +108,6 @@ public class ViajanteBean extends UsuarioBean {
     }
     
     /**
-     * Consultar viajante por email
-     * @access public
-     * @param String email
-     * @throws Exception
-     */
-    public void consultarPorEmail(String email) throws Exception {
-    	this.viajante = this.viajanteDAO.consultarEmail(email);
-    }
-    
-    /**
      * Insere um viajante
      * @access public
      * @param String email

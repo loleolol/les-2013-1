@@ -2,7 +2,9 @@ package br.com.les20131.controller;
 
 import br.com.les20131.model.Usuario;
 import br.com.les20131.model.bean.UsuarioBean;
+import br.com.les20131.model.bean.ViajanteBean;
 import br.com.les20131.util.InvalidPageException;
+import br.com.les20131.util.UserAuthenticationException;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -168,7 +170,7 @@ public class ModuloUsuarioController extends BaseController {
     		usuario = ((Usuario)sessao.getAttribute("usuario"));
     	}
     	
-    	usuarioBean.alterar(usuario.getIdUsuario(), usuario.getEmail(), null, usuario.getBloqueado(), 1);
+    	usuarioBean.alterar(usuario.getIdUsuario(), usuario.getEmail(), "", usuario.getBloqueado(), 1);
     }
     
     /**
@@ -186,6 +188,7 @@ public class ModuloUsuarioController extends BaseController {
     	this.validarEmail(email);
     	this.validarEmail(emailConfirma);
     	this.validarConfirmacaoEmail(email, emailConfirma);
+        this.validarExisteEmail(email);
     	if (senha.isEmpty() == false) {
     		this.validarSenha(senha);
     	}
@@ -194,6 +197,26 @@ public class ModuloUsuarioController extends BaseController {
     	}
     	this.validarConfirmacaoSenha(senha, senhaConfirma);
     }
+    
+    /**
+     * Valida se o email existe
+     * @access private
+     * @param String email
+     * @return void
+     * @throws Exception
+     */
+    private void validarExisteEmail(String email) throws Exception {
+    	try {
+    		HttpSession sessao = this.requisicao.getSession();
+	    	UsuarioBean usuarioBean = new UsuarioBean();
+	    	usuarioBean.consultarPorEmail(email);
+	    	if (usuarioBean.getUsuario() != null && usuarioBean.getUsuario().getIdUsuario() != ((Usuario)sessao.getAttribute("usuario")).getIdUsuario()) {
+	            throw new Exception("E-mail já registrado no sistema.");
+	    	}
+    	} catch (Exception excecao) {
+    		throw new Exception("E-mail já registrado no sistema.");
+    	}
+    }    
     
     /**
      * Valida o código do usuário

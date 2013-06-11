@@ -194,6 +194,8 @@ public class AtualizacaoBean {
         	listaId = new ArrayList<Integer>();
         	listaId.add(lista.get(indice).getEmpresa().getIdUsuario());
     		listaId.add(lista.get(indice).getAvaliacao());
+    		String a = lista.get(indice).getEmpresa().getNome();
+    		String c = lista.get(indice).getViajante().getNome();
         	this.listaAtualizacao.add(new ItemAtualizacaoBean(lista.get(indice).getIdAvaliacao()
         			, "Avaliacao", lista.get(indice).getViajante().getNome(), lista.get(indice).getViajante().getIdUsuario()
         			, lista.get(indice).getEmpresa().getNome(), listaId, lista.get(indice).getDescricao()

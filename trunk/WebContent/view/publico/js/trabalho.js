@@ -31,7 +31,7 @@ function pesquisar(campo, retorno, botao) {
 						+"<input type=\"hidden\" name=\"id\" value=\""+data.lista[i].id+"\"/>"
 			    		+"</div>"
 		    			+"<div class=\"parte_bloco\">";
-			    	if (data.idUsuario != data.lista[i].id && data.lista[i].tipo == 'Viajante') {
+			    	if (data.idUsuario != data.lista[i].id && data.lista[i].tipo == 'Viajante' && data.empresa == 'false') {
 				    	if (data.lista[i].flag) {
 				    		string += "<button type=\"button\" onclick=\"removerContato($(this), "+data.lista[i].id+")\">"
 			    				+"<span class=\"excluir\"></span>";
@@ -504,36 +504,38 @@ function carregarImagem(imagem, url) {
 function carregarImagens() {
 	jQuery.each($('img'), function(i, element) {
 		$(element).attr("src", "/les20131/view/publico/imagens/carregando.gif");
-		setTimeout(function() { carregarImagem($(element), $(element).attr("alt")); }, (i*600));
+		setTimeout(function() { carregarImagem($(element), $(element).attr("alt")); }, (i*800));
 	});
 }
 
 function slideImagensInicio() {
-	setTimeout(function() {
-		$("#imagem_inicio").effect("fade", {}, 500, 
-				function() {
-					$("#imagem_inicio").removeAttr( "style" ).hide().fadeIn();
-					$('#imagem_inicio').attr("src", "/les20131/view/publico/imagens/paris.jpg");
-				}
-			);
+	if ($("#imagem_inicio").length > 0) {
 		setTimeout(function() {
-			$("#imagem_inicio").effect("fade", {}, 500,
-				function() {
-					$("#imagem_inicio").removeAttr( "style" ).hide().fadeIn();
-					$('#imagem_inicio').attr("src", "/les20131/view/publico/imagens/dawn.jpg");
-				}
-			);
+			$("#imagem_inicio").effect("fade", {}, 500, 
+					function() {
+						$("#imagem_inicio").removeAttr( "style" ).hide().fadeIn();
+						$('#imagem_inicio').attr("src", "/les20131/view/publico/imagens/paris.jpg");
+					}
+				);
 			setTimeout(function() {
 				$("#imagem_inicio").effect("fade", {}, 500,
 					function() {
 						$("#imagem_inicio").removeAttr( "style" ).hide().fadeIn();
-						$('#imagem_inicio').attr("src", "/les20131/view/publico/imagens/park.jpg");
-						slideImagensInicio();
+						$('#imagem_inicio').attr("src", "/les20131/view/publico/imagens/dawn.jpg");
 					}
 				);
-			}, (15000));
-		}, (10000));
-	}, (5000));
+				setTimeout(function() {
+					$("#imagem_inicio").effect("fade", {}, 500,
+						function() {
+							$("#imagem_inicio").removeAttr( "style" ).hide().fadeIn();
+							$('#imagem_inicio').attr("src", "/les20131/view/publico/imagens/park.jpg");
+							slideImagensInicio();
+						}
+					);
+				}, (15000));
+			}, (10000));
+		}, (5000));
+	}
 }
 
 function carregarGaleria(id, imagem, url, form) {
@@ -554,40 +556,67 @@ function carregarGaleria(id, imagem, url, form) {
 
 function navegarGaleria(imagem, url, reverso) {
 	var achou = false;
-	var mudou = false;
-	var i = 0;
+	var i = 0, j = 0;
 	var elemento;
 	var quantidade = $('[name='+url+']').length;
+	$(imagem).attr("src", $(imagem).attr("src").split("&nan")[0]);
 	if (reverso == false) {
 		for(i = 0; i < quantidade; i++) {
-			elemento = $('[name='+url+']')[i];
-			if (achou == true) {
-				$(imagem).attr("src", $(elemento).val());
-				mudou = true;
-			} else if ($(elemento).val() == $(imagem).attr("src")) {
-				achou = true;
+			if (achou == false) {
+				elemento = $('[name='+url+']')[i];
+				if ($(elemento).val() == $(imagem).attr("src")) {
+					achou = true;
+					j = i;
+				}
 			}
 		}
-		if (mudou == false) {
+		if (achou == true && j < (quantidade-1)) {
+			elemento = $('[name='+url+']')[j+1];
+			$(imagem).effect("fade", {}, 500,
+				function() {
+					$(imagem).removeAttr( "style" ).hide().fadeIn();
+					carregarImagem($(imagem), $(elemento).val());
+				}
+			);
+		} else {
 			if (quantidade > 0) {
 				elemento = $('[name='+url+']')[0];
-				$(imagem).attr("src", $(elemento).val());
+				$(imagem).effect("fade", {}, 500,
+					function() {
+						$(imagem).removeAttr( "style" ).hide().fadeIn();
+						carregarImagem($(imagem), $(elemento).val());
+					}
+				);
 			}
 		}
 	} else {
 		for(i = (quantidade-1); i >= 0; i--) {
-			elemento = $('[name='+url+']')[i];
-			if (achou == true) {
-				$(imagem).attr("src", $(elemento).val());
-				mudou = true;
-			} else if ($(elemento).val() == $(imagem).attr("src")) {
-				achou = true;
+			if (achou == false) {
+				elemento = $('[name='+url+']')[i];
+				if ($(elemento).val() == $(imagem).attr("src")) {
+					achou = true;
+					j = i;
+				}
 			}
-		}		
-		if (mudou == false) {
+		}	
+		if (achou == true && j >= 1) {
+			elemento = $('[name='+url+']')[j-1];
+			$(imagem).effect("fade", {}, 500,
+				function() {
+					$(imagem).removeAttr( "style" ).hide().fadeIn();
+					carregarImagem($(imagem), $(elemento).val());
+				}
+			);
+
+		} else {
 			if (quantidade > 0) {
 				elemento = $('[name='+url+']')[(quantidade-1)];
-				$(imagem).attr("src", $(elemento).val());
+				$(imagem).effect("fade", {}, 500,
+					function() {
+						$(imagem).removeAttr( "style" ).hide().fadeIn();
+						carregarImagem($(imagem), $(elemento).val());
+					}
+				);
 			}
 		}
 	}

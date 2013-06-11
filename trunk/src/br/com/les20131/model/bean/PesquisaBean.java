@@ -69,10 +69,10 @@ public class PesquisaBean {
 	 * @param int idUsuario
 	 * @throws Exception
 	 */
-	public void pesquisar(String criterio, int idUsuario) throws Exception {
+	public void pesquisar(String criterio, int idUsuario, boolean admin) throws Exception {
 		this.criterio = criterio;
-		this.pesquisarViajantes(idUsuario);
-		this.pesquisarEmpresas();
+		this.pesquisarViajantes(idUsuario, admin);
+		this.pesquisarEmpresas(admin);
 	}
 	
 	/**
@@ -82,16 +82,21 @@ public class PesquisaBean {
 	 * @return void
 	 * @throws Exception
 	 */
-	public void pesquisarViajantes(int idUsuario) throws Exception {
+	public void pesquisarViajantes(int idUsuario, boolean admin) throws Exception {
 		ViajanteBean viajanteBean = new ViajanteBean();
 		viajanteBean.consultar(this.criterio);
 		int indice;
 		List<Viajante> lista = viajanteBean.getListaViajante();
 		if (lista != null) {	
+			boolean flag;
 			for (indice = 0; indice < lista.size(); indice++) {
-				ContatoBean contatoBean = new ContatoBean();
-				contatoBean.consultar(idUsuario, lista.get(indice).getIdUsuario());
-				boolean flag = (contatoBean.getContato() != null ? true : false);
+				if (admin == false) {
+					ContatoBean contatoBean = new ContatoBean();
+					contatoBean.consultar(idUsuario, lista.get(indice).getIdUsuario());
+					flag = (contatoBean.getContato() != null ? true : false);
+				} else {
+					flag = (lista.get(indice).getBloqueado() == 1 ? true : false);
+				}
 				this.listaResultado.add(new ItemPesquisadoBean(lista.get(indice).getIdUsuario()
 						, lista.get(indice).getNome(), lista.get(indice).getEmail()
 						, flag,"Viajante"));
@@ -105,13 +110,17 @@ public class PesquisaBean {
 	 * @return void
 	 * @throws Exception
 	 */
-	public void pesquisarEmpresas() throws Exception {
+	public void pesquisarEmpresas(boolean admin) throws Exception {
 		EmpresaBean empresaBean = new EmpresaBean();
 		empresaBean.consultar(this.criterio);
 		int indice;
 		List<Empresa> lista = empresaBean.getListaEmpresa();
 		if (lista != null) {
+			boolean flag = false;
 			for (indice = 0; indice < lista.size(); indice++) {
+				if (admin == true) {
+					flag = (lista.get(indice).getBloqueado() == 1 ? true : false);
+				}
 				this.listaResultado.add(new ItemPesquisadoBean(lista.get(indice).getIdUsuario()
 						, lista.get(indice).getNome(), lista.get(indice).getEmail()
 						, false,"Empresa"));

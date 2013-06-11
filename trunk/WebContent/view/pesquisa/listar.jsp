@@ -40,7 +40,7 @@
 					
 					</a></li>
 					<c:choose>
-						<c:when test="${empresaBean != null}">
+						<c:when test="${usuarioEmpresaBean != null}">
 							<li><a href="#abaAnuncio">Novo anúncio</a></li>
 						</c:when>
 						<c:when test="${administradorBean == null}">
@@ -76,44 +76,46 @@
 								    				<span>${itemResultado.previa}</span>
 								    				<br/>
 								    			</div>
-								    			<div class="parte_bloco">
-								    				<c:set var="idUsuario">${usuarioBean.usuario.idUsuario}</c:set>
-								    				<c:choose>
-								    					<c:when test="${administradorBean != null}">
-															<c:choose>
-																<c:when test="${usuarioBean.usuario.bloqueado == 0}">
-																	<button type="button"
-																		onclick="bloquearUsuario($(this), ${itemResultado.id})">
-																		<span>Bloquear</span>
-																	</button>
-																</c:when>
-																<c:otherwise>
-																	<button type="button"
-																		onclick="desbloquearUsuario($(this), ${itemResultado.id})">
-																		<span>Desbloquear</span>
-																	</button>
-																</c:otherwise>
-															</c:choose>
-															<button type="button" onclick="excluirUsuario($('#container${chave.count}'), $(this), ${itemResultado.id})">
-										    					<span>Excluir</span>
-										    				</button>
-								    					</c:when>								    					
-								    					<c:when test="${itemResultado.id == idUsuario || itemResultado.tipo == 'Empresa'}">
-								    					</c:when>
-								    					<c:when test="${itemResultado.flag}">
-										    				<button type="button" onclick="removerContato($(this), ${itemResultado.id})">
-										    					<span class="excluir"></span>
-										    					<span>Contato</span>
-										    				</button>
-										    			</c:when>
-										    			<c:otherwise>
-										    				<button type="button" onclick="adicionarContato($(this), ${itemResultado.id})">
-										    					<span class="incluir"></span>
-										    					<span>Contato</span>
-										    				</button>
-										    			</c:otherwise>
-										    		</c:choose>
-								    			</div>
+								    			<c:if test="${usuarioEmpresaBean == null}">
+									    			<div class="parte_bloco">
+									    				<c:set var="idUsuario">${usuarioBean.usuario.idUsuario}</c:set>
+									    				<c:choose>
+									    					<c:when test="${administradorBean != null}">
+																<c:choose>
+																	<c:when test="${itemResultado.flag == false}">
+																		<button type="button"
+																			onclick="bloquearUsuario($(this), ${itemResultado.id})">
+																			<span>Bloquear</span>
+																		</button>
+																	</c:when>
+																	<c:otherwise>
+																		<button type="button"
+																			onclick="desbloquearUsuario($(this), ${itemResultado.id})">
+																			<span>Desbloquear</span>
+																		</button>
+																	</c:otherwise>
+																</c:choose>
+																<button type="button" onclick="excluirUsuario($('#container${chave.count}'), $(this), ${itemResultado.id})">
+											    					<span>Excluir</span>
+											    				</button>
+									    					</c:when>								    					
+									    					<c:when test="${itemResultado.id == idUsuario || itemResultado.tipo == 'Empresa'}">
+									    					</c:when>
+									    					<c:when test="${itemResultado.flag}">
+											    				<button type="button" onclick="removerContato($(this), ${itemResultado.id})">
+											    					<span class="excluir"></span>
+											    					<span>Contato</span>
+											    				</button>
+											    			</c:when>
+											    			<c:otherwise>
+											    				<button type="button" onclick="adicionarContato($(this), ${itemResultado.id})">
+											    					<span class="incluir"></span>
+											    					<span>Contato</span>
+											    				</button>
+											    			</c:otherwise>
+											    		</c:choose>
+									    			</div>
+									    		</c:if>
 											</div>
 											<input id="acao${chave.count}" type="hidden" name="acao" value="selecionar"/>
 											<input type="hidden" name="id" value="${itemResultado.id}"/>
