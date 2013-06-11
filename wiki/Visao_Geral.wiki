@@ -4,7 +4,7 @@
 
 *Arquivo com todos os diagramas (casos de uso, sequência, etc):* [http://code.google.com/p/les-2013-1/downloads/detail?name=lesTrab.vpp&can=2&q=#makechanges Diagramas]
 
-o sistema deve funcionar como uma rede social com foco em viagens. Seus usuários se dividirão entre viajantes e empresas de turismo. Assim sendo, são oferecidas diferentes funcionalidades de acordo com o perfil do usuário.
+O sistema deve funcionar como uma rede social com foco em viagens. Seus usuários se dividirão entre viajantes e empresas de turismo. Assim sendo, são oferecidas diferentes funcionalidades de acordo com o perfil do usuário.
 
 *Para viajantes:*
  * Compartilhamento de experiências de viagens, incluindo descrições e fotos
