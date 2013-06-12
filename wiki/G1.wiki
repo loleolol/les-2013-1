@@ -1,5 +1,7 @@
 #sidebar Dashboard
 
+*Arquivo com todos os diagramas (casos de uso, sequência, etc):* [http://code.google.com/p/les-2013-1/downloads/detail?name=lesTrab.vpp&can=2&q=#makechanges Diagramas]
+
     * [Cadastrar_Usuario_Viajante Cadastrar Usuário Viajante]
     * [Login Login]
     * [Manter_Contato Manter Contato]
