@@ -1,0 +1,1 @@
+**Arquivo com todos os diagramas (casos de uso, sequência, etc):** [Diagramas](http://code.google.com/p/les-2013-1/downloads/detail?name=lesTrab.vpp&can=2&q=#makechanges)
